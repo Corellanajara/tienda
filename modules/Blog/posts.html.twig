@@ -1,0 +1,233 @@
+<ul class="post-item-wrapper">
+    {% for item in values.blog.articulos %}
+    <li class="posts fullstyle">
+        <div class="featured-thumbnail-wrapper image">
+            <div class="date-wrapper">
+                <div class="date-wrap">
+                    <span>{{item.dia}}</span>
+                    <span>{{item.mes}}</span>
+                    <span>{{item.anio}}</span>
+                </div>
+                <span class="triangle"></span>
+            </div>
+
+	    {% if item.imagen %}
+            <div class="featured-thumbnail">
+                <div class="image-wrap">
+                    <a class="image-wrapper" href="{{app.path}}/{{item.imagen}}" data-rel="prettyPhoto[gallery]"><img src="{{app.path}}/{{item.imagen}}" alt="{{item.titulo}}" /><span class="zoom-icon magnify"></span></a>
+                </div>
+            </div>
+	    {% endif %}
+		
+        </div>
+        <h2>{{ macro.link(item.titulo,none,item.url.url,item.url.targetBlank) }}</h2>
+        <div class="excerpt"> {{item.resumen}} </div>
+        <div class="post-info-wrapper">
+            <div class="post-icon"></div>
+            <div class="post-info">
+                <span class="author">
+                    <a href="#" rel="author">admin</a>
+                </span>
+                <span class="tags">
+                    <a href="#" rel="tag">Australia</a>, <a href="#" rel="tag">Europe</a>
+                </span>
+                <span class="comment"> 5 Comments </span>
+                <div class="posts-link">
+                    <a href="">{{ macro.link(values.TEXTS.leerMas,none,item.url.url,item.url.targetBlank) }}</a>
+                </div>
+            </div>
+        </div>
+    </li>
+    {% else %}
+        {{values.TEXTS.noHayEntradas}}
+    {% endfor %}
+
+
+    {#	
+    <li class="posts fullstyle">
+        <div class="featured-thumbnail-wrapper image">
+            <div class="date-wrapper">
+                <div class="date-wrap">
+                    <span>26</span>
+                    <span>Jun</span>
+                    <span>2012</span>
+                </div>
+                <span class="triangle"></span>
+            </div>
+            <div class="featured-thumbnail">
+                <div class="image-wrap">
+                    <a class="image-wrapper" href="images/post/post-7.jpg" data-rel="prettyPhoto[gallery]"><img src="images/post/post-7-620x240.jpg" alt="" /><span class="zoom-icon magnify"></span></a>
+                </div>
+            </div>
+            <!-- end of .featured-thumbnail -->
+        </div>
+        <!-- end of .featured-thumbnail-wrapper -->
+
+        <h2>
+            <a href="#">post with slider thumbnail inside</a>
+        </h2>
+        <div class="excerpt"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eros elit, pretium et adipiscing vel, porttitor eu est. Aenean commodo aliquam mi vitae pulvinar. Suspendisse potenti. Phasellus consectetur risus sed turpis cursus dapibus. Morbi ornare nulla non justo placerat hendrerit. Cras... </div>
+        <div class="post-info-wrapper">
+            <div class="post-icon"></div>
+            <div class="post-info">
+                <span class="author">
+                    <a href="#" rel="author">admin</a>
+                </span>
+                <span class="tags">
+                    <a href="#" rel="tag">ceremony</a>, <a href="#" rel="tag">Europe</a>
+                </span>
+                <span class="comment"> 2 Comments </span>
+                <div class="posts-link">
+                    <a href="#">Continue Reading</a>
+                </div>
+            </div>
+        </div>
+        <!-- end of .post-info-wrapper -->
+    </li>
+    <li class="posts fullstyle">
+        <div class="featured-thumbnail-wrapper image">
+            <div class="date-wrapper">
+                <div class="date-wrap">
+                    <span>12</span>
+                    <span>Jun</span>
+                    <span>2012</span>
+                </div>
+                <span class="triangle"></span>
+            </div>
+            <div class="featured-thumbnail">
+                <div class="image-wrap">
+                    <a class="image-wrapper" href="images/post/post-3.jpg" data-rel="prettyPhoto[gallery]"><img src="images/post/post-3-620x240.jpg" alt="" /><span class="zoom-icon magnify"></span></a>
+                </div>
+            </div>
+            <!-- end of .featured-thumbnail -->
+        </div>
+        <!-- end of .featured-thumbnail-wrapper -->
+        <h2>
+            <a href="#">Vestibulum sagittis mauris</a>
+        </h2>
+        <div class="excerpt"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eros elit, pretium et adipiscing vel, porttitor eu est. Aenean commodo aliquam mi vitae pulvinar. Suspendisse potenti. Phasellus consectetur risus sed turpis cursus dapibus. Morbi ornare nulla non justo placerat hendrerit. Cras... </div>
+        <div class="post-info-wrapper">
+            <div class="post-icon"></div>
+            <div class="post-info">
+                <span class="author">
+                    <a href="#" rel="author">admin</a>
+                </span>
+                <span class="tags">
+                    <a href="#" rel="tag">Africa</a>, <a href="#" rel="tag">Asia</a>
+                </span>
+                <span class="comment"> 1 Comments </span>
+                <div class="posts-link">
+                    <a href="#">Continue Reading</a>
+                </div>
+            </div>
+        </div>
+        <!-- end of .post-info-wrapper -->
+    </li>
+    <li class="posts fullstyle">
+        <div class="featured-thumbnail-wrapper slider">
+            <div class="date-wrapper">
+                <div class="date-wrap">
+                    <span>5</span>
+                    <span>Jun</span>
+                    <span>2012</span>
+                </div>
+                <span class="triangle"></span>
+            </div>
+            <div class="featured-thumbnail">
+                <div class="image-wrap">
+                    <div id="thumbslider-1" class="nivoSlider">
+                        <img src="images/post/port15-620x240.jpg" alt="" />
+                        <img src="images/post/tm1-620x240.jpg" alt="" />
+                        <img src="images/post/bgslider3-620x240.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- end of .featured-thumbnail -->
+        </div>
+        <!-- end of .featured-thumbnail-wrapper -->
+        <h2>
+            <a href="#">post with slider thumbnail</a>
+        </h2>
+        <div class="excerpt"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eros elit, pretium et adipiscing vel, porttitor eu est. Aenean commodo aliquam mi vitae pulvinar. Suspendisse potenti. Phasellus consectetur risus sed turpis cursus dapibus. Morbi ornare nulla non justo placerat hendrerit. Cras... </div>
+        <div class="post-info-wrapper">
+            <div class="post-icon slider"></div>
+            <div class="post-info">
+                <span class="author">
+                    <a href="#" rel="author">admin</a>
+                </span>
+                <span class="tags">
+                    <a href="#" rel="tag">Asia</a>, <a href="#" rel="tag">conferrence</a>
+                </span>
+                <span class="comment"> 2 Comments </span>
+                <div class="posts-link">
+                    <a href="#">Continue Reading</a>
+                </div>
+            </div>
+        </div>
+        <!-- end of .post-info-wrapper -->
+    </li>
+    <li id="post-40" class="post-40 post type-post status-publish format-standard hentry category-hard-ware category-programing tag-america posts fullstyle">
+        <div class="featured-thumbnail-wrapper video">
+            <div class="date-wrapper">
+                <div class="date-wrap">
+                    <span>23</span>
+                    <span>May</span>
+                    <span>2012</span>
+                </div>
+                <span class="triangle"></span>
+            </div>
+            <div class="featured-thumbnail">
+                <div class="image-wrap">
+                    <iframe src="http://player.vimeo.com/video/1084537?title=0&amp;byline=0&amp;portrait=0" width="620" height="240" title="">vimeo</iframe>
+                </div>
+            </div>
+            <!-- end of .featured-thumbnail -->
+        </div>
+        <!-- end of .featured-thumbnail-wrapper -->
+        <h2>
+            <a href="#">post with video thumbnail</a>
+        </h2>
+        <div class="excerpt"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eros elit, pretium et adipiscing vel, porttitor eu est. Aenean commodo aliquam mi vitae pulvinar. Suspendisse potenti. Phasellus consectetur risus sed turpis cursus dapibus. Morbi ornare nulla non justo placerat hendrerit. Cras... </div>
+        <div class="post-info-wrapper">
+            <div class="post-icon video"></div>
+            <div class="post-info">
+                <span class="author">
+                    <a href="#" rel="author">admin</a>
+                </span>
+                <span class="tags">
+                    <a href="#" rel="tag">America</a>
+                </span>
+                <span class="comment"> 4 Comments </span>
+                <div class="posts-link">
+                    <a href="#">Continue Reading</a>
+                </div>
+            </div>
+        </div>
+        <!-- end of .post-info-wrapper -->
+    </li>
+    #}
+</ul>
+
+{% if values.blog.paginacion.totalPaginas > 0 %}
+<div id="pagination-wrapper">    
+    <div id="pagination">
+        <form name="paginacion" id="formPaginacion" method="POST" action="">
+            <input name="controller" value="{{values.controller}}" type="hidden" />
+            <input name="action" id="action" value="index" type="hidden" />
+            <input name="pagina" id="pagina" value="" type="hidden" />
+            <input name="anio" id="anio" value="{{values.blog.anio}}" type="hidden" />
+            <input name="mes" id="mes" value="{{values.blog.mes}}" type="hidden" />
+            <input name="texto" id="texto" value="{{values.blog.texto}}" type="hidden" />
+            
+            <span>{{values.TEXTS.pagina}} {{values.blog.paginacion.pagina}} {{values.TEXTS.de}} {{values.blog.paginacion.totalPaginas}}</span>            
+            {% if values.blog.paginacion.pagina > 1 %}
+                <a href="#" onclick="$('#pagina').val('{{values.blog.paginacion.pagina-1}}');$('#formPaginacion').submit();" title="{{values.TEXTS.anterior}}" class="inactive">{{values.TEXTS.anterior}}</a>                    
+            {% endif %}
+            {% if values.blog.paginacion.pagina < values.blog.paginacion.totalPaginas %}
+                <a href="#" onclick="$('#pagina').val('{{values.blog.paginacion.pagina+1}}');$('#formPaginacion').submit();" title="{{values.TEXTS.siguiente}}" class="inactive">{{values.TEXTS.siguiente}}</a>              
+            {% endif %}
+        </form>
+        <div class="line"></div>
+    </div>
+</div>
+{% endif %}

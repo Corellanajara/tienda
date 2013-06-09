@@ -1,0 +1,25 @@
+{% set archivos = values.servicio.docsAdjuntos %}
+{% set nArchivos = archivos|length %}
+
+{% if nArchivos > 0 %}
+<div class="ficherosAdjuntos"> 
+    <div class="contenidoInter">
+        <h6 class="subrayadoAzul">{{values.LABELS.archivosAdjuntos}}</h6>
+        <ul>aaaa
+            {% for key,archivo in archivos %}
+                {% if key is even %}
+                <li><a href="{{app.path}}/{{archivo.PathName}}" title="{{archivo.Title}}" rel="pop-up">{{archivo.Name}}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <ul class="right">bbbb
+            {% for key, archivo in archivos %}
+                {% if key is odd %}
+                <li><a href="{{app.path}}/{{archivo.PathName}}" title="{{archivo.Title}}" rel="pop-up">{{archivo.Name}}</a></li>
+                {% endif%}
+            {% endfor %}
+        </ul>
+    </div> 		
+</div>
+{% endif %}

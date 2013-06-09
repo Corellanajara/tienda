@@ -1,0 +1,15 @@
+<h2>{{values.LABELS.tambienPuedeInteresarte}}:</h2>
+{% for servicio in values.servicios%}
+<div class="service-3 grid_4">
+    {% if servicio.PathNameImagenN() %}
+	<div class="icon">
+	    <img src="{{servicio.PathNameImagenN()}}" alt="{{servicio.Titulo}}" title="{{servicio.Titulo}}" />
+	</div>
+    {% endif %}
+	<div class="text">{{ macro.recortaTexto (servicio.ResumenBreve, 100) }}</div>
+	<h2>
+	    <a href="{{servicio.Href.url}}">{{servicio.Titulo}}</a>
+	    <span class="triangle"></span>
+	</h2>
+</div>
+{% endfor %}

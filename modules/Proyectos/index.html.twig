@@ -1,0 +1,31 @@
+{% extends '_global/layoutLaptopPopup.html.twig' %}
+
+
+{% block cuerpo %}
+<div id="proyecto1">
+    <h5 class="nombreProyecto">{{values.empresa}}</h5>
+    <article>
+
+        <div id="content_2" class="content content2">
+            {% for proyecto in values.proyectos %}
+            <div class="proyecto">
+                <span class="proyectoTop"></span>
+                <div class="proyectoInter">
+                    {#<h6>Tienda <span class="verde">Online</span></h6>#}
+                    <h6>{{proyecto.titulo}}</h6>
+                    <ul>
+                        {% for app in proyecto.apps %}
+                            <li><a href="{{app.url}}/Index/{{app.md5}}" title="{{app.titulo}}" target="_parent">{{app.titulo}}</a></li>
+                        {% endfor %}
+                    </ul>   
+                </div>
+                <span class="proyectoBottom"></span>
+            </div>
+            {% endfor %}        
+        </div>
+
+    </article>
+</div>
+{% endblock %}
+
+

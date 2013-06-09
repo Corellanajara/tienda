@@ -1,0 +1,19 @@
+<div class="header-down-wrapper">
+    <div id="header-down">
+	<div id="slogan-wrapper">
+	    <div id="slogan" class="container_12">
+		<div class="slogan-control">
+		    <div class="slogan-next"></div>
+		    <div class="slogan-prev"></div>
+		</div>
+		<div class="slogan">
+		    <ul>
+			{% for seo in values.mensajesSEO.contenidos %}
+			<li>{{ seo.Titulo }}</li>
+			{% endfor %}    
+		    </ul>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>

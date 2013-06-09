@@ -1,0 +1,92 @@
+<script type="text/javascript" src="{{app.path}}/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/superfish.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/supersubs.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jcarousellite.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/selectnav.min.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.custom.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.search.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.tweet.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery.tweet-function.js"></script>
+<script type="text/javascript" src="{{app.path}}/js/jquery-uniform-formulario.js"></script>
+<script src="{{app.path}}/js/jquery-ui-1.9.1.js"></script> {# JQUERY UI #}
+<script src="{{app.path}}/js/pirobox_extended.js"></script>
+<script src="{{app.path}}/js/pirobox_function.js"></script> {# pirobox #}
+
+    <script type="text/javascript">
+      $(function(){
+        $(":checkbox").uniform();
+    });
+</script>  {# SPRITES PARA FORMULARIO #}
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		// menu init
+		jQuery('ul.sf-menu').supersubs({ 
+			minWidth:18.4,   // minimum width of sub-menus in em units 
+			maxWidth:27,	// maximum width of sub-menus in em units 
+			extraWidth:1     // extra width can ensure lines don't sometimes turn over due to slight rounding differences and font-family 
+		}).superfish({	// main navigation init
+			delay:200,		// one second delay on mouseout 
+			animation:{opacity:'show',height:"show"}, // fade-in and slide-down animation 
+			speed:'normal',  // faster animation speed 
+			autoArrows:false,   // generation of arrow mark-up (for submenu) 
+			dropShadows:false   // drop shadows (for submenu)
+		});
+
+		// Nivo slider init
+		jQuery('#nivoslider').nivoSlider({
+			effect:'random',
+			slices:15,
+			boxCols:8,
+			boxRows:4,
+			animSpeed:500,
+			pauseTime:5000,
+			directionNav:false,
+			directionNavHide:false,
+			controlNav:true,
+			controlNavThumbs:false,
+			pauseOnHover:true,
+			randomStart:false,
+			manualAdvance:false
+		});
+
+		// post-shortcode init
+		jQuery("#posts-shortcode-1").jCarouselLite({
+			btnNext:"#posts-shortcode-prev-1",
+			btnPrev:"#posts-shortcode-next-1",
+			auto:false,
+			speed:1000,
+			visible:4
+		});
+
+		// thumbslider init
+		jQuery("#thumbslider-1.nivoSlider").nivoSlider({
+			effect:"fade",
+			directionNav:true,
+			directionNavHide:true,
+			controlNav:false,
+		});
+
+		// slogan init
+		jQuery('#slogan .slogan').jCarouselLite({
+			btnNext:'#slogan .slogan-next',
+			btnPrev:'#slogan .slogan-prev',
+			auto:8000,
+			speed:800,
+			vertical:true,
+			visible:1
+		});	
+		// client-shortcode init
+		jQuery("#clients-wrap-1").jCarouselLite({
+			btnNext:"",
+			btnPrev:"",
+			auto:5000,
+			speed:1000,
+			visible:5
+		});		
+	});
+</script>

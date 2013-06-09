@@ -1,0 +1,53 @@
+<div id="header">
+	<div class="header-up-wrapper">
+		<div id="top-nav-wrapper">
+                    <div id="top-nav-container" class="container_12">
+                    </div> 
+		</div>
+		<div id="header-up" class="container_12">
+                    <div class="grid_12">
+                        <div id="logo-wrapper">
+                            <a href="{{app.path}}" title="{{values.datosContacto.empresa}}"><img src="images/albatronic-cloud-solutions.png" alt="" width="155"></a>
+                        </div>
+
+                        <div class="top-information-wrapper">
+                            <div class="top-information">
+                                <span class="email">{{values.datosContacto.emailInfo}}</span>
+                                <span class="phone">{{values.datosContacto.telefono1}}</span>
+                            </div>
+                            {% include '_global/login.html.twig' %}
+                        </div>
+                    </div>
+		</div>
+	</div>
+	<!-- end of .header-up-wrapper -->
+	<div class="header-down-wrapper">
+            <div id="header-down">
+                <div id="menu-wrap">
+                    <div id="menu-wrapper" class="container_12">
+                        <ul id="main-nav" class="sf-menu">
+                            {% for item in values.menuCabecera %}
+                            <li {% if values.controller==item.controller %}class="current-menu-item"{% endif %}>
+                                <a href="{{item.url.url}}">{{item.etiquetaWeb}}</a>
+                            </li> 
+                            {% endfor %}
+                        </ul>
+                        <form class="searchform" method="get" action="#">
+                            <div class="search-wrapper top">
+                                <label for="s" class="display-none">{{values.LABELS.buscar}}</label>
+                                <input class="text" type="text" value name="s" id="s">
+                                <input class="submit" type="submit" value>
+                            </div>
+                        </form>
+                    </div>
+                        <!-- end of menu-wrapper -->
+                </div>
+                <!-- end of menu-wrap -->
+
+            </div>
+	</div>
+	<!-- end of .header-down-wrapper -->
+</div>
+<!-- end of #header -->
+
+

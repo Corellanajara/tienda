@@ -1,0 +1,107 @@
+<div id="footer-wrapper">
+    <div class="footer-top-wrapper">
+        <div class="container_12">
+            <div class="footer-item grid_3">
+                <div id="text-2" class="widget">
+                    <div class="textwidget"><img class="mb20" src="images/albatronic-cloud-solutions0.png" alt="" />
+                        <p>{{values.datosContacto.direccion}}</p>
+                        <span class="block">Tlf: {{values.datosContacto.telefono1}}</span>
+                        <span class="block">Móvil: {{values.datosContacto.telefono2}}</span>
+                        <span class="block">E-mail: {{values.datosContacto.emailInfo}}</span></div>
+                </div>
+            </div>
+            <div class="footer-item grid_6">
+                <div id="persianart_recentposts-3" class="widget">
+                    <h4>{{values.LABELS.ultimosTweets}}</h4>
+                    <div class="tweet"></div>
+                </div>
+            </div>
+
+            <div class="footer-item grid_3">
+                <div class="social-wrapper">
+                    <ul>
+                        {% for red in values.redes %}
+                        <li class="social-icon {{red.titulo}}">
+                            <a class="light" href="{{red.url}}/{{red.idUsuario}}"><img src="images/icons/network/light/{{red.titulo}}.png" alt="{{red.titulo}}"></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="footer-item grid_3">
+                <div id="recent-comments-5" class="widget">
+                    <h4>Recent Comments</h4>
+                    <ul id="recentcomments">
+                        <li class="recentcomments">admin on
+                            <a href="#">post with video thumbnail</a>
+                        </li>
+                        <li class="recentcomments">admin on
+                            <a href="#">post with video thumbnail</a>
+                        </li>
+                        <li class="recentcomments">admin on
+                            <a href="#">post with video thumbnail</a>
+                        </li>
+                        <li class="recentcomments">admin on
+                            <a href="#">post with video thumbnail</a>
+                        </li>
+                        <li class="recentcomments">admin on
+                            <a href="#">post with slider thumbnail</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+            <!-- <div class="footer-item grid_3">
+                <div id="persianart_contact-2" class="widget">
+                    <h4>Contact Me</h4>
+                    <form action="contact-widget.php" id="widget-contactForm" method="post">
+                        <ol class="forms">
+                            <li>
+                                <label for="widget-contactName" data-rel="Name" class="display-none">Name </label>
+                                <input type="text" name="widget-contactName" id="widget-contactName" value="Name" class="requiredField " onfocus="if(this.value=='Name') this.value='';" onblur="if(this.value=='') this.value='Name';">
+                            </li>
+                            <li>
+                                <label for="widget-email" data-rel="Email" class="display-none">Email</label>
+                                <input type="text" name="widget-email" id="widget-email" value="Email" class="requiredField email " onfocus="if(this.value=='Email') this.value='';" onblur="if(this.value=='') this.value='Email';">
+                            </li>
+                            <li class="textarea">
+                                <label for="widget-commentsText" data-rel="Message" class="display-none">Message</label>
+                                <textarea name="widget-comments" id="widget-commentsText" rows="20" cols="30" class="requiredField " onfocus="if(this.value=='Message') this.value='';" onblur="if(this.value=='') this.value='Message';">Message</textarea>
+                            </li>
+                            <li class="screenReader display-none">
+                                <label for="widget-checking" class="screenReader">If you want to submit this form, do not enter anything in this field</label>
+                                <input type="text" name="widget-checking" id="widget-checking" class="screenReader" value>
+                            </li>
+                            <li class="buttons">
+                                <input type="hidden" name="widget-submitted" id="widget-submitted" value="true">
+                                <input type="submit" id="widget-contact-submit" value="SUBMIT">
+                            </li>
+                        </ol>
+                    </form>
+                </div>
+            </div> -->
+        </div>
+        <!-- end of .container_12 -->
+    </div>
+
+
+    <!-- end of #footer-top-wrapper -->
+    <div class="footer-bot-wrapper">
+        <div id="copyright" class="container_12">
+            <div class="copleft">Copyright © 2013 <a href="{{values.firma.url}}">{{values.datosContacto.empresa}} {{values.firma.location}} {{values.firma.service}}</a></div>
+            <div class="copright">
+                <div class="menu-footer-container">
+                    <ul id="footer-menu" class="menu">
+                        {% for item in values.menuPie %}
+                        <li><span class="divider"></span>
+                            <a href="{{item.url.url}}" title="{{item.titulo}}">{{item.etiquetaWeb}}</a>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of #footer-bot-wrapper -->
+</div>
+<!-- end of #footer-wrapper -->

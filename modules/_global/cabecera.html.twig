@@ -1,0 +1,315 @@
+<div id="header">
+	<div class="header-up-wrapper">
+		<div id="top-nav-wrapper">
+                    <div id="top-nav-container" class="container_12">
+                    </div> 
+		</div>
+		<div id="header-up" class="container_12">
+                    <div class="grid_12">
+                        <div id="logo-wrapper">
+                            <a href="{{app.path}}" title="{{values.datosContacto.empresa}}"><img src="images/albatronic-cloud-solutions.png" alt="" width="155"></a>
+                        </div>
+
+                        <div class="top-information-wrapper">
+                            <div class="top-information">
+                                <span class="email">{{values.datosContacto.emailInfo}}</span>
+                                <span class="phone">{{values.datosContacto.telefono1}}</span>
+                            </div>
+                            {% include '_global/login.html.twig' %}
+                        </div>
+                    </div>
+		</div>
+	</div>
+	<!-- end of .header-up-wrapper -->
+	<div class="header-down-wrapper">
+            <div id="header-down">
+                <div id="menu-wrap">
+                    <div id="menu-wrapper" class="container_12">
+                        <ul id="main-nav" class="sf-menu">
+                            {% for item in values.menuCabecera %}
+                            <li {% if values.controller==item.controller %}class="current-menu-item"{% endif %}>
+                                <a href="{{item.url.url}}">{{item.etiquetaWeb}}</a>
+                            </li> 
+                            {% endfor %}
+                            {# MENÚS DESPLEGABLES
+                            <li>
+                                    <a href="index.html">Home</a>
+                                    <ul>
+                                            <li>
+                                                    <a href="home-2.html">Home 2</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-3.html">Home 3</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-4.html">Home 4</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-5.html">Home 5</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-6.html">Home 6</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-7.html">Home 7</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-8.html">Home 8</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-9.html">Home 9</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-10.html">Home 10</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-1-block.html">Home 1 block</a>
+                                            </li>
+                                            <li>
+                                                    <a href="home-2-block.html">Home 2 block</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li>
+                                    <a href="#">Sliders</a>
+                                    <ul>
+                                            <li>
+                                                    <a href="nivo-slider.html">Nivo Slider</a>
+                                            </li>
+                                            <li>
+                                                    <a href="kwicks-slider.html">Kwicks Slider</a>
+                                            </li>
+                                            <li>
+                                                    <a href="showcase-slider.html">Showcase Slider</a>
+                                            </li>
+                                            <li>
+                                                    <a href="cycle-slider.html">Cycle Slider</a>
+                                            </li>
+                                            <li>
+                                                    <a href="roundabout-slider.html">Roundabout Slider</a>
+                                            </li>
+                                            <li>
+                                                    <a href="liteaccordion-slider.html">Liteaccordion Slider</a>
+                                            </li>
+                                            <li>
+                                                    <a href="tm-slider.html">TM Slider</a>
+                                            </li>
+                                            <li>
+                                                    <a href="bgstretcher-slider.html">Bgstretcher Slider</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li>
+                                    <a href="about-us.html">Pages</a>
+                                    <ul>
+                                            <li>
+                                                    <a href="about-us.html">About Us</a>
+                                            </li>
+                                            <li>
+                                                    <a href="services.html">Services</a>
+                                            </li>
+                                            <li>
+                                                    <a href="contact-2.html">Contact Style 2</a>
+                                            </li>
+                                            <li>
+                                                    <a href="faq.html">FAQ</a>
+                                            </li>
+                                            <li>
+                                                    <a href="site-map.html">Site map</a>
+                                            </li>
+                                            <li>
+                                                    <a href="testimonials.html">Testimonials</a>
+                                            </li>
+                                            <li>
+                                                    <a href="404.html">404</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li>
+                                    <a href="portfolio-3-column.html">Portfolio</a>
+                                    <ul>
+                                            <li>
+                                                    <a href="#">Default</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="portfolio-1-column.html">Portfolio 1 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="portfolio-2-column.html">Portfolio 2 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="portfolio-3-column.html">Portfolio 3 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="portfolio-4-column.html">Portfolio 4 column</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="#">Simple</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="simple-portfolio-1-column.html">Simple Portfolio 1 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="simple-portfolio-2-column.html">Simple Portfolio 2 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="simple-portfolio-3-column.html">Simple Portfolio 3 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="simple-portfolio-4-column.html">Simple Portfolio 4 column</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="#">Style1</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="style1-portfolio-1-column.html">Style1 Portfolio 1 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="style1-portfolio-2-column.html">Style1 Portfolio 2 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="style1-portfolio-3-column.html">Style1 Portfolio 3 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="style1-portfolio-4-column.html">Style1 Portfolio 4 column</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="#">Style 2</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="style2-portfolio-1-column.html">Style2 Portfolio 1 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="style2-portfolio-2-column.html">Style2 Portfolio 2 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="style2-portfolio-3-column.html">Style2 Portfolio 3 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="style2-portfolio-4-column.html">Style2 Portfolio 4 column</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="#">Gallery style border</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="galleryborder-portfolio-1-column.html">Galleryborder Portfolio 1 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="galleryborder-portfolio-2-column.html">Galleryborder Portfolio 2 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="galleryborder-portfolio-3-column.html">Galleryborder Portfolio 3 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="galleryborder-portfolio-4-column.html">Galleryborder Portfolio 4 column</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="#">Gallery style no border</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="gallerynoborder-portfolio-1-column.html">Gallerynoborder Portfolio 1 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="gallerynoborder-portfolio-2-column.html">Gallerynoborder Portfolio 2 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="gallerynoborder-portfolio-3-column.html">Gallerynoborder Portfolio 3 column</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="gallerynoborder-portfolio-4-column.html">Gallerynoborder Portfolio 4 column</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="piece-of-classical-latin-literature.html">Single portfolio, full style</a>
+                                            </li>
+                                            <li>
+                                                    <a href="contrary-popular-belief.html">Single portfolio, half style</a>
+                                            </li>
+                                            <li>
+                                                    <a href="make-a-type-specimen-book.html">Different pagination &amp; title place</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            <li>
+                                    <a href="blog-with-right-sidebar.html">Blog</a>
+                                    <ul>
+                                            <li>
+                                                    <a href="#">Full style</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="blog-with-right-sidebar.html">Blog with right sidebar</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="blog-with-left-sidebar.html">Blog with left sidebar</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="blog-with-two-sidebar.html">Blog with two sidebar</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="blog-with-no-sidebar.html">Blog with no sidebar</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="#">Half style</a>
+                                                    <ul>
+                                                            <li>
+                                                                    <a href="halfstyle-blog-with-right-sidebar.html">Blog with right sidebar</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="halfstyle-blog-with-left-sidebar.html">Blog with left sidebar</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="halfstyle-blog-with-two-sidebar.html">Blog with two sidebar</a>
+                                                            </li>
+                                                            <li>
+                                                                    <a href="halfstyle-blog-with-no-sidebar.html">Blog with no sidebar</a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                            <li>
+                                                    <a href="fusce-vitae-condimentum.html">Single post without sidebar</a>
+                                            </li>
+                                            <li>
+                                                    <a href="vestibulum-sagittis-mauris.html">Single post with one sidebar</a>
+                                            </li>
+                                            <li>
+                                                    <a href="nunc-facilisis-tortor-a-enim.html">Single post with two sidebar</a>
+                                            </li>
+                                            <li>
+                                                    <a href="pellentesque-sed-risus.html">Different pagination &amp; title place</a>
+                                            </li>
+                                    </ul>
+                            </li>
+                            #}
+                        </ul>
+                        <form class="searchform" method="get" action="#">
+                            <div class="search-wrapper top">
+                                <label for="s" class="display-none">{{values.LABELS.buscar}}</label>
+                                <input class="text" type="text" value name="s" id="s">
+                                <input class="submit" type="submit" value>
+                            </div>
+                        </form>
+                    </div>
+                        <!-- end of menu-wrapper -->
+                </div>
+                <!-- end of menu-wrap -->
+
+            </div>
+	</div>
+	<!-- end of .header-down-wrapper -->
+</div>
+<!-- end of #header -->
+
+

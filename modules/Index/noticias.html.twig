@@ -1,0 +1,21 @@
+<section id="noticias">
+    <article id="novedades">
+        <h4>Novedades</h4>
+        <ul>
+            {% set nCar=nCaracteres | default(70) %}
+            {% for novedad in values.novedades %}
+                <li><a href="#" title="#">{{novedad|slice(0, nCar)}}{% if novedad | length > nCar %}...{% endif %}</a></li>
+            {% endfor %}
+        </ul>
+    </article>
+
+
+    <article id="sabiasque">
+        {% set nCar2=nCaracteres | default(170) %}
+        <h4>Sabías que...</h4>    
+        {% for sabiasQue in values.sabiasQue %}
+            <h5><a href="{{sabiasQue.enlace}}" title="{{sabiasQue.titulo}}">{{sabiasQue.titulo|slice(0, nCar2)}}{% if sabiasQue.titulo | length > nCar2 %}...{% endif %}</a></h5>
+            <p>{{sabiasQue.desarrollo|slice(0, nCar2)}}{% if sabiasQue.desarrollo | length > nCar2 %}...{% endif %}</p>
+        {% endfor %}
+    </article>                                    
+</section>

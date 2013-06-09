@@ -1,0 +1,9 @@
+<article id="novedades">
+    <h4>Novedades 2</h4>
+    <ul>
+        {% set nCar=nCaracteres | default(70) %}
+        {% for noticia in values.novedades %}
+            <li><a href="#" title="#">{{noticia.titulo|slice(0, nCar)}}{% if noticia.titulo | length > nCar %}...{% endif %}</a></li>
+        {% endfor %}
+    </ul>
+</article>

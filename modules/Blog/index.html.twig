@@ -1,0 +1,19 @@
+{% extends layout %}
+
+{% block cuerpo %}
+{# include 'index/slider.html.twig' #} <!-- SLIDER DE LA HOME -->
+<div id="sub-main" class="container_12">
+    <div class="h-wrapper h1 grid_12">
+	<h1>
+            {{values.TEXTS.blog}}
+            {% if values.blog.anio %}{{values.blog.textoMes}} {{values.blog.anio}}{% endif %}
+            {% if values.blog.texto %}({{values.blog.texto}}){% endif %}                
+            <span class="line"></span>
+        </h1>
+    </div>     
+    <div id="content" class="grid_8">   
+        {% include 'Blog/posts.html.twig' %}
+    </div>
+    {% include 'Blog/sidebar.html.twig' %} 
+</div>
+{% endblock %}

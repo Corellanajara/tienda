@@ -1,0 +1,23 @@
+{% extends layout %}
+
+{% block cuerpo %}
+<div id="sub-main" class="container_12">
+    <div class="h-wrapper h1 grid_12">
+	<h1>{{values.TEXTS.preguntasFrecuentes}}<span class="line"></span></h1>
+    </div>    
+    <div id="content" >
+	<div class="grid_12">
+	    <dl class="faq_list">
+		{% for pregunta in values.faq %}
+		<dt><span class="marker">P?</span>{{pregunta.Titulo}}</dt>
+		<dd><span class="marker">R.</span>
+		    <div>{{ pregunta.Desarrollo }}</div>
+		</dd>
+                {% else %}
+                {{values.TEXTS.noHayFaqs}}
+		{% endfor %}		
+	    </dl>
+	</div>
+    </div>
+</div>
+{% endblock %}

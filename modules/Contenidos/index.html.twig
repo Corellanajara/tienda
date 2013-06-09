@@ -1,0 +1,57 @@
+{% extends layout %}
+
+
+{% block cuerpo %}
+
+{% set contenido = values.contenidoDesarrollado.contenido %}
+
+<div id="sub-main" class="container_12">
+    <div class="h-wrapper h1 grid_12">
+        <h1>{{contenido.Titulo}}<span class="line"></span></h1>
+    </div>  
+
+    <div id="content">
+        <div id="portfoliosinglepage" class="ports">
+	    {% if contenido.PathNameImagenN(2) %}
+                <div class="featured-thumbnail-wrapper image grid_12">
+                    <div class="featured-thumbnail">
+                        <div class="image-wrap">
+                            <a class="image-wrapper" href="{{contenido.PathNameImagenN(2)}}" data-rel="prettyPhoto[gallery]">
+                                <img src="{{contenido.PathNameImagenN(2)}}" alt="{{contenido.Titulo}}" title="{{contenido.Titulo}}" /><span class="zoom-icon magnify"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+	    {% endif %}
+
+        <div id="port-content-wrapper">
+            <div id="port-details-wrapper" class="grid_3">
+                    {# if values.servicio.servicio.ShowPublishedAt == "Si" #}
+                    <div class="date-wrapper">
+                        <div class="post-icon"></div>
+                        <span>{{contenido.PublishedAt|date('d M Y')}}</span>
+                    </div>
+                    {# endif #}
+
+                    <div id="port-details">				
+                        <span><span class="sub-title">{{values.LABELS.tags}}:</span>
+                            <a href="#" rel="tag">Web Design</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="content-portstyle grid_9">
+                    <div class="single-port">
+                        <h2>{{contenido.Subtitulo}}</h2>
+                    </div>
+
+                    <div class="post-content port-content">
+                        <p><strong class="dark-color">{{contenido.Resumen}}</strong></p>
+                                {% autoescape false%}{{contenido.Desarrollo}}{% endautoescape %}
+                    </div>
+                </div>
+            </div>
+        </div>						
+    {% include 'Blog/otrosPosts.html.twig' %} 
+    </div>
+</div>
+{% endblock %}

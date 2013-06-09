@@ -1,0 +1,11 @@
+<article id="empresas">
+    <div id="content_1" class="contenido">
+        <ul>
+            {% for empresa in values.accesosPortal.empresas %}
+            <li><a href="#" title="{{empresa.RazonSocial}}" onclick="activar('{{empresa.url.url}}');">{{empresa.RazonSocial}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</article>  
+
+

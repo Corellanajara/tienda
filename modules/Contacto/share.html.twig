@@ -1,0 +1,15 @@
+{% if values.redes | length > 0%}
+<div id="text-7" class="widget_text widget">
+<div class="h-wrapper">
+    <h3>{{values.TEXTS.siguenos}}<span class="line"></span></h3>
+</div>
+	
+    <div class="textwidget">
+        {% for red in values.redes %} 
+	<div class="social-icon {{red.titulo}}">
+	    <a class="dark" href="{{red.url}}/{{red.idUsuario}}" title="{{red.titulo}}"><img src="images/icons/network/dark/{{red.titulo}}.png" alt="{{red.titulo}}" /></a>
+	</div>
+	{% endfor %}   
+    </div>
+</div>
+{% endif %}

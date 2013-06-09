@@ -1,0 +1,42 @@
+{% import "_global/macros.html.twig" as macro %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="es-ES">
+<head>
+    {% include '_global/meta.twig' %}
+    {% include values.archivoCss %}    
+</head>
+<body>
+    <div class="body-background">
+
+	 
+        <div class="body-wrapper">
+            {% include '_global/cabecera.html.twig' %}
+
+            <div id="main">
+                {% block cuerpo %}{% endblock %} 
+            </div>
+            
+            {% include '_global/pie.html.twig' %}
+            
+            <div id="backtotop"><span><span class="triangle"></span></span></div>
+        </div>
+	             	
+	
+        <!-- Para que esté disponible el path de la app en todos los java scripts -->
+        <script type="text/javascript">var appPath = "{{appPath}}";</script> 
+        
+        {% include values.archivoJs %}
+        
+        <!-- Obtener la resolución del dispositivo de navegación del cliente web -->
+        {% if not chequeadaResolucionVisitante %}
+        <script type="text/javascript">chequeaResolucionVisitante();</script>
+        {% endif %}            
+    </div>
+
+        {# PARA HACER DEBUGER EN ENTORNO DE DESARROLLO #}            
+        {% if values._debugMode %}
+            {% include '_global/debuger.html.twig' %}
+        {% endif %}               
+    </body>
+</html>

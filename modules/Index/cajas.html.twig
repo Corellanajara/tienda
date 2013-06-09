@@ -1,0 +1,19 @@
+<section id="cajas">
+    {% set servicio = values.servicios[0] %}
+    <article id="tienda" class="cajetin">
+        <h2><a href="" title="">{{servicio.etiquetaWeb}}Tienda <span id="verde">Online</span></a></h2>
+        <p>{{servicio.subtitulo}}</p>
+    </article>
+
+    {% set servicio = values.servicios[1] %}
+    <article id="web" class="cajetin">
+        <h2><a href="" title="">{{servicio.etiquetaWeb}}Diseño <span id="azul">Web</span></a></h2>
+        <p>{{servicio.subtitulo}}</p>
+    </article>                        
+
+    {% set servicio = values.servicios[2] %}
+    <article id="medida" class="cajetin">
+        <h2><a href="" title="">{{servicio.etiquetaWeb}}Desarrollos<span id="gris"> a medida</span></a></h2>
+        <p>{{servicio.subtitulo}}</p>
+    </article>  
+</section>

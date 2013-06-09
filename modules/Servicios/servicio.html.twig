@@ -1,0 +1,24 @@
+<div class="contenedorNoticia">
+    {% set servicio = values.servicio.objeto %}    
+
+    {% if servicio.Titulo %}<h2 class="titularAzul">{{servicio.Titulo}}</h2>{% endif %}
+
+    {% if servicio.Subtitulo %}<h3>{{servicio.Subtitulo}}</h3>{% endif %}
+
+    {% if servicio.ResumenBreve %}<h4>{{servicio.ResumenBreve}}</h4>{% endif %}
+
+    {% if servicio.Resumen!="" %}
+        {% autoescape false %}{{servicio.Resumen}}{% endautoescape %}
+    {% endif %}    
+
+    {% if values.servicio.videos.videos | length > 0 %}
+        {% for video in values.servicio.videos.videos %}
+        <div class="videos_youtube">
+            {% if video.tipoVideo == 'Youtube' %}
+                <iframe width="{{values.servicio.videos.medidas.ancho}}" height="{{values.servicio.videos.medidas.alto}}" src="http://www.youtube.com/embed/{{video.urlVideo}}" frameborder="{{values.servicio.videos.medidas.borde}}"></iframe>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% endif %}
+      
+</div>

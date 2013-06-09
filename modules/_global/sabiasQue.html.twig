@@ -1,0 +1,6 @@
+<article id="sabiasque">
+    {% set nCar2=nCaracteres | default(170) %}
+    <h4>Sabías que...</h4>
+    <h5><a href="{{values.sabias.enlace}}" title="{{values.sabias.titulo}}">{{values.sabias.titulo|slice(0, nCar2)}}{% if values.sabias.titulo | length > nCar2 %}...{% endif %}</a></h5>
+    <p>{{values.sabias.desarrollo|slice(0, nCar2)}}{% if values.sabias.desarrollo | length > nCar2 %}...{% endif %}</p>
+</article>       

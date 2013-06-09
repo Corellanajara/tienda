@@ -1,0 +1,50 @@
+{% set nEnlacesExternos = values.servicio.enlacesExternos.enlaces|length %}
+{% set nEnlacesInternos = values.servicio.enlacesInternos|length %}
+
+{% if (nEnlacesExternos + nEnlacesInternos) > 0 %}
+<div class="ficherosAdjuntos">
+    <div class="contenidoInter">
+        <h6 class="rosa subrayadoRosa">{{values.LABELS.enlacesRelacionados}}</h6>
+        
+        {# ENLACES EXTERNOS #}
+        {% if nEnlacesExternos > 0%}
+        <ul class="enlaces_rel">
+            {% for key,enlace in values.servicio.enlacesExternos.enlaces %}
+                {% if key is even %}
+                <li>{{enlace.titulo}}<br /><a href="{{enlace.url.url}}" title="{{enlace.url.url}}" {% if enlace.url.targetBlank %}rel="pop-up"{% endif %}><span class="url_enlace">{{macro.recortaTexto(enlace.url.url,45)}}</span></a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        {% if nEnlacesExternos > 1 %}
+        <ul class="enlaces_rel right">
+            {% for key,enlace in values.servicio.enlacesExternos.enlaces %}
+                {% if key is odd %}
+                <li>{{enlace.titulo}}<br /><a href="{{enlace.url.url}}" title="{{enlace.url.url}}" {% if enlace.url.targetBlank %}rel="pop-up"{% endif %}><span class="url_enlace">{{macro.recortaTexto(enlace.url.url,45)}}</span></a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endif %}
+        
+        {# ENLACES INTERNOS #}
+        {% if nEnlacesInternos > 0 %}
+        <ul class="enlaces_rel">
+            {% for key,enlace in values.servicio.enlacesInternos %}
+                {% if key is even %}
+                <li>{{enlace.Titulo}}<br /><a href="{{enlace.Href.url}}" title="{{enlace.Href.url}}" {% if enlace.Href.targetBlank %}rel="pop-up"{% endif %}><span class="url_enlace">{{macro.recortaTexto(enlace.Href.url,45)}}</span></a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <ul class="enlaces_rel right">
+            {% for key,enlace in values.servicio.enlacesInternos %}
+                {% if key is odd %}
+                <li>{{enlace.Titulo}}<br /><a href="{{enlace.Href.url}}" title="{{enlace.Href.url}}" {% if enlace.Href.targetBlank %}rel="pop-up"{% endif %}><span class="url_enlace">{{macro.recortaTexto(enlace.Href.url,45)}}</span></a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>		
+</div>
+{% endif %}

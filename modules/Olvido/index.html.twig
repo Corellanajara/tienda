@@ -1,0 +1,31 @@
+{% extends layout %}
+
+{% block title parent() ~ " - Inicio" %}
+
+
+{% block cuerpo %}
+<div id="sub-main" class="container_12">
+    <div id="content">
+            {% if values.falloLogin %}
+            <div id="mensajesRespuesta">
+                Este e-mail no figura en nuestro sistema<br />
+                Por favor introduzca uno correcto.
+            </div>
+            {% endif %}    
+            <div id="olvidoCont">
+                <h3>¿Olvidaste tu contraseña?</h3>
+                <form>
+                    <div id="input_oculto">
+                        <input type="text" name="buzon" value="" />
+                        <input type="text" name="action" value="" />
+                    </div>
+                        <div class="contenedorOlvido error" id="usuario">
+                            <label>Dinos tu e-mail y te enviaremos una nueva contraseña</label> 
+			    <input type=”email” name=”email” autofocus />
+                        </div>
+
+                        <input type="image" src="{{app.path}}/images/enviar.png" alt="enviar" width="25" height="26" class="enviar" />
+                </form>            
+            </div>
+    </div>
+</div>{% endblock %}

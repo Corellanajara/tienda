@@ -1,0 +1,23 @@
+{% extends layout %}
+
+{% block cuerpo %}
+<div id="sub-main" class="container_12">
+    <div class="h-wrapper h1 grid_12">
+	<h1>{{values.LABELS.faq}}<span class="line"></span></h1>
+    </div>    
+    <div id="content" class="grid_8">
+	<div class="grid_8">
+	    <dl class="faq_list">
+		{% for pregunta in values.faq.contenidos %}
+		<dt><span class="marker">P?</span>{{pregunta.Titulo}}</dt>
+		<dd><span class="marker">A.</span>
+		    <div>{{ pregunta.Desarrollo }}</div>
+		</dd>
+		{% endfor %}		
+	    </dl>
+	</div>
+    </div>
+    {% include 'Faq/sidebar.html.twig' %} 	
+</div>
+
+{% endblock %}

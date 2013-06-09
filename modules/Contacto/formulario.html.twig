@@ -1,0 +1,58 @@
+<div id="contact-form">
+    {% if values.formContacta.accion == '' %}    
+    <form name="formEnvio" id="formEnvio" action="" method="POST">
+        <input name="controller" value="Contacto" type="hidden" />
+        <input name="action" value="Index" type="hidden" />
+        
+        <label for="Nombre" data-rel="Nombre">{{values.formContacta.campos.Nombre.valor}}</label>
+        <div class="{%if values.formContacta.campos.Nombre.error%}error{%endif%}">
+            <input type="text" name="campos[Nombre][valor]" id="Nombre" value="{{values.formContacta.campos.Nombre.valor}}" class="requiredField " onFocus="if(this.value=='{{values.formContacta.campos.Nombre.valor}}') this.value='';" onBlur="if(this.value=='') this.value='{{values.formContacta.campos.Nombre.valor}}';" />
+        </div>
+        
+        <label for="Empresa" data-rel="Empresa">{{values.formContacta.campos.Empresa.valor}}</label>
+        <div class="{%if values.formContacta.campos.Empresa.error%}error{%endif%}">
+            <input type="text" name="campos[Empresa][valor]" id="Empresa" value="{{values.formContacta.campos.Empresa.valor}}" class="requiredField " onFocus="if(this.value=='{{values.formContacta.campos.Empresa.valor}}') this.value='';" onBlur="if(this.value=='') this.value='{{values.formContacta.campos.Empresa.valor}}';" />
+        </div>
+        
+        <label for="Telefono" data-rel="Telefono">{{values.formContacta.campos.Telefono.valor}}</label>
+        <div class="{%if values.formContacta.campos.Telefono.error%}error{%endif%}">
+            <input type="text" name="campos[Telefono][valor]" id="Telefono" value="{{values.formContacta.campos.Telefono.valor}}" class="requiredField " onFocus="if(this.value=='{{values.formContacta.campos.Telefono.valor}}') this.value='';" onBlur="if(this.value=='') this.value='{{values.formContacta.campos.Telefono.valor}}';" />
+        </div>
+        
+        <label for="Email" data-rel="Email">{{values.formContacta.campos.Email.valor}}</label>
+        <div class="{%if values.formContacta.campos.Email.error%}error{%endif%}">
+            <input type="text" name="campos[Email][valor]" id="Email" value="{{values.formContacta.campos.Email.valor}}" class="requiredField " onFocus="if(this.value=='{{values.formContacta.campos.Email.valor}}') this.value='';" onBlur="if(this.value=='') this.value='{{values.formContacta.campos.Email.valor}}';" />
+        </div>
+
+        <label for="Mensaje" data-rel="Mensaje">{{values.formContacta.campos.Mensaje.valor}}</label>
+        <div class=" textarea {%if values.formContacta.campos.Mensaje.error%} error{%endif%}">
+            <textarea name="campos[Mensaje][valor]" id="Mensaje" rows="20" cols="30" class="requiredField " onFocus="if(this.value=='{{values.formContacta.campos.Mensaje.valor}}') this.value='';" onBlur="if(this.value=='') this.value='{{values.formContacta.campos.Mensaje.valor}}';">{{values.formContacta.campos.Mensaje.valor}}</textarea>
+        </div>
+        
+        {#
+        <div id="contact-recaptcha" class="recaptcha"></div>
+        
+        <div class="screenReader display-none">
+            <label for="checking" class="screenReader">If you want to submit this form, do not enter anything in this field</label>
+            <input type="text" name="checking" id="checking" class="screenReader" value="" />
+        </div>
+        #}
+        
+        <div id="contenedorEnviar" class="{%if values.formContacta.campos.leidoPolitica.error%} error{%endif%}">
+            <div class="checkbox">
+                <input name="campos[leidoPolitica][valor]" type="checkbox" id="checkbox2" {% if values.formContacta.campos.leidoPolitica.valor == 'on' %} CHECKED{% endif %} />
+                <label class="textoCheckbox" for="checkbox2">{{values.TEXTS.leidoPolitica}} <a href="{{app.path}}/politica-de-privacidad" rel="iframe-1000-360" class="pirobox" title="{{values.TEXTS.politicaPrivacidad}}">{{values.TEXTS.politicaPrivacidad}}.</a></label>
+            </div>
+        </div>	
+	
+	    <div class="buttons right">
+		<input type="hidden" name="submitted" id="submitted" value="true" />
+		<input type="submit" id="contact-submit" value="{{values.TEXTS.enviar}}">
+	    </div>	
+    </form>
+    {% else %}
+        <div class="mensaje">
+            <div class="{%if values.formContacta.resultado%} exito mensaje_enviado {%else%} error {%endif%}">{{values.formContacta.mensaje}}</div>
+        </div>
+    {% endif %}
+</div>

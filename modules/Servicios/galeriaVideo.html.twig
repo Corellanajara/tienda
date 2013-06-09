@@ -1,0 +1,16 @@
+{% if values.servicio.videos.videos | length > 0 %}
+<div class="ficherosAdjuntos">
+    <div class="contenidoTop"></div>
+    <div class="contenidoInter">
+	<h6 class="verde subrayadoVerde">{{values.LABELS.galeriaDeVideos}}</h6>
+	<ul class="galeria">
+	    {% for video in values.servicio.videos.videos %}
+		<li class="video">
+		    <a href="{{video.url.url}}" title="{{video.titulo}}"><img src="{{app.path}}/{{video.imagen}}" alt="{{video.titulo}}" title="{{video.titulo}}" /></a>
+		</li>
+	    {% endfor %} 
+	</ul>				
+    </div>
+    <div class="contenidoBottom"></div>
+</div>
+{% endif %}

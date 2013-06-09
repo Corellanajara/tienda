@@ -1,0 +1,28 @@
+{% extends '_global/layoutLaptopPopup.html.twig' %}
+
+{% block title parent() ~ " - Inicio" %}
+
+
+{% block cuerpo %}
+<div id="sub-main" class="container_12">
+    <div id="content">				
+
+
+	<div id="logotipo"><a href="{{app.path}}" title=""><img src="{{app.path}}/images/{{values.datosContacto.logoOldBrowser}}" alt="{{values.datosContacto.empresa}}" title="{{values.datosContacto.empresa}}" /></a></div>
+	<div id="texto">
+        <p>{{values.TEXTS.navegadorNoActualizadoParaVisualizarPagina}}</p>
+        <p>{{values.TEXTS.descargaUltimasVersiones}}</p>
+	
+        <div id="navegadores">
+            <a href="http://view.atdmt.com/action/mrtiex_FY12IE9StaPrdIE9WWpageforVistaWin7FNL_1?href=http://download.microsoft.com/download/6/7/6/67666836-7A97-48D9-82BD-6E76B2A9D659/IE9-WindowsVista-x86-esn.exe" title="Descargar √∫ltima versi√≥n de Internet Explorer" class="link_tooltip marker_left" target="_blank"><img src="{{app.path}}/images/ie8.png" alt="Descargar √∫ltima versi√≥n de Internet Explorer" title="Descargar √∫ltima versi√≥n de Internet Explorer" /></a>
+            <a href="http://www.mozilla.org/es-ES/download/?product=firefox-13.0.1&os=osx&lang=es-ES" title="Descargar √∫ltima versi√≥n de Mozilla Firefox" class="link_tooltip marker_left" target="_blank"><img src="{{app.path}}/images/firefox.png" alt="Descargar √∫ltima versi√≥n de Mozilla Firefox" title="Descargar √∫ltima versi√≥n de Mozilla Firefox" /></a>
+            <a href="http://www.google.es/chrome/eula.html?hl=es&platform=linux_ubuntu_i386" title="Descargar √∫ltima versi√≥n de Google Chrome" class="link_tooltip marker_left" target="_blank"><img src="{{app.path}}/images/chrome.png" alt="Descargar √∫ltima versi√≥n de Google Chrome" title="Descargar √∫ltima versi√≥n de Google Chrome" /></a>
+            <a href="http://www.opera.com/download/get.pl?id=34835&thanks=true&sub=true" title="Descargar √∫ltima versi√≥n de √≥pera" class="link_tooltip marker_left" target="_blank"><img src="{{app.path}}/images/opera.png" alt="Descargar √∫ltima versi√≥n de √≥pera" title="Descargar √∫ltima versi√≥n de √≥pera" /></a>
+            <a href="http://www.apple.com/es/safari/download/" title="Descargar √∫ltima versi√≥n de Safari" class="link_tooltip marker_left" target="_blank"><img src="{{app.path}}/images/safari.png" alt="Descargar √∫ltima versi√≥n de Safari" title="Descargar √∫ltima versi√≥n de Safari" /></a>
+        </div>
+	</div>
+    </div>
+
+</div>
+
+{% endblock %}

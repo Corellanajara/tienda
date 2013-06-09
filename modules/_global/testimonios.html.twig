@@ -1,0 +1,32 @@
+{% if values.testimonios.contenidos | length > 0 %}
+<div class="widget_persianart_cycleposts widget">
+    <div class="h-wrapper">
+        <h3>{{values.LABELS.testimonios}}<span class="line"></span></h3>
+    </div>
+    <div id="testimonial-cycle-widget">
+        <div id="testimonial-widget-1">
+            <ul>
+		{% for testimonio in values.testimonios.contenidos %}
+                    <li class="testimonial testi-widget">
+                    {% set imagen = testimonio.PathNameImagenN(3) %}
+		    {% if imagen %}
+                            <div class="testi-pic">
+                                <a href="#"><img src="{{app.path}}/{{imagen}}" alt="" /></a>
+                            </div>
+		    {% endif %}
+
+                            <div class="">
+                        {{testimonio.Resumen}}
+                                    <span class="testi-name">
+                                        <span class="testi-user"> {{testimonio.Titulo}} </span>
+                                        <br />
+                            {#<a href="http://{{testimonio.Subtitulo}}"> {{testimonio.Subtitulo}} </a>#}
+                                    </span>
+                                </div>
+                            </li>
+		{% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+{% endif %}

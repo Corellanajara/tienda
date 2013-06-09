@@ -1,0 +1,45 @@
+<div class="grid_6">
+    <div class="h-wrapper">
+	<h3>{{values.LABELS.teOfrecemos}}<span class="line"></span></h3>
+    </div>
+    <p>{{values.TEXTS.textoTambienTeOfrecemos}}</p>
+    <div class="list check2">
+	<ul>
+	    {% for item in values.servicios %}
+		<li>{{item.Subtitulo}}</li>
+	    {% endfor %}
+	</ul>
+    </div>
+</div>
+
+<div class="grid_6">
+    <div class="h-wrapper">
+	<h3>{{values.LABELS.elegirnos}}<span class="line"></span></h3>
+    </div>
+    {{values.TEXTS.textoElegirnos}}
+    <div>
+	<ul class="pa-toggle">
+	    {% for albatronic in values.elegirnos.contenidos %}
+	    <li class="sub-toggle">
+		<div class="toggle-head">
+			<div class="toggle-head-sign"></div>
+			{{albatronic.Titulo}}</div>
+		<div class="toggle-content">{{albatronic.Desarrollo}}</div>
+	    </li>
+	    {% endfor %}
+	    
+	    <!--<li class="sub-toggle">
+		    <div class="toggle-head">
+			    <div class="toggle-head-sign"></div>
+			    Awesome slideshow</div>
+		    <div class="toggle-content"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </div>
+	    </li>
+	    <li class="sub-toggle">
+		    <div class="toggle-head">
+			    <div class="toggle-head-sign"></div>
+			    Responsive &amp; mobile ready</div>
+		    <div class="toggle-content"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </div>
+	    </li>-->
+	</ul>
+    </div>{# empty Twig template #}
+</div>
