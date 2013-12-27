@@ -30,7 +30,7 @@ class Sucursales extends SucursalesEntity {
     public function getSucursalesUsuario($idUsuario = '') {
 
         if ($idUsuario == '')
-            $idUsuario = $_SESSION['USER']['user']['Id'];
+            $idUsuario = $_SESSION['usuarioWeb']['Id'];
 
         $usuario = new Agentes($idUsuario);
         $rows = $usuario->getSucursales();

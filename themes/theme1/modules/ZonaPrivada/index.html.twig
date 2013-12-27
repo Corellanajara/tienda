@@ -1,0 +1,47 @@
+{% extends layout %}
+
+{#
+{% block header %}
+    {% include values.controller ~ '/header.html.twig' %}
+{% endblock %}
+{% block head %}
+    {% include values.controller ~ '/head.html.twig' %}
+{% endblock %}
+#}
+
+
+{% block content %}
+<section class="contenedorGrandeCentral">
+    <article class="colIzqda">
+        <h1>{{values.TEXTS.accesoPrivado}}</h1>
+        <p>{{values.TEXTS.accesoPrivadoTexto}}</p>
+                                 
+        <form name="formLogin" id="formLogin" method="POST" action="">
+            <div id="input_oculto">
+                <input name="controller" value="ZonaPrivada" />
+                <input name="action" value="login" />
+            </div>
+
+            <article>
+                <!-- <label>{{values.TEXTS.eMail}}</label> -->
+                <input autocomplete="off" type="text" name="login[login]" id="login_login" value="{{values.login.login}}" {%if values.login.error == '1'%}class="celdaError"{%else%}class="celda"{% endif %} placeholder="Usuario" />
+            </article>
+
+            <article>
+                <!-- <label>{{values.TEXTS.contrasena}}</label> -->
+                <input autocomplete="off" type="password" name="login[Password]" {%if values.login.error == '2'%}class="celdaError"{%else%}class="celda"{%endif%} placeholder="Contraseña" />
+            </article>
+
+            <article id="contenedorEnviar">
+                <a href="{{app.path}}/olvido" class="olvido">{{values.TEXTS.olvideMiContrasena}}</a>
+                <input type="submit" value="{{values.TEXTS.enviar}}" data-type="submit" onclick="$('#formLogin').submit();" title="{{values.TEXTS.enviar}}" class="boton btn_azul right" />
+            </article>
+        </form>
+    </article>     
+    <article class="colDrcha">
+        <h1>{{values.TEXTS.accesoNuevo}}</h1>
+        <p><a href="{{app.path}}/registro">{{values.TEXTS.accesoNuevoTexto}}</a></p>
+    </article>     
+</section>
+{% endblock %}
+

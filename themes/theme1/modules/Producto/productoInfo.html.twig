@@ -1,0 +1,64 @@
+{% set galeria = values.galeria %}
+{% set imagen = values.producto.PathNameImagenN(2) %}
+<section class="productoInfo">
+
+    <div class="imagenes">                   
+        <div class="imagen300">
+            {% if imagen %}
+            <img src="{{app.path}}/{{theme}}/{{imagen}}" alt="{{values.producto.Descripcion}}" title="{{values.producto.Descripcion}}" />
+            {% endif %}
+            {% if galeria | length > 0 %}
+            <a href="{{app.path}}/{{theme}}/{{galeria.0.PathName}}" title=""  rel="gallery" class={% if galeria  %}"pirobox_gall{{key}}{% else %}pirobox{%endif%}">
+                <img src="{{app.path}}/images/icono-lupa-mas.png" alt="{{values.TEXTS.masImagenes}}" title="{{values.TEXTS.masImagenes}}" id="lupaMas" />
+            </a>
+            {% endif %}
+        </div>
+
+        {% for keyItem,item in galeria %}
+            {% if keyItem > 0 %}
+                <a href="{{app.path}}/{{theme}}/{{item.PathName}}" rel="gallery" class="pirobox_gall{{key}}" title=""></a>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+    <div class="cajaPrecios">
+        <div><b>{{values.LABELS.referencia}}:</b> {{values.producto.Codigo}}</div>
+        <div>{%autoescape false%}{{values.producto.Resumen}}{%endautoescape%}</div>        
+        <!-- Aqui tengo que preguntar que si no hay ni precioAnterior ni precioFinal no tiene que mostrar el span precios -->
+        <div>
+            {% if values.producto.PvpAnterior > 0 %}<span class="precioAnterior">{{ macro.moneda(values.producto.PvpAnterior) }}</span>{%endif%}
+            <span class="precioFinal">PVP {{ macro.moneda(values.producto.PrecioVentaConImpuestos) }}</span>
+        </div>
+    </div>
+     
+    <div class="salto10"></div>
+    
+    <div id="tabs">
+        <ul>
+            <li><a href="#caracteristicas">{{values.LABELS.caracteristicas}}</a></li>
+            {% if values.detalleTecnico %}
+            <li><a href="#detalles">{{values.LABELS.detallesTecnicos}}</a></li>
+            {% endif %}
+        </ul>
+        <div id="caracteristicas">
+            {%autoescape false%}{{values.producto.Caracteristicas}}{%endautoescape%}
+        </div>
+        {% if values.detalleTecnico %}
+        <div id="detalles">
+        <ul>
+            {% for detalle in values.detalleTecnico %}
+            <li>
+                {{detalle.titulo}}:
+                <span>{{detalle.valor}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="salto10"></div>
+    
+    {% include '_global/share.html.twig' %}
+</section>

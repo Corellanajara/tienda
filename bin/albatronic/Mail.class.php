@@ -55,8 +55,7 @@ class Mail {
     public function send($para, $de, $deNombre, $asunto, $mensaje, array $adjuntos) {
 
         if ($this->valida($para, $mensaje)) {
-
-            // Create a message
+          // Create a message
             $message = Swift_Message::newInstance($asunto)
                     ->setContentType('text/html')
                     ->setFrom(array($de => $deNombre))

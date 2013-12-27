@@ -54,7 +54,7 @@ class ClientesEntity extends EntityComunes {
      * @assert:NotBlank(groups="clientes")
      */
     protected $IDProvincia = '18';
-    
+
     /**
      * @orm:Column(type="string")
      */
@@ -203,6 +203,12 @@ class ClientesEntity extends EntityComunes {
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank(groups="clientes")
+     */
+    protected $Login = null;
+
+    /**
+     * @orm:Column(type="string")
      */
     protected $Password;
 
@@ -272,7 +278,7 @@ class ClientesEntity extends EntityComunes {
         array('SourceColumn' => 'IDCliente', 'ParentEntity' => 'ClientesDentrega', 'ParentColumn' => 'IDCliente'),
         array('SourceColumn' => 'IDCliente', 'ParentEntity' => 'RecibosClientes', 'ParentColumn' => 'IDCliente'),
         array('SourceColumn' => 'IDCliente', 'ParentEntity' => 'RutasVentas', 'ParentColumn' => 'IDCliente'),
-        array('SourceColumn' => 'IDCliente', 'ParentEntity' => 'Articulos', 'ParentColumn' => 'IDCliente'),        
+        array('SourceColumn' => 'IDCliente', 'ParentEntity' => 'Articulos', 'ParentColumn' => 'IDCliente'),
     );
 
     /**
@@ -412,7 +418,7 @@ class ClientesEntity extends EntityComunes {
     }
 
     public function setBanco($Banco) {
-        $this->Banco = str_pad(trim($Banco), 4 , "0");
+        $this->Banco = str_pad(trim($Banco), 4, "0");
     }
 
     public function getBanco() {
@@ -420,7 +426,7 @@ class ClientesEntity extends EntityComunes {
     }
 
     public function setOficina($Oficina) {
-        $this->Oficina = str_pad(trim($Oficina), 4 , "0");
+        $this->Oficina = str_pad(trim($Oficina), 4, "0");
     }
 
     public function getOficina() {
@@ -428,7 +434,7 @@ class ClientesEntity extends EntityComunes {
     }
 
     public function setDigito($Digito) {
-        $this->Digito = str_pad(trim($Digito), 2 , "0");
+        $this->Digito = str_pad(trim($Digito), 2, "0");
     }
 
     public function getDigito() {
@@ -436,7 +442,7 @@ class ClientesEntity extends EntityComunes {
     }
 
     public function setCuenta($Cuenta) {
-        $this->Cuenta = str_pad(trim($Cuenta), 10 , "0");
+        $this->Cuenta = str_pad(trim($Cuenta), 10, "0");
     }
 
     public function getCuenta() {
@@ -578,8 +584,16 @@ class ClientesEntity extends EntityComunes {
         return $ddmmaaaa;
     }
 
+    public function setLogin($Login) {
+        $this->Login = trim($Login);
+    }
+
+    public function getLogin() {
+        return $this->Login;
+    }
+
     public function setPassword($Password) {
-        $this->Password = $Password;
+        $this->Password = trim($Password);
     }
 
     public function getPassword() {

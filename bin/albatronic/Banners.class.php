@@ -26,13 +26,13 @@ class Banners {
      * - url => array(url => texto, targetBlank => boolean)
      * - imagenes => array con los paths de las imágenes
      * 
-     * @param int $idZona El id de la zona de banner a filtrar. Opcional. Defecto la primera que encuentre.
+     * @param int $zona El nombre de la zona de banner a filtrar. Opcional. Defecto la primera que encuentre.
      * @param int $tipo El tipo de banner. Un valor negativo significa todos los tipos. Por defecto 0 (fijo). Valores posibles en entities/abstract/TiposBanners.class.php
      * @param boolean $mostrarEnListado Un valor negativo para todos, 0 para los NO y 1 para los SI mostrar en listado
      * @param int $nItems Número máximo de banners a devolver. Opcional. Defecto todos
      * @return array Array de banners
      */
-    static function getBanners($idZona = '*', $tipo = 0, $mostrarEnListado = 0, $nItems = 0) {
+    static function getBanners($zona = '*', $tipo = 0, $mostrarEnListado = 0, $nItems = 0) {
 
         $array = array();
 
@@ -49,7 +49,7 @@ class Banners {
         }
 
         // Filtro Zona
-        $filtroZona = ($idZona == '*') ? "(1)" : "IdZona='{$idZona}'";
+        $filtroZona = ($zona == '*') ? "(1)" : "(IdZona IN (select Id from BannZonas where Titulo='{$zona}'))";
 
         // Filtro de 'mostrarEnListado'
         $filtroMostrarEnListado = ($mostrarEnListado < 0) ? "(1)" : "MostrarEnListado='{$mostrarEnListado}'";
@@ -57,10 +57,9 @@ class Banners {
         // Criterio de orden
         $orden = ($mostrarEnListado) ? "OrdenMostrarEnListado ASC" : "Id ASC";
 
-        $filtro = "{$filtroZona} AND {$filtroTipo} AND {$filtroMostrarEnListado}";
-
+        $filtro  = "{$filtroZona} AND {$filtroTipo} AND {$filtroMostrarEnListado}";
+        
         $banner = new BannBanners();
-
         $rows = $banner->cargaCondicion("Id", $filtro, "{$orden} {$limite}");
         unset($banner);
 
@@ -69,8 +68,9 @@ class Banners {
             $documentos = $banner->getDocuments('image%');
 
             $imagenes = array();
-            foreach ($documentos as $documento)
+            foreach ($documentos as $documento) {
                 $imagenes[] = $documento->getPathName();
+            }
 
             // No se tiene en cuenta los banners que no tienen imagenes
             if (count($imagenes)) {

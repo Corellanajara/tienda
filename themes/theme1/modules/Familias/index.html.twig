@@ -1,0 +1,35 @@
+{% extends layout %}
+
+{#
+{% block header %}
+    {% include values.controller ~ '/header.html.twig' %}
+{% endblock %}
+{% block head %}
+    {% include values.controller ~ '/head.html.twig' %}
+{% endblock %}
+#}
+
+{% set familia = values.familia %}
+{% set logo = familia.PathNameImagenN(1) %}
+
+{% block content %}
+    <div class="central">
+        <h2><span>{{familia.Familia}} (hay {{values.articulos.paginacion.totalItems}} artículos)</span></h2>
+        
+        <article id="infoPrincipal">
+            <div id="imagenes" style="float:left;margin-right: 20px;">
+                {% if logo %}
+                    <img src="{{app.path}}/{{theme}}/{{logo}}" alt="{{familia.Titulo}}" title="{{familia.Titulo}}" />             
+                {% endif %}
+            </div>
+            <div id="descripcion" style="float:left;width:300px;">
+                {%autoescape false%}{{familia.Descripcion1}}{%endautoescape%}
+            </div> 
+        </article>
+
+        <section id="noticias">
+            {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':familia.PrimaryKeyValue} %}
+        </section>        
+
+    </div>
+{% endblock %}

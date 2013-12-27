@@ -1,17 +1,18 @@
 {# empty Twig template #}
 
 {% extends layout %}
+
 {% block cuerpo %}
 
-<ul>
-{% for item in values.familias %}
-        <li><a href="{{app.path}}/{{item.Href.url}}">{{item.Familia}}</a></li>
+<ul class="categoriesBox">
+{% for item in values.categorias %}
+        <li><a href="{{app.path}}{{item.Href.url}}">{{item.Familia}}</a></li>
 {% endfor %}
 </ul>
 
-<ul>
-{% for item in values.articulos %}
-        <li><a href="{{app.path}}/{{item.Href.url}}">{{item.Descripcion}}</a></li>
+<ul class="marcasBox">
+{% for item in values.marcas %}
+        <li><a href="{{app.path}}{{item.Href.url}}">{{item.Titulo}}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}

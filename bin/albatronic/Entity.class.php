@@ -140,7 +140,7 @@ class Entity {
         if (is_resource($this->_dbLink)) {
             // Auditoria
             $this->setModifiedAt(date('Y-m-d H:i:s'));
-            $this->setModifiedBy($_SESSION['USER']['user']['Id']);
+            $this->setModifiedBy($_SESSION['usuarioWeb']['Id']);
 
             // Compongo los valores iterando el objeto
             $values = '';
@@ -179,7 +179,7 @@ class Entity {
         if (is_resource($this->_dbLink)) {
             // Auditoria
             $this->setCreatedAt(date('Y-m-d H:i:s'));
-            $this->setCreatedBy($_SESSION['USER']['user']['Id']);
+            $this->setCreatedBy($_SESSION['usuarioWeb']['Id']);
 
             // Compongo las columnas y los valores iterando el objeto
             $columns = '';
@@ -231,7 +231,7 @@ class Entity {
             if (is_resource($this->_dbLink)) {
                 // Auditoria
                 $fecha = date('Y-m-d H:i:s');
-                $query = "UPDATE `{$this->_dataBaseName}`.`{$this->_tableName}` SET `Deleted` = '1', `DeletedAt` = '{$fecha}', `DeletedBy` = '{$_SESSION['USER']['user']['Id']}' WHERE `{$this->_primaryKeyName}` = '{$this->getPrimaryKeyValue()}'";
+                $query = "UPDATE `{$this->_dataBaseName}`.`{$this->_tableName}` SET `Deleted` = '1', `DeletedAt` = '{$fecha}', `DeletedBy` = '{$_SESSION['usuarioWeb']['Id']}' WHERE `{$this->_primaryKeyName}` = '{$this->getPrimaryKeyValue()}'";
                 if (!$this->_em->query($query))
                     $this->_errores = $this->_em->getError();
                 else {
@@ -438,7 +438,7 @@ class Entity {
 
         if ($this->getPrimaryKeyValue() != '') {
             // Estoy validando antes de actualizar
-            if (($this->IsSuper) and ($_SESSION['USER']['user']['IdPerfil'] != '1'))
+            if (($this->IsSuper) and ($_SESSION['usuarioWeb']['IdPerfil'] != '1'))
                 $this->_errores[] = "No se puede modificar, es un valor reservado";
         }
 
@@ -482,12 +482,12 @@ class Entity {
 
         // No se puede borrar si el objeto es un valor predeterminado y el usuario
         // no es el super
-        if (($this->IsDefault) AND ($_SESSION['USER']['user']['IdPerfil'] != 1))
+        if (($this->IsDefault) AND ($_SESSION['usuarioWeb']['IdPerfil'] != 1))
             $this->_errores[] = "No se puede eliminar. Es un valor predeterminado";
 
         // No se puede borrar si el objeto es un valor SUPER y el usuario
         // no es el super
-        if (($this->IsSuper) AND ($_SESSION['USER']['user']['IdPerfil'] != 1))
+        if (($this->IsSuper) AND ($_SESSION['usuarioWeb']['IdPerfil'] != 1))
             $this->_errores[] = "No se puede eliminar. Es un valor reservado";
 
         // Validacion de integridad referencial respecto a entidades hijas
@@ -539,11 +539,11 @@ class Entity {
             $filtro = "(Deleted='0') AND (Publish='1') AND (ActiveFrom<='{$ahora}') AND ( (ActiveTo>='{$ahora}') or (ActiveTo='0000-00-00 00:00:00') )";
 
             // Condición de privacidad
-            if (!$_SESSION['USER']['user']['Id']) {
+            if (!$_SESSION['usuarioWeb']['Id']) {
                 $filtro .= " AND ( (Privacy='0') OR (Privacy='2') )";
             } else {
-                $idPerfil = $_SESSION['USER']['user']['IdPerfil'];
-                $filtro .= " AND ( (Privacy='1') OR (Privacy='2') OR LOCATE('{$idPerfil}',AccessProfileListWeb) )";
+                $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
+                $filtro .= " AND ( (Privacy='2') OR (Privacy='1') OR LOCATE('{$idPerfil}',AccessProfileListWeb) )";
             }
 
             if ($condicion != '')
@@ -633,14 +633,15 @@ class Entity {
             // Condición de vigencia
             $ahora = date("Y-m-d H:i:s");
             $condicion .= " AND Publish='1' AND (Deleted='0') AND (ActiveFrom<='{$ahora}') AND ( (ActiveTo>='{$ahora}') or (ActiveTo='0000-00-00 00:00:00') )";
-
+            
             // Condición de privacidad
-            if ($_SESSION['USER']['user']['Id'] == '0') {
-                $condicion .= " AND (Privacy='0')";
+            if (!$_SESSION['usuarioWeb']['Id']) {
+                $filtro .= " AND ( (Privacy='0') OR (Privacy='2') )";
             } else {
-                $idPerfil = $_SESSION['USER']['user']['IdPerfil'];
-                $condicion .= " AND ( (Privacy='2') OR LOCATE(\"'{$idPerfil}'\",AccessProfileListWeb) )";
+                $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
+                $filtro .= " AND ( (Privacy='2') OR (Privacy='1') OR LOCATE('{$idPerfil}',AccessProfileListWeb) )";
             }
+
             $query = "SELECT {$this->_primaryKeyName} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$condicion})";
             $this->_em->query($query);
             $this->setStatus($this->_em->numRows());

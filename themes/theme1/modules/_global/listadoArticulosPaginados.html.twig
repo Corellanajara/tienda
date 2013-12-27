@@ -1,0 +1,33 @@
+{# LISTADO DE ARTICULOS PAGINADOS #}
+
+{% include '_global/paginacion.html.twig' with {'paginacion':paginacion,'linkBy':linkBy} %}
+
+{% for articulo in articulos %}
+<article>
+    {% if articulo.PathNameImagenN %}
+    <figure>
+        <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">
+            <img src="{{app.path}}/{{theme}}/{{articulo.PathNameImagenN(1)}}" title="{{articulo.Descripcion}}" alt="{{articulo.Descripcion}}" />
+        </a>
+    </figure>
+    {% endif %}
+    <div class="info">
+        <h3><a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a></h3>
+        {% if articulo.Resumen != articulo.Descripcion %}
+            <div class="resumen">{{articulo.Resumen}}</div>
+        {% endif %}
+        {% set precioActual = articulo.PrecioVentaConImpuestos %}
+        {% if articulo.PvpAnterior > 0 and articulo.PrecioAnterior != precioActual %}
+            <div class="precios precioAnterior">{{macro.moneda(articulo.PvpAnterior)}}</div>                
+        {% endif %}
+        <div class="precioActual">{{macro.moneda(precioActual)}}</div>
+        <article class="botonera">
+            <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{values.LABELS.masInfo}}" class="saberMas">{{values.LABELS.saberMas}}
+                <span class="sprite"></span>
+            </a>
+        </article>
+    </div>
+</article>
+{% endfor %}
+
+{% include '_global/paginacion.html.twig' with {'paginacion':paginacion,'linkBy':linkBy} %}

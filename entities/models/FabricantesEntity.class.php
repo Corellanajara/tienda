@@ -53,6 +53,18 @@ class FabricantesEntity extends EntityComunes {
     protected $Email;
 
     /**
+     * @orm:Column(type="integer")
+     * @assert:NotBlank(groups="ErpFamilias")
+     */
+    protected $MostrarPortada = '0';
+
+    /**
+     * @orm:Column(type="integer")
+     * @assert:NotBlank(groups="ErpFamilias")
+     */
+    protected $OrdenPortada = '0';    
+
+    /**
      * Nombre de la conexion a la DB
      * @var string
      */
@@ -137,6 +149,23 @@ class FabricantesEntity extends EntityComunes {
         return $this->Email;
     }
 
+    public function setMostrarPortada($MostrarPortada) {
+        $this->MostrarPortada = $MostrarPortada;
+    }
+
+    public function getMostrarPortada() {
+        if (!($this->MostrarPortada instanceof ValoresSN))
+            $this->MostrarPortada = new ValoresSN($this->MostrarPortada);
+        return $this->MostrarPortada;
+    }
+
+    public function setOrdenPortada($OrdenPortada) {
+        $this->OrdenPortada = $OrdenPortada;
+    }
+
+    public function getOrdenPortada() {
+        return $this->OrdenPortada;
+    }
 }
 
 // END class fabricantes

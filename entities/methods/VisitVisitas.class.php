@@ -15,6 +15,11 @@ class VisitVisitas extends VisitVisitasEntity {
         return $this->getId();
     }
 
+    public function create() {
+        $this->Publish = 1;
+        return parent::create();
+    }
+
     /**
      * Anota la visita actual en el registro de visitas
      * 
@@ -40,6 +45,9 @@ class VisitVisitas extends VisitVisitasEntity {
 
         if (!$idVisita) {
             // Es la primera visita para esta sesión. Creo el registro de cabecera
+            if ((!$_SESSION['EntornoDesarrollo']) and (!$_SESSION['origen'])) {
+                //$_SESSION['origen'] = WebService::getOrigenVisitante($_SESSION['varEnv']['Pro']['visitas']['ws'] . $rq->getRemoteAddr());
+            }
             $visita->setSesion($_SESSION['IdSesion']);
             $visita->setTiempoUnix(time());
             $visita->setHost($_SESSION['origen']['Host']);
@@ -55,7 +63,7 @@ class VisitVisitas extends VisitVisitasEntity {
             $visita->setISP($_SESSION['origen']['ISP']);
             $visita->setOrganizacion($_SESSION['origen']['Organizacion']);
             $visita->setUrlOrigen($_SERVER['HTTP_REFERER']);
-            
+
             $browser = new Browser();
 
             $visita->setBrowser($browser->getBrowser());

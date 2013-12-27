@@ -70,6 +70,7 @@ class Clientes extends ClientesEntity {
             if ($this->getNombreComercial() == '')
                 $this->setNombreComercial($this->getRazonSocial());
             $this->setIDSucursal($idSucursal);
+            
             $this->save();
 
             //CREAR LA DIRECCION DE ENTREGA POR DEFECTO
@@ -82,25 +83,53 @@ class Clientes extends ClientesEntity {
     /**
      * Si el cliente tiene recibos pendientes de cobro,
      * no se puede descatalogar
+     * 
+     * Si se descataloga, se borra de las rutas de venta y de reparto
      */
     public function validaLogico() {
 
         parent::validaLogico();
 
-        if ($this->NombreComercial == "")
+        $this->Publish = 1;
+
+        if ($this->NombreComercial == "") {
             $this->NombreComercial = $this->RazonSocial;
+        }
 
         if ($this->Vigente == 0) {
+            // Si el cliente tiene recibos pendientes de cobro no se puede descatalogar
             $recibosPtes = $this->getPteCobro();
             if ($recibosPtes['Recibos'] > 0) {
                 $this->_errores[] = "El cliente tiene {$recibosPtes['Recibos']} recibos pendientes de cobro por importe de {$recibosPtes['Importe']}. No se puede descatalogar";
                 $this->Vigente = 1;
             }
+            // Al descatalogar se borra de las rutas de venta y de reparto
+            // Borrar de las rutas de venta
+            $rutaVenta = new RutasVentas();
+            $rutaVenta->queryDelete("IDCliente='{$this->IDCliente}'");
+            unset($rutaVenta);
+
+            // Borrar de las rutas de reparto
+            $condicion = "IDDirec in (select d.IDDirec from ErpClientesDentrega d left join ErpClientes c on d.IDCliente=c.IDCliente where c.IDCliente='{$this->IDCliente}')";
+            $rutaReparto = new RutasRepartoDetalle();
+            $rutaReparto->queryDelete($condicion);
+            unset($rutaReparto);
         }
 
+        // Calcular el dígito de control de la C/C
         $banco = new Bancos();
         $this->setDigito($banco->ValidaCC($this->Banco, $this->Oficina, $this->Cuenta));
         unset($banco);
+
+        // Comprobar unicidad del login para la web
+        if ($this->Login != '') {
+            $cli = new Clientes();
+            $rows = $cli->cargaCondicion("IDCliente", "IDCLiente<>'{$this->IDCliente}' and Login='{$this->Login}'");
+            unset($cli);
+            if ($rows[0]['IDCliente'] != '') {
+                $this->_errores[] = "El login indicado ya está siendo usado por otro cliente.";
+            }
+        }
     }
 
     /**
@@ -327,11 +356,11 @@ class Clientes extends ClientesEntity {
         $rows = array();
 
         if (is_resource($this->_dbLink)) {
-            //$usuario = new Agentes($_SESSION['USER']['user']['Id']);
+            //$usuario = new Agentes($_SESSION['usuarioWeb']['Id']);
 
             $filtro = "(IDSucursal='{$idSucursal}') and (Vigente='1') and ( (RazonSocial LIKE '%{$valorFiltro}%') or (NombreComercial LIKE '%{$valorFiltro}%') or (Cif LIKE '%{$valorFiltro}%') )";
             //if ($usuario->getEsComercial())
-            //    $filtro .= " and (IDComercial='" . $_SESSION['USER']['user']['Id'] . "')";
+            //    $filtro .= " and (IDComercial='" . $_SESSION['usuarioWeb']['Id'] . "')";
             $query = "SELECT IDCliente as Id, CONCAT(RazonSocial,' - ',NombreComercial) as Value FROM `{$this->_dataBaseName}`.`{$this->_tableName}` where ( {$filtro} ) ORDER BY RazonSocial";
             $this->_em->query($query);
             $rows = $this->_em->fetchResult();

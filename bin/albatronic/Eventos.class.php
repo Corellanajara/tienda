@@ -4,11 +4,11 @@
  * CLASE ESTATICA PARA LA GESTION DE LOS EVENTOS
  *
  * @author Sergio Pérez <sergio.perez@albatronic.com>
- * @copyright (c) Ártico Estudio, sl
+ * @copyright (c) Informática ALBATRONIC, SL
  * @version 1.0 15-mar-2013
  */
 class Eventos {
-    
+
     /**
      * Devuelve un array con contenidos que son EVENTOS.
      * 
@@ -40,23 +40,27 @@ class Eventos {
 
         $array = array();
 
-        if ($desdeFecha == "")
+        if ($desdeFecha == "") {
             $desdeFecha = date('Y-m-d');
+        }
 
         $limite = ($nItems <= 0) ? "" : "LIMIT {$nItems}";
 
         $evento = new EvenEventos();
         $filtro = "Fecha>='{$desdeFecha}'";
-        if ($hastaFecha != "")
+        if ($hastaFecha != "") {
             $filtro .= " AND Fecha<='{$hastaFecha}'";
+        }
 
         $rows = $evento->cargaCondicion("Entidad,IdEntidad,Fecha,HoraInicio,HoraFin", $filtro, "Fecha ASC, HoraInicio ASC {$limite}");
         unset($evento);
         $eventos = array();
         if ($unicos) {
-            foreach ($rows as $row)
-                if (!isset($eventos[$row['Entidad'] . $row['IdEntidad']]))
+            foreach ($rows as $row) {
+                if (!isset($eventos[$row['Entidad'] . $row['IdEntidad']])) {
                     $eventos[$row['Entidad'] . $row['IdEntidad']] = $row;
+                }
+            }
         } else {
             $eventos = $rows;
         }
@@ -81,7 +85,7 @@ class Eventos {
 
         return $array;
     }
-    
+
     /**
      * Devuelve un array con los dias del mes en los que hay eventos
      * 
@@ -97,14 +101,16 @@ class Eventos {
         $array = array();
 
         $evento = new EvenEventos();
-        $rows = $evento->cargaCondicion("DAY(Fecha) dia, COUNT(Id) nEventos","MONTH(Fecha)='{$mes}' AND YEAR(Fecha)='{$ano}' GROUP BY dia");
+        $rows = $evento->cargaCondicion("DAY(Fecha) dia, COUNT(Id) nEventos", "MONTH(Fecha)='{$mes}' AND YEAR(Fecha)='{$ano}' GROUP BY dia");
         unset($evento);
 
-        foreach ($rows as $row)
+        foreach ($rows as $row) {
             $array[$row['dia']] = $row['nEventos'];
+        }
 
         return $array;
-    }    
+    }
+
 }
 
 ?>

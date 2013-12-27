@@ -1,0 +1,21 @@
+/* 
+    Document   : albatronic
+    Created on : 25-sep-2013, 23:46:01
+    Author     : sergio
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.categoriesBox {
+    margin-top: 5px;
+    padding: 5px;
+    width: 200px;
+    background-color: whitesmoke;
+}
+.marcasBox {
+    margin-top: 5px;
+    padding: 5px;
+    width: 200px;
+    background-color: wheat;
+}
+

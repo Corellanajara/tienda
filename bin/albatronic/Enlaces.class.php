@@ -4,7 +4,7 @@
  * CLASE ESTATICA PARA LA GESTION DE ENLACES DE INTERES
  *
  * @author Sergio Pérez <sergio.perez@albatronic.com>
- * @copyright (c) Ártico Estudio, sl
+ * @copyright (c) Informática ALBATRONIC, SL
  * @version 1.0 15-mar-2013
  */
 class Enlaces {

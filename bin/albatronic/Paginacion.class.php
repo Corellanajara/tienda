@@ -16,7 +16,7 @@
  * @return array Array con la información obtenida
  * 
  * @author Sergio Pérez <sergio.perez@albatronic.com>
- * @copyright (c) Ártico Estudio, sl
+ * @copyright (c) INFORMÁTICA ALBATRONIC, sl
  * @version 1.0 22-ENE-2013
  */
 class Paginacion {
@@ -39,10 +39,10 @@ class Paginacion {
         $filtro = "(Deleted='0') AND (Publish='1') AND (ActiveFrom<='{$ahora}') AND ( (ActiveTo>='{$ahora}') or (ActiveTo='0000-00-00 00:00:00') )";
 
         // Condición de privacidad
-        if (!$_SESSION['USER']['user']['Id']) {
+        if (!$_SESSION['usuarioWeb']['Id']) {
             $filtro .= " AND ( (Privacy='0') OR (Privacy='2') )";
         } else {
-            $idPerfil = $_SESSION['USER']['user']['IdPerfil'];
+            $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
             $filtro .= " AND ( (Privacy='1') OR (Privacy='2') OR LOCATE('{$idPerfil}',AccessProfileListWeb) )";
         }
         // Condición específica
@@ -50,7 +50,6 @@ class Paginacion {
             $filtro .= " AND {$condicion}";
 
         self::$pagina = ($nPagina <= 0) ? 1 : $nPagina;
-        self::$itemsPorPagina = ($itemsPorPagina <= 0) ? 1 : $itemsPorPagina;
 
         $objeto = new $entidad();
 
@@ -60,6 +59,7 @@ class Paginacion {
         if ($em->getDbLink()) {
             $em->query($query);
             self::$totalItems = $em->numRows();
+            self::$itemsPorPagina = ($itemsPorPagina <= 0) ? self::$totalItems : $itemsPorPagina;            
             self::$totalPaginas = floor(self::$totalItems / self::$itemsPorPagina);
             if ((self::$totalItems % self::$itemsPorPagina) > 0)
                 self::$totalPaginas++;

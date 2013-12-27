@@ -52,7 +52,7 @@ config:
     url: http://localhost/tienda
     path: /tienda
     framework: bin/albatronic/
-    theme: themes/default
+    theme: themes/theme1
 
   # SEMILLA PARA CONSTRUIR CLAVES MD5
   semillaMD5: verano
@@ -87,4 +87,4 @@ config:
       host: localhost
       user: root
       password: albatronic
-      database: albatro_aeroprint
+      database: albatro_demo

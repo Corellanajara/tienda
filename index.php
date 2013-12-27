@@ -30,32 +30,29 @@ session_start();
 
 $_SESSION['IdSesion'] = session_id();
 
-if (!$_SESSION['USER']['user']['Id'])
-    $_SESSION['USER']['user']['Id'] = 0;
+if (!isset($_SESSION['usuarioWeb']['Id'])) {
+    $_SESSION['usuarioWeb']['Id'] = 0;
+}
 
-if (file_exists("bin/yaml/lib/sfYaml.php"))
+if (file_exists("bin/yaml/lib/sfYaml.php")) {
     include "bin/yaml/lib/sfYaml.php";
-else
+} else {
     die("NO EXISTE LA CLASE PARA LEER ARCHIVOS YAML");
+}
 
 // ---------------------------------------------------------------
 // CARGO LOS PARAMETROS DE CONFIGURACION.
 // ---------------------------------------------------------------
-if (!isset($_SESSION['config'])) {
+if (!isset($_SESSION['configWeb'])) {
     if (!file_exists('config/config.yml'))
         die("NO EXISTE EL FICHERO DE CONFIGURACION");
     else {
         $yaml = sfYaml::load('config/config.yml');
-        $_SESSION['config'] = $yaml['config'];
+        $_SESSION['configWeb'] = $yaml['config'];
     }
 }
 
-$config = $_SESSION['config'];
-
-if ($config['projectId'] == '')
-    die("NO SE HA DEFINIDO EL ID DE PROYECTO");
-else
-    $_SESSION['project']['Id'] = $config['projectId'];
+$config = $_SESSION['configWeb'];
 
 $_SESSION['project']['ftp'] = $config['projectFtp'];
 
@@ -70,7 +67,7 @@ $_SESSION['theme'] = $app['theme'];
 // ---------------------------------------------------------------
 define(APP_PATH, $_SERVER['DOCUMENT_ROOT'] . $app['path'] . "/" . $app['theme']);
 include_once $app['framework'] . "Autoloader.class.php";
-Autoloader::setCacheFilePath(APP_PATH . 'cache/class_path_cache.txt');
+Autoloader::setCacheFilePath(APP_PATH . '/cache/class_path_cache.txt');
 Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
 Autoloader::setClassPaths(array(
     $app['framework'],
@@ -96,7 +93,7 @@ if (file_exists($config['twig']['motor'])) {
     if ($charset != '')
         $ops['charset'] = $charset;
     $ops['autoescape'] = true;
-    $loader = new Twig_Loader_Filesystem($app['theme']."/modules");
+    $loader = new Twig_Loader_Filesystem($app['theme'] . "/modules");
     $twig = new Twig_Environment($loader, $ops);
     $twig->getExtension('core')->setNumberFormat(2, ',', '.');
 } else
@@ -122,14 +119,6 @@ $rq = new Request();
 $_SESSION['EntornoDesarrollo'] = $rq->isDevelopment();
 
 // ----------------------------------------------------------------
-// EN ENTORNO DE PRODUCCION, OBTENER EL ORIGEN DE LA PETICION PARA
-// LA GESTION DE VISITAS
-// ----------------------------------------------------------------
-if ((!$_SESSION['EntornoDesarrollo']) and (!$_SESSION['origen'])) {
-    //$_SESSION['origen'] = WebService::getOrigenVisitante($config['wsControlVisitas'] . $rq->getRemoteAddr());
-}
-
-// ----------------------------------------------------------------
 // ACTIVAR EL FORMATO DE LA MONEDA
 // ----------------------------------------------------------------
 setlocale(LC_MONETARY, $rq->getLanguage());
@@ -146,10 +135,11 @@ if ($rq->isOldBrowser()) {
     $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "UrlFriendly='{$rq->getUrlFriendly($app['path'])}'");
     // Localizar la url amigable
     //$rows[0] = $url->matchUrl($rq->getUrlFriendly($app['path']));
-    
+
     if (count($url->getErrores()) == 0) {
-        if (!$rows)
+        if (!$rows) {
             $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "UrlFriendly='/error404'");
+        }
     } else {
         print_r($url->getErrores());
         die("Error de conexión a la BD");
@@ -194,17 +184,20 @@ switch ($rq->getMethod()) {
 }
 
 // Si no se ha localizado el controlador, lo pongo a Error404
-if ($controller == '')
+if ($controller == '') {
     $controller = 'Error404';
+}
 // Si no se ha localizado la action, la pongo a Index
-if ($action == '')
+if ($action == '') {
     $action = "Index";
+}
 
 // Si no existe el controller lo pongo a 'Error404'
-$fileController = "modules/" . $controller . "/" . $controller . "Controller.class.php";
+$fileController = "{$_SESSION['theme']}/modules/{$controller}/{$controller}Controller.class.php";
+
 if (!file_exists($fileController)) {
     $controller = "Error404";
-    $fileController = "modules/Error404/Error404Controller.class.php";
+    $fileController = "{$_SESSION['theme']}/modules/Error404/Error404Controller.class.php";
 }
 
 $clase = $controller . "Controller";
@@ -218,16 +211,18 @@ $metodo = $action . "Action";
 //------------------------------------------------------------------------------
 include_once $fileController;
 $con = new $clase($request);
-if (!method_exists($con, $metodo))
+if (!method_exists($con, $metodo)) {
     $metodo = "IndexAction";
+}
 $result = $con->{$metodo}();
 
 // Si el navegador es mobile y existe la template mobile, lo muestro.
 // En caso contrario muestro el template normal.
 if ($_SESSION['isMobile']) {
     $aux = str_replace('.html.twig', '.mobile.html.twig', $result['template']);
-    if (file_exists("modules/{$aux}"))
+    if (file_exists("modules/{$aux}")) {
         $result['template'] = $aux;
+    }
 }
 
 $result['values']['controller'] = $controller;
@@ -238,7 +233,7 @@ $result['values']['archivoJs'] = getArchivoJs($result['template']);
 if ($config['debug_mode']) {
     $result['values']['_debugMode'] = true;
     $result['values']['_auditMode'] = (string) $config['audit_mode'];
-    $result['values']['_user'] = sfYaml::dump($_SESSION['USER'], 5);
+    $result['values']['_user'] = sfYaml::dump($_SESSION['usuarioWeb'], 5);
     $result['values']['_debugValues'] = sfYaml::Dump($result['values'], 100);
 }
 
@@ -251,10 +246,15 @@ if (!file_exists($app['theme'] . '/modules/' . $result['template']) or ($result[
 }
 
 // Establecer el layout segun el dispositivo de navegación
-if ($_SESSION['isMobile']) {
-    $layout = "_global/layoutMobile.html.twig";
-} else {
-    $layout = "_global/layoutLaptop.html.twig";
+// Si fuese mobile pero no hay layout mobile, se toma el layout laptop
+if (!$_SESSION['layout']) {
+    $_SESSION['layout'] = "_global/layoutLaptop.html.twig";
+    if ($_SESSION['isMobile']) {
+        $aux = "_global/layoutMobile.html.twig";
+        if (file_exists($app['theme'] . "/modules/" . $aux)) {
+            $_SESSION['layout'] = $aux;
+        }
+    }
 }
 
 // Renderizo el template y los valores devueltos por el método
@@ -264,14 +264,11 @@ $twig->addGlobal('language', $_SESSION['idiomas']['disponibles'][$_SESSION['idio
 $twig->addGlobal('urlAmigable', $row['UrlFriendly']);
 $twig->loadTemplate($result['template'])
         ->display(array(
-            'layout' => $layout,
+            'layout' => $_SESSION['layout'],
             'values' => $result['values'],
             'app' => $app,
             'chequeadaResolucionVisitante' => isset($_SESSION['resolucionVisitante']),
-            'user' => $_SESSION['USER']['user'],
-            'menu' => $_SESSION['USER']['menu'],
-            'projects' => $_SESSION['projects'],
-            'project' => $_SESSION['project'],
+            'user' => $_SESSION['usuarioWeb'],
         ));
 
 //------------------------------------------------------------
@@ -333,7 +330,8 @@ function setIdioma() {
     $idiomasPermitidos = explode(",", trim($variables['globales']['lang']));
 
     $idIdioma = array_search($idiomaVisitante, $idiomasPermitidos);
-    if (!$idIdioma) $idIdioma = 0;
+    if (!$idIdioma)
+        $idIdioma = 0;
 
     if (!(file_exists("{$_SESSION['theme']}/lang/{$idiomasPermitidos[$idIdioma]}.yml")))
         $idIdioma = 0;
@@ -348,7 +346,7 @@ function setIdioma() {
         );
     }
     unset($idiomas);
-    
+
     $_SESSION['idiomas']['disponibles'] = $idiomasPermitidos;
     $_SESSION['idiomas']['actual'] = $idIdioma;
 }

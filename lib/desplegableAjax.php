@@ -22,8 +22,8 @@ if (!file_exists('../config/config.yml')) {
     exit;
 }
 
-if (file_exists("../../../app/bin/yaml/lib/sfYaml.php")) {
-    include "../../../app/bin/yaml/lib/sfYaml.php";
+if (file_exists("../bin/yaml/lib/sfYaml.php")) {
+    include "../bin/yaml/lib/sfYaml.php";
 } else {
     echo "NO EXISTE LA CLASE PARA LEER ARCHIVOS YAML";
     exit;
@@ -497,7 +497,7 @@ function clientesSucursalAgente($idSucursal = '', $idAgente = '', $nameSelect = 
     if ($idSucursal == '')
         $idSucursal = $_SESSION['suc'];
     if ($idAgente == '')
-        $idAgente == $_SESSION['USER']['user']['Id'];
+        $idAgente == $_SESSION['usuarioWeb']['Id'];
 
     if ($nameSelect == '')
         $nameSelect = $_GET['nameselect'];

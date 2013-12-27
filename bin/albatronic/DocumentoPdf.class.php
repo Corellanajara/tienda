@@ -64,7 +64,7 @@ class DocumentoPdf extends FPDF {
         if (file_exists($file)) {
             $yml = sfYaml::load($file);
 
-            $perfilUsuario = $_SESSION['USER']['user']['IDPerfil'];
+            $perfilUsuario = $_SESSION['usuarioWeb']['IDPerfil'];
             $i = 0;
             foreach ($yml[$tipoDocumento] as $formato) {
                 $perfiles = $formato['idPerfil'];

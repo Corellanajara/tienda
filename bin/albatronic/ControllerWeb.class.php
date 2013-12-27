@@ -6,7 +6,7 @@
  * Controlador común a todos los proyectos web
  *
  * @author Sergio Pérez
- * @copyright Ártico Estudio, SL
+ * @copyright Informática ALBATRONIC, SL
  * @version 1.0 1-dic-2012
  */
 class ControllerWeb {
@@ -310,9 +310,9 @@ class ControllerWeb {
      * Devuelve un array con los objetos más buscados y que son de las
      * entidades indicadas en el array $enQueEntidades
      * 
-     * Si el array está vacío, se búsqueda se hace para cualquier entidad.
+     * Si el array está vacío, la búsqueda se hace para cualquier entidad.
      * 
-     * El array de objetos a devolver está ordenador descendentemente por
+     * El array de objetos a devolver está ordenado descendentemente por
      * el número de visitas.
      * 
      * @param array $enQueEntidades Array con los nombres de las entidades a buscar
@@ -324,19 +324,21 @@ class ControllerWeb {
         $array = array();
 
         $limite = ($nItems <= 0) ? "" : "LIMIT {$nItems}";
-        
+
         $filtro = "";
         if (count($enQueEntidades)) {
             foreach ($enQueEntidades as $entidad) {
-                if ($filtro != "") $filtro .= " OR ";
+                if ($filtro != "")
+                    $filtro .= " OR ";
                 $filtro .= "Entity='{$entidad}'";
             }
-        } else $filtro = "1";
-        
+        } else
+            $filtro = "1";
+
         $urls = new CpanUrlAmigables();
         $rows = $urls->cargaCondicion("Entity,IdEntity", $filtro, "NumberVisits DESC {$limite}");
         unset($urls);
-        
+
         foreach ($rows as $row)
             if (class_exists($row['Entity']))
                 $array[] = new $row['Entity']($row['IdEntity']);
@@ -453,6 +455,11 @@ class ControllerWeb {
             'revisitAfter' => $objetoActual->getRevisitAfter(),
         );
 
+        $imagen = $objetoActual->getPathNameImagenN(1);
+        if ($imagen) {
+            $meta['pro']['urlImagen'] = $_SESSION['appUrl'] . "/" . $_SESSION['theme'] . "/" . $imagen;
+        }
+
         $objetoPadre = $objetoActual->getBelongsTo();
         $meta['objetoPadre'] = array(
             'title' => $objetoPadre->getMetatagTitle(),
@@ -467,12 +474,13 @@ class ControllerWeb {
         unset($objetoPadre);
 
         foreach ($meta['pro'] as $key => $value) {
-            if ($meta['objetoActual'][$key] != '')
+            if ($meta['objetoActual'][$key] != '') {
                 $metaInformacion[$key] = $meta['objetoActual'][$key];
-            elseif ($meta['objetoPadre'][$key] != '')
+            } elseif ($meta['objetoPadre'][$key] != '') {
                 $metaInformacion[$key] = $meta['objetoPadre'][$key];
-            else
+            } else {
                 $metaInformacion[$key] = $value;
+            }
         }
 
         $metaInformacion['lang'] = $_SESSION['idiomas']['disponibles'][$_SESSION['idiomas']['actual']]['codigoLargo'];
@@ -492,7 +500,7 @@ class ControllerWeb {
 
         $array = array();
 
-        $file = "lang/{$lang}.yml";
+        $file = APP_PATH . "/lang/{$lang}.yml";
         if (file_exists($file)) {
             $etiquetas = sfYaml::load($file);
             $array = $etiquetas['lang'];
@@ -515,7 +523,7 @@ class ControllerWeb {
 
         $array = array();
 
-        $file = "modules/{$this->entity}/lang.yml";
+        $file = APP_PATH . "/modules/{$this->entity}/lang.yml";
         if (file_exists($file)) {
             $textos = sfYaml::load($file);
             $array = isset($textos[$lang]) ? $textos[$lang] : $textos['es'];

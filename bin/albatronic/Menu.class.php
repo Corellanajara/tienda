@@ -4,11 +4,11 @@
  * CLASE ESTATICA PARA LA GESTION DE LOS MENUS
  *
  * @author Sergio Pérez <sergio.perez@albatronic.com>
- * @copyright (c) Ártico Estudio, sl
+ * @copyright (c) Informática ALBATRONIC, SL
  * @version 1.0 15-mar-2013
  */
 class Menu {
-    
+
     /**
      * Genera el array del menu indicado en $nMenu en base a las SECCIONES que:
      * 
@@ -33,24 +33,42 @@ class Menu {
 
         if (($nMenu < 1) or ($nMenu > 5))
             $nMenu = 1;
-        $limite = ($nItems <= 0) ? "" : "LIMIT {$nItems}";
+        $limite = ($nItems <= 0) ? "" : $nItems;
 
         $seccion = new GconSecciones();
-        $filtro = "MostrarEnMenu{$nMenu}='1'";
-        $rows = $seccion->cargaCondicion("Id", $filtro, "OrdenMenu{$nMenu} ASC {$limite}");
+        $where = "s.MostrarEnMenu{$nMenu}='1'";
+        $orden = "s.OrdenMenu{$nMenu}";
+
+        $em = new EntityManager($_SESSION['project']['conection']);
+        $select = "SELECT s.Id,s.EtiquetaWeb{$nMenu},s.SubetiquetaWeb{$nMenu},s.Titulo,s.Subtitulo,s.UrlFriendly,s.UrlTarget,s.UrlIsHttps,s.UrlParameters,s.UrlTargetBlank,u.Controller FROM GconSecciones s "
+                . "LEFT JOIN CpanUrlAmigables u on s.Id=u.IdEntity and u.Entity='GconSecciones' and u.Idioma='{$_SESSION['idiomas']['actual']}'";
+        $rows = $em->getResult("s", $select, $where, $orden, $limite);
 
         foreach ($rows as $row) {
-            $seccion = new GconSecciones($row['Id']);
+
+            $url = $row['UrlTarget'];
+            $esInterna = ($url == '');
+
+            if ($esInterna) {
+                $url = $row['UrlFriendly'];
+                $prefijo = $_SESSION['appPath'];
+            } else {
+                $prefijo = ($row['UrlIsHttps']) ? "https://" : "http://";
+            }
+
+            $url = $prefijo . $url . $row['UrlParameters'];
+
+            $href = array('url' => $url, 'targetBlank' => $row['UrlTargetBlank']);
+
             $array[] = array(
-                'etiquetaWeb' => $seccion->{"getEtiquetaWeb$nMenu"}(),
-                'subetiquetaWeb' => $seccion->{"getSubetiquetaWeb$nMenu"}(),
-                'titulo' => $seccion->getTitulo(),
-                'subtitulo' => $seccion->getSubtitulo(),
-                'url' => $seccion->getHref(),
-                'controller' => $seccion->getObjetoUrlAmigable()->getController(),
+                'etiquetaWeb' => $row['EtiquetaWeb' . $nMenu],
+                'subetiquetaWeb' => $row['SubetiquetaWeb' . $nMenu],
+                'titulo' => $row['Titulo'],
+                'subtitulo' => $row['Subtitulo'],
+                'url' => $href,
+                'controller' => $row['Controller'],
             );
         }
-        unset($seccion);
 
         return $array;
     }
@@ -102,6 +120,7 @@ class Menu {
 
         return $array;
     }
+
 }
 
 ?>

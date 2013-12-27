@@ -34,21 +34,13 @@ class VisitVisitasTemporal extends VisitVisitasTemporalEntity {
      */
     public function borraTemporal($horas = '') {
 
-        $nRegistrosBorrados = 0;
-
         if ($horas == '')
             $horas = $_SESSION['varEnv']['Pro']['visitas']['frecuenciaHorasBorrado'];
         $aPartirDe = time() - $horas * 3600;
 
-        $em = new EntityManager($this->getConectionName());
-        if ($em->getDbLink()) {
-            $query = "delete from {$this->getDataBaseName()}.{$this->getTableName()} where TiempoUnix<={$aPartirDe}";
-            $em->query($query);
-            $nRegistrosBorrados = $em->getAffectedRows();
-            $_SESSION['borradoTemporalVisitas'] = ( count($em->getError()) == 0 );
-            $em->desConecta();
-        }
-        unset($em);
+        $nRegistrosBorrados = $this->queryDelete("TiempoUnix<='{$aPartirDe}'");
+
+        $_SESSION['borradoTemporalVisitas'] = ( count($this->_errores) == 0 );
 
         return $nRegistrosBorrados;
     }

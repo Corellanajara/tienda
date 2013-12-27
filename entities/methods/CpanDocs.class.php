@@ -86,7 +86,7 @@ class CpanDocs extends CpanDocsEntity {
         if (is_resource($this->_dbLink)) {
             // Auditoria
             $fecha = date('Y-m-d H:i:s');
-            $query = "UPDATE `{$this->_dataBaseName}`.`{$this->_tableName}` SET `Deleted` = '1', `DeletedAt` = '{$fecha}', `DeletedBy` = '{$_SESSION['USER']['user']['Id']}' WHERE `{$this->_primaryKeyName}` = '{$this->getPrimaryKeyValue()}'";
+            $query = "UPDATE `{$this->_dataBaseName}`.`{$this->_tableName}` SET `Deleted` = '1', `DeletedAt` = '{$fecha}', `DeletedBy` = '{$_SESSION['usuarioWeb']['Id']}' WHERE `{$this->_primaryKeyName}` = '{$this->getPrimaryKeyValue()}'";
             if (!$this->_em->query($query))
                 $this->_errores = $this->_em->getError();
             else {

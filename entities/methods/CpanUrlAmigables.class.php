@@ -26,19 +26,24 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
             // Incremento el número de visitas de la entidad asociada
             if (class_exists($this->Entity)) {
                 $entidadAsociada = new $this->Entity($this->IdEntity);
-                $entidadAsociada->setNumberVisits($entidadAsociada->getNumberVisits() + 1);
-                $entidadAsociada->save();
+                //$entidadAsociada->setNumberVisits($entidadAsociada->getNumberVisits() + 1);
+                //$entidadAsociada->save();
+                
+                $visitas = $entidadAsociada->getNumberVisits() + 1;
+                $condicion = "{$entidadAsociada->getPrimaryKeyName()}='{$this->IdEntity}'";
+                $entidadAsociada->queryUpdate(array('NumberVisits'=>$visitas),$condicion);
                 unset($entidadAsociada);
             }
         }
     }
-
+    
     public function create() {
-
+        
         $this->setPublish(1);
+        $this->setPrivacy(2); // Ambos (público y privado)        
         return parent::create();
     }
-
+    
     /**
      * LLama al método erase
      *
@@ -63,12 +68,21 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
             if (!$entidadAsociada->getStatus())
                 $entidadAsociada = $entidadAsociada->find($entidadAsociada->getPrimaryKeyName(), $this->IdEntity, true);
 
+            $arrayUpdate['UrlPrefix']='';
+            $arrayUpdate['Slug']='';
+            $arrayUpdate['UrlFriendly']='';
+            $condicion = "{$entidadAsociada->getPrimaryKeyName()}='{$this->IdEntity}'";
+            $entidadAsociada->queryUpdate($arrayUpdate,$condicion);
+            /**
             $entidadAsociada->setUrlPrefix('');
             $entidadAsociada->setSlug('');
             $entidadAsociada->setUrlFriendly('');
-            $entidadAsociada->save();
+            $entidadAsociada->save();*/
         }
 
+        $condicion = "`{$this->_primaryKeyName}` = '{$this->getPrimaryKeyValue()}'";
+        $ok = $this->queryDelete($condicion);
+        /**
         $this->conecta();
 
         if (is_resource($this->_dbLink)) {
@@ -83,6 +97,8 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
         unset($this->_em);
 
         $ok = (count($this->_errores) == 0);
+         * 
+         */
 
         return $ok;
     }
@@ -93,7 +109,7 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
     public function validaLogico() {
 
         $url = new CpanUrlAmigables();
-        $rows = $url->cargaCondicion("Id", "Idioma='{$_SESSION['idiomas']['actual']}' and UrlFriendly='{$this->UrlFriendly}'");
+        $rows = $url->cargaCondicion("Id","Idioma='{$_SESSION['idiomas']['actual']}' and UrlFriendly='{$this->UrlFriendly}'");
 
         if ($rows[0]['Id'] != $this->getPrimaryKeyValue()) {
             if (!$this->getPrimaryKeyValue())
@@ -108,10 +124,18 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
     public function actualizaEntidadReferenciada() {
 
         if (class_exists($this->Entity)) {
+            /**
             $objeto = new $this->Entity($this->IdEntity);
             $objeto->setSlug(str_replace("/", "", $this->UrlFriendly));
             $objeto->setUrlFriendly($this->UrlFriendly);
             $ok = $objeto->save();
+             */
+
+            $objeto = new $this->Entity();
+            $arrayUpdate['Slug'] = str_replace("/", "", $this->UrlFriendly);
+            $arrayUpdate['UrlFriendly'] = $this->UrlFriendly;
+            $condicion = "{$objeto->getPrimaryKeyName()}='{$this->IdEntity}'";
+            $ok = $objeto->queryUpdate($arrayUpdate,$condicion);
             unset($objeto);
         }
 
@@ -165,7 +189,6 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
 
         return $encontrado;
     }
-
 }
 
 ?>

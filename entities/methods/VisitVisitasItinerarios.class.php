@@ -15,6 +15,11 @@ class VisitVisitasItinerarios extends VisitVisitasItinerariosEntity {
         return $this->getId();
     }
 
+    public function create() {
+        $this->Publish = 1;
+        return parent::create();
+    }
+    
     /**
      * Crea un detalle de la visita en el registro de itinerario
      * Anotando el tiempo empleado en el itinerario anterior y
@@ -45,7 +50,7 @@ class VisitVisitasItinerarios extends VisitVisitasItinerariosEntity {
 
         // Crear el registro de itinerario actual
         $this->setIdVisita($idVisita);
-        $this->setIdUsuario($_SESSION['USER']['user']['Id']);
+        $this->setIdUsuario($_SESSION['usuarioWeb']['Id']);
         $this->setEntidad($request['Entity']);
         $this->setIdEntidad($request['IdEntity']);
         $this->setTiempoUnix(time());

@@ -16,7 +16,35 @@ class ErpFamilias {
      * @param integer $idFamilia El id de la familia
      * @return \Familias
      */
-    static function getFamilia($idFamilia) {
+    static function getFamilia($row) {
+
+        $url = $row['UrlTarget'];
+        $esInterna = ($url == '');
+
+        if ($esInterna) {
+            $url = $row['UrlFriendly'];
+            $prefijo = $_SESSION['appPath'];
+        } else {
+            $prefijo = ($row['UrlIsHttps']) ? "https://" : "http://";
+        }
+
+        $url = $prefijo . $url . $row['UrlParameters'];
+
+        $href = array('url' => $url, 'targetBlank' => $row['UrlTargetBlank']);
+
+        $array = array(
+            'IDFamilia' => $row['IDFamilia'],
+            'Familia' => $row['Familia'],
+            'Subtitulo' => $row['Subtitulo'],
+            'Descripcion1' => $row['Descripcion1'],
+            'Descripcion2' => $row['Descripcion2'],
+            'Href' => $href,
+        );
+
+        return $array;
+    }
+
+    static function getObjetoFamilia($idFamilia) {
         return new Familias($idFamilia);
     }
 
@@ -24,6 +52,7 @@ class ErpFamilias {
      * Devuelve un array de objetos familias
      * 
      * @param integer $idFamiliaPadre El id de la familia padre. Por defecto 0 (las categorias)
+     * @param integer $posicionInicio La posición de inicio (para obtener un rango)
      * @param integer $nItems El número de familias a devolver. Por defecto todas
      * @return array
      */
@@ -34,54 +63,61 @@ class ErpFamilias {
         $limite = "LIMIT {$posicionInicio},{$nItems}";
 
         $familia = new Familias();
-        $rows = $familia->cargaCondicion("IDFamilia", "BelongsTo='{$idFamiliaPadre}'", "SortOrder ASC {$limite}");
+        $rows = $familia->cargaCondicion("IDFamilia,Familia,Subtitulo,Descripcion1,Descripcion2,UrlTarget,UrlFriendly,UrlIsHttps,UrlParameters,UrlTargetBlank", "BelongsTo='{$idFamiliaPadre}'", "SortOrder ASC {$limite}");
         unset($familia);
 
-        foreach ($rows as $row)
-            $array[] = self::getFamilia($row['IDFamilia']);
+        foreach ($rows as $row) {
+            $array[] = self::getFamilia($row);
+        }
 
         return $array;
     }
 
     /**
-     * Devuelve un array de objetos familias que son categorias y
-     * están marcadas para mostrar en portada.
+     * Devuelve un array de objetos familias que son categorias
      * 
+     * @param integer $enPortada. 0 No portada, 1 Si portada, 2 Todas. Defecto Si portada
      * @param integer $posicionInicio A partir de que categoria
      * @param integer $nItems Número de categorias a devolver. Por defecto todas
      * @return array Array de categorias
      */
-    static function getCategoriasPortada($posicionInicio = 0, $nItems = 0) {
+    static function getCategorias($enPortada = 1, $posicionInicio = 0, $nItems = 0) {
 
         $array = array();
 
         $nItems = ($nItems <= 0) ? 999999 : $nItems;
         $limite = "LIMIT {$posicionInicio},{$nItems}";
 
+        $filtro = "BelongsTo='0'";
+
+        if (!in_array($enPortada, array(0, 1, 2)))
+            $enPortada = 1;
+
+        switch ($enPortada) {
+            case '0':
+                $filtro .= "AND MostrarPortada='0'";
+                $orden = "SortOrder";
+                break;
+            case '1':
+                $filtro .= "AND MostrarPortada='1'";
+                $orden = "OrdenPortada";
+                break;
+            case '2':
+                $orden = "SortOrder";
+                break;
+        }
+
         $familia = new Familias();
-        $rows = $familia->cargaCondicion("IDFamilia", "BelongsTo='0' and MostrarPortada='1'", "OrdenPortada ASC {$limite}");
+        $rows = $familia->cargaCondicion("IDFamilia,Familia,Subtitulo,Descripcion1,Descripcion2,UrlTarget,UrlFriendly,UrlIsHttps,UrlParameters,UrlTargetBlank", $filtro, "{$orden} ASC {$limite}");
         unset($familia);
 
-        foreach ($rows as $row)
-            $array[] = self::getFamilia($row['IDFamilia']);
+        foreach ($rows as $row) {
+            $array[] = self::getFamilia($row);
+        }
 
         return $array;
     }
 
-    /**
-     * Devuelve un array con todas las categorias
-     * 
-     * @return array
-     */
-    static function getCategorias() {
-        
-        $familia = new Familias();
-        $array = $familia->cargaCondicion("IDFamilia as Id,Familia as Value","BelongsTo='0'");
-        unset($familia);
-                     
-        return $array;
-    }
-    
     /**
      * Devuelve un array con las familias de la categoría $idCategoria
      * 
@@ -89,14 +125,14 @@ class ErpFamilias {
      * @return array (Id,Value)
      */
     static function getFamilias($idCategoria) {
-        
+
         $familia = new Familias();
-        $array = $familia->cargaCondicion("IDFamilia as Id,Familia as Value","BelongsTo='{$idCategoria}'");
+        $array = $familia->cargaCondicion("IDFamilia as Id,Familia as Value", "BelongsTo='{$idCategoria}'");
         unset($familia);
-                     
+
         return $array;
     }
-    
+
     /**
      * Devuelve un array de objetos fabricantes que están
      * relacionados con la categoría $idCategoria
@@ -105,14 +141,14 @@ class ErpFamilias {
      * @return array de objetos Fabricantes
      */
     static function getFabricantes($idCategoria) {
-        
+
         $familia = new Familias($idCategoria);
         $array = $familia->getFabricantes();
         unset($familia);
-        
+
         return $array;
     }
-    
+
     /**
      * Devuelve un array de categorias y familias
      * 
@@ -127,19 +163,20 @@ class ErpFamilias {
         $limite = ($nItems <= 0) ? "" : "LIMIT {$nItems}";
 
         $familia = new Familias();
-        $rows = $familia->cargaCondicion("IDFamilia", "BelongsTo='0' and MostrarPortada='{$enPortada}'", "OrdenPortada ASC {$limite}");
+        $rows = $familia->cargaCondicion("IDFamilia,Familia,Subtitulo,Descripcion1,Descripcion2,UrlTarget,UrlFriendly,UrlIsHttps,UrlParameters,UrlTargetBlank", "BelongsTo='0' and MostrarPortada='{$enPortada}'", "OrdenPortada ASC {$limite}");
         unset($familia);
 
         foreach ($rows as $row) {
 
             $familia = new Familias();
-            $rows1 = $familia->cargaCondicion("IDFamilia", "BelongsTo='{$row['IDFamilia']}'");
+            $rows1 = $familia->cargaCondicion("IDFamilia,Familia,Subtitulo,Descripcion1,Descripcion2,UrlTarget,UrlFriendly,UrlIsHttps,UrlParameters,UrlTargetBlank", "BelongsTo='{$row['IDFamilia']}' and MostrarPortada='{$enPortada}'");
             unset($familia);
 
-            $array[$row['IDFamilia']]['categoria'] = self::getFamilia($row['IDFamilia']);
+            $array[$row['IDFamilia']]['categoria'] = self::getFamilia($row);
 
-            foreach ($rows1 as $row1)
-                $array[$row['IDFamilia']]['familias'][] = self::getFamilia($row1['IDFamilia']);
+            foreach ($rows1 as $row1) {
+                $array[$row['IDFamilia']]['familias'][] = self::getFamilia($row1);
+            }
         }
 
         return $array;
@@ -157,10 +194,10 @@ class ErpFamilias {
      * @param integer $idCategoria El id de la categoría, familia o subfamilia
      * @param string $orgen El criterio de orden. Por defecto "SortOrder ASC"
      * @param integer $pagina El número de página
-     * @param integer $nItems Número de items por página
+     * @param integer $nItems Número de items por página. Por defecto todos
      * @return array Array de artículos paginado
      */
-    static function getArticulosPaginados($idCategoria, $orden = "SortOrder ASC", $pagina = 1, $nItems = 4) {
+    static function getArticulosPaginados($idCategoria, $orden, $pagina = 1, $nItems = 0) {
 
         $familia = new Familias($idCategoria);
         $nivelJerarquico = $familia->getNivelJerarquico();
@@ -178,11 +215,13 @@ class ErpFamilias {
                 break;
         }
 
-        $itemsPorPagina = ($nItems <= 0) ? 4 : $nItems;
+        if ($orden == '')
+            $orden = "SortOrder ASC";
+
         $nPagina = ($pagina <= 0) ? 1 : $pagina;
         $filtro = "{$campo}='{$idCategoria}' and Vigente='1'";
 
-        Paginacion::paginar("Articulos", $filtro, $orden, $nPagina, $itemsPorPagina);
+        Paginacion::paginar("Articulos", $filtro, $orden, $nPagina, $nItems);
 
         foreach (Paginacion::getRows() as $row)
             $articulos[] = new Articulos($row['IDArticulo']);
@@ -195,13 +234,14 @@ class ErpFamilias {
 
     /**
      * Devuelve un array sin paginar de artículos que pertenecen
-     * a la categoría, familia o subfamilia $idCategoria
+     * a la categoría, familia o subfamilia $idCategoria y al fabricante $idFabricante
      * 
      * @param integer $idCategoria El id de la categoría, familia o subfamilia
+     * @param integer $idFabricante El id del fabricante. Opcional
      * @param integer $nItems Número de items a devolver. Por defecto todos
      * @return array Array de artículos sin paginar
      */
-    static function getArticulos($idCategoria, $nItems = 0) {
+    static function getArticulos($idCategoria, $idFabricante = '', $nItems = 0) {
 
         $array = array();
 
@@ -223,6 +263,7 @@ class ErpFamilias {
 
         $limite = ($nItems <= 0) ? "" : "LIMIT {$nItems}";
         $filtro = "{$campo}='{$idCategoria}' and Vigente='1'";
+        $filtro .= ($idFabricante != '') ? " and IDFabricante='{$idFabricante}'" : "";
 
         $articulo = new Articulos();
         $rows = $articulo->cargaCondicion("IDArticulo", $filtro, "SortOrder ASC {$limite}");
@@ -331,14 +372,14 @@ class ErpFamilias {
      * @return array
      */
     static function getPropiedades($idFamilia, $filtrable = false) {
-        
+
         $array = array();
-        
+
         $filtro = "IDFamilia='{$idFamilia}'";
         $filtro .= ($filtrable) ? " AND Filtrable='1'" : "";
 
         $propiedades = new FamiliasPropiedades();
-        $rows = $propiedades->cargaCondicion("IDPropiedad",$filtro);
+        $rows = $propiedades->cargaCondicion("IDPropiedad", $filtro);
         unset($propiedades);
 
         foreach ($rows as $row) {
@@ -352,6 +393,7 @@ class ErpFamilias {
 
         return $array;
     }
+
 }
 
 ?>

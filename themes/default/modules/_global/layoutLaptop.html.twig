@@ -22,9 +22,12 @@
             <div id="backtotop"><span><span class="triangle"></span></span></div>
         </div>
 	             	
-	
         <!-- Para que esté disponible el path de la app en todos los java scripts -->
-        <script type="text/javascript">var appPath = "{{appPath}}";</script> 
+        <script type="text/javascript">
+            var appPath = "{{appPath}}";
+            var theme = "{{theme}}";
+            var language = "{{language}}";
+        </script>
         
         {% include values.archivoJs %}
         

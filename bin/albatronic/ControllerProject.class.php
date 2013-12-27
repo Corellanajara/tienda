@@ -18,10 +18,18 @@ class ControllerProject extends ControllerWeb {
 
         $this->values['firma'] = $this->getFirma();     
         $this->values['redes'] = RedesSociales::getRedes();
-        $this->values['menuCategorias'] = ErpFamilias::getCategoriasFamilias(true,5);
-        $this->values['menuDerecho'] = ErpFamilias::getCategoriasFamilias(true);
-        $this->values['menuPie'] = Menu::getMenuN(1, 5);
-        $this->values['datosContacto'] = $this->varWeb['Pro']['globales'];
+        $this->values['menuCabecera'] = Menu::getMenuN(2, 5);
+        $this->values['menuDerecho'] = Menu::getMenuN(1, 5);
+        $this->values['menuPie'] = Menu::getMenuN(5, 5);
+        $this->values['datosContacto'] = $this->varWeb['Pro']['globales'];  
+        
+        // El objeto widgets para que esté disponible en todas las vistas
+        $this->values['widgets'] = new Widgets();     
+        
+        // Sliders y opciones de menú para el bloque head
+        $this->values['sliders'] = Sliders::getSliders(1);
+        $this->values['menuCabeceraIzq'] = Menu::getMenuN(2, 3);
+        $this->values['menuCabeceraDcha'] = Menu::getMenuN(3, 3);       
 
     }
 

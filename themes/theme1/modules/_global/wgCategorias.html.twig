@@ -1,0 +1,26 @@
+{# MUESTRA EN FORMATO ACORDEON LAS CATEGORIAS Y FAMILIAS #}
+
+{% set categorias = values.widgets.getCategorias %}
+
+<h3 class="formulario">{{values.LABELS.categorias}}</h3>
+<ul id="accordionCategorias" class="accordion menu">
+    {% for categoria in categorias %}
+        <li>
+            {% if categoria.categoria.Href.url == "" %} 
+                <a onclick>{{categoria.categoria.Familia}}</a>   
+            {% else %}
+                <a onclick="location.href='{{categoria.categoria.Href.url}}';" style="cursor: pointer;" title="{{categoria.categoria.Familia}}">{{categoria.categoria.Familia}}</a>
+            {% endif %}                        
+
+            {% if categoria.familias | length > 0 %}
+                <ul>
+                {% for familia in categoria.familias %}   
+                    <li>
+                        <a href="{{familia.Href.url}}" title="{{familia.Familia}}">{{familia.Familia}}</a>
+                    </li>
+                {% endfor %}
+                </ul>   
+            {% endif %}  
+        </li>           
+    {% endfor %}                          
+</ul>

@@ -4,11 +4,11 @@
  * CLASE ESTATICA PARA LA GESTION DE SLIDERS
  *
  * @author Sergio Pérez <sergio.perez@albatronic.com>
- * @copyright (c) Ártico Estudio, sl
+ * @copyright (c) Informática ALBATRONIC, SL
  * @version 1.0 15-mar-2013
  */
 class Sliders {
-    
+
     /**
      * Devuelve un array con SLIDERS.
      * 
@@ -34,51 +34,61 @@ class Sliders {
 
         $array = array();
 
-        $limite = ($nItems <= 0) ? "" : "LIMIT {$nItems}";
+        $limite = ($nItems <= 0) ? "" : $nItems;
 
         // Valido el tipo de slider. Si no es correcto lo pongo a tipo 0 (variable)
         $tipoSlider = new TiposSliders($tipo);
         if ($tipoSlider->getIDTipo() == null)
             $tipo = 0;
 
-        $filtro = ($idZona == '*') ? "(1)" : "IdZona='{$idZona}'";
-        $filtro .= " AND IdTipo='{$tipo}'";
+        $where = ($idZona == '*') ? "(1)" : "s.IdZona='{$idZona}'";
+        $where .= " AND s.IdTipo='{$tipo}'";
 
-        $slider = new SldSliders();
-
-        $rows = $slider->cargaCondicion("Id", $filtro, "SortOrder ASC {$limite}");
-        unset($slider);
+        $em = new EntityManager($_SESSION['project']['conection']);
+        $select = "select s.Id,s.Titulo,s.Subtitulo,s.Resumen,s.MostrarTextos,s.Entidad,s.IdEntidad,s.UrlTarget,s.UrlIsHttps,s.UrlParameters,s.UrlTargetBlank,d.PathName as imagen
+                    from SldSliders s 
+                    left join CpanDocs d on s.Id=d.IdEntity and d.Entity='SldSliders' and d.Type='image1' and d.IsThumbnail='0' and d.Publish='1'";
+        $rows = $em->getResult("s", $select, $where, "", $limite);
 
         foreach ($rows as $row) {
-            $slider = new SldSliders($row['Id']);
-            $imagen = $slider->getPathNameImagenN(1);
-
             // No se tienen en cuenta los sliders que no tienen imagen de diseño 1
-            if ($imagen) {
+            if ($row['imagen']) {
 
-                if ($slider->getMostrarTextos()->getIDTipo() == '0') {
+                if ($row['MostrarTextos'] === '0') {
                     $titulo = '';
                     $subtitulo = '';
                     $resumen = '';
                 } else {
-                    $titulo = $slider->getTitulo();
-                    $subtitulo = $slider->getSubtitulo();
-                    $resumen = $slider->getResumen();
+                    $titulo = $row['Titulo'];
+                    $subtitulo = $row['Subtitulo'];
+                    $resumen = $row['Resumen'];
+                }
+
+                if ($row['Entidad'] != '') {
+                    $objetoEnlazado = new $row['Entidad']($row['IdEntidad']);
+                    $href = $objetoEnlazado->getHref();
+                    unset($objetoEnlazado);
+                } elseif ($row['UrlTarget'] != '') {
+                    $prefijo = ($row['UrlIsHttps']) ? "https://" : "http://";
+                    $url = $prefijo . $row['UrlTarget'] . $row['UrlParameters'];
+                    $href = array('url' => $url, 'targetBlank' => $row['UrlTargetBlank']);
+                } else {
+                    $href = array();
                 }
 
                 $array[] = array(
                     'titulo' => $titulo,
                     'subtitulo' => $subtitulo,
                     'resumen' => $resumen,
-                    'url' => $slider->getHref(),
-                    'imagen' => $imagen,
+                    'url' => $href,
+                    'imagen' => $row['imagen'],
                 );
             }
         }
-        unset($slider);
-
+        
         return $array;
     }
+
 }
 
 ?>

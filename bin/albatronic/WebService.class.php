@@ -18,7 +18,7 @@
  * $origen = WebService::getOrigenVisitante('http://origenvisante.com');
  * 
  * @author Sergio Perez <sergio.perez@albatronic.com>
- * @copyright (c) 2012, Ártico Estudio, sl
+ * @copyright (c) 2012, Informática ALBATRONIC, SL
  */
 class WebService {
 
@@ -76,23 +76,37 @@ class WebService {
      * @param string $url La url con la peticion
      * @param string $metodo El método de peticion: GET ó POST, por defecto GET
      * @param string $parametrosPost Los eventuales parametros post en formato: nombre1=valor1&nombre2=valor2
+     * @param boolean $formatoJson TRUE si los parametros post vienen en formato Json. Por defecto TRUE
      * @return array Array con dos elementos: result, info
      */
-    static function getRequest($url, $metodo = 'GET', $parametrosPost = '') {
+    static function getRequest($url, $metodo = 'GET', $parametrosPost = '', $formatoJson = true) {
 
-        $metodo = strtoupper($metodo);
+        $metodo = strtoupper(trim($metodo));
 
-        if (!in_array($metodo, array('GET', 'POST')))
+        if (!in_array($metodo, array('GET', 'POST', 'DELETE'))) {
             $metodo = 'GET';
+        }
 
         $options = array(
             CURLOPT_RETURNTRANSFER => TRUE,
             CURLOPT_HEADER => FALSE,
         );
 
-        if ($metodo == 'POST') {
-            $options['CURLOPT_POST'] = 1;
-            $options['CURLOPT_POSTFIELDS'] = $parametrosPost;
+        switch ($metodo) {
+            case 'POST':
+                $options[CURLOPT_POST] = 1;
+                $options[CURLOPT_POSTFIELDS] = $parametrosPost;
+                if ($formatoJson) {
+                    $options[CURLOPT_HTTPHEADER] = array(
+                        'Content-Type: application/json',
+                        'Content-Length: ' . strlen($parametrosPost)
+                    );
+                }
+                break;
+            case 'DELETE':
+                $options[CURLOPT_CUSTOMREQUEST] = "DELETE";
+                $options[CURLOPT_POSTFIELDS] = $parametrosPost;
+                break;
         }
 
         $ch = curl_init($url);
@@ -107,6 +121,30 @@ class WebService {
         );
     }
 
+    /**
+     * Genera una clave hash
+     * 
+     * @param array $items Array con los items que se utilizarán para construir el hash
+     * @param string $clave La clave. Opcional. Por defecto la indicada en self::$clave
+     * @param string $algoritmo El algoritmo a utilizar. Por defecto "sha256"
+     * @return string
+     */
+    private static function getSignature(array $items, $clave = '', $algoritmo = 'sha256') {
+
+        if (!$clave)
+            $clave = self::$clave;
+
+        $items[] = $clave;
+
+        $contexto = hash_init($algoritmo);
+
+        foreach ($items as $value)
+            hash_update($contexto, $value);
+
+        $hash = hash_final($contexto);
+
+        return strtoupper($hash);
+    }
 }
 
 ?>

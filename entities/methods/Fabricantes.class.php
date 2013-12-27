@@ -54,7 +54,36 @@ class Fabricantes extends FabricantesEntity {
             $array[] = new Familias($row['IDCategoria']);
         
         return $array;
-    }    
+    }  
+    
+    /**
+     * Devuelve un array con todas las categorias y familias
+     * ques tiene artículos vigentes del fabricante en curso
+     * 
+     * @return array
+     */
+    public function getCategoriasFamilias() {
+        
+        $array = array();
+
+        $articulo = new Articulos();
+        $categorias = $articulo->cargaCondicion("distinct IDCategoria", "IDFabricante='{$this->IDFabricante}' and Vigente='1'");
+        unset($articulo); 
+
+        foreach ($categorias as $categoria) {
+
+            $familia = new Familias();
+            $rows1 = $familia->cargaCondicion("IDFamilia", "BelongsTo='{$categoria['IDCategoria']}'");
+            unset($familia);
+
+            $array[$categoria['IDCategoria']]['categoria'] = new Familias($categoria['IDCategoria']);
+
+            foreach ($rows1 as $row1)
+                $array[$categoria['IDCategoria']]['familias'][] = new Familias($row1['IDFamilia']);
+        }
+
+        return $array;        
+    }
 }
 
 ?>

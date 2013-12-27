@@ -1,0 +1,12 @@
+{# DESPLEGABLE CON TODAS LAS MARCAS #}
+
+{% set marcas = values.widgets.getMarcas(2) %}
+
+<h3 class="formulario">{{values.LABELS.todasLasMarcas}}</h3>
+<div class="cajetin">
+    <select name="marca" id="marca" onchange="document.location.href=$(this).val();">
+    {% for marca in marcas %}
+            <option value="{{marca.Href.url}}">{{marca.Titulo}}</option>
+    {% endfor %}
+    </select>
+</div>

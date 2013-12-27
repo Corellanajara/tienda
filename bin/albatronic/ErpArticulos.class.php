@@ -11,11 +11,44 @@
 class ErpArticulos {
 
     /**
+     * Devuelve un array con datos básicos del artículo
+     * @param array Array articulo
+     * @return array
+     */
+    static function getArticulo($row) {
+
+        $url = $row['UrlTarget'];
+        $esInterna = ($url == '');
+
+        if ($esInterna) {
+            $url = $row['UrlFriendly'];
+            $prefijo = $_SESSION['appPath'];
+        } else {
+            $prefijo = ($row['UrlIsHttps']) ? "https://" : "http://";
+        }
+
+        $url = $prefijo . $url . $row['UrlParameters'];
+
+        $href = array('url' => $url, 'targetBlank' => $row['UrlTargetBlank']);
+
+        $array = array(
+            'IDArticulo' => $row['IDArticulo'],
+            'Codigo' => $row['Codigo'],
+            'Descripcion' => $row['Descripcion'],
+            'Subtitulo' => $row['Subtitulo'],
+            'Resumen' => $row['Resumen'],
+            'Href' => $href,
+        );
+
+        return $array;
+    }
+
+    /**
      * Devuelve un objeto artículo
      * @param integer $idArticulo El id del articulo
      * @return \Articulos
      */
-    static function getArticulo($idArticulo) {
+    static function getObjetoArticulo($idArticulo) {
         return new Articulos($idArticulo);
     }
 
@@ -32,44 +65,46 @@ class ErpArticulos {
      * @return array
      */
     static function getDetalleTecnico($idArticulo) {
-        
+
         $array = array();
-        
-        $detalle = new ArticulosPropiedades();
-        $rows = $detalle->cargaCondicion("Id","IDArticulo='{$idArticulo}'");
-        unset($detalle);
-                
+
+        $em = new EntityManager($_SESSION['project']['conection']);
+        $select = "SELECT p.Titulo, v.Valor FROM ErpArticulosPropiedades ap
+            LEFT JOIN ErpPropiedades p ON ap.IDPropiedad = p.Id
+            LEFT JOIN ErpPropiedadesValores v ON ap.IDValor = v.Id";
+        $where = "ap.IDArticulo =  '{$idArticulo}'";
+        $rows = $em->getResult("ap", $select, $where);
+
         foreach ($rows as $row) {
-            $propiedad = new ArticulosPropiedades($row['Id']);
             $array[] = array(
-                'titulo' => $propiedad->getIDPropiedad()->getTitulo(),
-                'valor' => $propiedad->getIDValor()->getValor(),
+                'titulo' => $row['Titulo'],
+                'valor' => $row['Valor'],
             );
         }
-        unset($propiedad);
-        
+
         return $array;
     }
-    
-    static function getArticulosPaginadosUsuario($idUsuario='', $orden='', $nPagina='', $nItems='') {
-        
+
+    static function getArticulosPaginadosUsuario($idUsuario = '', $orden = '', $nPagina = '', $nItems = '') {
+
         if ($idUsuario == '')
             $idUsuario = $_SESSION['usuarioWeb']['id'];
-        
+
         $var = CpanVariables::getVariables("Web", "Mod", "Articulos");
-        
+
         if ($orden == '')
             $orden = $var['especificas']['CriterioOrden'];
         if ($orden == '')
             $orden = "PublishedAt DESC";
-        
-        if ($nPagina <= 0) $nPagina = 1;        
-        
+
+        if ($nPagina <= 0)
+            $nPagina = 1;
+
         if ($nItems <= 0)
             $nItems = $var['especificas']['NumArticulosListado'];
         if ($nItems <= 0)
-            $nItems = 4;     
-        
+            $nItems = 4;
+
         $filtro = "IDCliente='{$idUsuario}' and Vigente='1'";
 
         Paginacion::paginar("Articulos", $filtro, $orden, $nPagina, $nItems);
@@ -80,9 +115,9 @@ class ErpArticulos {
         return array(
             'articulos' => $articulos,
             'paginacion' => Paginacion::getPaginacion(),
-        );        
+        );
     }
-    
+
     /**
      * Devuelve un array de objetos Articulos que estén en alguno de
      * los estados indicados en el array $estados
@@ -108,11 +143,12 @@ class ErpArticulos {
 
 
         $articulo = new Articulos();
-        $rows = $articulo->cargaCondicion("IDArticulo", $filtro, "SortOrder ASC {$limite}");
+        $rows = $articulo->cargaCondicion("*", $filtro, "SortOrder ASC {$limite}");
         unset($articulo);
 
-        foreach ($rows as $row)
-            $array[] = self::getArticulo($row['IDArticulo']);
+        foreach ($rows as $row) {
+            $array[] = self::getArticulo($row);
+        }
 
         return $array;
     }
@@ -121,11 +157,14 @@ class ErpArticulos {
      * Devuelve un array de objetos artículos que
      * pertenecen a la zona $zona y al controlador $controller
      * 
-     * Si no se indica controlador, se toma el que está en curso
-     * Si no se indica zona, se devuelven todos los artículos agrupados por zonas
+     * Si no se indica controlador, se toma el que está en curso.
      * 
-     * El array tiene tantos elementos como zonas de articulos
-     * y a su vez cada zona tiene tantos elementos con artículos haya en dicha zona
+     * Si no se indica zona, se devuelven todos los artículos agrupados por zonas. El array
+     * tendrán tantos elementos como zonas, y a su vez cada elemento tendrás tantos
+     * subelementos como artículos haya en la zona
+     * 
+     * Si se indica zona, los elementos del array serán directamente los
+     * artículos, sin agrupar previamente por zona.
      * 
      * @param string $controller El nombre del controlador. Opcional, por defecto el que está en curso
      * @param string $zona El codigo de la zona. Opcional, por defecto todas.
@@ -154,7 +193,10 @@ class ErpArticulos {
             $articulos = $ordenArticulos->getArticulos($regla['Id'], $regla['NItems']);
 
             foreach ($articulos as $articulo)
-                $array[$regla['Zona']][$articulo->getIDArticulo()] = $articulo;
+                if ($zona === '')
+                    $array[$regla['Zona']][$articulo->getIDArticulo()] = $articulo;
+                else
+                    $array[$articulo->getIDArticulo()] = $articulo;
         }
         unset($ordenArticulos);
 
@@ -165,10 +207,34 @@ class ErpArticulos {
 
         $articulo = self::getArticulo($idArticulo);
         $idFamilia = $articulo->getIDFamilia()->getIDFamilia();
-        if (!$idFamilia) $idFamilia = $articulo->getIDCategoria()->getIDFamilia();
+        if (!$idFamilia)
+            $idFamilia = $articulo->getIDCategoria()->getIDFamilia();
         unset($articulo);
-        
+
         return ErpFamilias::getArticulosRelacionados($idFamilia, $nItems);
+    }
+
+    /**
+     * Devuelve los artículos más visitados
+     * 
+     * @param integer $nItems El número de artículos a devolver. Por defecto 10
+     * @return array de \Articulos
+     */
+    static function getLosMasVistos($nItems = 10) {
+
+        $array = array();
+
+        $limite = ($nItems > 0) ? "limit {$nItems}" : "";
+
+        $articulos = New Articulos();
+        $rows = $articulos->cargaCondicion("*", "Vigente='1'", "NumberVisits DESC {$limite}");
+        unset($articulos);
+
+        foreach ($rows as $row) {
+            $array[] = self::getArticulo($row);
+        }
+
+        return $array;
     }
 
 }

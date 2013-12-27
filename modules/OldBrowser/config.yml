@@ -1,6 +1,0 @@
-## OldBrowser/config.yml
----
-OldBrowser:
-  includesHead:
-    twigCss: OldBrowser/css.html.twig
-    twigJs: OldBrowser/js.html.twig

@@ -1,0 +1,34 @@
+{% extends layout %}
+
+{#
+{% block header %}
+    {% include values.controller ~ '/header.html.twig' %}
+{% endblock %}
+{% block head %}
+    {% include values.controller ~ '/head.html.twig' %}
+{% endblock %}
+#}
+
+{% set fabricante = values.fabricante %}
+{% set logo = fabricante.PathNameImagenN(1) %}
+
+{% block content %}
+    <div class="central">
+        <h2><span>{{fabricante.Titulo}} (hay {{values.articulos.paginacion.totalItems}} artículos)</span></h2>
+
+        <article id="infoPrincipal">
+            <div id="imagenes" style="float:left;margin-right: 20px;">
+                {% if logo %}
+                    <img src="{{app.path}}/{{theme}}/{{logo}}" alt="{{fabricante.Titulo}}" title="{{fabricante.Titulo}}" />             
+                {% endif %}
+            </div>
+            <div id="descripcion" style="float:left;width:300px;">
+                {%autoescape false%}{{fabricante.Descripcion1}}{%endautoescape%}
+            </div> 
+        </article>
+
+        <section id="noticias">
+            {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':familia.PrimaryKeyValue} %}
+        </section>     
+    </div>
+{% endblock %}

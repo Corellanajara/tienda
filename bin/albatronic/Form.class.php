@@ -433,7 +433,7 @@ class Form {
         $formatos = array();
 
         if ($this->yaml['listados']) {
-            $perfilUsuario = $_SESSION['USER']['user']['IDPerfil'];
+            $perfilUsuario = $_SESSION['usuarioWeb']['IDPerfil'];
             foreach ($this->yaml['listados'] as $value) {
                 $perfiles = (string) $value['idPerfil'];
                 $arrayPerfiles = explode(',', $perfiles);

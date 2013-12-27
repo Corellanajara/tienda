@@ -67,22 +67,43 @@ class Articulos extends ArticulosEntity {
      */
     public function save() {
 
+        $reglas = new CpanEsqueletoWeb();
+        // reglas antes de guardar
+        $reglasAntes = $reglas->getReglasArticulo($this->IDArticulo);
+
         $ok = parent::save();
         if ($ok) {
-            // Borro los eventuales ordenes que existieran para el artículo
-            $ordenes = new OrdenesArticulos();
-            $ordenes->borraOrdenesArticulo($this->IDArticulo);
-            unset($ordenes);
-            // Aplico las reglas de ordenes 
-            if ($this->Vigente == '1') {
-                $reglas = new CpanEsqueletoWeb();
-                $reglas->aplicaReglasArticulo($this->IDArticulo);
-                unset($reglas);
+            // Se recalculan las reglas solo en el caso en que haya algún cambio.
+            // Para ello comparo las reglas del artículo antes y despues de guardar.
+            $reglasNuevas = $reglas->getReglasArticulo($this->IDArticulo);
+            $diferenciaReglas1 = array_diff($reglasAntes, $reglasNuevas);
+            $diferenciaReglas2 = array_diff($reglasNuevas, $reglasAntes);
+            
+            if ((count($diferenciaReglas1) + count($diferenciaReglas2)) > 0) {
+
+                // Borro los eventuales ordenes que existieran para el artículo
+                $ordenes = new OrdenesArticulos();
+
+                $ordenes->borraOrdenesArticulo($this->IDArticulo);
+                unset($ordenes);
+                // Aplico las reglas de ordenes 
+                if ($this->Vigente == '1') {
+                    $reglas = new CpanEsqueletoWeb();
+                    $reglas->aplicaReglasArticulo($this->IDArticulo);
+                    unset($reglas);
+                }
+            }
+            
+            // Borro el eventual escandallo
+            if ($this->AllowsChildren == '0') {
+                $escan = new ArticulosEscandallos();
+                $escan->queryDelete("IDArticuloOrigen='{$this->IDArticulo}'");
+                unset($escan);
             }
         }
         return $ok;
     }
-
+    
     /**
      * Marco de borrado el artículo y borro sus eventuales órdenes y propiedades.
      * 
@@ -112,8 +133,16 @@ class Articulos extends ArticulosEntity {
 
                 // Borro las eventuales propiedades
                 $propiedades = new ArticulosPropiedades();
-                $propiedades->queryDelete("IDArticulo='{$this->getPrimaryKeyValue()}'");
+                $propiedades->queryDelete("IDArticulo='{$id}'");
                 unset($propiedades);
+
+                // Borro el eventual escandallo
+                if ($this->AllowsChildren == '0') {
+                    $escan = new ArticulosEscandallos();
+                    $escan->queryDelete("IDArticuloOrigen='{$id}'");
+                    unset($escan);
+                }                
+                
             }
         }
         
@@ -399,7 +428,7 @@ class Articulos extends ArticulosEntity {
         // Leo el parametro 'ACTU_PRECIOS' para ver el comportamiento a seguir
         // en el cambio de precio de venta o margen. Si no estuviera definido,
         // se respeta el PVP a costa del MARGEN
-        $parametro = $_SESSION['USER']['user']['actuPrecios'];
+        $parametro = $_SESSION['usuarioWeb']['actuPrecios'];
         if (($parametro != 'MARGEN') and ($parametro != 'PVP'))
             $parametro = 'MARGEN';
 

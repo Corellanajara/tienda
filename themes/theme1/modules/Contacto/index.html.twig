@@ -1,0 +1,31 @@
+{% extends layout %}
+
+{% block aside %}
+    {% include '_global/asideLeft.html.twig' %}
+{% endblock %}
+
+{% block content %}
+<section class="contenedorGrande">    
+    {% include 'Contacto/formulario.html.twig' %}
+    {# include 'Contacto/mensajes.html.twig' #}
+
+	<section id="localizacion">
+            <h2><span>{{values.LABELS.contacta}}</span> {{values.LABELS.conNosotros}}</h2>
+            <ul>
+                {% set contacto = values.datosContacto %}
+                <li class="spriteDireccion">{{contacto.direccion}}<br />{{contacto.codigoPostal}} - {{contacto.poblacion}} ({{contacto.provincia}})</li>
+                <li><span class="spriteTelefono"></span>{{contacto.telefono1}}</li>
+                <li><span class="spriteFax"></span>{{contacto.telefono2}}</li>
+                <li><span class="spriteEmail"></span>{{contacto.emailInfo}}</li>
+                <li id="facebookContacto">
+                    <a href="#" title="{{values.LABELS.facebook}}"></a>
+                </li>
+                <li id="twitterContacto">
+                    <a href="#" title="{{values.LABELS.twitter}}"></a>
+                </li>
+            </ul>
+	</section>        
+
+	<section id="map_canvas"></section>
+</section>
+{% endblock %}

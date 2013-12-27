@@ -1,0 +1,43 @@
+{# WIDGET PARA BANNERS DE LA ZONA 1 DE BANNERS #}
+
+{% set articulos = values.widgets.getArticulosZona(values.controller,zona) %}
+{% set nArticulos = articulos|length %}
+
+<section class="bannerPie">
+    <div id="newsticker-demo" class="contenedorCentral">    
+        {% if nArticulos<=6 %}
+            <ul>
+                {% for articulo in articulos %}
+                <li>
+                    <div class="thumbnailBanner">
+                    {% if articulo.url.url %}
+                        <a href="{{articulo.url.url}}" title="{{articulo.titulo}}">
+                    {% endif %}
+                        <img src="{{app.path}}/{{theme}}/{{articulo.imagenes[1]}}" title="{{articulo.nombre}}" alt="{{articulo.nombre|date('')}}" />
+                    {% if articulo.url.url %}
+                        </a>
+                    {% endif %} 
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>        
+        {% else %}         
+            <div class="newsticker-jcarousellite-pie">
+                <ul>
+                    {% for articulo in articulos %}
+                    {% set imagen = articulo.PathNameImagenN(3) %}
+                    {% if imagen %}
+                    <li>
+                        <div class="thumbnail">
+                            <a href="{{articulo.Href.url}}" title="{{articulo.Descripcion}}">
+                            <img src="{{app.path}}/{{theme}}/{{imagen}}" title="{{articulo.Descripcion}}" alt="{{articulo.Descripcion}}" />
+                            </a>                          
+                        </div>
+                    </li>  
+                    {% endif %}
+                    {% endfor %}                                                                                                                                             
+                </ul>
+            </div>
+        {% endif %}
+    </div>        
+</section>

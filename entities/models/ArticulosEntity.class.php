@@ -336,11 +336,23 @@ class ArticulosEntity extends EntityComunes {
     protected $CUMV = '1';
 
     /**
-     * @orm:Column(type="integer")
-     * @assert:NotBlank(groups="articulos")
+     * @var string
+     * @assert NotBlank(groups="ErpArticulos")
      */
-    protected $IDCliente = '0';    
+    protected $AvisosPedidos;    
 
+    /**
+     * @var string
+     * @assert NotBlank(groups="ErpArticulos")
+     */
+    protected $AvisosPresupuestos;    
+
+    /**
+     * @var string
+     * @assert NotBlank(groups="ErpArticulos")
+     */
+    protected $AvisosAlbaranes;    
+   
     /**
      * Nombre de la conexion a la DB
      * @var string
@@ -533,7 +545,7 @@ class ArticulosEntity extends EntityComunes {
     public function getPvpAnterior() {
         return $this->PvpAnterior;
     }
-    
+
     public function setEtiqueta($Etiqueta) {
         $this->Etiqueta = trim($Etiqueta);
     }
@@ -852,16 +864,29 @@ class ArticulosEntity extends EntityComunes {
         return $this->CUMV;
     }
 
-
-    public function setIDCliente($IDCliente) {
-        $this->IDCliente = $IDCliente;
+    public function setAvisosPedidos($AvisosPedidos) {
+        $this->AvisosPedidos = trim($AvisosPedidos);
     }
 
-    public function getIDCliente() {
-        if (!($this->IDCliente instanceof Clientes))
-            $this->IDCliente = new Clientes($this->IDCliente);
-        return $this->IDCliente;
+    public function getAvisosPedidos() {
+        return $this->AvisosPedidos;
+    }
+
+    public function setAvisosPresupuestos($AvisosPresupuestos) {
+        $this->AvisosPresupuestos = trim($AvisosPresupuestos);
+    }
+
+    public function getAvisosPresupuestos() {
+        return $this->AvisosPresupuestos;
     }    
+    
+    public function setAvisosAlbaranes($AvisosAlbaranes) {
+        $this->AvisosAlbaranes = trim($AvisosAlbaranes);
+    }
+
+    public function getAvisosAlbaranes() {
+        return $this->AvisosAlbaranes;
+    }
 }
 
 // END class articulos

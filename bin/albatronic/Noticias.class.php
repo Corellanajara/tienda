@@ -4,7 +4,7 @@
  * CLASE ESTATICA PARA LA GESTION DE LAS NOTICIAS
  *
  * @author Sergio Pérez <sergio.perez@albatronic.com>
- * @copyright (c) Ártico Estudio, sl
+ * @copyright (c) Informática ALBATRONIC, SL
  * @version 1.0 15-mar-2013
  */
 class Noticias {
@@ -12,21 +12,21 @@ class Noticias {
     static function getNoticia($idNoticia, $nImagenDiseno) {
         return new GconContenidos($idNoticia);
         /**
-        $noticia = new GconContenidos($idNoticia);
-        $array = array(
-            'fecha' => $noticia->getPublishedAt(),
-            'titulo' => $noticia->getTitulo(),
-            'subtitulo' => $noticia->getSubtitulo(),
-            'url' => $noticia->getHref(),
-            'resumen' => Textos::limpiaTiny($noticia->getResumen()),
-            'desarrollo' => Textos::limpiaTiny($noticia->getDesarrollo()),
-            'imagen' => $noticia->getPathNameImagensN($nImagenDiseno),
-            'thumbnail' => $noticia->getPathNameThumbnailN($nImagenDiseno),
-        );
-        unset($noticia);
+          $noticia = new GconContenidos($idNoticia);
+          $array = array(
+          'fecha' => $noticia->getPublishedAt(),
+          'titulo' => $noticia->getTitulo(),
+          'subtitulo' => $noticia->getSubtitulo(),
+          'url' => $noticia->getHref(),
+          'resumen' => Textos::limpiaTiny($noticia->getResumen()),
+          'desarrollo' => Textos::limpiaTiny($noticia->getDesarrollo()),
+          'imagen' => $noticia->getPathNameImagensN($nImagenDiseno),
+          'thumbnail' => $noticia->getPathNameThumbnailN($nImagenDiseno),
+          );
+          unset($noticia);
 
-        return $array;
-         
+          return $array;
+
          */
     }
 
@@ -74,18 +74,21 @@ class Noticias {
                     $variables['especificas']['NumNoticiasPorPagina'];
         }
 
-        if ($nPagina <= 0)
+        if ($nPagina <= 0) {
             $nPagina = 1;
+        }
 
         $filtro = "NoticiaPublicar='1'";
-        if ($enPortada)
+        if ($enPortada) {
             $filtro .= " AND NoticiaMostrarEnPortada='{$enPortada}'";
+        }
         $criterioOrden = $variables['especificas']['CriterioOrdenNoticias'];
 
         Paginacion::paginar("GconContenidos", $filtro, $criterioOrden, $nPagina, $nItems);
 
-        foreach (Paginacion::getRows() as $row)
+        foreach (Paginacion::getRows() as $row) {
             $paginacion['rows'][] = self::getNoticia($row['Id'], $nImagenDiseno);
+        }
 
         $paginacion['paginacion'] = Paginacion::getPaginacion();
 
@@ -132,9 +135,10 @@ class Noticias {
         $noticia = new GconContenidos();
         $rows = $noticia->cargaCondicion("Id", "NoticiaPublicar='1'", "NumberVisits DESC {$limite}");
         unset($noticia);
-        
-        foreach ($rows as $row)
+
+        foreach ($rows as $row) {
             $array[] = self::getNoticia($row['Id'], $nImagenDiseno);
+        }
 
         return $array;
     }
@@ -157,8 +161,9 @@ class Noticias {
         $rows = $noticia->cargaCondicion("DAY(PublishedAt) dia, COUNT(Id) nNoticias", "NoticiaPublicar='1' AND MONTH(PublishedAt)='{$mes}' AND YEAR(PublishedAt)='{$ano}' GROUP BY dia");
         unset($noticia);
 
-        foreach ($rows as $row)
+        foreach ($rows as $row) {
             $array[$row['dia']] = $row['nNoticias'];
+        }
 
         return $array;
     }
