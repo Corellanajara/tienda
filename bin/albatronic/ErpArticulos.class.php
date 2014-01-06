@@ -157,8 +157,6 @@ class ErpArticulos {
      * Devuelve un array de objetos artículos que
      * pertenecen a la zona $zona y al controlador $controller
      * 
-     * Si no se indica controlador, se toma el que está en curso.
-     * 
      * Si no se indica zona, se devuelven todos los artículos agrupados por zonas. El array
      * tendrán tantos elementos como zonas, y a su vez cada elemento tendrás tantos
      * subelementos como artículos haya en la zona
@@ -166,11 +164,12 @@ class ErpArticulos {
      * Si se indica zona, los elementos del array serán directamente los
      * artículos, sin agrupar previamente por zona.
      * 
-     * @param string $controller El nombre del controlador. Opcional, por defecto el que está en curso
-     * @param string $zona El codigo de la zona. Opcional, por defecto todas.
+     * @param string $controller El nombre del controlador.
+     * @param string $zona El codigo de la zona.
+     * @param string $filtroAdicional
      * @return array Array de objetos artículos
      */
-    static function getArticulosZona($controller, $zona = '') {
+    static function getArticulosZona($controller, $zona, $filtroAdicional = '1') {
 
         $array = array();
 
@@ -178,25 +177,21 @@ class ErpArticulos {
 
         $filtroZona = ($zona == '') ? "1" : "Zona='{$zona}'";
 
-        $itemsPagina = 0;
-
         $zonas = new CpanEsqueletoWeb();
         $reglas = $zonas->cargaCondicion("Id,Zona,NItems,ItemsPagina", "Controller='{$controller}' AND {$filtroZona}", "SortOrder ASC");
         unset($zonas);
 
         $ordenArticulos = new OrdenesArticulos();
         foreach ($reglas as $regla) {
+            $articulos = $ordenArticulos->getArticulos($regla['Id'], $regla['NItems'], $filtroAdicional);
 
-            if ($regla['ItemsPagina'] > $itemsPagina)
-                $itemsPagina = $regla['ItemsPagina'];
-
-            $articulos = $ordenArticulos->getArticulos($regla['Id'], $regla['NItems']);
-
-            foreach ($articulos as $articulo)
-                if ($zona === '')
+            foreach ($articulos as $articulo) {
+                if ($zona === '') {
                     $array[$regla['Zona']][$articulo->getIDArticulo()] = $articulo;
-                else
+                } else {
                     $array[$articulo->getIDArticulo()] = $articulo;
+                }
+            }
         }
         unset($ordenArticulos);
 
@@ -205,10 +200,11 @@ class ErpArticulos {
 
     static function getArticulosRelacionados($idArticulo, $nItems) {
 
-        $articulo = self::getArticulo($idArticulo);
+        $articulo = self::getObjetoArticulo($idArticulo);
         $idFamilia = $articulo->getIDFamilia()->getIDFamilia();
-        if (!$idFamilia)
+        if (!$idFamilia) {
             $idFamilia = $articulo->getIDCategoria()->getIDFamilia();
+        }
         unset($articulo);
 
         return ErpFamilias::getArticulosRelacionados($idFamilia, $nItems);

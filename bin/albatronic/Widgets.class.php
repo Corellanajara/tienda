@@ -63,8 +63,8 @@ class Widgets {
      * @param integer $zona
      * @return array
      */
-    public function getArticulosZona($controller, $zona) {
-        return ErpArticulos::getArticulosZona($controller, $zona);
+    public function getArticulosZona($controller, $zona, $filtroAdicional = '1') {
+        return ErpArticulos::getArticulosZona($controller, $zona, $filtroAdicional);
     }
 
     /**
@@ -218,4 +218,5 @@ class Widgets {
     }
 
 }
+
 ?>

@@ -4,7 +4,7 @@
  * Description of ProductoController
  *
  * @author Sergio Pérez <sergio.perez@albatronic.com>
- * @copyright ÁRTICO ESTUDIO
+ * @copyright Informática ALBATRONIC
  * @date 06-nov-2012
  *
  */
@@ -36,6 +36,8 @@ class ProductoController extends ControllerProject {
             ),
         );
 
+        $variables = CpanVariables::getVariables('Web', 'Mod', 'Articulos');
+        $productosRelacionados = $variables['especificas']['NumArticulosRelacionados'];
 
         $idProducto = $this->request['IdEntity'];
 
@@ -43,20 +45,23 @@ class ProductoController extends ControllerProject {
 
         /* PRODUCTO */
         $this->values['producto'] = ErpArticulos::getObjetoArticulo($idProducto);
+        
         /* GALERIA DE IMAGENES DEL PRODUCTO */
         $this->values['galeria'] = Albumes::getGaleria("Articulos", $idProducto);
-        
+
         /* DETALLES TÉCNICOS */
         $this->values['detalleTecnico'] = ErpArticulos::getDetalleTecnico($idProducto);
 
-        /* ARTÍCULOS RELACIONADOS */
-        //$this->values['articulosRelacionados'] = ErpArticulos::getArticulosRelacionados($idProducto, 2);
+        /* CINCO ARTICULOS RELACIONADOS */
+        if ($productosRelacionados > 0) {
+            $this->values['articulosRelacionados'] = ErpArticulos::getArticulosRelacionados($idProducto, $productosRelacionados);
+        }
 
         /* NOTICIAS - mostrar solo 1 noticias */
         //$this->values['noticia'] = Noticias::getNoticias(true, 1);
-        
+
         $this->values['categorias'] = ErpFamilias::getCategoriasFamilias(1);
-        $this->values['marcas'] = ErpMarcas::getMarcas(1);        
+        $this->values['marcas'] = ErpMarcas::getMarcas(1);
 
         $this->values['formContacta'] = $this->formContacta;
         $this->values['formDenuncia'] = $this->formDenuncia;
@@ -897,8 +902,7 @@ class ProductoController extends ControllerProject {
             $columnaMetatagTitle = $this->varEnvMod['fieldGeneratorMetatagTitle'];
             if ($columnaMetatagTitle != '')
                 $metatagTitle = $datos->{"get$columnaMetatagTitle"}();
-        }
-        else
+        } else
             $metatagTitle = $datos->getMetatagTitle();
 
         return $metatagTitle;

@@ -39,7 +39,7 @@ config:
       user: 
       password: 
       timeout: 30
-      folder: 
+      folder: tienda/themes/theme1
         
   # CONTROL DE ACCESO POR IP
   ip_control: true

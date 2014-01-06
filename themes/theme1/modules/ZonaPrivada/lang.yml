@@ -6,18 +6,20 @@ es:
   accesoNuevo: ¿Eres nuevo por aquí?
   accesoNuevoTexto: 'Click aquí si aún no estás registrado y deseas disfrutar de las ventajas de estarlo...'
   
+  pais: País
   provincia: Provincia
   contrasena: Contraseña
   contrasenaIncorrecta: 'La contraseña indicada es incorrecta. Por favor, vuelva a intentarlo.'
-  cp: C.P.
+  codigoPostal: Código Postal
   cuentaDeshabilitada: 'Su cuenta de usuario está deshabilitad.'
   crearCuenta: Crear cuenta
   creeProductos: Pinche aquí para comenzar a promocionar sus productos
   
-  datosEmpresa: Datos de la empresa
-  datosUsuario: Datos de usuario
-  descripcionEmpresa: Descrpción de la empresa
+  datosDeFacturacion: Datos de facturación
+  datosDeEnvio: Datos de envío
+
   direccion: Dirección
+  dniCif: DNI/CIF
   
   eMail: EMail
   enviar: Enviar
@@ -26,17 +28,14 @@ es:
   guardarCambios: Guardar cambios
   
   olvideMiContrasena: ¿Olvidaste tu contraseña?
-
-  logotipoEmpresa: Logotipo de la Empresa
   
-  nombreEmpresa: Nombre de la empresa
+  mensajes: Mensajes
+  
   nombreYApellidos: Nombre y apellidos
   
   olvidoContraseña: 'Olvidé mi contraseña'
-
-  particular: Particular
-  perfilDeshabilitado: 'El perfil de usuario asociado a su cuenta está deshabilitado.'
-  profesional: Profesional
+  
+  poblacion: Población
   
   registroTexto1: 'Regístrate para empezar a vender tus productos en unos segundos.'
   registroTexto2: 'Es GRATIS, tan solo necesitamos tu nombre y tu email y que nos digas si eres particular o profesional.' 

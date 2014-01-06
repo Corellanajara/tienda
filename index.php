@@ -54,7 +54,7 @@ if (!isset($_SESSION['configWeb'])) {
 
 $config = $_SESSION['configWeb'];
 
-$_SESSION['project']['ftp'] = $config['projectFtp'];
+$_SESSION['project']['ftpWeb'] = $config['projectFtp'];
 
 $app = $config['app'];
 

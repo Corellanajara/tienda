@@ -85,19 +85,20 @@ class OrdenesArticulos extends OrdenesArticulosEntity {
      * @param int $nItems El número máximo de elementos a devolver. Opcional, por defecto todos.
      * @return \Articulos array de objetos Articulos
      */
-    public function getArticulos($idRegla, $nItems = 999999) {
+    public function getArticulos($idRegla, $nItems, $filtroAdicional = '1') {
 
         $array = array();
 
-        if ($nItems <= 0)
+        if ($nItems <= 0) {
             $nItems = 999999;
+        }
 
         $em = new EntityManager($this->getConectionName());
         if ($em->getDbLink()) {
             $query = "
                 SELECT a.IDArticulo as Id
                 FROM {$em->getDataBase()}.ErpOrdenesArticulos r, {$em->getDataBase()}.ErpArticulos a
-                WHERE r.IDRegla='{$idRegla}' AND r.IDArticulo=a.IDArticulo AND a.Publish='1' AND a.Vigente='1' AND a.Deleted='0'
+                WHERE r.IDRegla='{$idRegla}' AND r.IDArticulo=a.IDArticulo AND {$filtroAdicional} AND a.Publish='1' AND a.Vigente='1' AND a.Deleted='0'
                 ORDER BY r.SortOrder ASC
                 LIMIT {$nItems}";
             $em->query($query);
@@ -106,9 +107,11 @@ class OrdenesArticulos extends OrdenesArticulosEntity {
         }
         unset($em);
 
-        if (is_array($rows))
-            foreach ($rows as $row)
+        if (is_array($rows)) {
+            foreach ($rows as $row) {
                 $array[$row['Id']] = new Articulos($row['Id']);
+            }
+        }
 
         return $array;
     }

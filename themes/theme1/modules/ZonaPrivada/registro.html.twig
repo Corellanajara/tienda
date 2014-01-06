@@ -1,8 +1,7 @@
 {% extends layout %}
 
-{% block aside %} {% include '_global/asideLeft.html.twig' %} {% endblock %}
 {% block content %}
-<section class="contenedorGrandeCentral">
+<section class="central">
     <h2 class="superTitular rojo">{{values.TEXTS.registroUsuario}}</h2>
     {% include 'ZonaPrivada/mensajes.html.twig' %} {# ESTOS SON LOS MENSAJES DE RESPUESTA DEL FORMULARIO #}                                 
     {% include 'ZonaPrivada/formularioRegistro.html.twig' %} {# ESTE ES EL FORMULARIO DE REGISTRO DE USUARIO #}

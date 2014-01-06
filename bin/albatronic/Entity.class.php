@@ -1077,13 +1077,77 @@ class Entity {
      * @param integer $lenght El numero de caracteres a devolver
      * @return variant
      */
-    public function getColumnValue($column, $length = 0) {
+    public function getColumnValue($column, $length = 0) {        
         $cadena = $this->{"get$column"}();
+        if (is_object($cadena))
+            $cadena = $cadena->__toString();
         if ($length > 0)
             $cadena = substr($cadena, 0, $length);
-        return $cadena;
+        return $cadena;        
+    }
+    
+    /**
+     * Devuelve el valor del meta dato $name
+     * para la entidad e id de entidad en curso
+     * 
+     * @param string $name El nombre del meta dato
+     * @return string El valor del meta dato
+     */
+    public function getMetaData($name) {
+
+        $name = trim($name);
+
+        $meta = new CpanMetaData();
+        $rows = $meta->cargaCondicion("Value", "Entity='{$this->getClassName()}' and IdEntity='{$this->getPrimaryKeyValue()}' and Name='{$name}'");
+        unset($meta);
+
+        return $rows[0]['Value'];
     }
 
+    /**
+     * Devuelve un array (Name,Value) con los metadatos
+     * correspondientes a la entidad e id de entidad en curso
+     *  
+     * @return array Array con n ocurrencias de ('Name' => nombre metadato, 'Value' => valor metadato)
+     */
+    public function getMetaDatas() {
+
+        $meta = new CpanMetaData();
+
+        // Coger todos los nombres de metadatos de la entidad
+        $rows = $meta->cargaCondicion("distinct Name", "Entity='{$this->getClassName()}'");
+        unset($meta);
+
+        // Cargar los valores de los metadatos de en la entidad en curso.
+        foreach ($rows as $row) {//print_r($row['Name']);
+            $metaData[] = array(
+                'Name' => $row['Name'],
+                'Value' => $this->getMetaData($row['Name'])
+            );
+        }
+
+        return $metaData;
+    }
+
+    /**
+     * Devuelve el objeto en formato JSON
+     * 
+     * @param array $arrayColumnas Array con los nombres de las columnas que se quieren obtener. Por defecto todas
+     * @return json
+     */
+    public function getJson($arrayColumnas = array()) {
+
+        if (!count($arrayColumnas)) {
+            $array = $this->iterator();
+        } else {
+            foreach ($arrayColumnas as $columna) {
+                $array[$columna] = $this->$columna;
+            }
+        }
+
+        return json_encode($array);
+    }
+    
     /**
      * Devuelve un array con los errores generados por la entidad
      * @return array

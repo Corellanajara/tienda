@@ -18,17 +18,7 @@ class ContenidosController extends ControllerProject {
         $contenido = Contenidos::getContenidoDesarrollado($this->request['IdEntity'], 12);
         $this->values['contenidoDesarrollado'] = $contenido;
 
-        $formacionJornadas = strtoupper(trim($contenido['contenido']->getMetadata('Formacion_o_Jornadas')));
-        switch ($formacionJornadas) {
-            case 'F':
-                $template = "FormacionYJornadas/curso.html.twig";
-                break;
-            case 'J':
-                $template = "FormacionYJornadas/curso.html.twig";
-                break;
-            default:
-                $template = $this->entity . "/index.html.twig";
-        }
+        $template = $this->entity . "/index.html.twig";
 
         switch ($this->request['METHOD']) {
             case 'GET':

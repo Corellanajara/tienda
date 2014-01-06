@@ -2,9 +2,9 @@
 
 {% block navegacion %}{% include '_global/navegacionGeneral.html.twig' %}{% endblock %}
 
-{% block contenido %}
+{% block content %}
 
-<section class="contenedorGrande">
+<div class="central">
     {% include 'Contenidos/noticia.html.twig' %}
         
     {% if values.contenidoDesarrollado.contenido.ShowDocuments.IDTipo == '1' %}
@@ -23,9 +23,9 @@
     <article class="botonera">
         <a href="javascript:history.back()" title="{{values.LABELS.volverAtras}}" class="sprite">{{values.LABELS.volverAtras}}</a>
     </article>
-</section>   
+</div>  
 {% endblock %}
 
 {% block bannerPie %}
-    {% include '_global/bannerPie.html.twig' %}   
+    {# include '_global/bannerPie.html.twig' #}   
 {% endblock %}

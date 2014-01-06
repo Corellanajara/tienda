@@ -39,27 +39,9 @@ class ZonaPrivadaController extends ControllerProject {
      */
     public function MisDatosAction() {
 
-        $cliente = new Clientes($_SESSION['usuarioWeb']['id']);
+        $cliente = new Clientes($_SESSION['usuarioWeb']['Id']);
 
-        $this->values['registro']['IDCliente'] = $cliente->getIDCliente();
-        $this->values['registro']['EMail'] = $cliente->getEMail();
-        $this->values['registro']['IDTipo'] = $cliente->getIDTipo()->getPrimaryKeyValue();
-
-        if ($cliente->getIDTipo()->getIDTipo() == '1') {
-            $this->values['registro']['Par']['RazonSocial'] = $cliente->getRazonSocial();
-            $this->values['registro']['Par']['Telefono'] = $cliente->getTelefono();
-            $this->values['registro']['Par']['IDProvincia'] = $cliente->getIDProvincia()->getPrimaryKeyValue();
-            $this->values['registro']['Par']['Observations'] = $cliente->getObservations();
-        } else {
-            $this->values['registro']['Pro']['RazonSocial'] = $cliente->getRazonSocial();
-            $this->values['registro']['Pro']['Direccion'] = $cliente->getDireccion();
-            $this->values['registro']['Pro']['CodigoPostal'] = $cliente->getCodigoPostal();
-            $this->values['registro']['Pro']['Web'] = $cliente->getWeb();
-            $this->values['registro']['Pro']['Telefono'] = $cliente->getTelefono();
-            $this->values['registro']['Pro']['IDProvincia'] = $cliente->getIDProvincia()->getPrimaryKeyValue();
-            $this->values['registro']['Pro']['Observations'] = $cliente->getObservations();
-            $this->values['logo'] = $cliente->getPathNameImagenN(1);
-        }
+        $this->values['cliente'] = $cliente;
 
         return array(
             'template' => $this->entity . '/registro.html.twig',
@@ -76,47 +58,36 @@ class ZonaPrivadaController extends ControllerProject {
 
         if ($this->request['METHOD'] == 'POST') {
 
-            $datos = $this->request['registro'];
+            $datos = $this->request['cliente'];
 
             switch ($this->request['accion']) {
                 case 'crear':
                     $cliente = new Clientes();
+                    $cliente->bind($datos);
                     if ($this->valida()) {
-                        $cliente->setEMail($datos['EMail']);
-                        $cliente->setIDTipo($datos['IDTipo']);
-                        $cliente->setPassword(md5($this->request['registro']['Password'] . $this->getSemilla()));
-                        $cliente->setCif('.');
+                        $cliente->setPassword(md5($datos['Password'] . $this->getSemilla()));
+                        $cliente->setCif((trim($datos['Cif']) == '') ? '.' : $datos['Cif']);
                         $cliente->setIDSucursal(1);
                         $cliente->setIDPais(68);
                         $cliente->setIDZona(0);
-                        $cliente->setPublish(0);
-                        if ($datos['IDTipo'] == '1') {
-                            $cliente->setRazonSocial($datos['Par']['RazonSocial']);
-                            $cliente->setIDProvincia($datos['Par']['IDProvincia']);
-                            $cliente->setTelefono($datos['Par']['Telefono']);
-                            $cliente->setObservations($datos['Par']['Observations']);
-                            $cliente->setDireccion('.');
-                        } else {
-                            $cliente->setRazonSocial($datos['Pro']['RazonSocial']);
-                            $cliente->setDireccion($datos['Pro']['Direccion']);
-                            $cliente->setCodigoPostal($datos['Pro']['CodigoPostal']);
-                            $cliente->setWeb($datos['Pro']['Web']);
-                            $cliente->setIDProvincia($datos['Pro']['IDProvincia']);
-                            $cliente->setTelefono($datos['Pro']['Telefono']);
-                            $cliente->setObservations($datos['Pro']['Observations']);
-                        }
+                        $cliente->setPublish(1);
                         $ok = $cliente->create();
-                        if (!$ok)
+                        if (!$ok) {
                             $this->errores[] = "ErrorCrear";
-                        if (($ok) and ($this->request['FILES']['logoEmpresa']['name']))
-                            $this->subeImagen($cliente->getIDCliente(), $this->request['FILES']['logoEmpresa']);
+                        }
                     }
 
                     $this->values['errores'] = $this->errores;
 
                     if (count($this->errores) == 0) {
-                        $template = "{$this->entity}/confirmacionRegistro.html.twig";
-                        $this->CorreoConfirmacionRegistro($cliente);
+                        $_SESSION['usuarioWeb'] = array(
+                            'id' => $cliente->getPrimaryKeyValue(),
+                            'nombre' => $cliente->getRazonSocial(),
+                        );
+                        $template = "Index/index.html.twig";
+                        $this->enviaCorreoWebMaster($cliente);
+                        //$template = "{$this->entity}/confirmacionRegistro.html.twig";
+                        //$this->CorreoConfirmacionRegistro($cliente);
                     } else
                         $template = "{$this->entity}/registro.html.twig";
 
@@ -124,39 +95,23 @@ class ZonaPrivadaController extends ControllerProject {
 
                 case 'guardar':
                     $cliente = new Clientes($datos['IDCliente']);
+                    $datos['Password'] = ($datos['Password'] != '') ?
+                            md5($datos['Password'] . $this->getSemilla()) :
+                            $cliente->getPassword();
+
+                    $cliente->bind($datos);
                     if ($this->valida()) {
-                        if ($this->request['registro']['Password'])
-                            $cliente->setPassword(md5($this->request['registro']['Password'] . $this->getSemilla()));
-                        if ($datos['IDTipo'] == '1') {
-                            $cliente->setRazonSocial($datos['Par']['RazonSocial']);
-                            $cliente->setIDProvincia($datos['Par']['IDProvincia']);
-                            $cliente->setTelefono($datos['Par']['Telefono']);
-                            $cliente->setObservations($datos['Par']['Observations']);
-                            $cliente->setDireccion('sin dirección');
-                        } else {
-                            $cliente->setRazonSocial($datos['Pro']['RazonSocial']);
-                            $cliente->setDireccion($datos['Pro']['Direccion']);
-                            $cliente->setCodigoPostal($datos['Pro']['CodigoPostal']);
-                            $cliente->setWeb($datos['Pro']['Web']);
-                            $cliente->setIDProvincia($datos['Pro']['IDProvincia']);
-                            $cliente->setTelefono($datos['Pro']['Telefono']);
-                            $cliente->setObservations($datos['Pro']['Observations']);
-                        }
-                        $ok = $cliente->save();
-                        if (!$ok)
+                        if (!$cliente->save())
                             $this->errores[] = "ErrorGuardar";
-                        if (($ok) and ($this->request['FILES']['logoEmpresa']['name']))
-                            $this->subeImagen($cliente->getIDCliente(), $this->request['FILES']['logoEmpresa']);
                     }
                     $this->values['errores'] = $this->errores;
                     $template = "{$this->entity}/registro.html.twig";
                     break;
             }
 
-
-            $this->values['registro'] = $this->request['registro'];
-            $this->values['logo'] = $cliente->getPathNameImagenN(1);
+            $this->values['cliente'] = $cliente;
         } else {
+            $this->values['cliente'] = new Clientes();
             $template = "{$this->entity}/registro.html.twig";
         }
 
@@ -222,16 +177,16 @@ class ZonaPrivadaController extends ControllerProject {
         $this->values['login'] = $this->request['login'];
 
         $usuarios = new Clientes();
-        $usuario = $usuarios->find("Login", $this->request['login']['login']);
+        $usuario = $usuarios->find("Email", $this->request['login']['Email']);
         unset($usuarios);
 
         if ($usuario->getPrimaryKeyValue()) {
             // El usuario existe
-            if ($usuario->getPassword() == md5($this->request['login']['Password'])) {
+            if ($usuario->getPassword() == md5($this->request['login']['Password'] . $this->getSemilla())) {
                 $_SESSION['usuarioWeb'] = array(
                     'Id' => $usuario->getPrimaryKeyValue(),
                     'nombre' => $usuario->getRazonSocial(),
-                    //'IdPerfil' => $usuario->getIdPerfil()->getPrimaryKeyValue(),
+                        //'IdPerfil' => $usuario->getIdPerfil()->getPrimaryKeyValue(),
                 );
                 $this->values['login']['error'] = 0;
             } else {
@@ -251,7 +206,7 @@ class ZonaPrivadaController extends ControllerProject {
                 'values' => $this->values,
             );
         } else {
-            include $_SESSION['theme']."/modules/Index/IndexController.class.php";
+            include $_SESSION['theme'] . "/modules/Index/IndexController.class.php";
             $indexController = new IndexController($this->request);
             return $indexController->IndexAction();
         }
@@ -265,7 +220,7 @@ class ZonaPrivadaController extends ControllerProject {
         unset($_SESSION['usuarioWeb']['Id']);
         unset($_SESSION['usuarioWeb']['nombre']);
         unset($_SESSION['usuarioWeb']['IdPerfil']);
-        include $_SESSION['theme']."/modules/Index/IndexController.class.php";
+        include $_SESSION['theme'] . "/modules/Index/IndexController.class.php";
         $index = new IndexController($this->request);
 
         return $index->IndexAction();
@@ -303,12 +258,7 @@ class ZonaPrivadaController extends ControllerProject {
                     $plantilla = str_replace("#MENSAJE#", $mensaje, $plantilla);
 
                     $envioOk = $mailer->send(
-                            $email, 
-                            $this->varWeb['Pro']['mail']['from'], 
-                            $this->varWeb['Pro']['mail']['from_name'], 
-                            $subject, 
-                            $plantilla, 
-                            array()
+                            $email, $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from_name'], $subject, $plantilla, array()
                     );
                     $this->values['errores'][] = 'exitoRegenerada';
                 } else {
@@ -479,21 +429,63 @@ class ZonaPrivadaController extends ControllerProject {
     }
 
     /**
+     * Le envia un correo al web master indicando
+     * que un usuario se ha registrado
+     * 
+     * @param Clientes $cliente
+     * @return type
+     */
+    private function enviaCorreoWebMaster(Clientes $cliente) {
+
+        $mailer = new Mail($this->varWeb['Pro']['mail']);
+
+        $mensaje = "<p>Se ha registro un usuario.</p>";
+        $mensaje .= "<br />";
+        $mensaje .= "<p>Nombre: {$cliente->getRazonSocial()}</p>";
+        $mensaje .= "<p>{$cliente->getEMail()}</p>";
+        $mensaje .= "<p>Provincia: {$cliente->getIDProvincia()->getProvincia()}</p>";
+        $mensaje .= "<p>Teléfono: {$cliente->getTelefono()}</p>";
+        $mensaje .= "<p>Tipo: {$cliente->getIDTipo()->getTipo()}</p>";
+        $mensaje .= "<br />";
+        $mensaje .= "<p>Actualmente hay {$cliente->getNumberOfRecords()} usuarios registrados en total.</p>";
+
+        $plantilla = file_get_contents('docs/plantillaMailWebMaster.htm');
+        $plantilla = str_replace("#TITLE#", $this->varWeb['Pro']['meta']['title'], $plantilla);
+        $plantilla = str_replace("#DOMINIO#", $this->varWeb['Pro']['globales']['dominio'], $plantilla);
+        $plantilla = str_replace("#TEXTOLOPD#", $this->varWeb['Pro']['mail']['textoLOPD'], $plantilla);
+        $plantilla = str_replace("#FECHA#", date('d-m-Y'), $plantilla);
+        $plantilla = str_replace("#HORA#", date('H:m:i'), $plantilla);
+        $plantilla = str_replace("#VISITANTE#", $cliente->getRazonSocial(), $plantilla);
+        $plantilla = str_replace("#MAIL#", $email, $plantilla);
+        $plantilla = str_replace("#TELEFONO#", $cliente->getTelefono(), $plantilla);
+        $plantilla = str_replace("#ASUNTO#", 'Registro de usuario', $plantilla);
+        $plantilla = str_replace("#MENSAJE#", $mensaje, $plantilla);
+
+        $ok = $mailer->send(
+                $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from_name'], 'Registro de usuario', $plantilla, array()
+        );
+
+        unset($mailer);
+
+        return $ok;
+    }
+
+    /**
      * Valida el registro/modificacion de usuario
      * 
      * @return type
      */
     private function valida() {
 
-        $datos = $this->request['registro'];
+        $datos = $this->request['cliente'];
 
         if (trim($datos['EMail']) == '')
             $this->errores[] = 'errorEmailVacio';
         elseif ($datos['IDCliente'] == '') {
             $email = trim($datos['EMail']);
-            $usuario = new WebUsuarios();
+            $usuario = new Clientes();
             $usuario = $usuario->find("Email", $email);
-            if ($usuario->getId() != 0) {
+            if ($usuario->getIDCliente() != 0) {
                 $this->errores[] = "errorEmailExiste";
             }
             unset($usuario);
@@ -505,37 +497,23 @@ class ZonaPrivadaController extends ControllerProject {
                 $this->errores[] = "errorPasswordVacio";
             elseif ($this->request['repitePassword'] != $datos['Password'])
                 $this->errores[] = "errorPasswordDiferente";
-            if (!isset($datos['leidoPolitica']))
-                $this->errores[] = "errorPoliticaPrivacidad";
         } else {
             // Cliente existente. Modificación
             if (trim($datos['Password']) != trim($this->request['repitePassword']))
                 $this->errores[] = "errorPasswordDiferente";
         }
 
-        if (!isset($datos['IDTipo']))
-            $this->errores[] = "errorTipoUsuario";
-        elseif ($datos['IDTipo'] == '1') {
-            if (trim($datos['Par']['RazonSocial']) == '')
-                $this->errores[] = "errorRazonSocial";
-            //if (trim($datos['Par']['Telefono']) == '')
-            //    $this->errores[] = "errorTelefono";
-            if (trim($datos['Par']['IDProvincia']) == '')
-                $this->errores[] = "errorProvincia";
-        } else {
-            if (trim($datos['Pro']['RazonSocial']) == '')
-                $this->errores[] = "errorRazonSocial";
-            if (trim($datos['Pro']['Direccion']) == '')
-                $this->errores[] = "errorDireccion";
-            //if (trim($datos['Pro']['Telefono']) == '')
-            //    $this->errores[] = "errorTelefono";
-            if (trim($datos['Pro']['IDProvincia']) == '')
-                $this->errores[] = "errorProvincia";
-        }
+        if (trim($datos['RazonSocial']) == '')
+            $this->errores[] = "errorRazonSocial";
+        //if (trim($datos['Par']['Telefono']) == '')
+        //    $this->errores[] = "errorTelefono";
+        if (trim($datos['IDProvincia']) == '')
+            $this->errores[] = "errorProvincia";
+        if (trim($datos['Direccion']) == '')
+            $this->errores[] = "errorDireccion";
 
         return (count($this->errores) == 0);
     }
 
 }
-
 ?>

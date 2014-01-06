@@ -400,7 +400,10 @@ class EntityManager {
     public function getInsertId() {
         switch (self::$dbEngine) {
             case 'mysql':
-                return mysql_insert_id(self::$currentDbLink);
+                //return mysql_insert_id(self::$dbLinkInstance);
+                $result = mysql_query("SELECT LAST_INSERT_ID()",self::$dbLinkInstance);
+                $row = mysql_fetch_row($result);
+                return $row[0];
                 break;
 
             case 'mssql':

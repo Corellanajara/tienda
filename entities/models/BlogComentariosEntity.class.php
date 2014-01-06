@@ -132,8 +132,11 @@ class BlogComentariosEntity extends EntityComunes {
     }
 
     public function getIdEntidad() {
-        if (!($this->IdEntidad instanceof GconContenidos))
-            $this->IdEntidad = new GconContenidos($this->IdEntidad);
+        if (!is_object($this->IdEntidad)) {
+            if ($this->Entidad != '') {
+                $this->IdEntidad = new $this->Entidad($this->IdEntidad);
+            }
+        }
         return $this->IdEntidad;
     }
 
@@ -150,8 +153,8 @@ class BlogComentariosEntity extends EntityComunes {
     }
 
     public function getIdUsuario() {
-        if (!($this->IdUsuario instanceof CpanUsuarios))
-            $this->IdUsuario = new CpanUsuarios($this->IdUsuario);
+        if (!($this->IdUsuario instanceof WebUsuarios))
+            $this->IdUsuario = new WebUsuarios($this->IdUsuario);
         return $this->IdUsuario;
     }
 

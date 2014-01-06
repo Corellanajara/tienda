@@ -223,8 +223,9 @@ class ErpFamilias {
 
         Paginacion::paginar("Articulos", $filtro, $orden, $nPagina, $nItems);
 
-        foreach (Paginacion::getRows() as $row)
+        foreach (Paginacion::getRows() as $row) {
             $articulos[] = new Articulos($row['IDArticulo']);
+        }
 
         return array(
             'articulos' => $articulos,
@@ -300,7 +301,7 @@ class ErpFamilias {
         // Si la categoria indicada no tiene relaciones, busco las
         // eventuales relaciones con la categoría padre a la indicada
         if (count($familiasRelacionadas) == 0) {
-            $familia = self::getFamilia($idCategoria);
+            $familia = self::getObjetoFamilia($idCategoria);
             if ($familia->getNivelJerarquico() > 1) {
                 $idCategoria = $familia->getBelongsTo()->getIDFamilia();
                 $relacion = new CpanRelaciones();
@@ -315,7 +316,7 @@ class ErpFamilias {
 
         // Para cada una de las familias relacionadas, obtengo sus $nItems artículos
         foreach ($familiasRelacionadas as $familia) {
-            $arrayAux = self::getArticulos($familia->getPrimaryKeyValue(), $nItems);
+            $arrayAux = self::getArticulos($familia->getPrimaryKeyValue(), '', $nItems);
             $array = array_merge($array, $arrayAux);
         }
 

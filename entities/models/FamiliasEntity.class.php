@@ -53,6 +53,18 @@ class FamiliasEntity extends EntityComunes {
     protected $OrdenPortada = '0';
 
     /**
+     * @orm:Column(type="integer")
+     * @assert:NotBlank(groups="ErpFamilias")
+     */
+    protected $MostrarEnTpv = '0';
+
+    /**
+     * @orm:Column(type="integer")
+     * @assert:NotBlank(groups="ErpFamilias")
+     */
+    protected $OrdenTpv = '0';
+
+    /**
      * @var tinyint
      * @assert NotBlank(groups="ErpFamilias")
      */
@@ -117,7 +129,6 @@ class FamiliasEntity extends EntityComunes {
      * @var string
      */
     protected $_parentEntities = array(
-        array('SourceColumn' => 'IDFamilia', 'ParentEntity' => 'PropiedadesFamiliasFabricantes', 'ParentColumn' => 'IDFamilia'),
         array('SourceColumn' => 'IDFamilia', 'ParentEntity' => 'Articulos', 'ParentColumn' => 'IDCategoria'),
         array('SourceColumn' => 'IDFamilia', 'ParentEntity' => 'Articulos', 'ParentColumn' => 'IDFamilia'),
         array('SourceColumn' => 'IDFamilia', 'ParentEntity' => 'Articulos', 'ParentColumn' => 'IDSubfamilia'),
@@ -196,6 +207,24 @@ class FamiliasEntity extends EntityComunes {
 
     public function getOrdenPortada() {
         return $this->OrdenPortada;
+    }
+
+    public function setMostrarEnTpv($MostrarEnTpv) {
+        $this->MostrarEnTpv = $MostrarEnTpv;
+    }
+
+    public function getMostrarEnTpv() {
+        if (!($this->MostrarEnTpv instanceof ValoresSN))
+            $this->MostrarEnTpv = new ValoresSN($this->MostrarEnTpv);
+        return $this->MostrarEnTpv;
+    }
+
+    public function setOrdenTpv($OrdenTpv) {
+        $this->OrdenTpv = $OrdenTpv;
+    }
+
+    public function getOrdenTpv() {
+        return $this->OrdenTpv;
     }
 
     public function setInventario($Inventario) {

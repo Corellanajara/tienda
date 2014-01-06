@@ -42,6 +42,23 @@ class FamiliasController extends ControllerProject {
                 break;
         }
 
+        $familia = new Familias($idFamilia);
+        $nivelJerarquico = $familia->getNivelJerarquico();
+        unset($familia);
+
+        switch ($nivelJerarquico) {
+            case 1:
+                $campo = "IDCategoria";
+                break;
+            case 2:
+                $campo = "IDFamilia";
+                break;
+            case 3:
+                $campo = "IDSubfamilia";
+                break;
+        } 
+        
+        $this->values['destacados'] = ErpArticulos::getArticulosZona($this->entity, 1,"{$campo}='{$idFamilia}'");   
         $this->values['familia'] = ErpFamilias::getObjetoFamilia($idFamilia);
         $this->values['articulos'] = ErpFamilias::getArticulosPaginados($idFamilia, $orden, $pagina, $itemsPorPagina);
         $this->values['orden'] = $orden;

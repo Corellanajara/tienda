@@ -8,7 +8,7 @@
     <section id="adjuntos" class="cajaGris borderTopRojo">
         <ul>
             {% for key,archivo in archivos %}
-            <li><a href="{{app.path}}/{{archivo.PathName}}" rel="pop-up">{{archivo.Name}}</a></li>
+            <li><a href="{{app.path}}/{{theme}}/{{archivo.PathName}}" rel="pop-up">{{archivo.Name}}</a></li>
             {% endfor %}
         </ul>
     </section>
