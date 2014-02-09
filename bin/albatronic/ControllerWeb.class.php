@@ -82,13 +82,16 @@ class ControllerWeb {
         $codigoIdiomaActual = $_SESSION['idiomas']['disponibles'][$_SESSION['idiomas']['actual']]['codigo'];
 
         $this->values['LANGUAGE'] = $codigoIdiomaActual;
-        $_SESSION['LABELS'] = $this->getEtiquetasIdioma($codigoIdiomaActual);
-        $this->values['LABELS'] = $_SESSION['LABELS'];
+        //$this->values['LABELS'] = $this->getEtiquetasIdioma($codigoIdiomaActual);
+        //$_SESSION['LABELS'] = $this->values['LABELS'];
 
         // CARGA LOS TEXTOS DE LOS PÁRRAFOS DEL CONTROLLER EN CURSO
         // CORRESPONDIENTES AL IDIOMA SELECCIONADO
-        $this->values['TEXTS'] = $this->getTextosIdioma($codigoIdiomaActual);
-
+        //$this->values['TEXTS'] = $this->getTextosIdioma($codigoIdiomaActual);
+        $textos = new CpanTextos();
+        $this->values['LABELS'] = $textos->getTextos($this->entity);
+        unset($textos);
+        
         // CONTROL DE VISITAS, SI ESTÁ ACTIVO POR LA VARIABLE DE ENTORNO
         if ($_SESSION['varEnv']['Pro']['visitas']['activo']) {
 
@@ -553,6 +556,78 @@ class ControllerWeb {
             $array[$row['Idioma']] = $row['UrlFriendly'];
 
         return $array;
+    }
+
+    /**
+     * Devuelve el nombre del archivo css asociado al template
+     * @param string $template
+     * @return string
+     */
+    static function getArchivoCss($template) {
+
+        $archivoTemplate = str_replace('html', 'css', $template);
+
+        if (!file_exists($_SESSION['theme'] . '/modules/' . $archivoTemplate)) {
+            $aux = explode("/", $archivoTemplate);
+            $modulo = $aux[0];
+            $archivoTemplate = (!file_exists("{$_SESSION['theme']}/modules/{$modulo}/index.css.twig")) ?
+                    "_global/css.twig" :
+                    "{$modulo}/index.css.twig";
+        }
+
+        return $archivoTemplate;
+    }
+
+    /**
+     * Devuelve el nombre del archivo js asociado al template
+     * @param string $template
+     * @return string
+     */
+    static function getArchivoJs($template) {
+
+        $archivoTemplate = str_replace('html', 'js', $template);
+
+        if (!file_exists($_SESSION['theme'] . '/modules/' . $archivoTemplate)) {
+            $aux = explode("/", $archivoTemplate);
+            $modulo = $aux[0];
+            $archivoTemplate = (!file_exists("{$_SESSION['theme']}/modules/{$modulo}/index.js.twig")) ?
+                    "_global/js.twig" :
+                    "{$modulo}/index.js.twig";
+        }
+
+        return $archivoTemplate;
+    }
+
+    /**
+     * Establezco la variable de entorno con el idioma $_SESSION['idiomas']
+     */
+    static function setIdioma() {
+
+        $variables = CpanVariables::getVariables('Web', 'Pro');
+
+        $idiomaVisitante = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        $idiomasPermitidos = explode(",", trim($variables['globales']['lang']));
+
+        $idIdioma = array_search($idiomaVisitante, $idiomasPermitidos);
+        if (!$idIdioma)
+            $idIdioma = 0;
+
+        if (!(file_exists("{$_SESSION['theme']}/lang/{$idiomasPermitidos[$idIdioma]}.yml")))
+            $idIdioma = 0;
+
+        foreach ($idiomasPermitidos as $key => $value) {
+            $idiomas = new Idiomas($value);
+            $idioma = $idiomas->getTipo();
+            $idiomasPermitidos[$key] = array(
+                'codigo' => $value,
+                'codigoLargo' => $idioma['Value'],
+                'texto' => $idioma['Texto'],
+            );
+        }
+        unset($idiomas);
+
+        $_SESSION['idiomas']['disponibles'] = $idiomasPermitidos;
+        $_SESSION['idiomas']['actual'] = $idIdioma;
     }
 
 }

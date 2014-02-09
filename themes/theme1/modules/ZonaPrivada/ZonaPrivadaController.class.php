@@ -189,6 +189,8 @@ class ZonaPrivadaController extends ControllerProject {
                         //'IdPerfil' => $usuario->getIdPerfil()->getPrimaryKeyValue(),
                 );
                 $this->values['login']['error'] = 0;
+                // Actualizar el número de logins
+                $usuario->queryUpdate(array("NumberVisits" => $usuario->NumberVisits() + 1, "DateTimeLastVisit" => time()), "Id='{$usuario->getPrimaryKeyValue()}'");                
             } else {
                 // Password incorrecta
                 $this->values['login']['error'] = 2;
@@ -235,8 +237,7 @@ class ZonaPrivadaController extends ControllerProject {
                 unset($passw);
                 $usuario = new Clientes();
                 $usuario = $usuario->find("Login", $this->request['campos']['email']['valor']);
-                $usuario->setPassword(md5($nueva));
-                $usuario->save();
+                $usuario->queryUpdate(array("Password"=>md5($nueva . $this->getSemilla())),"Id='{$usuario->getPrimaryKeyValue()}'");
                 $email = $usuario->getEMail();
 
                 $subject = "Nueva contraseña";

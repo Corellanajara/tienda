@@ -10,21 +10,6 @@
         heightStyle: 'content'      
     });
     
-    $('#solapa').tabs();
-    
-    $('#enviarComentario').click(function(){
-
-     var nombre = $.trim($('#nombre').val());
-     var email = $.trim($('#email').val());
-     var comentario = $.trim($('#comentario').val());
-
-     if ( nombre === '' || !isEmail(email) || comentario === '') {
-         alert('{{values.LABELS.debeIndicarTodosLosDatos}}'+nombre+email+comentario);
-         return;
-     } else {
-         $('#formComentario').submit();
-     }
-    });    
   });
  
   /*
@@ -109,33 +94,33 @@
 
 
 <script type="text/javascript" src="{{theme}}/js/jquery-uniform-formulario.js"></script>
-<script type="text/javascript">
-    $(function(){
+    <script type="text/javascript">
+      $(function(){
         $(":checkbox").uniform();
     });
 </script>  {# SPRITES PARA FORMULARIO #}
 
 <script type="text/javascript">
-    jQuery(document).ready(function($){
-
-    $("a[rel='pop-up']").click(function () {
-    var caracteristicas = "height="+(screen.availHeight - 40)+",width="+(screen.availWidth - 13)+",screenX=0,screenY=0,left=0,top=0,status=no,menubar=yes,scrollbars=yes,resizable=yes,toolbar=yes,location=yes";
-    nueva=window.open(this.href, 'Popup', caracteristicas);
-    return false;
-    });
+  jQuery(document).ready(function($){
+  
+  $("a[rel='pop-up']").click(function () {
+  var caracteristicas = "height="+(screen.availHeight - 40)+",width="+(screen.availWidth - 13)+",screenX=0,screenY=0,left=0,top=0,status=no,menubar=yes,scrollbars=yes,resizable=yes,toolbar=yes,location=yes";
+  nueva=window.open(this.href, 'Popup', caracteristicas);
+  return false;
+  });
 });
 </script> {# POP UP #}
 
 <script src="//use.edgefonts.net/open-sans.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function() {
-    // testimonial-shortcode init
-    jQuery("#testimonial-widget-1").jCarouselLite({
-            btnNext:"#testimonial-cycle-widget .next",
-            btnPrev:"#testimonial-cycle-widget .prev",
-            auto:true,
-            speed:6000,
-            visible:1   
-    });		
+        // testimonial-shortcode init
+        jQuery("#testimonial-widget-1").jCarouselLite({
+                btnNext:"#testimonial-cycle-widget .next",
+                btnPrev:"#testimonial-cycle-widget .prev",
+                auto:true,
+                speed:6000,
+                visible:1   
+        });		
 });
 </script>

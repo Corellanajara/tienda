@@ -18,3 +18,5 @@
 </ifModule>
 
 AddDefaultCharset utf-8
+# PROHIBIR LA INCLUSIÓN CON FRAMES DESDE OTROS DOMINIOS
+Header append X-FRAME-OPTIONS "SAMEORIGIN"

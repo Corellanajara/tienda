@@ -298,6 +298,22 @@ h6 {
 .btn_azul:hover {
   background: #3a8fd0;
 }
+.btn_lineasCarrito {
+  background: #78b2df;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  font-size: 1.4rem;
+  padding: 5px 5px;    
+}
+.btn_lineasCarrito:hover {
+  background: #3a8fd0;
+}
+.unidades_lineasCarrito {
+  font-size: 10px; 
+  font-size: 1.4rem;  
+  width: 50px;
+}
 .infoSeccion {
   color: #333333;
   float: left;
@@ -2300,6 +2316,7 @@ h1.tituloProducto {
 .precioAnterior {
     float: left;
     text-decoration: line-through;
+    margin-right: 10px;
 }
 
 /* my cycle testimonials */
@@ -2406,7 +2423,64 @@ h1.tituloProducto {
     width: 49%;
 }
 
+.productoInfo .caracteristicas {
+    clear: both;
+    width: 100%;
+    font-size: 14px;
+}
+
 .productoInfo .detallesTecnicos {
     clear: both;
     width: 100%;
+    font-size: 14px;
+}
+.productoInfo .comprar {
+    clear: both;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.productoInfo .comprar .comprarUnidades {
+    font-size: 18px;
+    width: 50px;
+    background-color: rgb(217,217,217);
+    color: rgb(51,51,51);
+}
+.productoInfo .comprar .comprarBoton {
+    font-size: 18px;
+    width: 100px;
+    background-color: rgb(217,217,217);
+    color: rgb(51,51,51);    
+}
+/* CESTA DE LA COMPRA */
+.otrosProductos {
+    margin-top: 10px;
+}
+h1.tituloCesta {
+  background: #78b2df;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  color: white !important;
+  float: left;
+  font-size: 18px;
+  //font-size: 2.4rem;
+  margin: 0 0 1em 0;
+  padding: 0.5em 1em;
+  width: 100%;    
+}
+h2.tituloOtrosProductos {
+  background: #78b2df;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  color: white !important;
+  float: left;
+  font-size: 14px;
+  //font-size: 2.4rem;
+  margin: 0 0 1em 0;
+  padding: 0.5em 1em;
+  width: 100%;
 }

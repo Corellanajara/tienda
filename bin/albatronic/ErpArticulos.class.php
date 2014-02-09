@@ -198,6 +198,17 @@ class ErpArticulos {
         return $array;
     }
 
+    /**
+     * Devuelve $nItems objetos articulos que están relacionados
+     * con el articulo cuyo id es $idArticulo.
+     * 
+     * EL criterio que se sigue para relacionar es en base a la familia
+     * y si no tiene familia en base a la categoria.
+     * 
+     * @param integer $idArticulo EL id de articulo
+     * @param integer $nItems Número de artículos a devolver
+     * @return array Array con objetos articulos
+     */
     static function getArticulosRelacionados($idArticulo, $nItems) {
 
         $articulo = self::getObjetoArticulo($idArticulo);

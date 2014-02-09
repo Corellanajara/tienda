@@ -36,8 +36,9 @@ class ProductoController extends ControllerProject {
             ),
         );
 
-        $variables = CpanVariables::getVariables('Web', 'Mod', 'Articulos');
-        $productosRelacionados = $variables['especificas']['NumArticulosRelacionados'];
+        $variables = CpanVariables::getVariables("Web", "Mod", "Articulos");
+
+        $nProductosRelacionados = (int) $variables['especificas']['NumArticulosRelacionados'];
 
         $idProducto = $this->request['IdEntity'];
 
@@ -45,16 +46,23 @@ class ProductoController extends ControllerProject {
 
         /* PRODUCTO */
         $this->values['producto'] = ErpArticulos::getObjetoArticulo($idProducto);
-        
+
         /* GALERIA DE IMAGENES DEL PRODUCTO */
         $this->values['galeria'] = Albumes::getGaleria("Articulos", $idProducto);
 
         /* DETALLES TÉCNICOS */
         $this->values['detalleTecnico'] = ErpArticulos::getDetalleTecnico($idProducto);
 
-        /* CINCO ARTICULOS RELACIONADOS */
-        if ($productosRelacionados > 0) {
+        /* ARTICULOS RELACIONADOS */
+        if ($nProductosRelacionados > 0) {
             $this->values['articulosRelacionados'] = ErpArticulos::getArticulosRelacionados($idProducto, $productosRelacionados);
+        }
+
+        /* COMENTARIOS WEB DEL ARTICULO */
+        $conComentarios = $variables['especificas']['permitirComentariosWeb'];
+        $this->values['conComentarios'] = $conComentarios;
+        if ($conComentarios) {
+            $this->values['comentarios'] = Blog::getComentarios("Articulos", $idProducto);
         }
 
         /* NOTICIAS - mostrar solo 1 noticias */
@@ -67,6 +75,29 @@ class ProductoController extends ControllerProject {
         $this->values['formDenuncia'] = $this->formDenuncia;
 
         return parent::IndexAction();
+    }
+
+    /**
+     * Crear un comentario al articuo
+     * @return type
+     */
+    public function ComentarioAction() {
+
+        $variables = CpanVariables::getVariables("Web", "Mod", "Articulos");
+        if ($variables['especificas']['permitirComentariosWeb']) {
+            $censura = ($variables['especificas']['censurarComentarios'] == '1');
+            $comentario = new BlogComentarios();
+            $comentario->bind($this->request['datos']);
+            $comentario->setChecked(!$censura);
+            $idComentario = $comentario->create();
+
+            if ($idComentario and ($variables['especificas']['notificarComentarioArticulo'])) {
+                $this->enviaNotificacionWebMaster($comentario);
+            }
+        }
+
+        $this->request['IdEntity'] = $this->request['datos']['IdEntidad'];
+        return $this->IndexAction();
     }
 
     public function ProductosAnuncianteAction() {
@@ -486,6 +517,37 @@ class ProductoController extends ControllerProject {
     }
 
     /**
+     * Envia correo de notificación al webmaster cuando se hace
+     * un comentario desde la web a un artículo
+     * 
+     * @param /BlogComentarios $comentario
+     * @return boolean
+     */
+    private function enviaNotificacionWebMaster($comentario) {
+
+        $plantilla = New CpanPlantillas();
+
+        $sustituir = array(
+            'TITLE' => $this->varWeb['Pro']['meta']['title'],
+            'URLDOCS' => $this->varWeb['Pro']['globales']['dominio'] . "/" . $_SESSION['theme'] . "/docs",
+            'TEXTOLOPD' => $this->varWeb['Pro']['mail']['textoLOPD'],
+            'FECHA' => date('d-m-Y'),
+            'HORA' => date('H:m:i'),
+            'ASUNTO' => 'Comentario en la web',
+            'VISITANTE' => $comentario->getNombre(),
+            'MAIL' => $comentario->getEmail(),
+            'MENSAJE' => $comentario->getNombre() . "<br/><br/>" . $comentario->getObjetoAsociado()->getDescripcion() . "<br/><br/>" . $comentario->getComentario(),
+        );
+        $texto = $plantilla->getPlantilla("", "email", $sustituir);
+        unset($plantilla);
+
+        $mailer = new Mail($this->varWeb['Pro']['mail']);
+        return $mailer->send(
+                        $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from_name'], 'Comentario en la web', $texto, array()
+        );
+    }
+
+    /**
      * Envía el correo de confirmación al visitante
      * en base a la plantilla htm $ficheroPlantilla.
      * 
@@ -500,7 +562,7 @@ class ProductoController extends ControllerProject {
 
         $plantilla = file_get_contents($ficheroPlantilla);
         $plantilla = str_replace("#TITLE#", $this->varWeb['Pro']['meta']['title'], $plantilla);
-        $plantilla = str_replace("#DOMINIO#", $this->varWeb['Pro']['globales']['dominio'], $plantilla);
+        $plantilla = str_replace("#URLDOCS#", $this->varWeb['Pro']['globales']['dominio'], $plantilla);
         $plantilla = str_replace("#TEXTOLOPD#", $this->varWeb['Pro']['mail']['textoLOPD'], $plantilla);
         $plantilla = str_replace("#FECHA#", date('d-m-Y'), $plantilla);
         $plantilla = str_replace("#HORA#", date('H:m:i'), $plantilla);

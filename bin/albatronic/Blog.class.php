@@ -105,7 +105,7 @@ class Blog {
         );
 
         unset($articulo);
-        
+
         return $articuloBlog;
     }
 
@@ -264,10 +264,10 @@ class Blog {
             $dia = date('Y-m-d');
         else {
             // Relleno con ceros el mes y el día
-            $fecha = explode("-",$dia);
+            $fecha = explode("-", $dia);
             $fecha[1] = str_pad($fecha[1], 2, "0", STR_PAD_LEFT);
             $fecha[2] = str_pad($fecha[2], 2, "0", STR_PAD_LEFT);
-            $dia = $fecha[0]."-".$fecha[1]."-".$fecha[2];
+            $dia = $fecha[0] . "-" . $fecha[1] . "-" . $fecha[2];
         }
 
         if ($nPagina <= 0)
@@ -318,7 +318,7 @@ class Blog {
             'paginacion' => Paginacion::getPaginacion(),
         );
     }
-    
+
     /**
      * Genera el array con los articulos del blog en base a los CONTENIDOS que:
      * 
@@ -505,7 +505,7 @@ class Blog {
         Paginacion::paginar("GconContenidos", $filtro, $criterioOrden, $nPagina, $nItems);
 
         foreach (Paginacion::getRows() as $row)
-            $arrayArticulos[] = self::getArticulo($row['Id'],$nImagenDiseno);
+            $arrayArticulos[] = self::getArticulo($row['Id'], $nImagenDiseno);
 
         unset($seccion);
         unset($articulo);
@@ -640,14 +640,44 @@ class Blog {
         $array = array();
 
         $articulo = new GconContenidos();
-        $rows = $articulo->cargaCondicion("DAY(PublishedAt) dia, COUNT(Id) nArticulos","BlogPublicar='1' AND MONTH(PublishedAt)='{$mes}' AND YEAR(PublishedAt)='{$ano}' GROUP BY dia");
+        $rows = $articulo->cargaCondicion("DAY(PublishedAt) dia, COUNT(Id) nArticulos", "BlogPublicar='1' AND MONTH(PublishedAt)='{$mes}' AND YEAR(PublishedAt)='{$ano}' GROUP BY dia");
         unset($articulo);
 
         foreach ($rows as $row)
             $array[$row['dia']] = $row['nArticulos'];
 
         return $array;
-    }    
+    }
+
+    /**
+     * Devuelve array de objetos comentarios de la entidad $entidad y $idEntidad
+     * 
+     * 
+     * @param string $entidad El nombre de la entidad
+     * @param integer $idEntidad El id de la entidad
+     * @param integer $nItems Opcional. Por defecto todos
+     * @param string $orden Opcional. Por defecto descendente por fecha
+     * @param boolean $checked Opcional. Por defecto solo los aprobados
+     * @return \BlogComentarios Array de objetos comentarios
+     */
+    static function getComentarios($entidad, $idEntidad, $nItems = 0, $orden = "TiempoUnix DESC", $checked = true) {
+
+        $chequeado = ($checked) ? 1 : 0;
+        $filtro = "Entidad='{$entidad}' AND IdEntidad='{$idEntidad}' AND Checked='{$chequeado}'";
+        $limite = ($nItems > 0) ? " LIMIT {$nItems}" : "";
+
+        $comentario = new BlogComentarios();
+        $rows = $comentario->cargaCondicion("Id", $filtro, $orden . $limite);
+        unset($comentario);
+
+        $array = array();
+        foreach ($rows as $row) {
+            $array[] = new BlogComentarios($row['Id']);
+        }
+
+        return $array;
+    }
+
 }
 
 ?>

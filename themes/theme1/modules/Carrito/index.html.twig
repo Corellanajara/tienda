@@ -1,0 +1,16 @@
+{% extends layout %}
+
+{% block aside %}
+    {% include '_global/asideLeft.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    <section class="contenedorGrande">
+        <h1 class="tituloCesta">{{values.LABELS.cestaDeLaCompra}}</h1>   
+        {% include values.controller ~ '/lineas.html.twig' %} 
+        {% include values.controller ~ '/envio.html.twig' %} 
+        {% include values.controller ~ '/totales.html.twig' %}
+        <div class="salto10"></div>
+        {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.carrito.articulosRelacionados}%} 
+    </section>
+{% endblock %}

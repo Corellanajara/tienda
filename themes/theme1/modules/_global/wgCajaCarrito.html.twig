@@ -1,6 +1,19 @@
 {# CAJA CARRITO DE LA COMPRA #}
-<h3 class="formulario">{{values.LABELS.carrito}}</h3>
-<div class="cajetin">
 
+<h3 id="verCarrito" class="formulario">
+{%if values.carrito.totales.Unidades%}
+    <a href="{{appPath}}/carrito">{{values.LABELS.verCarrito}}</a>
+{%else%}
+    {{values.LABELS.carrito}}
+{%endif%}
+</h3>
+<div id="cajaCarrito" class="cajetin">
+{%if values.carrito.totales.Unidades%}
+    <ul>
+        <li><span>{{values.LABELS.productos}}</span><span id="carritoUnidades">{{values.carrito.totales.Unidades}}</span></li>
+        <li><span>{{values.LABELS.importe}}</span><span id="carritoImporte">{{values.carrito.totales.Importe}}</span></li>
+    </ul>
+{%else%}
+    <span>{{values.LABELS.carroVacio}}</span>
+{%endif%}    
 </div>
-     

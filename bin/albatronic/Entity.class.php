@@ -550,7 +550,7 @@ class Entity {
                 $filtro .= " AND {$condicion}";
 
             $query = "SELECT {$columnas} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE {$filtro} {$orderBy}";
-            $this->_em->query($query);
+            $this->_em->query($query);//echo $query,"<br/>";
             $this->setStatus($this->_em->numRows());
 
             $rows = $this->_em->fetchResult();

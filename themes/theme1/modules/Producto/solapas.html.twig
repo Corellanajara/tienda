@@ -1,0 +1,47 @@
+{# Solas de la ficha de producto #}
+
+{% if values.producto.Caracteristicas or values.detalleTecnico or values.conComentarios %}
+<div class="salto10"></div>    
+<div id="solapa">
+    <ul>
+        <li><a href="#caracteristicas">{{values.LABELS.caracteristicas}}</a></li>
+        {% if values.detalleTecnico %}
+        <li><a href="#detallesTecnicos">{{values.LABELS.detallesTecnicos}}</a></li>
+        {% endif %}
+        {% if values.conComentarios %}
+        <li><a href="#comentarios">{{values.LABELS.comentarios}} {%if values.comentarios|length>0%}({{values.comentarios|length}}){%endif%}</a></li>
+        {% endif %}
+    </ul>
+    <div id="caracteristicas" class="caracteristicas">
+        {%autoescape false%}{{values.producto.Caracteristicas}}{%endautoescape%}
+    </div>
+    {% if values.detalleTecnico %}
+    <div id="detallesTecnicos" class="detallesTecnicos">
+    <ul>
+        {% for detalle in values.detalleTecnico %}
+        <li>
+            {{detalle.titulo}}:
+            <span>{{detalle.valor}}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
+    {% if values.conComentarios %}    
+    <div id="comentarios" class="comentarios">
+    <ul>
+        {% for comentario in values.comentarios %}
+        <li>
+            <span>{{comentario.TiempoUnix|date('d/m/Y')}}</span> </span>{{comentario.nombre}}</span>
+            {{comentario.Comentario}}
+        </li>
+        {% else %}
+        <span>{{values.LABELS.seElPrimeroEnComentar}}</span>
+        {% endfor %}
+        
+        {% include values.controller ~ '/formularioComentario.html.twig' with {'idArticulo':values.producto.IDArticulo}%}
+    </ul>
+    </div> 
+    {% endif %}    
+</div>
+{% endif %}

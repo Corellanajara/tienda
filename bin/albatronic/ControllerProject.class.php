@@ -31,6 +31,14 @@ class ControllerProject extends ControllerWeb {
         $this->values['menuCabeceraIzq'] = Menu::getMenuN(2, 3);
         $this->values['menuCabeceraDcha'] = Menu::getMenuN(3, 3);       
 
+        // GESTION DE COOKIES. El cartel debe mostrarse cada 7 días
+        if (empty($_COOKIE["SESS_ID_CARTEL_COOKIE"])) {
+            setcookie("SESS_ID_CARTEL_COOKIE", uniqid(time()), time() + (86400 * 7), "/");
+        }
+        $this->values["session_id"] = $_COOKIE["SESS_ID_CARTEL_COOKIE"];
+        
+        // TOTALES DEL CARRITO
+        $this->values['carrito']['totales'] = ErpCarrito::getTotales();
     }
 
 }

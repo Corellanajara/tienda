@@ -119,11 +119,19 @@ $rq = new Request();
 $_SESSION['EntornoDesarrollo'] = $rq->isDevelopment();
 
 // ----------------------------------------------------------------
+// EN ENTORNO DE PRODUCCION, OBTENER EL ORIGEN DE LA PETICION PARA
+// LA GESTION DE VISITAS
+// ----------------------------------------------------------------
+if ((!$_SESSION['EntornoDesarrollo']) and (!$_SESSION['origen'])) {
+    //$_SESSION['origen'] = WebService::getOrigenVisitante($config['wsControlVisitas'] . $rq->getRemoteAddr());
+}
+
+// ----------------------------------------------------------------
 // ACTIVAR EL FORMATO DE LA MONEDA
 // ----------------------------------------------------------------
 setlocale(LC_MONETARY, $rq->getLanguage());
 if ((!isset($_SESSION['idiomas']['actual'])) or ($_SESSION['EntornoDesarrollo']))
-    setIdioma();
+    ControllerWeb::setIdioma();
 
 
 // Si el navegador es antiguo muestro template especial
@@ -150,6 +158,7 @@ unset($url);
 $row = $rows[0];
 
 $_SESSION['idiomas']['actual'] = $row['Idioma'];
+$_SESSION['urlFriendly'] = $row['UrlFriendly'];
 
 //-----------------------------------------------------------------
 // INSTANCIAR UN OBJETO DE LA CLASE REQUEST PARA TENER DISPONIBLES
@@ -225,9 +234,11 @@ if ($_SESSION['isMobile']) {
     }
 }
 
+$result['values']['urlAmigable'] = $_SESSION['urlFriendly'];
 $result['values']['controller'] = $controller;
-$result['values']['archivoCss'] = getArchivoCss($result['template']);
-$result['values']['archivoJs'] = getArchivoJs($result['template']);
+$result['values']['action'] = $metodo;
+$result['values']['archivoCss'] = ControllerWeb::getArchivoCss($result['template']);
+$result['values']['archivoJs'] = ControllerWeb::getArchivoJs($result['template']);
 
 // Cargo los valores para el modo debuger
 if ($config['debug_mode']) {
@@ -278,77 +289,4 @@ unset($con);
 unset($loader);
 unset($twig);
 unset($config);
-
-/**
- * Devuelve el nombre del archivo css asociado al template
- * @param string $template
- * @return string
- */
-function getArchivoCss($template) {
-
-    $archivoTemplate = str_replace('html', 'css', $template);
-
-    if (!file_exists($_SESSION['theme'] . '/modules/' . $archivoTemplate)) {
-        $aux = explode("/", $archivoTemplate);
-        $modulo = $aux[0];
-        $archivoTemplate = (!file_exists("{$_SESSION['theme']}/modules/{$modulo}/index.css.twig")) ?
-                "_global/css.twig" :
-                "{$modulo}/index.css.twig";
-    }
-
-    return $archivoTemplate;
-}
-
-/**
- * Devuelve el nombre del archivo js asociado al template
- * @param string $template
- * @return string
- */
-function getArchivoJs($template) {
-
-    $archivoTemplate = str_replace('html', 'js', $template);
-
-    if (!file_exists($_SESSION['theme'] . '/modules/' . $archivoTemplate)) {
-        $aux = explode("/", $archivoTemplate);
-        $modulo = $aux[0];
-        $archivoTemplate = (!file_exists("{$_SESSION['theme']}/modules/{$modulo}/index.js.twig")) ?
-                "_global/js.twig" :
-                "{$modulo}/index.js.twig";
-    }
-
-    return $archivoTemplate;
-}
-
-/**
- * Establezco la variable de entorno con el idioma $_SESSION['idiomas']
- */
-function setIdioma() {
-
-    $variables = CpanVariables::getVariables('Web', 'Pro');
-
-    $idiomaVisitante = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    $idiomasPermitidos = explode(",", trim($variables['globales']['lang']));
-
-    $idIdioma = array_search($idiomaVisitante, $idiomasPermitidos);
-    if (!$idIdioma)
-        $idIdioma = 0;
-
-    if (!(file_exists("{$_SESSION['theme']}/lang/{$idiomasPermitidos[$idIdioma]}.yml")))
-        $idIdioma = 0;
-
-    foreach ($idiomasPermitidos as $key => $value) {
-        $idiomas = new Idiomas($value);
-        $idioma = $idiomas->getTipo();
-        $idiomasPermitidos[$key] = array(
-            'codigo' => $value,
-            'codigoLargo' => $idioma['Value'],
-            'texto' => $idioma['Texto'],
-        );
-    }
-    unset($idiomas);
-
-    $_SESSION['idiomas']['disponibles'] = $idiomasPermitidos;
-    $_SESSION['idiomas']['actual'] = $idIdioma;
-}
-
 ?>

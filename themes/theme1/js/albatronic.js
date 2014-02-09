@@ -11,76 +11,76 @@
  */
 
 var meses = new Array();
-meses["es"] = new Array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
-meses["en"] = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
-meses["fr"] = new Array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','September','October','November','December');
-meses["it"] = new Array('Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre');
-meses["de"] = new Array('Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember');
+meses["es"] = new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+meses["en"] = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+meses["fr"] = new Array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'September', 'October', 'November', 'December');
+meses["it"] = new Array('Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre');
+meses["de"] = new Array('Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember');
 
-$(document).ready(function(){
-    
+$(document).ready(function() {
+
     $('#calendarioBotonAnterior').click(
-        function(){
-            var mes = parseInt( $('#calendarioMesActual').val() );
-            var ano = parseInt( $('#calendarioAnoActual').val() );
-            
-            mes = mes - 1;
-            if (mes <= 0) {
-                mes = 12;
-                ano = ano - 1;
+            function() {
+                var mes = parseInt($('#calendarioMesActual').val());
+                var ano = parseInt($('#calendarioAnoActual').val());
+
+                mes = mes - 1;
+                if (mes <= 0) {
+                    mes = 12;
+                    ano = ano - 1;
+                }
+
+                calendario('calendarioTablaDias', $('#calendarioTipo').val(), mes, ano);
+
+                $('#calendarioMesActual').val(mes);
+                $('#calendarioAnoActual').val(ano);
             }
-            
-            calendario('calendarioTablaDias',$('#calendarioTipo').val(),mes,ano);
-            
-            $('#calendarioMesActual').val(mes);
-            $('#calendarioAnoActual').val(ano);    
-        }
-        );
+    );
 
     $('#calendarioBotonSiguiente').click(
-        function(){
-            var mes = parseInt( $('#calendarioMesActual').val() );
-            var ano = parseInt( $('#calendarioAnoActual').val() );
-            
-            mes = mes + 1;
-            if (mes >= 13) {
-                mes = 1;
-                ano = ano + 1;
-            }            
+            function() {
+                var mes = parseInt($('#calendarioMesActual').val());
+                var ano = parseInt($('#calendarioAnoActual').val());
 
-            calendario('calendarioTablaDias',$('#calendarioTipo').val(),mes,ano);
-            
-            $('#calendarioMesActual').val(mes);
-            $('#calendarioAnoActual').val(ano);    
-        }
-        );   
-            
-            
-	$("a[rel='pop-up']").click(function () {
-	var caracteristicas = "height="+(screen.availHeight - 40)+",width="+(screen.availWidth - 13)+",screenX=0,screenY=0,left=0,top=0,status=no,menubar=yes,scrollbars=yes,resizable=yes,toolbar=yes,location=yes";
-	nueva=window.open(this.href, 'Popup', caracteristicas);
-	return false;
-	});            
+                mes = mes + 1;
+                if (mes >= 13) {
+                    mes = 1;
+                    ano = ano + 1;
+                }
+
+                calendario('calendarioTablaDias', $('#calendarioTipo').val(), mes, ano);
+
+                $('#calendarioMesActual').val(mes);
+                $('#calendarioAnoActual').val(ano);
+            }
+    );
+
+
+    $("a[rel='pop-up']").click(function() {
+        var caracteristicas = "height=" + (screen.availHeight - 40) + ",width=" + (screen.availWidth - 13) + ",screenX=0,screenY=0,left=0,top=0,status=no,menubar=yes,scrollbars=yes,resizable=yes,toolbar=yes,location=yes";
+        nueva = window.open(this.href, 'Popup', caracteristicas);
+        return false;
+    });
 
 });
 
-   
+
 /**
  * Genera el html con el calendario del 'mes' y 'ano'
  * y lo pone dentro del div 'idDiv'
  */
-function calendario(idDiv,tipo,mes,ano) {
-    var url        = appPath + '/lib/calendario.php';
-    var parametros = 'tipo='+tipo+'&mes='+mes+'&ano='+ano;
+function calendario(idDiv, tipo, mes, ano) {
+    var url = appPath + '/lib/calendario.php';
+    var parametros = 'tipo=' + tipo + '&mes=' + mes + '&ano=' + ano;
 
     // Coloco un gif "Cargando..." en la capa
-    $('#'+idDiv).html("<img src='"+appPath+"/"+theme+"/images/loading.gif'>");
+    $('#' + idDiv).html("<img src='" + appPath + "/" + theme + "/images/loading.gif'>");
 
     // Pintar el literal del mes y año
-    $('#calendarioTextoMes').html(meses[language][mes-1] + " " + ano);
+    $('#calendarioTextoMes').html(meses[language][mes - 1] + " " + ano);
     // Pintar el calendario
-    $('#'+idDiv).load(url, parametros);
-    
+    $('#' + idDiv).load(url, parametros);
+
 }
 
 /**
@@ -88,21 +88,85 @@ function calendario(idDiv,tipo,mes,ano) {
  * se la envía por ajax a lib/setResolucion.php para que la ponga en $_SESSION['resolucionVisitante']
  */
 function chequeaResolucionVisitante() {
-    
+
     var ventana_ancho = screen.width;
     var ventana_alto = screen.height;
-    var var_resolucion = ventana_ancho+'x'+ventana_alto;
+    var var_resolucion = ventana_ancho + 'x' + ventana_alto;
     var navInfo = window.navigator.appVersion.toLowerCase();
-        
+
     //alert (var_resolucion);
-    
+
     $.ajax({
         url: 'lib/setResolucion.php',
         type: 'POST',
         async: true,
         data: {
-            navegador:navInfo,
-            resolucion:var_resolucion
+            navegador: navInfo,
+            resolucion: var_resolucion
         }
     })
+}
+
+function isEmail(email) {
+    var posArroba = email.indexOf('@', 0);
+
+    if (posArroba <= 0)
+        return false;
+
+    var posPunto = email.indexOf('.', posArroba);
+
+    if (posPunto == -1)
+        return false;
+
+    if (posPunto + 1 == email.length)
+        return false;
+    // Despues del punto solo puede haber: a-z 0-9 . _-
+    if (!contieneCaracteresPermitidos(email.substr(posPunto + 1), "._-"))
+        return false;
+
+    return true;
+}
+
+function isAlfanumerico(valor) {
+    var longi = valor.length;
+    var c;
+    valor = valor.toLowerCase();
+
+    if (longi > 0) {
+        c = valor.charAt(0);
+        if (!(c >= 'a' && c <= 'z')) {
+            return false;
+        }
+    }
+
+    for (var i = 1; i < longi; i++)
+    {
+        c = valor.charAt(i);
+        if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || c == '_' || c == '.')
+            continue;
+        else
+            return false;
+    }
+    return true;
+}
+
+function contieneCaracteresPermitidos(valor, caracteresValidos) {
+    var longi = valor.length;
+    var c;
+    valor = valor.toLowerCase();
+
+    for (var i = 0; i < longi; i++)
+    {
+        c = valor.charAt(i);
+        if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')) {
+            continue;
+        } else {
+            for (var j = 0; j < caracteresValidos.length; j++) {
+                if (caracteresValidos.indexOf(c) == -1) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }
