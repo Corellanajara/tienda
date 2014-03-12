@@ -12,7 +12,7 @@
 class PcaeUsuarios extends PcaeUsuariosEntity {
 
     public function __toString() {
-        return $this->getId();
+        return ($this->Id != '') ? $this->getId() : '';
     }
 
     /**

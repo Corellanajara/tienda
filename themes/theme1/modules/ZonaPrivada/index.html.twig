@@ -13,8 +13,8 @@
 {% block content %}
 <section class="contenedorGrandeCentral">
     <article class="colIzqda">
-        <h1>{{values.TEXTS.accesoPrivado}}</h1>
-        <p>{{values.TEXTS.accesoPrivadoTexto}}</p>
+        <h1>{{values.LABELS.accesoPrivado}}</h1>
+        <p>{{values.LABELS.accesoPrivadoTexto}}</p>
                                  
         <form name="formLogin" id="formLogin" method="POST" action="">
             <div id="input_oculto">
@@ -23,24 +23,24 @@
             </div>
 
             <article>
-                <!-- <label>{{values.TEXTS.eMail}}</label> -->
+                <!-- <label>{{values.LABELS.eMail}}</label> -->
                 <input autocomplete="off" type="text" name="login[Email]" id="login_Email" value="{{values.login.Email}}" {%if values.login.error == '1'%}class="celdaError"{%else%}class="celda"{% endif %} placeholder="Usuario" />
             </article>
 
             <article>
-                <!-- <label>{{values.TEXTS.contrasena}}</label> -->
+                <!-- <label>{{values.LABELS.contrasena}}</label> -->
                 <input autocomplete="off" type="password" name="login[Password]" {%if values.login.error == '2'%}class="celdaError"{%else%}class="celda"{%endif%} placeholder="Contraseña" />
             </article>
 
             <article id="contenedorEnviar">
-                <a href="{{app.path}}/olvido" class="olvido">{{values.TEXTS.olvideMiContrasena}}</a>
-                <input type="submit" value="{{values.TEXTS.enviar}}" data-type="submit" onclick="$('#formLogin').submit();" title="{{values.TEXTS.enviar}}" class="boton btn_azul right" />
+                <a href="{{app.path}}/olvido" class="olvido">{{values.LABELS.olvideMiContrasena}}</a>
+                <input type="submit" value="{{values.LABELS.enviar}}" data-type="submit" onclick="$('#formLogin').submit();" title="{{values.LABELS.enviar}}" class="boton btn_azul right" />
             </article>
         </form>
     </article>     
     <article class="colDrcha">
-        <h1>{{values.TEXTS.accesoNuevo}}</h1>
-        <p><a href="{{app.path}}/registro">{{values.TEXTS.accesoNuevoTexto}}</a></p>
+        <h1>{{values.LABELS.accesoNuevo}}</h1>
+        <p><a href="{{app.path}}/registro">{{values.LABELS.accesoNuevoTexto}}</a></p>
     </article>     
 </section>
 {% endblock %}

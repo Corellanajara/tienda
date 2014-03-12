@@ -6,11 +6,17 @@
 
 {% block content %}
     <section class="contenedorGrande">
-        <h1 class="tituloCesta">{{values.LABELS.cestaDeLaCompra}}</h1>   
-        {% include values.controller ~ '/lineas.html.twig' %} 
-        {% include values.controller ~ '/envio.html.twig' %} 
-        {% include values.controller ~ '/totales.html.twig' %}
-        <div class="salto10"></div>
-        {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.carrito.articulosRelacionados}%} 
+        <h1 class="tituloCesta">{{values.LABELS.cestaDeLaCompra}}</h1>
+            {% if values.carrito.totales.Importe > 0 %}
+            {% include values.controller ~ '/lineas.html.twig' %} 
+            <div class="salto10"></div>        
+            {% include values.controller ~ '/envio.html.twig' %} 
+            {% include values.controller ~ '/totales.html.twig' %}
+            <div class="salto20"></div>
+            <input type="button" class="btn_azul" value="{{values.LABELS.comprar}}" />
+            {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.carrito.articulosRelacionados}%} 
+        {% else %}
+            <p>{{values.LABELS.irAFavoritos}} <a href="{{app.path}}/favoritos">{{values.LABELS.favoritos}}</a></p>
+        {% endif %}
     </section>
 {% endblock %}

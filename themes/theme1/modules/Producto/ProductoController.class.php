@@ -59,7 +59,7 @@ class ProductoController extends ControllerProject {
         }
 
         /* COMENTARIOS WEB DEL ARTICULO */
-        $conComentarios = $variables['especificas']['permitirComentariosWeb'];
+        $conComentarios = ($variables['especificas']['permitirComentariosWeb'] == 1);
         $this->values['conComentarios'] = $conComentarios;
         if ($conComentarios) {
             $this->values['comentarios'] = Blog::getComentarios("Articulos", $idProducto);

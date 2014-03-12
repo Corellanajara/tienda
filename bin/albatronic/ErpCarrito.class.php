@@ -11,6 +11,14 @@ class ErpCarrito {
     static $errores;
     static $alertas;
 
+    /**
+     * Devuelve array con dos elementos:
+     * 
+     * lineas => array de objetos líneas de carrito
+     * totales => array('Unidades,'Importe')
+     * 
+     * @return array
+     */
     static function getCarrito() {
 
         $carrito = new Carrito();
@@ -43,7 +51,9 @@ class ErpCarrito {
      * @param integer $unidades Las unidades de producto
      * @return integer El id de la línea creada
      */
-    static function addProduct($idArticulo, $unidades) {
+    static function addProduct($idArticulo, $unidades = 1) {
+
+        $unidades = ($unidades < 1) ? 1 : $unidades;
 
         $filtro = "sesion='{$_SESSION['IdSesion']}' and IDArticulo='{$idArticulo}'";
         $carrito = new Carrito();

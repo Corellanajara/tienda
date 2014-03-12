@@ -39,11 +39,11 @@ class CpanTextos extends CpanTextosEntity {
         $array = array();
 
         if (!$idioma) {
-            $idioma = $_SESSION['idiomas']['disponibles'][$_SESSION['idiomas']['actual']]['codigo'];
+            $codigoIdioma = $_SESSION['idiomas']['actual'];
+            $idioma = $_SESSION['idiomas']['disponibles'][$codigoIdioma]['codigo'];
         }
 
         $filtroIdioma = "Lang='$idioma'";
-
         // Obtener los textos comunes a todos los controles
         $rowsComunes = $this->cargaCondicion("Clave,Observations", "Controller='' AND {$filtroIdioma}");
         foreach ($rowsComunes as $texto) {

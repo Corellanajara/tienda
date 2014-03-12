@@ -170,3 +170,38 @@ function contieneCaracteresPermitidos(valor, caracteresValidos) {
     }
     return true;
 }
+
+/*
+ * GENERA UN LISTA DE AUTOCOMPLETADO CON JQUERY. REQUIRE DE LA FUNCION 'devuelve'
+ *
+ * campoAutoCompletar   -> es el id del campo donde se genera el autocompletado
+ * campoId              -> es el id del campo donde se devuelve el id obtenido
+ * campoTexto           -> es el id del campo donde se devuelve el texto obtenido
+ * entidad              -> indica en base a qué entidad de datos se genera el autocompletado
+ * columna              -> la columna de la entidad de datos que se devolverá
+ * filtroAdicional      -> valor para un filtro adicional, es opcional
+ * desplegableAjax      -> array con parametros adicionales para disparar desplegables en cascada
+ */
+function autoComplete(campoAutoCompletar,campoId,campoTexto,entidad,columna,filtroAdicional,desplegableAjax) {
+
+    var url = appPath + "/lib/autoCompletar.php?entidad=" + entidad + "&columna=" + columna + "&filtroAdicional=" + filtroAdicional;
+
+    $("#"+campoAutoCompletar).autocomplete({
+        source: url,
+        minLength: 2,
+        select: function( event, ui ) {
+            devuelve( campoId, ui.item.id, campoTexto, ui.item.value, desplegableAjax );
+        }
+    });
+}
+
+function devuelve( campoId, id, campoTexto, value, desplegableAjax) {
+    $( "#"+campoId ).val(id);
+    $( "#"+campoTexto ).val(value);
+    if (desplegableAjax.length > 0) {
+        var params = desplegableAjax;
+        DesplegableAjax(params[0],params[1],params[2],params[3],id);
+    }
+    $( "#"+campoTexto ).focus();
+}
+

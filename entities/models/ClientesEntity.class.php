@@ -219,7 +219,7 @@ class ClientesEntity extends EntityComunes {
     protected $Iva = '1';
 
     /**
-     * @orm:Column(type="integer")
+     * @orm:Column(type="date")
      * @assert:NotBlank(groups="clientes")
      */
     protected $FechaRiesgo = '0000-00-00';
@@ -246,6 +246,27 @@ class ClientesEntity extends EntityComunes {
      * @assert:NotBlank(groups="clientes")
      */
     protected $FacturacionAgrupada = '1';
+
+    /**
+     * @orm:Column(type="string")
+     */
+    protected $Iban = null;
+
+    /**
+     * @orm:Column(type="string")
+     */
+    protected $Bic = null;
+
+    /**
+     * @orm:Column(type="string")
+     */
+    protected $Mandato;
+
+    /**
+     * @orm:Column(type="date")
+     * @assert:NotBlank(groups="clientes")
+     */
+    protected $FechaMandato = '0000-00-00';
 
     /**
      * Nombre de la conexion a la DB
@@ -659,6 +680,43 @@ class ClientesEntity extends EntityComunes {
         if (!($this->FacturacionAgrupada instanceof ValoresSN))
             $this->FacturacionAgrupada = new ValoresSN($this->FacturacionAgrupada);
         return $this->FacturacionAgrupada;
+    }
+
+    public function setIban($Iban) {
+        $this->Iban = trim($Iban);
+    }
+
+    public function getIban() {
+        return $this->Iban;
+    }
+
+    public function setBic($Bic) {
+        $this->Bic = trim($Bic);
+    }
+
+    public function getBic() {
+        return $this->Bic;
+    }
+
+    public function setMandato($Mandato) {
+        $this->Mandato = trim($Mandato);
+    }
+
+    public function getMandato() {
+        return $this->Mandato;
+    }
+
+    public function setFechaMandato($FechaMandato) {
+        $fecha = new Fecha($FechaMandato);
+        $this->FechaMandato = $fecha->getFecha();
+        unset($fecha);
+    }
+
+    public function getFechaMandato() {
+        $fecha = new Fecha($this->FechaMandato);
+        $ddmmaaaa = $fecha->getddmmaaaa();
+        unset($fecha);
+        return $ddmmaaaa;
     }
 
 }

@@ -2484,3 +2484,39 @@ h2.tituloOtrosProductos {
   padding: 0.5em 1em;
   width: 100%;
 }
+
+.clearfix {
+    clear: both;
+}
+/*aviso cookies*/
+#cookie-compliant{
+    background-color: #555555;
+    bottom: 0;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+#cookie-compliant p {
+    display: inline;
+    font-size: 0.8em;
+    color: white;
+}
+#cookie-compliant a {
+    display: inline;
+    font-size: 0.8em;
+    color: white;
+}
+#close-cookies-message{
+    background-color: #00A3D0;
+    border-radius: 5px;
+    bottom: 0;
+    color: white;
+    margin: 0 0 0 15px;
+    padding: 1px 6px;
+    text-align: center;
+}
+#close-cookies-message:hover{
+    background-color: #FF9900;
+    text-decoration:none;
+}
+

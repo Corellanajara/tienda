@@ -1,0 +1,13 @@
+{# Añadir a favoritos #}
+{% if user.Id > 0 %}
+<div class="addFavoritos">
+    <form name="formAddFavoritos{{idArticulo}}" id="formAddFavoritos{{idArticulo}}" method="POST" action="">
+        <div id="input_oculto">
+        <input name="controller" id="controller{{idArticulo}}" value="Favoritos"/>
+        <input name="action" id="action{{idArticulo}}" value="add"/>
+        <input name="idArticulo" value="{{idArticulo}}"/>
+        </div>        
+        <input type="submit" class="boton btn_azul right" value="{{values.LABELS.addFavorito}}"/>
+    </form>  
+</div>
+{% endif %}

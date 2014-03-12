@@ -351,7 +351,7 @@ class ErpFamilias {
             $categoria = new Familias($row['IDFamilia']);
             $array[] = array(
                 'titulo' => $categoria->getFamilia(),
-                'url' => $categoria->getObjetoUrlAmigable()->getHref(),
+                'url' => $categoria->getHref(),
             );
         }
         unset($categoria);

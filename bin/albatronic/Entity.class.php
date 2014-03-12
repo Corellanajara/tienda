@@ -550,7 +550,7 @@ class Entity {
                 $filtro .= " AND {$condicion}";
 
             $query = "SELECT {$columnas} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE {$filtro} {$orderBy}";
-            $this->_em->query($query);//echo $query,"<br/>";
+            $this->_em->query($query); //echo $query,"<br/>";
             $this->setStatus($this->_em->numRows());
 
             $rows = $this->_em->fetchResult();
@@ -583,7 +583,7 @@ class Entity {
             $valores = substr($valores, 0, -1);
 
             $query = "UPDATE `{$this->_dataBaseName}`.`{$this->_tableName}` SET {$valores} WHERE ({$condicion})";
-            $this->_em->query($query);
+            $this->_em->query($query); //echo $query;
             $filasAfectadas = $this->_em->getAffectedRows();
             $this->_em->desConecta();
         }
@@ -606,13 +606,39 @@ class Entity {
         if (is_resource($this->_dbLink)) {
 
             $query = "DELETE FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$condicion})";
-            $this->_em->query($query);
+            $this->_em->query($query); //echo $query;
             $filasAfectadas = $this->_em->getAffectedRows();
             $this->_em->desConecta();
         }
         unset($this->_em);
 
         return $filasAfectadas;
+    }
+
+    /**
+     * Ejecuta una sentencia SELECT sobre la entidad
+     * 
+     * @param string $columnas Las columnas a obtener separadas por comas
+     * @param string $condicion Condicion del where (sin el where)
+     * @return int El número de filas afectadas
+     */
+    public function querySelect($columnas, $condicion='1', $orden='') {
+
+        $rows = array();
+
+        $orden = ($orden == '') ? '': "ORDER BY {$orden}";
+        
+        $this->conecta();
+        if (is_resource($this->_dbLink)) {
+
+            $query = "SELECT {$columnas} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$condicion}) {$orden}";
+            $this->_em->query($query);
+            $rows = $this->_em->fetchResult();
+            //$this->_em->desConecta();
+        }
+        //unset($this->_em);
+
+        return $rows;
     }
 
     /**
@@ -633,7 +659,7 @@ class Entity {
             // Condición de vigencia
             $ahora = date("Y-m-d H:i:s");
             $condicion .= " AND Publish='1' AND (Deleted='0') AND (ActiveFrom<='{$ahora}') AND ( (ActiveTo>='{$ahora}') or (ActiveTo='0000-00-00 00:00:00') )";
-            
+
             // Condición de privacidad
             if (!$_SESSION['usuarioWeb']['Id']) {
                 $filtro .= " AND ( (Privacy='0') OR (Privacy='2') )";
@@ -1077,15 +1103,15 @@ class Entity {
      * @param integer $lenght El numero de caracteres a devolver
      * @return variant
      */
-    public function getColumnValue($column, $length = 0) {        
+    public function getColumnValue($column, $length = 0) {
         $cadena = $this->{"get$column"}();
         if (is_object($cadena))
             $cadena = $cadena->__toString();
         if ($length > 0)
             $cadena = substr($cadena, 0, $length);
-        return $cadena;        
+        return $cadena;
     }
-    
+
     /**
      * Devuelve el valor del meta dato $name
      * para la entidad e id de entidad en curso
@@ -1147,7 +1173,7 @@ class Entity {
 
         return json_encode($array);
     }
-    
+
     /**
      * Devuelve un array con los errores generados por la entidad
      * @return array

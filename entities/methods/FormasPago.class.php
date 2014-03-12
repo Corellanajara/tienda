@@ -14,6 +14,18 @@ class FormasPago extends FormasPagoEntity {
         return $this->getDescripcion();
     }
 
+    public function fetchAllWeb() {
+        $this->conecta();
+
+        if (is_resource($this->_dbLink)) {
+            $query = "SELECT " . $this->getPrimaryKeyName() . " as Id, Descripcion as Value FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE (Deleted = '0') AND (Web='1') ORDER BY Descripcion ASC";
+            $this->_em->query($query);
+            $rows = $this->_em->fetchResult();
+            $this->setStatus($this->_em->numRows());
+        }
+
+        return $rows;
+    }
 }
 
 ?>

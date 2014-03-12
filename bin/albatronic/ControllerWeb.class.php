@@ -612,9 +612,6 @@ class ControllerWeb {
         if (!$idIdioma)
             $idIdioma = 0;
 
-        if (!(file_exists("{$_SESSION['theme']}/lang/{$idiomasPermitidos[$idIdioma]}.yml")))
-            $idIdioma = 0;
-
         foreach ($idiomasPermitidos as $key => $value) {
             $idiomas = new Idiomas($value);
             $idioma = $idiomas->getTipo();

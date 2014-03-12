@@ -74,7 +74,7 @@ class Eventos {
                     'horaFin' => $row['HoraFin'],
                     'titulo' => $evento->getTitulo(),
                     'subtitulo' => $evento->getSubtitulo(),
-                    'url' => $evento->getObjetoUrlAmigable()->getHref(),
+                    'url' => $evento->getHref(),
                     'resumen' => Textos::limpiaTiny($evento->getResumen()),
                     'desarrollo' => Textos::limpiaTiny($evento->getDesarrollo()),
                     'imagen' => $evento->getPathNameImagenN($nImagenDiseno),

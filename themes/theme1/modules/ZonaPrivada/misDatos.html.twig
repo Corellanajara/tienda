@@ -1,0 +1,22 @@
+{# MIS DATOS #}
+{% extends layout %}
+
+{% block content %}
+<section class="central">
+    <h2 class="superTitular rojo">{{values.LABELS.miCuenta}}</h2>
+    {% include 'ZonaPrivada/mensajes.html.twig' %} {# ESTOS SON LOS MENSAJES DE RESPUESTA DEL FORMULARIO #}                                 
+    <div id="solapas">
+        <ul>
+            <li><a href="#misDatos">{{values.LABELS.misDatos}}</a></li>
+            <li><a href="#pedidos">{{values.LABELS.pedidos}}</a></li>
+        </ul>
+        <div id="misDatos" class="caracteristicas">
+            {% include 'ZonaPrivada/formularioRegistro.html.twig' %} {# ESTE ES EL FORMULARIO DE REGISTRO DE USUARIO #} 
+        </div>
+        <div id="pedidos" class="detallesTecnicos">&nbsp;
+            {% include 'ZonaPrivada/misPedidos.html.twig' %}
+        </div>    
+    </div>
+ 
+</section>
+{% endblock %}

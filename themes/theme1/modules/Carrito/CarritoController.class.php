@@ -15,7 +15,7 @@ class CarritoController extends ControllerProject {
         $this->values['carrito'] = ErpCarrito::getCarrito();
 
         // Obtener artículos relacionados con los que hay en el carrito
-        $nArticulosRelacionados = (int)$this->varWeb['Pro']['shop']['carrito']['nArticulosRelacionados'];
+        $nArticulosRelacionados = (int)$this->varWeb['Pro']['shop']['carrito']['nArticulosRelacionadosFamilia'];
 
         if ($nArticulosRelacionados > 0) {
             $arrayRelacionados = array();

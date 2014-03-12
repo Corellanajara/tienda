@@ -1,0 +1,48 @@
+{# LISTADO DE ARTICULOS FAVORITOS SIN PAGINAR #}
+{% for articulo in values.favoritos %}
+<article>
+    {% if articulo.articulo.PathNameImagenN %}
+    <figure>
+        <a href="{{appPath}}{{articulo.articulo.UrlFriendly}}" title="{{articulo.articulo.Descripcion}}">
+            <img src="{{app.path}}/{{theme}}/{{articulo.articulo.PathNameImagenN(1)}}" title="{{articulo.articulo.Descripcion}}" alt="{{articulo.articulo.Descripcion}}" />
+        </a>
+    </figure>
+    {% endif %}
+    <div class="info">
+        <h3><a href="{{appPath}}{{articulo.articulo.UrlFriendly}}" title="{{articulo.articulo.Descripcion}}">{{articulo.articulo.Descripcion}}</a></h3>
+        {% if articulo.articulo.Resumen != articulo.articulo.Descripcion %}
+            <div class="resumen">{{articulo.articulo.Resumen}}</div>
+        {% endif %}
+        {% set precioActual = articulo.articulo.PrecioVentaConImpuestos %}
+        {% if articulo.articulo.PvpAnterior > 0 and articulo.articulo.PrecioAnterior != precioActual %}
+            <div class="precios precioAnterior">{{macro.moneda(articulo.articulo.PvpAnterior)}}</div>                
+        {% endif %}
+        <div class="precioActual">{{macro.moneda(precioActual)}}</div>
+        <div class="comprar">
+            <input type="button" class="boton btn_azul left" value="Comprar" onclick="addCart('{{articulo.articulo.IDArticulo}}',1);"/>
+            <form name="formFavoritos{{articulo.articulo.IDArticulo}}" id="formFavoritos{{articulo.articulo.IDArticulo}}" method="POST">
+                <div id="input_oculto">
+                <input name="controller" value="Favoritos"/>
+                <input name="action" value="remove"/>
+                <input name="idArticulo" value="{{articulo.articulo.IDArticulo}}"/>
+                </div>        
+                <input type="submit" class="boton btn_azul left" value="{{values.LABELS.removeFavorito}}"/>           
+            </form>
+            <input type="checkbox" class="marcarFavorito" id="check{{articulo.articulo.IDArticulo}}" onchange="check('{{articulo.articulo.IDArticulo}}');" {%if articulo.Checked=='1' %}checked{%endif%}/>
+        </div>        
+        <article class="botonera">
+            <a href="{{appPath}}{{articulo.articulo.UrlFriendly}}" title="{{values.LABELS.masInfo}}" class="saberMas">{{values.LABELS.saberMas}}
+                <span class="sprite"></span>
+            </a>
+        </article>
+    </div>
+</article>
+{% else %}
+<p>Aún no ha añadido ningún artículo a favoritos</p>
+{% endfor %}
+
+{% if values.favoritos|length > 0%}
+    <input type="button" id="ponerTodos" class="boton btn_azul left" value="{{values.LABELS.ponerTodos}}"/>
+    <input type="button" id="quitarTodos" class="boton btn_azul left" value="{{values.LABELS.quitarTodos}}"/>
+    <input type="button" id="alCarrito" class="boton btn_azul left" value="{{values.LABELS.alCarrito}}"/>
+{% endif %}

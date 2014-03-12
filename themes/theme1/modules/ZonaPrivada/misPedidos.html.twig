@@ -1,0 +1,32 @@
+{# Mis pedidos #}
+
+{% if values.pedidos|length>0 %}
+<div>
+<table class="cesta">
+    <thead>
+        <tr>
+            <th>{{values.LABELS.numero}}</th>
+            <th>{{values.LABELS.fecha}}</th>
+            <th>{{values.LABELS.fechaExpedicion}}</th>
+            <th>{{values.LABELS.importe}}</th>
+            <th>{{values.LABELS.estado}}</th>            
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for pedido in values.pedidos %}        
+        <tr>
+            <td>{{pedido.NumeroAlbaran}}</td>
+            <td>{{pedido.Fecha}}</td>
+            <td>{{pedido.FechaExpedicion}}</td>
+            <td>{{pedido.Total}}</td>
+            <td>{{pedido.IDEstado}}</td>            
+            <td><a href="">{{values.LABELS.verPedido}}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<p>Aún no tiene pedidos</p>
+{% endif %}

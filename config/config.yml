@@ -55,14 +55,14 @@ config:
     theme: themes/theme1
 
   # SEMILLA PARA CONSTRUIR CLAVES MD5
-  semillaMD5: verano
+  semillaMD5: pablo
 
   # MOTOR PARA GENERAR DOCUMENTOS PDF
   pdf: bin/pdf/fpdf.class.php
 
   # MOTOR DE TEMPLATES
   twig:
-    motor: bin/Twig-1.11.1/lib/Twig/Autoloader.php
+    motor: bin/Twig-1.15.0/lib/Twig/Autoloader.php
     debug_mode: true
     charset: null
   

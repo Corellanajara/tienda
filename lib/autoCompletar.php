@@ -147,6 +147,33 @@ switch ($_GET['entidad']) {
         unset($lotes);
         break;
 
+    // BUSCA PAISES POR %Pais%
+    case 'paises':
+        $pais = new Paises();
+        $rows = $pais->cargaCondicion("IDPais as Id, Pais as Value", "Pais LIKE '%{$_GET['term']}%'", "Pais");
+        unset($pais);
+        break;
+
+    // BUSCA PROVINCIAS POR %Provincia%
+    case 'provincias':
+        $filtro = "Provincia LIKE '%{$_GET['term']}%'";
+        if ($_GET['filtroAdicional'])
+            $filtro .= " and IDPais='{$_GET['filtroAdicional']}'";
+
+        $provincia = new Provincias();
+        $rows = $provincia->cargaCondicion("IDProvincia as Id, Provincia as Value", $filtro, "Provincia");
+        unset($provincia);
+        break;
+
+    // BUSCA MUNICIPIOS POR %Municipio%
+    case 'municipios':
+        $filtro = "Municipio LIKE '%{$_GET['term']}%'";
+        if ($_GET['filtroAdicional'])
+            $filtro .= " and IDProvincia='{$_GET['filtroAdicional']}'";
+        $municipio = new Municipios();
+        $rows = $municipio->cargaCondicion("IDMunicipio as Id, Municipio as Value", $filtro, "Municipio");
+        unset($municipio);
+        break;
 }
 
 // Creo el array de obetos que se va a devolver

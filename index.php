@@ -28,6 +28,7 @@
  */
 session_start();
 
+// error_reporting(E_ALL);
 $_SESSION['IdSesion'] = session_id();
 
 if (!isset($_SESSION['usuarioWeb']['Id'])) {
@@ -125,14 +126,14 @@ $_SESSION['EntornoDesarrollo'] = $rq->isDevelopment();
 if ((!$_SESSION['EntornoDesarrollo']) and (!$_SESSION['origen'])) {
     //$_SESSION['origen'] = WebService::getOrigenVisitante($config['wsControlVisitas'] . $rq->getRemoteAddr());
 }
-
 // ----------------------------------------------------------------
 // ACTIVAR EL FORMATO DE LA MONEDA
 // ----------------------------------------------------------------
 setlocale(LC_MONETARY, $rq->getLanguage());
-if ((!isset($_SESSION['idiomas']['actual'])) or ($_SESSION['EntornoDesarrollo']))
+//if ((!isset($_SESSION['idiomas']['actual'])) or ($_SESSION['EntornoDesarrollo']))
+if (!isset($_SESSION['idiomas']['actual'])) {
     ControllerWeb::setIdioma();
-
+}
 
 // Si el navegador es antiguo muestro template especial
 $url = new CpanUrlAmigables();
@@ -140,7 +141,7 @@ if ($rq->isOldBrowser()) {
     $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "UrlFriendly='/oldbrowser'");
 } else {
     // Localizar la url amigable
-    $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "UrlFriendly='{$rq->getUrlFriendly($app['path'])}'");
+    $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "Idioma='{$_SESSION['idiomas']['actual']}' and UrlFriendly='{$rq->getUrlFriendly($app['path'])}'");
     // Localizar la url amigable
     //$rows[0] = $url->matchUrl($rq->getUrlFriendly($app['path']));
 

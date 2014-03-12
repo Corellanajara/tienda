@@ -42,9 +42,10 @@ class ZonaPrivadaController extends ControllerProject {
         $cliente = new Clientes($_SESSION['usuarioWeb']['Id']);
 
         $this->values['cliente'] = $cliente;
-
+        $this->values['pedidos'] = $cliente->getAlbaranes();
+        
         return array(
-            'template' => $this->entity . '/registro.html.twig',
+            'template' => $this->entity . '/misDatos.html.twig',
             'values' => $this->values
         );
     }
@@ -105,7 +106,7 @@ class ZonaPrivadaController extends ControllerProject {
                             $this->errores[] = "ErrorGuardar";
                     }
                     $this->values['errores'] = $this->errores;
-                    $template = "{$this->entity}/registro.html.twig";
+                    $template = "{$this->entity}/misdatos.html.twig";
                     break;
             }
 
@@ -177,12 +178,14 @@ class ZonaPrivadaController extends ControllerProject {
         $this->values['login'] = $this->request['login'];
 
         $usuarios = new Clientes();
-        $usuario = $usuarios->find("Email", $this->request['login']['Email']);
+        $usuario = $usuarios->find("Login", $this->request['login']['Email']);
         unset($usuarios);
 
         if ($usuario->getPrimaryKeyValue()) {
             // El usuario existe
-            if ($usuario->getPassword() == md5($this->request['login']['Password'] . $this->getSemilla())) {
+            $password = md5($this->request['login']['Password'] . $this->getSemilla());
+            //echo $password," ",$usuario->getPassword()," ",$this->request['login']['Password']," ",$this->getSemilla();
+            if ($usuario->getPassword() == $password) {
                 $_SESSION['usuarioWeb'] = array(
                     'Id' => $usuario->getPrimaryKeyValue(),
                     'nombre' => $usuario->getRazonSocial(),
@@ -190,7 +193,7 @@ class ZonaPrivadaController extends ControllerProject {
                 );
                 $this->values['login']['error'] = 0;
                 // Actualizar el número de logins
-                $usuario->queryUpdate(array("NumberVisits" => $usuario->NumberVisits() + 1, "DateTimeLastVisit" => time()), "Id='{$usuario->getPrimaryKeyValue()}'");                
+                $usuario->queryUpdate(array("NumberVisits" => $usuario->getNumberVisits() + 1, "DateTimeLastVisit" => time()), "{$usuario->getPrimaryKeyName()}='{$usuario->getPrimaryKeyValue()}'");
             } else {
                 // Password incorrecta
                 $this->values['login']['error'] = 2;
@@ -237,34 +240,34 @@ class ZonaPrivadaController extends ControllerProject {
                 unset($passw);
                 $usuario = new Clientes();
                 $usuario = $usuario->find("Login", $this->request['campos']['email']['valor']);
-                $usuario->queryUpdate(array("Password"=>md5($nueva . $this->getSemilla())),"Id='{$usuario->getPrimaryKeyValue()}'");
+                $newPassword = md5($nueva . $this->getSemilla());
+                $usuario->queryUpdate(array("Password" => $newPassword), "{$usuario->getPrimaryKeyName()}='{$usuario->getPrimaryKeyValue()}'");
                 $email = $usuario->getEMail();
-
-                $subject = "Nueva contraseña";
                 $mensaje = "<p>Le ha sido generada una contrase&ntilde;a nueva de acceso al sistema.</p>" .
                         "<p>La contrase&ntilde;a nueva es: " . $nueva . "</p>";
+                $asunto = "Nueva contraseña";
 
-                $archivoPlantilla = $_SESSION['theme'] . "/docs/plantillaMailVisitante.htm";
-                if (file_exists($archivoPlantilla)) {
-                    $mailer = new Mail($this->varWeb['Pro']['mail']);
-                    $plantilla = file_get_contents($archivoPlantilla);
-                    $plantilla = str_replace("#TITLE#", $this->varWeb['Pro']['meta']['title'], $plantilla);
-                    $plantilla = str_replace("#DOMINIO#", $this->varWeb['Pro']['globales']['dominio'], $plantilla);
-                    $plantilla = str_replace("#TEXTOLOPD#", $this->varWeb['Pro']['mail']['textoLOPD'], $plantilla);
-                    $plantilla = str_replace("#FECHA#", date('d-m-Y'), $plantilla);
-                    $plantilla = str_replace("#HORA#", date('H:m:i'), $plantilla);
-                    $plantilla = str_replace("#EMPRESA#", $this->varWeb['Pro']['globales']['empresa'], $plantilla);
-                    $plantilla = str_replace("#MAIL#", $this->varWeb['Pro']['globales']['from'], $plantilla);
-                    $plantilla = str_replace("#ASUNTO#", $subject, $plantilla);
-                    $plantilla = str_replace("#MENSAJE#", $mensaje, $plantilla);
+                $plantilla = new CpanPlantillas();
+                $sustituir = array(
+                    'TITLE' => $this->varWeb['Pro']['meta']['title'],
+                    'URLDOCS' => $this->varWeb['Pro']['globales']['dominio'] . "/" . $_SESSION['theme'] . "/docs",
+                    'TEXTOLOPD' => $this->varWeb['Pro']['mail']['textoLOPD'],
+                    'FECHA' => date('d-m-Y'),
+                    'HORA' => date('H:m:i'),
+                    'ASUNTO' => $asunto,
+                    'VISITANTE' => $usuario->getRazonSocial(),
+                    'MAIL' => $email,
+                    'MENSAJE' => $mensaje,
+                );
+                $texto = $plantilla->getPlantilla("", "email", $sustituir);
+                unset($plantilla);
 
-                    $envioOk = $mailer->send(
-                            $email, $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from_name'], $subject, $plantilla, array()
-                    );
+                $mailer = new Mail($this->varWeb['Pro']['mail']);
+                $ok = $mailer->send(
+                        $email, $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from_name'], $asunto, $texto, array()
+                );
+                if ($ok)
                     $this->values['errores'][] = 'exitoRegenerada';
-                } else {
-                    echo "No existe el archivo de plantilla {$archivoPlantilla}";
-                }
             } else {
                 $this->values['campos'] = $this->request['campos'];
             }
@@ -288,7 +291,7 @@ class ZonaPrivadaController extends ControllerProject {
             $ok = false;
         } else {
             $usuario = new Clientes();
-            $usuario = $usuario->find("EMail", $campos['email']['valor']);
+            $usuario = $usuario->find("Login", $campos['email']['valor']);
             if (!$usuario->getPrimaryKeyValue()) {
                 $this->request['campos']['email']['error'] = "errorEmailInexistente";
                 $ok = false;
@@ -353,7 +356,7 @@ class ZonaPrivadaController extends ControllerProject {
                 $ok = $cliente->save();
                 if ($ok) {
                     $_SESSION['usuarioWeb'] = array(
-                        'id' => $cliente->getPrimaryKeyValue(),
+                        'Id' => $cliente->getPrimaryKeyValue(),
                         'nombre' => $cliente->getRazonSocial(),
                         'tipo' => $cliente->getIDTipo()->getPrimaryKeyValue(),
                     );
@@ -517,4 +520,5 @@ class ZonaPrivadaController extends ControllerProject {
     }
 
 }
+
 ?>

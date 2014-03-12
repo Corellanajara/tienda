@@ -186,7 +186,7 @@ class Contenidos {
             $contenido = new GconContenidos($row['Id']);
             $array[] = array(
                 'titulo' => $contenido->getTitulo(),
-                'url' => $contenido->getObjetoUrlAmigable()->getHref(),
+                'url' => $contenido->getHref(),
             );
         }
         unset($contenido);

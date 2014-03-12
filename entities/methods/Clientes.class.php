@@ -70,7 +70,7 @@ class Clientes extends ClientesEntity {
             if ($this->getNombreComercial() == '')
                 $this->setNombreComercial($this->getRazonSocial());
             $this->setIDSucursal($idSucursal);
-            
+
             $this->save();
 
             //CREAR LA DIRECCION DE ENTREGA POR DEFECTO
@@ -475,6 +475,30 @@ class Clientes extends ClientesEntity {
         unset($albaranes);
 
         return $rows;
+    }
+
+    /**
+     * Devuelve un array con objetos de albaranesCab del cliente en curso
+     * 
+     * @param type $idEstado
+     * @return \AlbaranesCab Array de objetos albaranesCab
+     */
+    public function getAlbaranes($idEstado = '') {
+        
+        $filtro = "IDCliente='{$this->IDCliente}'";
+        if ($idEstado != '')
+            $filtro .= " AND IDEstado='{$idEstado}'";
+            
+        $array = array();
+        
+        $albaran = new AlbaranesCab();
+        $rows = $albaran->querySelect("IDAlbaran",$filtro, "Fecha DESC");
+        unset($albaran);
+        foreach ($rows as $row) {
+            $array[] = new AlbaranesCab($row['IDAlbaran']);
+        }
+
+        return $array;
     }
 
 }
