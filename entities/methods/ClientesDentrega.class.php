@@ -10,6 +10,8 @@
  */
 class ClientesDentrega extends ClientesDentregaEntity {
 
+    protected $Publish = '1';
+    
     public function __toString() {
         return $this->getDireccion();
     }

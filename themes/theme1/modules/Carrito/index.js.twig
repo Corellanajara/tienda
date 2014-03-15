@@ -11,58 +11,74 @@
 <script src="{{theme}}/js/jcarousellite.js" type="text/javascript"></script>
 <script src="//use.edgefonts.net/open-sans.js"></script>
 <script>
-    function actualizar(idLinea) {
-        if ($('#unidades'+idLinea).val()<=0) return;
-        
-        var datos = {
-            'IDLinea' : idLinea,
-            'Unidades' : $('#unidades'+idLinea).val()
+$(function(){
+    $('#zonaEnvio').change(function(){
+        updateGastos('20.00');
+    })
+    $('#formaPago').change(function(){
+        updateGastos('25.00');        
+    })
+    $('#metodoEnvio').change(function(){
+        updateGastos('30.00');       
+    })
+});
+
+function updateGastos(gastos) {
+    $('#gastosEnvio').html(gastos);
+}
+
+function actualizar(idLinea) {
+    if ($('#unidades'+idLinea).val()<=0) return;
+
+    var datos = {
+        'IDLinea' : idLinea,
+        'Unidades' : $('#unidades'+idLinea).val()
+    }
+
+    $.ajax({
+        url: appPath + '/lib/carrito.php',
+        dataType: 'html',
+        type: 'post',
+        data: {'parametros': {'accion': 'update', 'datos': datos} },
+        success: function(resultado) {
+            var datos = $.parseJSON(resultado);  
+            if (datos.status === 'error') {
+                $('#mensajes').html(datos.errores);
+                $('#mensajes').dialog('open');
+            } else {
+                $('#importe'+idLinea).html(datos.linea.Importe);
+                $('#total').html(datos.totales.Importe);
+            }
         }
-        
-        $.ajax({
-            url: appPath + '/lib/carrito.php',
-            dataType: 'html',
-            type: 'post',
-            data: {'parametros': {'accion': 'update', 'datos': datos} },
-            success: function(resultado) {
-                var datos = $.parseJSON(resultado);  
-                if (datos.status === 'error') {
-                    $('#mensajes').html(datos.errores);
-                    $('#mensajes').dialog('open');
-                } else {
-                    $('#importe'+idLinea).html(datos.linea.Importe);
+    });        
+}
+
+function eliminar(idLinea) {
+    if (!confirm('{{values.LABELS.deseaEliminarDeLaCestaElProducto}}')) return;
+
+    var datos = {
+        'IDLinea' : idLinea
+    }
+
+    $.ajax({
+        url: appPath + '/lib/carrito.php',
+        dataType: 'html',
+        type: 'post',
+        data: {'parametros': {'accion': 'remove', 'datos': datos} },
+        success: function(resultado) {
+            var datos = $.parseJSON(resultado);  
+            if (datos.status === 'error') {
+                $('#mensajes').html(datos.errores);
+                $('#mensajes').dialog('open');
+            } else {
+                $('#linea'+idLinea).remove();
+                if (datos.totales.Unidades !== null) {
                     $('#total').html(datos.totales.Importe);
-                }
-            }
-        });        
-    }
-    
-    function eliminar(idLinea) {
-        if (!confirm('{{values.LABELS.deseaEliminarDeLaCestaElProducto}}')) return;
-        
-        var datos = {
-            'IDLinea' : idLinea
-        }
-        
-        $.ajax({
-            url: appPath + '/lib/carrito.php',
-            dataType: 'html',
-            type: 'post',
-            data: {'parametros': {'accion': 'remove', 'datos': datos} },
-            success: function(resultado) {
-                var datos = $.parseJSON(resultado);  
-                if (datos.status === 'error') {
-                    $('#mensajes').html(datos.errores);
-                    $('#mensajes').dialog('open');
                 } else {
-                    $('#linea'+idLinea).remove();
-                    if (datos.totales.Unidades !== null) {
-                        $('#total').html(datos.totales.Importe);
-                    } else {
-                        window.location.href = "{{app.path}}/carrito";                        
-                    }
+                    window.location.href = "{{app.path}}/carrito";                        
                 }
             }
-        });         
-    }
+        }
+    });         
+}
 </script>

@@ -10,6 +10,8 @@
  */
 class Clientes extends ClientesEntity {
 
+    protected $Publish = '1';
+
     public function __toString() {
         if ($this->RazonSocial)
             return $this->getRazonSocial();
@@ -90,7 +92,6 @@ class Clientes extends ClientesEntity {
 
         parent::validaLogico();
 
-        $this->Publish = 1;
 
         if ($this->NombreComercial == "") {
             $this->NombreComercial = $this->RazonSocial;
@@ -484,18 +485,38 @@ class Clientes extends ClientesEntity {
      * @return \AlbaranesCab Array de objetos albaranesCab
      */
     public function getAlbaranes($idEstado = '') {
-        
+
         $filtro = "IDCliente='{$this->IDCliente}'";
         if ($idEstado != '')
             $filtro .= " AND IDEstado='{$idEstado}'";
-            
+
         $array = array();
-        
+
         $albaran = new AlbaranesCab();
-        $rows = $albaran->querySelect("IDAlbaran",$filtro, "Fecha DESC");
+        $rows = $albaran->querySelect("IDAlbaran", $filtro, "Fecha DESC");
         unset($albaran);
         foreach ($rows as $row) {
             $array[] = new AlbaranesCab($row['IDAlbaran']);
+        }
+
+        return $array;
+    }
+
+    /**
+     * Devuelve un array de objetos direcciones de entrega
+     * del cliente en curso
+     * 
+     * @return \ClientesDentrega array de objetos Direcciones de entrega
+     */
+    public function getDireccionesEntrega() {
+
+        $direc = new ClientesDentrega();
+        $rows = $direc->cargaCondicion("IDDirec", "IDCliente='{$this->IDCliente}'");
+        unset($direc);
+
+        $array = array();
+        foreach ($rows as $row) {
+            $array[] = new ClientesDentrega($row['IDDirec']);
         }
 
         return $array;

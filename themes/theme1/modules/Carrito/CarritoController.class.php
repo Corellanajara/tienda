@@ -28,6 +28,12 @@ class CarritoController extends ControllerProject {
             $this->values['carrito']['articulosRelacionados'] = $arrayRelacionados;
         }
 
+        $zonasPagoEnvio = new ZonasPagoEnvio();
+        $combinaciones = $zonasPagoEnvio->getCombinaciones('2');
+        $this->values['combinaciones'] = $combinaciones;
+        $this->values['combinacionesJSON'] = json_encode($combinaciones);
+        //print_r($combinaciones);
+        
         return parent::IndexAction();
     }
 

@@ -52,6 +52,7 @@ class ZonasEntity extends EntityComunes {
         array('SourceColumn' => 'IDZona', 'ParentEntity' => 'ClientesDentrega', 'ParentColumn' => 'IDZona'),
         array('SourceColumn' => 'IDZona', 'ParentEntity' => 'RutasReparto', 'ParentColumn' => 'IDZona'),
         array('SourceColumn' => 'IDZona', 'ParentEntity' => 'RutasVentas', 'ParentColumn' => 'IDZona'),
+        array('SourceColumn' => 'IDZona', 'ParentEntity' => 'ZonasPagoEnvio', 'ParentColumn' => 'IDZona'),
     );
 
     /**

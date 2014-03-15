@@ -42,7 +42,6 @@ class ZonaPrivadaController extends ControllerProject {
         $cliente = new Clientes($_SESSION['usuarioWeb']['Id']);
 
         $this->values['cliente'] = $cliente;
-        $this->values['pedidos'] = $cliente->getAlbaranes();
         
         return array(
             'template' => $this->entity . '/misDatos.html.twig',
@@ -71,7 +70,7 @@ class ZonaPrivadaController extends ControllerProject {
                         $cliente->setIDSucursal(1);
                         $cliente->setIDPais(68);
                         $cliente->setIDZona(0);
-                        $cliente->setPublish(1);
+                        $cliente->setLogin($datos['EMail']);
                         $ok = $cliente->create();
                         if (!$ok) {
                             $this->errores[] = "ErrorCrear";
@@ -82,7 +81,7 @@ class ZonaPrivadaController extends ControllerProject {
 
                     if (count($this->errores) == 0) {
                         $_SESSION['usuarioWeb'] = array(
-                            'id' => $cliente->getPrimaryKeyValue(),
+                            'Id' => $cliente->getPrimaryKeyValue(),
                             'nombre' => $cliente->getRazonSocial(),
                         );
                         $template = "Index/index.html.twig";
@@ -441,7 +440,7 @@ class ZonaPrivadaController extends ControllerProject {
      */
     private function enviaCorreoWebMaster(Clientes $cliente) {
 
-        $mailer = new Mail($this->varWeb['Pro']['mail']);
+        $mailer = new Mail($this->varWeb['Pro']['eMailWebMaster']);
 
         $mensaje = "<p>Se ha registro un usuario.</p>";
         $mensaje .= "<br />";
@@ -466,7 +465,7 @@ class ZonaPrivadaController extends ControllerProject {
         $plantilla = str_replace("#MENSAJE#", $mensaje, $plantilla);
 
         $ok = $mailer->send(
-                $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['mail']['from_name'], 'Registro de usuario', $plantilla, array()
+                $this->varWeb['Pro']['mail']['from'], $this->varWeb['Pro']['maeMailWebMasteril']['from'], $this->varWeb['Pro']['mail']['from_name'], 'Registro de usuario', $plantilla, array()
         );
 
         unset($mailer);

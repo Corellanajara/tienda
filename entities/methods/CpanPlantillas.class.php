@@ -11,6 +11,8 @@
  */
 class CpanPlantillas extends CpanPlantillasEntity {
 
+    protected $Publish = '1';
+  
     public function __toString() {
         return $this->getObservations();
     }

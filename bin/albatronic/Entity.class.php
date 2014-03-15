@@ -669,7 +669,7 @@ class Entity {
             }
 
             $query = "SELECT {$this->_primaryKeyName} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$condicion})";
-            $this->_em->query($query);
+            $this->_em->query($query);//echo $query;
             $this->setStatus($this->_em->numRows());
             $rows = $this->_em->fetchResult();
             $this->_em->desConecta();

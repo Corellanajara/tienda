@@ -11,13 +11,10 @@
  */
 class CpanTextos extends CpanTextosEntity {
 
+    protected $Publish = '1';
+    
     public function __toString() {
         return $this->getObservations();
-    }
-
-    public function create() {
-        $this->Publish = 1;
-        return parent::create();
     }
 
     /**

@@ -69,7 +69,7 @@ class FormasPagoEntity extends EntityComunes {
      * @orm:Column(type="integer")
      * @assert:NotBlank(groups="formas_pago")
      */
-    protected $Web = '0';    
+    protected $Uso = '0';    
     /**
      * Nombre de la conexion a la DB
      * @var string
@@ -97,6 +97,7 @@ class FormasPagoEntity extends EntityComunes {
         array('SourceColumn' => 'IDFP', 'ParentEntity' => 'FemitidasCab', 'ParentColumn' => 'IDFP'),
         array('SourceColumn' => 'IDFP', 'ParentEntity' => 'PedidosCab', 'ParentColumn' => 'IDFP'),
         array('SourceColumn' => 'IDFP', 'ParentEntity' => 'FrecibidasCab', 'ParentColumn' => 'IDFP'),
+        array('SourceColumn' => 'IDFP', 'ParentEntity' => 'ZonasPagoEnvio', 'ParentColumn' => 'IDFP'),
     );
 
     /**
@@ -186,14 +187,14 @@ class FormasPagoEntity extends EntityComunes {
         return $this->DescuentoFinanciero;
     }
 
-    public function setWeb($Web) {
-        $this->Web = $Web;
+    public function setUso($Uso) {
+        $this->Uso = trim($Uso);
     }
 
-    public function getWeb() {
-        if (!($this->Web instanceof ValoresSN))
-            $this->Web = new ValoresSN($this->Web);
-        return $this->Web;
+    public function getUso() {
+        if (!($this->Uso instanceof UsoWeb))
+            $this->Uso = new UsoWeb($this->Uso);
+        return $this->Uso;
     }
 }
 

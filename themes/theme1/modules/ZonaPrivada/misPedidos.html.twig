@@ -1,6 +1,7 @@
 {# Mis pedidos #}
 
-{% if values.pedidos|length>0 %}
+{% set pedidos = values.cliente.getAlbaranes() %}
+{% if pedidos|length>0 %}
 <div>
 <table class="cesta">
     <thead>
@@ -14,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for pedido in values.pedidos %}        
+    {% for pedido in pedidos %}        
         <tr>
             <td>{{pedido.NumeroAlbaran}}</td>
             <td>{{pedido.Fecha}}</td>
