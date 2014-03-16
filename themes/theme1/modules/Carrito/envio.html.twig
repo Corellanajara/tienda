@@ -1,28 +1,29 @@
 {# DATOS DE ENVÍO #}
 {% set primeraZona = values.combinaciones|keys|first %}
-{% set primeraFP = values.combinaciones[primeraZona]['formasPago']|keys|first %}
-{% set primeraAgencia = values.combinaciones[primeraZona]['formasPago'][primeraFP]['agencias']|keys|first %}
+{% set primeraFP = values.combinaciones[primeraZona]|keys|first %}
+{% set primeraAgencia = values.combinaciones[primeraZona][primeraFP]|keys|first %}
 <div class="left">
     <h3>{{values.LABELS.datosEnvio}}</h3>
     <fieldset>
         <label for="zonaEnvio">{{values.LABELS.zonaEnvio}}</label>
         <select name="zonaEnvio" id="zonaEnvio">
             {% for keyZona,zona in values.combinaciones %}
-            <option value="{{keyZona}}">{{zona.nombre}}</option>
+            <option value="{{keyZona}}">{{values.zonas[keyZona]}}</option>
             {% endfor %}
-        </select>
+        </select><br/>
         <label for="formaPago">{{values.LABELS.formaPago}}</label>
         <select name="formaPago" id="formaPago">
-            {% for keyFP,formaPago in values.combinaciones[primeraZona].formasPago %}
-            <option value="{{keyFP}}">{{formaPago.nombre}}</option>
+            {% for keyFP,formaPago in values.combinaciones[primeraZona] %}
+            <option value="{{keyFP}}">{{values.formasPago[keyFP]}}</option>
             {% endfor %}
-        </select>        
+        </select> <br/>       
         <label for="metodoEnvio">{{values.LABELS.metodoEnvio}}</label>
         <select name="metodoEnvio" id="metodoEnvio">
-            {% for keyAgencia,agencia in values.combinaciones[primeraZona].formasPago[primeraFP].agencias %}
-            <option value="{{keyAgencia}}">{{agencia.nombre}}</option>
+            {% for keyAgencia,agencia in values.combinaciones[primeraZona][primeraFP] %}
+            <option value="{{keyAgencia}}">{{agencia.agencia}}</option>
             {% endfor %}
         </select>         
     </fieldset>
     <div>{{values.LABELS.gastosEnvio}} <span id="gastosEnvio">{{values.carrito.totales.gastosEnvio|number_format}}</span></div>    
+    <div>{{values.LABELS.plazoEntrega}} <span id="plazoEntrega"></span></div>    
 </div>

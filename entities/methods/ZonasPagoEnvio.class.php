@@ -33,10 +33,10 @@ class ZonasPagoEnvio extends ZonasPagoEnvioEntity {
 
         $array = array();
         foreach ($rows as $row) {
-            $array[$row['IDZona']]['nombre'] = $row['Zona'];
-            $array[$row['IDZona']]['formasPago'][$row['IDFP']]['nombre'] = $row['Descripcion'];
-            $array[$row['IDZona']]['formasPago'][$row['IDFP']]['agencias'][$row['IDAgencia']] = array(
-                'nombre' => $row['Agencia'],
+            $array[$row['IDZona']][$row['IDFP']][$row['IDAgencia']] = array(
+                'zona' => $row['Zona'],
+                'formaPago' => $row['Descripcion'],
+                'agencia' => $row['Agencia'],
                 'plazoEntrega' => $row['PlazoEntrega'],
                 'gastos' => $row['Gastos'],
             );

@@ -11,20 +11,46 @@
 <script src="{{theme}}/js/jcarousellite.js" type="text/javascript"></script>
 <script src="//use.edgefonts.net/open-sans.js"></script>
 <script>
+var combinaciones = {{values.combinacionesJSON|raw}};
+
 $(function(){
     $('#zonaEnvio').change(function(){
-        updateGastos('20.00');
-    })
+        html = "";
+        zona = $('#zonaEnvio').val();
+        fp = "";        
+        $.each(combinaciones[zona],function(key,value){
+            $.each(value,function(k,v){ formaPago = v['formaPago']});
+            html = html + "<option value="+key+">"+formaPago+"</option>";
+        });
+        $('#formaPago option').remove();
+        $('#formaPago').append(html);
+        $('#formaPago').change();
+    });
+    
     $('#formaPago').change(function(){
-        updateGastos('25.00');        
-    })
+        html = "";
+        zona = $('#zonaEnvio').val();
+        fp = $('#formaPago').val();        
+        $.each(combinaciones[zona][fp],function(key,value){
+            html = html + "<option value="+key+">"+value.agencia+"</option>";            
+        });
+        $('#metodoEnvio option').remove();
+        $('#metodoEnvio').append(html);
+        $('#metodoEnvio').change();
+    });
+    
     $('#metodoEnvio').change(function(){
-        updateGastos('30.00');       
-    })
+        zona = $('#zonaEnvio').val();
+        fp = $('#formaPago').val();
+        gastos = combinaciones[zona][fp][$(this).val()]['gastos'];
+        plazoEntrega = combinaciones[zona][fp][$(this).val()]['plazoEntrega'];
+        updateGastos(gastos,plazoEntrega);       
+    });
 });
 
-function updateGastos(gastos) {
+function updateGastos(gastos,plazoEntrega) {
     $('#gastosEnvio').html(gastos);
+    $('#plazoEntrega').html(plazoEntrega);
 }
 
 function actualizar(idLinea) {

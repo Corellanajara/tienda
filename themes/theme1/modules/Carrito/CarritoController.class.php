@@ -32,8 +32,18 @@ class CarritoController extends ControllerProject {
         $combinaciones = $zonasPagoEnvio->getCombinaciones('2');
         $this->values['combinaciones'] = $combinaciones;
         $this->values['combinacionesJSON'] = json_encode($combinaciones);
-        //print_r($combinaciones);
-        
+
+        foreach ($combinaciones as $key=>$combinacion) {
+            $zona = new ZonasTransporte($key);
+            $zonas[$key] = $zona->getZona();
+            foreach ($combinacion as $keyFp=>$formaPago) {
+                $fp = new FormasPago($keyFp);
+                $formasPago[$keyFp] = $fp->getDescripcion();
+            }
+        }
+        $this->values['zonas'] = $zonas;
+        $this->values['formasPago'] = $formasPago;
+
         return parent::IndexAction();
     }
 
