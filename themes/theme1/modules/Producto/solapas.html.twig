@@ -4,12 +4,12 @@
 <div class="salto10"></div>    
 <div id="solapa">
     <ul>
-        <li><a href="#caracteristicas">{{values.LABELS.caracteristicas}}</a></li>
+        <li><a href="#caracteristicas">{{macro.idioma('caracteristicas')}}</a></li>
         {% if values.detalleTecnico %}
-        <li><a href="#detallesTecnicos">{{values.LABELS.detallesTecnicos}}</a></li>
+        <li><a href="#detallesTecnicos">{{macro.idioma('detallesTecnicos')}}</a></li>
         {% endif %}
         {% if values.conComentarios %}
-        <li><a href="#comentarios">{{values.LABELS.comentarios}} {%if values.comentarios|length>0%}({{values.comentarios|length}}){%endif%}</a></li>
+        <li><a href="#comentarios">{{macro.idioma('comentarios')}} {%if values.comentarios|length>0%}({{values.comentarios|length}}){%endif%}</a></li>
         {% endif %}
     </ul>
     <div id="caracteristicas" class="caracteristicas">
@@ -36,7 +36,7 @@
             {{comentario.Comentario}}
         </li>
         {% else %}
-        <span>{{values.LABELS.seElPrimeroEnComentar}}</span>
+        <span>{{macro.idioma('seElPrimeroEnComentar')}}</span>
         {% endfor %}
         
         {% include values.controller ~ '/formularioComentario.html.twig' with {'idArticulo':values.producto.IDArticulo}%}

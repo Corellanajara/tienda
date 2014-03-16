@@ -6,7 +6,7 @@
 <article id="formulario">
 
     {% if values.formContacta.accion == '' %}
-    <h1>{{values.LABELS.escribenos}}</h1>    
+    <h1>{{macro.idioma('escribenos')}}</h1>    
     <form name="formEnvio" id="formEnvio" action="" method="POST">
         <div id="input_oculto">
         <input name="controller" value="{{values.controller}}" />
@@ -49,10 +49,10 @@
         <div id="contenedorEnviar">
             <div class="{% if values.formContacta.campos.leidoPolitica.error %}checkboxError {% else %}checkbox{% endif %}">
                 <input name="campos[leidoPolitica][valor]" type="checkbox" id="checkbox2" {% if values.formContacta.campos.leidoPolitica.valor == 'on' %} CHECKED{% endif %} />
-                <label class="textoCheckbox" for="checkbox2">{{values.LABELS.leidoPolitica}} <a href="{{app.path}}/politica-de-privacidad" rel="iframe-1000-360" class="pirobox" title="{{values.LABELS.politicaPrivacidad}}">{{values.LABELS.politicaPrivacidad}}.</a></label>
+                <label class="textoCheckbox" for="checkbox2">{{macro.idioma('leidoPolitica')}} <a href="{{app.path}}/politica-de-privacidad" rel="iframe-1000-360" class="pirobox" title="{{macro.idioma('politicaPrivacidad')}}">{{macro.idioma('politicaPrivacidad')}}.</a></label>
             </div>
 
-            <input type="submit" class="boton btn_azul right" value="{{values.LABELS.enviar}}">
+            <input type="submit" class="boton btn_azul right" value="{{macro.idioma('enviar')}}">
         </div>
     </form>
     {% else %}

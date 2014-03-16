@@ -2,7 +2,7 @@
 
 {% set categorias = values.widgets.getCategorias %}
 
-<h3 class="formulario">{{values.LABELS.categorias}}</h3>
+<h3 class="formulario">{{macro.idioma('categorias')}}</h3>
 <ul id="accordionCategorias" class="accordion menu">
     {% for categoria in categorias %}
         <li>

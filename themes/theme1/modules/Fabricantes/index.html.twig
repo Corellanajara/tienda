@@ -14,7 +14,7 @@
 
 {% block content %}
     <div class="central">
-        <h2><span>{{fabricante.Titulo}} (hay {{values.articulos.paginacion.totalItems}} artículos)</span></h2>
+        <h2><span>{{fabricante.Titulo}} ({{macro.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macro.idioma('articulos')}})</span></h2>
 
         <article id="infoPrincipal">
             <div id="imagenes" style="float:left;margin-right: 20px;">

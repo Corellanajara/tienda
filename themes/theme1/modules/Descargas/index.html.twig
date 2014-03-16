@@ -28,7 +28,7 @@
 	<!-- ARCHIVOS ADJUNTOS -->
         {% if descarga.documentos | length > 0 %}
 	<section id="adjuntos" class="cajaGris borderTopRojo">
-            <h5>{{values.LABELS.archivos}}</h5>
+            <h5>{{macro.idioma('archivos')}}</h5>
             <ul>
                 {% for documento in descarga.documentos %}
                     <li><a href="{{app.path}}/{{documento.PathName}}" target="_blank" rel="pop-up">{{documento.Title}}</a></li>
@@ -40,7 +40,7 @@
 	<!-- BOTONERA -->
         {% if descarga.nivelJerarquico > 1 %}
 	<article class="botonera">
-            <a href="javascript:history.back()" title="{{values.LABELS.carpetaAnterior}}" class="sprite">{{values.LABELS.carpetaAnterior}}</a>
+            <a href="javascript:history.back()" title="{{macro.idioma('carpetaAnterior')}}" class="sprite">{{macro.idioma('carpetaAnterior')}}</a>
         </article>
         {% endif %}
 </section>   

@@ -2,7 +2,7 @@
 
 {% set marcas = values.widgets.getMarcas(2) %}
 
-<h3 class="formulario">{{values.LABELS.todasLasMarcas}}</h3>
+<h3 class="formulario">{{macro.idioma('todasLasMarcas')}}</h3>
 <div class="cajetin">
     <select name="marca" id="marca" onchange="document.location.href=$(this).val();">
     {% for marca in marcas %}

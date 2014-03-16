@@ -14,7 +14,7 @@
             <span class="precios">
                 {%if producto.PvpAnterior > 0 %}<span class="precioAnterior">{{ macro.moneda(producto.PvpAnterior) }}</span>{%endif%}
                 <span class="precioFinal">{{ macro.moneda(producto.PrecioVentaConImpuestos) }}</span>
-                <a href="{{producto.Href.url}}" class="saberMas" title="{{values.LABELS.saberMas}}"></a>
+                <a href="{{producto.Href.url}}" class="saberMas" title="{{macro.idioma('saberMas')}}"></a>
             </span>
         </div>
     </article> 
@@ -24,9 +24,9 @@
         
         {% set paginacion = values.productos.paginacion %}
         <ul>
-            <li><a class="boton botonGris" href="{{app.path}}{{urlAmigable}}/mis-productos/1" title="{{values.LABELS.primero}}">&laquo;</a></li>            
+            <li><a class="boton botonGris" href="{{app.path}}{{urlAmigable}}/mis-productos/1" title="{{macro.idioma('primero')}}">&laquo;</a></li>            
             {% if paginacion.pagina > 1 %}
-            <li><a class="boton botonGris" href="{{appPath}}{{urlAmigable}}/mis-productos/{{paginacion.pagina-1}}" title="{{values.LABELS.anterior}}"><</a></li>             
+            <li><a class="boton botonGris" href="{{appPath}}{{urlAmigable}}/mis-productos/{{paginacion.pagina-1}}" title="{{macro.idioma('anterior')}}"><</a></li>             
             {% endif %}
             
             {% for page in paginacion.pagina-2..paginacion.pagina+2 %}
@@ -38,9 +38,9 @@
             {% endfor %}
             
             {% if paginacion.pagina < paginacion.totalPaginas %}
-            <li><a class="boton botonGris" href="{{appPath}}{{urlAmigable}}/mis-productos/{{paginacion.pagina+1}}" title="{{values.LABELS.siguiente}}">></a></li>
+            <li><a class="boton botonGris" href="{{appPath}}{{urlAmigable}}/mis-productos/{{paginacion.pagina+1}}" title="{{macro.idioma('siguiente')}}">></a></li>
             {% endif %}            
-            <li><a class="boton botonGris" href="{{app.path}}{{urlAmigable}}/mis-productos/{{paginacion.totalPaginas}}" title="{{values.LABELS.ultimo}}">&raquo;</a></li>
+            <li><a class="boton botonGris" href="{{app.path}}{{urlAmigable}}/mis-productos/{{paginacion.totalPaginas}}" title="{{macro.idioma('ultimo')}}">&raquo;</a></li>
         </ul> 
         
         {% include '_global/share.html.twig' %}

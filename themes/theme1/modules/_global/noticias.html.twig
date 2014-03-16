@@ -1,5 +1,5 @@
 <section id="noticias">
-    <span class="superTitular">{{values.LABELS.noticias}}</span>
+    <span class="superTitular">{{macro.idioma('noticias')}}</span>
     {% for noticia in values.noticia.rows %}
     <article>
         <h3 class="tituloNoticia">{{macro.link(noticia.Titulo,none,noticia.IdSeccion.Href.url,noticia.IDSeccion.Href.targetBlank)}}</h3>

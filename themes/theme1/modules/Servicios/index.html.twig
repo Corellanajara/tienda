@@ -9,7 +9,7 @@
 <section class="contenedorGrande">
     {% include '_global/ruta.html.twig' %}
     {% if values.servicios | length > 0 %}
-        <h1>{{values.LABELS.servicios}}</h1>
+        <h1>{{macro.idioma('servicios')}}</h1>
         
         <section class="noticias">
             {% for servicio in values.servicios %}
@@ -26,7 +26,7 @@
                     <div class="resumen">{{servicio.ResumenBreve}}</div>
                     <article class="botonera">
                         {#<span class="fecha"><span class="sprite"></span>{{servicio.PublishedAt|date("d/m/Y")}}</span>#}
-                        <a href="{{appPath}}{{servicio.UrlFriendly}}" title="{{values.LABELS.saberMas}}" class="saberMas right">{{values.LABELS.saberMas}}
+                        <a href="{{appPath}}{{servicio.UrlFriendly}}" title="{{macro.idioma('saberMas'}}" class="saberMas right">{{macro.idioma('saberMas')}}
                             <span class="sprite"></span>
                         </a>
                     </article>
@@ -38,7 +38,7 @@
         <!-- PAGINACION -->
         {% include '_global/paginacion.html.twig' %}
     {% else %}
-        <h1>{{values.LABELS.serviciosNoHay}}</h1>
+        <h1>{{macro.idioma('serviciosNoHay')}}</h1>
     {% endif %}
 </section>   
 {% endblock %}

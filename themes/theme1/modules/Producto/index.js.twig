@@ -23,7 +23,7 @@ $(function() {
      var comentario = $.trim($('#comentario').val());
 
      if ( nombre === '' || !isEmail(email) || comentario === '') {
-         alert('{{values.LABELS.debeIndicarTodosLosDatos}}'+nombre+email+comentario);
+         alert('{{macro.idioma('debeIndicarTodosLosDatos')}}'+nombre+email+comentario);
          return;
      } else {
          $(this).hide("slow");
@@ -54,12 +54,12 @@ function addCart(IDArticulo,unidades) {
                 $('#mensajes').dialog('open');
             } else {
                 html = "<ul>";
-                html = html + "<li><span>{{values.LABELS.productos}}</span><span>"+datos.totales.Unidades+"</span></li>";
-                html = html + "<li><span>{{values.LABELS.importe}}</span><span>"+datos.totales.Importe+"</span></li>";
+                html = html + "<li><span>{{macro.idioma('productos')}}</span><span>"+datos.totales.Unidades+"</span></li>";
+                html = html + "<li><span>{{macro.idioma('importe')}}</span><span>"+datos.totales.Importe+"</span></li>";
                 html = html + "</ul>";
 
                 $('#cajaCarrito').html(html);           
-                $('#verCarrito').html("<a href='{{appPath}}/carrito'>{{values.LABELS.verCarrito}}</a>");
+                $('#verCarrito').html("<a href='{{appPath}}/carrito'>{{macro.idioma('verCarrito')}}</a>");
             }
         }
     });

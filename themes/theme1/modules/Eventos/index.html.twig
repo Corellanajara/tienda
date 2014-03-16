@@ -9,7 +9,7 @@
 <section class="contenedorGrande">
     {% include '_global/ruta.html.twig' %}
     {% if values.eventos | length > 0 %}
-        <h1>{{values.LABELS.eventos}}</h1>
+        <h1>{{macro.idioma('eventos')}}</h1>
         
         <section class="noticias">
             {% for evento in values.eventos %}
@@ -26,7 +26,7 @@
                     <div class="resumen">{{evento.resumen}}</div>
                     <article class="botonera">
                         <span class="fecha"><span class="sprite"></span>{{evento.fecha|date("d/m/Y")}}</span>
-                        <a href="{{evento.url.url}}" {%if evento.url.targetBlank%} target="_blank" {%endif%} title="{{values.LABELS.saberMas}}" class="saberMas right">{{values.LABELS.saberMas}}
+                        <a href="{{evento.url.url}}" {%if evento.url.targetBlank%} target="_blank" {%endif%} title="{{macro.idioma('saberMas')}}" class="saberMas right">{{macro.idioma('saberMas')}}
                             <span class="sprite"></span>
                         </a>
                     </article>
@@ -38,7 +38,7 @@
         <!-- PAGINACION -->
         {# include '_global/paginacion.html.twig' #}
     {% else %}
-        <h1>{{values.LABELS.eventosNoHay}}</h1>
+        <h1>{{macro.idioma('eventosNoHay')}}</h1>
     {% endif %}
 </section>   
 {% endblock %}

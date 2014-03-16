@@ -1,19 +1,18 @@
 {% set nThumbnail = values.contenidoDesarrollado.galeriaFotos.bloqueThumbnail|length %}
 
 {% if nThumbnail > 0 %}
-<h6 class="baseColor bold">{{values.LABELS.galeriaFotos}}</h6>   
+<h6 class="baseColor bold">{{macro.idioma('galeriaFotos')}}</h6>   
 <section class="cajaGris borderTopNegro">
-        <ul class="galeria">
-            {% for key,galeria in values.contenidoDesarrollado.galeriaFotos.bloqueThumbnail %}
-                <li>
-                    <a href="{{app.path}}/{{theme}}/{{galeria.PathName}}" rel="gallery" class="pirobox_gall{{key}}" title="{{galeria.Title}}"><img src="{{app.path}}/{{theme}}/{{galeria.PathNameThumbnail}}" alt="{{galeria.Title}}" title="{{galeria.Title}}" /></a>
-                </li>
-            {% endfor %} 
-        </ul>
+    <ul class="galeria">
+        {% for key,galeria in values.contenidoDesarrollado.galeriaFotos.bloqueThumbnail %}
+            <li>
+                <a href="{{app.path}}/{{theme}}/{{galeria.PathName}}" rel="gallery" class="pirobox_gall{{key}}" title="{{galeria.Title}}"><img src="{{app.path}}/{{theme}}/{{galeria.PathNameThumbnail}}" alt="{{galeria.Title}}" title="{{galeria.Title}}" /></a>
+            </li>
+        {% endfor %} 
+    </ul>
 
-        {% for key,galeria in values.contenidoDesarrollado.galeriaFotos.restoImagenes %}
-            <a href="{{app.path}}/{{theme}}/{{galeria.PathName}}" rel="gallery" class="pirobox_gall{{key}}" title="{{galeria.Title}}"></a>
-        {% endfor %}
-
+    {% for key,galeria in values.contenidoDesarrollado.galeriaFotos.restoImagenes %}
+        <a href="{{app.path}}/{{theme}}/{{galeria.PathName}}" rel="gallery" class="pirobox_gall{{key}}" title="{{galeria.Title}}"></a>
+    {% endfor %}
 </section>
 {% endif %}

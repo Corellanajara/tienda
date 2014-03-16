@@ -25,7 +25,7 @@
                     <div class="resumen">{{contenido.Resumen}}</div>
                     <article class="botonera">
                         <span class="fecha"><span class="sprite"></span>{{contenido.PublishedAt|date("d/m/Y")}}</span>
-                        <a href="{{appPath}}{{contenido.UrlFriendly}}" title="{{values.LABELS.saberMas}}" class="saberMas right">{{values.LABELS.saberMas}}
+                        <a href="{{appPath}}{{contenido.UrlFriendly}}" title="{{macro.idioma('saberMas')}}" class="saberMas right">{{macro.idioma('saberMas')}}
                             <span class="sprite"></span>
                         </a>
                     </article>

@@ -3,27 +3,27 @@
 {% set primeraFP = values.combinaciones[primeraZona]|keys|first %}
 {% set primeraAgencia = values.combinaciones[primeraZona][primeraFP]|keys|first %}
 <div class="left">
-    <h3>{{values.LABELS.datosEnvio}}</h3>
+    <h3>{{macro.idioma('datosEnvio')}}</h3>
     <fieldset>
-        <label for="zonaEnvio">{{values.LABELS.zonaEnvio}}</label>
+        <label for="zonaEnvio">{{macro.idioma('zonaEnvio')}}</label>
         <select name="zonaEnvio" id="zonaEnvio">
             {% for keyZona,zona in values.combinaciones %}
             <option value="{{keyZona}}">{{values.zonas[keyZona]}}</option>
             {% endfor %}
         </select><br/>
-        <label for="formaPago">{{values.LABELS.formaPago}}</label>
+        <label for="formaPago">{{macro.idioma('formaPago')}}</label>
         <select name="formaPago" id="formaPago">
             {% for keyFP,formaPago in values.combinaciones[primeraZona] %}
             <option value="{{keyFP}}">{{values.formasPago[keyFP]}}</option>
             {% endfor %}
         </select> <br/>       
-        <label for="metodoEnvio">{{values.LABELS.metodoEnvio}}</label>
+        <label for="metodoEnvio">{{macro.idioma('metodoEnvio')}}</label>
         <select name="metodoEnvio" id="metodoEnvio">
             {% for keyAgencia,agencia in values.combinaciones[primeraZona][primeraFP] %}
             <option value="{{keyAgencia}}">{{agencia.agencia}}</option>
             {% endfor %}
         </select>         
     </fieldset>
-    <div>{{values.LABELS.gastosEnvio}} <span id="gastosEnvio">{{values.carrito.totales.gastosEnvio|number_format}}</span></div>    
-    <div>{{values.LABELS.plazoEntrega}} <span id="plazoEntrega"></span></div>    
+    <div>{{macro.idioma('gastosEnvio')}} <span id="gastosEnvio">{{values.carrito.totales.gastosEnvio|number_format}}</span></div>    
+    <div>{{macro.idioma('plazoEntrega')}} <span id="plazoEntrega"></span></div>    
 </div>

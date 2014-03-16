@@ -13,8 +13,8 @@
 {% block content %}
 <section class="contenedorGrandeCentral">
     <article class="colIzqda">
-        <h1>{{values.LABELS.accesoPrivado}}</h1>
-        <p>{{values.LABELS.accesoPrivadoTexto}}</p>
+        <h1>{{macro.idioma('accesoPrivado')}}</h1>
+        <p>{{macro.idioma('accesoPrivadoTexto')}}</p>
                                  
         <form name="formLogin" id="formLogin" method="POST" action="">
             <div id="input_oculto">
@@ -23,24 +23,24 @@
             </div>
 
             <article>
-                <!-- <label>{{values.LABELS.eMail}}</label> -->
+                <!-- <label>{{macro.idioma('eMail')}}</label> -->
                 <input autocomplete="off" type="text" name="login[Email]" id="login_Email" value="{{values.login.Email}}" {%if values.login.error == '1'%}class="celdaError"{%else%}class="celda"{% endif %} placeholder="Usuario" />
             </article>
 
             <article>
-                <!-- <label>{{values.LABELS.contrasena}}</label> -->
+                <!-- <label>{{macro.idioma('contrasena')}}</label> -->
                 <input autocomplete="off" type="password" name="login[Password]" {%if values.login.error == '2'%}class="celdaError"{%else%}class="celda"{%endif%} placeholder="Contraseña" />
             </article>
 
             <article id="contenedorEnviar">
-                <a href="{{app.path}}/olvido" class="olvido">{{values.LABELS.olvideMiContrasena}}</a>
-                <input type="submit" value="{{values.LABELS.enviar}}" data-type="submit" onclick="$('#formLogin').submit();" title="{{values.LABELS.enviar}}" class="boton btn_azul right" />
+                <a href="{{app.path}}/olvido" class="olvido">{{macro.idioma('olvideMiContrasena')}}</a>
+                <input type="submit" value="{{macro.idioma('enviar')}}" data-type="submit" onclick="$('#formLogin').submit();" title="{{macro.idioma('enviar')}}" class="boton btn_azul right" />
             </article>
         </form>
     </article>     
     <article class="colDrcha">
-        <h1>{{values.LABELS.accesoNuevo}}</h1>
-        <p><a href="{{app.path}}/registro">{{values.LABELS.accesoNuevoTexto}}</a></p>
+        <h1>{{macro.idioma('accesoNuevo')}}</h1>
+        <p><a href="{{app.path}}/registro">{{macro.idioma('accesoNuevoTexto')}}</a></p>
     </article>     
 </section>
 {% endblock %}

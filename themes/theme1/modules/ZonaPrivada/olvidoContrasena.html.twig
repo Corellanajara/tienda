@@ -3,9 +3,9 @@
 {% block content %}
 <section class="contenedorGrandeCentral">
     <article class="colIzqda">
-    <h1>{{values.LABELS.olvidoContraseña}}</h1>
+    <h1>{{macro.idioma('olvidoContraseña')}}</h1>
     {% if values.errores | length == 0 %}    
-        <p>{{values.LABELS.textoOlvido}}</p>
+        <p>{{macro.idioma('textoOlvido')}}</p>
 
         <article class="colDrcha">    	                                
                 {% include 'ZonaPrivada/formularioOlvido.html.twig' %}

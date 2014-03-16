@@ -2,10 +2,10 @@
 <table class="cesta">
     <thead>
         <tr>
-            <th colspan="2">{{values.LABELS.articulo}}</th>
-            <th>{{values.LABELS.cantidad}}</th>
-            <th>{{values.LABELS.precio}}</th>
-            <th>{{values.LABELS.importe}}</th>
+            <th colspan="2">{{macro.idioma('articulo')}}</th>
+            <th>{{macro.idioma('cantidad')}}</th>
+            <th>{{macro.idioma('precio')}}</th>
+            <th>{{macro.idioma('importe')}}</th>
         </tr>
     </thead>
     <tbody>
@@ -16,8 +16,8 @@
             <td>{{linea.Descripcion}}</td>
             <td>
                 <input class="unidades_lineasCarrito" type="text" id="unidades{{linea.Id}}" value="{{linea.Unidades|number_format}}"/> {{linea.UnidadMedida}}<br/>
-                <span class="btn_lineasCarrito" onclick="actualizar({{linea.Id}});">{{values.LABELS.actualizar}}</span>
-                <span class="btn_lineasCarrito" onclick="eliminar({{linea.Id}});">{{values.LABELS.eliminar}}</span>
+                <span class="btn_lineasCarrito" onclick="actualizar({{linea.Id}});">{{macro.idioma('actualizar')}}</span>
+                <span class="btn_lineasCarrito" onclick="eliminar({{linea.Id}});">{{macro.idioma('eliminar')}}</span>
             </td>
             <td>{{linea.Precio|number_format}}</td>
             <td id="importe{{linea.Id}}">{{linea.Importe|number_format}}</td>

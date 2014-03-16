@@ -2,18 +2,18 @@
 
 <h3 id="verCarrito" class="formulario">
 {%if values.carrito.totales.Unidades%}
-    <a href="{{appPath}}/carrito">{{values.LABELS.verCarrito}}</a>
+    <a href="{{appPath}}/carrito">{{macro.idioma('verCarrito')}}</a>
 {%else%}
-    {{values.LABELS.carrito}}
+    {{macro.idioma('carrito')}}
 {%endif%}
 </h3>
 <div id="cajaCarrito" class="cajetin">
 {%if values.carrito.totales.Unidades%}
     <ul>
-        <li><span>{{values.LABELS.productos}}</span><span id="carritoUnidades">{{values.carrito.totales.Unidades}}</span></li>
-        <li><span>{{values.LABELS.importe}}</span><span id="carritoImporte">{{values.carrito.totales.Importe}}</span></li>
+        <li><span>{{macro.idioma('productos')}}</span><span id="carritoUnidades">{{values.carrito.totales.Unidades}}</span></li>
+        <li><span>{{macro.idioma('importe')}}</span><span id="carritoImporte">{{values.carrito.totales.Importe}}</span></li>
     </ul>
 {%else%}
-    <span>{{values.LABELS.carroVacio}}</span>
+    <span>{{macro.idioma('carroVacio')}}</span>
 {%endif%}    
 </div>

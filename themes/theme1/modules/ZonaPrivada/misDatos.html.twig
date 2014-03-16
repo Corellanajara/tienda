@@ -3,14 +3,14 @@
 
 {% block content %}
 <section class="central">
-    <h2 class="superTitular rojo">{{values.LABELS.miCuenta}}</h2>
+    <h2 class="superTitular rojo">{{macro.idioma('miCuenta')}}</h2>
     {% include 'ZonaPrivada/mensajes.html.twig' %} {# ESTOS SON LOS MENSAJES DE RESPUESTA DEL FORMULARIO #}                                 
     <div id="solapas">
         <ul>
-            <li><a href="#misDatos">{{values.LABELS.misDatos}}</a></li>
-            <li><a href="#misDirecciones">{{values.LABELS.misDirecciones}}</a></li>
-            <li><a href="#pedidos">{{values.LABELS.pedidos}}</a></li>
-            <li><a href="#boletiones">{{values.LABELS.boletines}}</a></li>
+            <li><a href="#misDatos">{{macro.idioma('misDatos')}}</a></li>
+            <li><a href="#misDirecciones">{{macro.idioma('misDirecciones')}}</a></li>
+            <li><a href="#pedidos">{{macro.idioma('pedidos')}}</a></li>
+            <li><a href="#boletiones">{{macro.idioma('boletines')}}</a></li>
         </ul>
         <div id="misDatos" class="caracteristicas">
             {% include 'ZonaPrivada/formularioRegistro.html.twig' %} {# ESTE ES EL FORMULARIO DE REGISTRO DE USUARIO #} 

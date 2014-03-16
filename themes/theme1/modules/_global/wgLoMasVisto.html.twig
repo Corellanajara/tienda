@@ -2,7 +2,7 @@
 
 {% set articulos = values.widgets.getArticulosMasVistos(5) %}
 
-<h3 class="formulario">{{values.LABELS.loMasVisto}}</h3>
+<h3 class="formulario">{{macro.idioma('loMasVisto')}}</h3>
 <div class="cajetin">
     <ul>
     {% for articulo in articulos %}

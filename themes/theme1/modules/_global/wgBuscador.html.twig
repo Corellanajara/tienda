@@ -1,6 +1,6 @@
 {# BUSCADOR #}
 
-<h3 class="formulario">{{values.LABELS.busqueda}}</h3>
+<h3 class="formulario">{{macro.idioma('busqueda')}}</h3>
 <div class="cajetin">
     <form name="buscador" id="buscador" method="POST" action="">
         <div id="input_oculto">
@@ -10,8 +10,8 @@
         <input name="textoBusqueda" id="textoBusqueda" value="Texto a buscar" type="text" class="buscador"
                onblur="if ($(this).val() === '') $(this).val('Texto a buscar');"
                onfocus="$(this).val('');"/>
-        <a href="#" onclick="if ($('#textoBusqueda').val() !== 'Texto a buscar') $('#buscador').submit(); else return false;" title="{{values.LABELS.buscar}}" class="buscador">
-            <span class="buscador sprite"></span>
+        <a href="#" onclick="if ($('#textoBusqueda').val() !== '{{macro.idioma('textoABuscar')}}') $('#buscador').submit(); else return false;" title="{{macro.idioma('buscar')}}" class="buscador">
+        <span class="buscador sprite"></span>
         </a>
     </form>
 </div>

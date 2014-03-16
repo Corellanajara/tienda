@@ -26,23 +26,23 @@
                 <input name="action" value="remove"/>
                 <input name="idArticulo" value="{{articulo.articulo.IDArticulo}}"/>
                 </div>        
-                <input type="submit" class="boton btn_azul left" value="{{values.LABELS.removeFavorito}}"/>           
+                <input type="submit" class="boton btn_azul left" value="{{macro.idioma('removeFavorito')}}"/>           
             </form>
             <input type="checkbox" class="marcarFavorito" id="check{{articulo.articulo.IDArticulo}}" onchange="check('{{articulo.articulo.IDArticulo}}');" {%if articulo.Checked=='1' %}checked{%endif%}/>
         </div>        
         <article class="botonera">
-            <a href="{{appPath}}{{articulo.articulo.UrlFriendly}}" title="{{values.LABELS.masInfo}}" class="saberMas">{{values.LABELS.saberMas}}
+            <a href="{{appPath}}{{articulo.articulo.UrlFriendly}}" title="{{macro.idioma('masInfo')}}" class="saberMas">{{macro.idioma('saberMas')}}
                 <span class="sprite"></span>
             </a>
         </article>
     </div>
 </article>
 {% else %}
-<p>Aún no ha añadido ningún artículo a favoritos</p>
+<p>{{macro.idioma('noHayFavoritos')}}</p>
 {% endfor %}
 
 {% if values.favoritos|length > 0%}
-    <input type="button" id="ponerTodos" class="boton btn_azul left" value="{{values.LABELS.ponerTodos}}"/>
-    <input type="button" id="quitarTodos" class="boton btn_azul left" value="{{values.LABELS.quitarTodos}}"/>
-    <input type="button" id="alCarrito" class="boton btn_azul left" value="{{values.LABELS.alCarrito}}"/>
+    <input type="button" id="ponerTodos" class="boton btn_azul left" value="{{macro.idioma('ponerTodos')}}"/>
+    <input type="button" id="quitarTodos" class="boton btn_azul left" value="{{macro.idioma('quitarTodos')}}"/>
+    <input type="button" id="alCarrito" class="boton btn_azul left" value="{{macro.idioma('alCarrito')}}"/>
 {% endif %}

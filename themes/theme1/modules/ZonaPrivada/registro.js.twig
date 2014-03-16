@@ -144,9 +144,9 @@ function validaCrear() {
     
     var html = '';
     
-    if (!$('#leidoPolitica').is(':checked')) html = html + "<p>Debe acepta la política de privacidad</p>";
-    if ($('#email').val() === '') html = html + "<p>Debe indicar una cuenta de email</p>";
-    if ($('#password').val() === '') html = html + "<p>Debe indicar la contraseña</p>";
+    if (!$('#leidoPolitica').is(':checked')) html = html + "<p>{{macro.idioma('politicaPrivacidadRequerido')}}</p>";
+    if ($('#email').val() === '') html = html + "<p>{{macro.idioma('emailRequerido')}}<</p>";
+    if ($('#password').val() === '') html = html + "<p>{{macro.idioma('contraseñaRequerido')}}</p>";
     
     $('#divDialogo').html(html);
     
@@ -157,7 +157,7 @@ function validaGuardar() {
     
     var html = '';
 
-    if (!$('#leidoPolitica').is(':checked')) html = html + "<p>Debe acepta la política de privacidad</p>";
+    if (!$('#leidoPolitica').is(':checked')) html = html + "<p>{{macro.idioma('politicaPrivacidadRequerido')}}</p>";
     
     $('#divDialogo').html(html);
     

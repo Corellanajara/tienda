@@ -96,7 +96,7 @@ function actualizar(idLinea) {
  * @returns void
  */
 function eliminar(idLinea) {
-    if (!confirm('{{values.LABELS.deseaEliminarDeLaCestaElProducto}}')) return;
+    if (!confirm('{{macro.idioma('deseaEliminarDeLaCestaElProducto')}}')) return;
 
     var datos = {
         'IDLinea' : idLinea

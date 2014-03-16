@@ -274,6 +274,8 @@ $twig->addGlobal('appPath', $app['path']);
 $twig->addGlobal('theme', $app['theme']);
 $twig->addGlobal('language', $_SESSION['idiomas']['disponibles'][$_SESSION['idiomas']['actual']]['codigo']);
 $twig->addGlobal('urlAmigable', $row['UrlFriendly']);
+$twig->addGlobal('LABELS', $result['values']['LABELS']);
+unset($result['values']['LABELS']);
 $twig->loadTemplate($result['template'])
         ->display(array(
             'layout' => $_SESSION['layout'],

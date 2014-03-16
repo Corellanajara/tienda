@@ -13,11 +13,11 @@
     <div class="central">
         <section id="noticias">
             {% set articulos = values.widgets.getArticulosZona(values.controller,1) %}
-            <h2><span>{{values.LABELS.productos}} </span>{{values.LABELS.destacados}}</h2> 
+            <h2><span>{{macro.idioma('productos')}} </span>{{macro.idioma('destacados')}}</h2> 
             {% include '_global/listadoArticulos.html.twig' with {'articulos':articulos} %}
        
             {% set articulos = values.widgets.getArticulosZona(values.controller,2) %}            
-            <h2><span>{{values.LABELS.productos}} </span>{{values.LABELS.novedad}}</h2>            
+            <h2><span>{{macro.idioma('productos')}} </span>{{macro.idioma('novedad')}}</h2>            
             {% include '_global/listadoArticulos.html.twig' with {'articulos':articulos} %}
         </section>
     </div>

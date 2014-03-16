@@ -5,11 +5,11 @@
 <table class="cesta">
     <thead>
         <tr>
-            <th>{{values.LABELS.nombre}}</th>
-            <th>{{values.LABELS.direccion}}</th>
-            <th>{{values.LABELS.poblacion}}</th>
-            <th>{{values.LABELS.provincia}}</th>
-            <th>{{values.LABELS.codigoPostal}}</th>            
+            <th>{{macro.idioma('nombre')}}</th>
+            <th>{{macro.idioma('direccion')}}</th>
+            <th>{{macro.idioma('poblacion')}}</th>
+            <th>{{macro.idioma('provincia')}}</th>
+            <th>{{macro.idioma('codigoPostal')}}</th>            
             <th>&nbsp;</th>
         </tr>
     </thead>
@@ -21,12 +21,12 @@
             <td>{{direccion.IDPoblacion}}</td>
             <td>{{direccion.IDProvincia}}</td>
             <td>{{direccion.CodigoPostal}}</td>            
-            <td><a href="">{{values.LABELS.editar}}</a></td>
+            <td><a href="">{{macro.idioma('editar')}}</a></td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 </div>
 {% else %}
-<p>Aún no tienes direcciones</p>
+<p>{{macro.idioma('sinDirecciones')}}</p>
 {% endif %}

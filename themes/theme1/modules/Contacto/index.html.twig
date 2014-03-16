@@ -10,7 +10,7 @@
     {# include 'Contacto/mensajes.html.twig' #}
 
 	<section id="localizacion">
-            <h2><span>{{values.LABELS.contacta}}</span> {{values.LABELS.conNosotros}}</h2>
+            <h2><span>{{macro.idioma('contacta')}}</span> {{macro.idioma('conNosotros')}}</h2>
             <ul>
                 {% set contacto = values.datosContacto %}
                 <li class="spriteDireccion">{{contacto.direccion}}<br />{{contacto.codigoPostal}} - {{contacto.poblacion}} ({{contacto.provincia}})</li>
@@ -18,10 +18,10 @@
                 <li><span class="spriteFax"></span>{{contacto.telefono2}}</li>
                 <li><span class="spriteEmail"></span>{{contacto.emailInfo}}</li>
                 <li id="facebookContacto">
-                    <a href="#" title="{{values.LABELS.facebook}}"></a>
+                    <a href="#" title="{{macro.idioma('facebook')}}"></a>
                 </li>
                 <li id="twitterContacto">
-                    <a href="#" title="{{values.LABELS.twitter}}"></a>
+                    <a href="#" title="{{macro.idioma('twitter')}}"></a>
                 </li>
             </ul>
 	</section>        

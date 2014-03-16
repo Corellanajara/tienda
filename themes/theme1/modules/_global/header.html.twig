@@ -1,7 +1,7 @@
 {# PARA MOSTRAR LOS LOGOS DE FORMA ALEATORIA #}
 
 {% set logos = {'0':'asociacion-autonoma-instaladores-electricos-telecomunicaciones-granada.png','1':'asociacion-instaladores-granada.png'} %}
-{% set titles = {'0':values.LABELS.asociacionAutonomaInstaladoresElectricosYdeTelecomunicacionesDeGranada,'1':values.LABELS.asociacionInstaladoresGranada} %}
+{% set titles = {'0':macro.idioma('asociacionAutonomaInstaladoresElectricosYdeTelecomunicacionesDeGranada'),'1':macro.idioma('asociacionInstaladoresGranada')} %}
 {% set keyLogo1 = random([0,1]) %}
 {% set keyLogo2 = (keyLogo1 == 1) ? 0: 1 %}
 
@@ -23,10 +23,10 @@
             <article id="accesoIdentificado">
                 {% if user.Id > 0 %}
                     <span>{{user.nombre}}</span><br/>
-                    <a href="{{app.path}}/salir">{{values.LABELS.cerrarSesion}}</a>
+                    <a href="{{app.path}}/salir">{{macro.idioma('cerrarSesion')}}</a>
                 {% elseif values.controller != 'ZonaPrivada' %}
                     <span class="sprite"></span>
-                    <a href="{{app.path}}/zona-privada" title="{{values.LABELS.accesoIdentificado}}">{{values.LABELS.accesoIdentificado}}</a>                  
+                    <a href="{{app.path}}/zona-privada" title="{{macro.idioma('accesoIdentificado')}}">{{macro.idioma('accesoIdentificado')}}</a>                  
                 {% endif %}
             </article>
         </article>

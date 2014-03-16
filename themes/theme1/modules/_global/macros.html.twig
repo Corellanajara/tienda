@@ -150,3 +150,11 @@
 {% macro moneda(importe, nDecimales, separadorMiles, separadorDecimales, simbolo)%}
     {{importe | number_format(nDecimales|default(2), separadorDecimales|default('.'), separadorMiles|default(','))}} {{simbolo|default('€')}}
 {% endmacro%}
+
+{% macro idioma(clave)%}
+    {% if LABELS[clave] %}
+        {%spaceless%}{{LABELS[clave]}}{%endspaceless%}
+    {% else %}
+        [{{clave}}]
+    {% endif %}
+{% endmacro%}
