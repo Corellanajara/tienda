@@ -11,6 +11,8 @@
  */
 class BolTipos extends BolTiposEntity {
 
+    protected $Publish = '1';
+
     public function __toString() {
         return $this->Titulo;
     }

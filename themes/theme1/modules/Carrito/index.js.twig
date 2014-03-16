@@ -48,11 +48,22 @@ $(function(){
     });
 });
 
+/**
+ * Refresca los texto de gastos y plazo de entrega
+ * @param string gastos
+ * @param string plazoEntrega
+ * @returns void
+ */
 function updateGastos(gastos,plazoEntrega) {
     $('#gastosEnvio').html(gastos);
     $('#plazoEntrega').html(plazoEntrega);
 }
 
+/**
+ * Actualiza la línea de carrito idLinea
+ * @param integer idLinea
+ * @returns void
+ */
 function actualizar(idLinea) {
     if ($('#unidades'+idLinea).val()<=0) return;
 
@@ -79,6 +90,11 @@ function actualizar(idLinea) {
     });        
 }
 
+/**
+ * Elimina la línea del carrito idLinea
+ * @param integer idLinea
+ * @returns void
+ */
 function eliminar(idLinea) {
     if (!confirm('{{values.LABELS.deseaEliminarDeLaCestaElProducto}}')) return;
 

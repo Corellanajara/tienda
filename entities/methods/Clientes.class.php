@@ -522,6 +522,33 @@ class Clientes extends ClientesEntity {
         return $array;
     }
 
+    /**
+     * Devuelve array de dos dimensiones con los
+     * boletines a los que está suscrito el cliente en curso.
+     * 
+     * @return array
+     */
+    public function getSuscripciones() {
+        
+        $array = array();
+        
+        $tipoBoletines = new BolTipos();
+        $tipos = $tipoBoletines->cargaCondicion("Id,Titulo");
+        foreach ($tipos as $tipo) {
+            $boletin = new BolBoletines();
+            $boletines = $boletin->cargaCondicion("Id,Titulo","IDTipo='{$tipo['Id']}'");
+            foreach ($boletines as $boletin) {
+                $relaciones = new CpanRelaciones();
+                $idRelacion = $relaciones->getIdRelacion("Clientes", $this->IDCliente, "BolBoletines", $boletin['Id']);
+                $array[$tipo['Titulo']][$boletin['Id']] = array(
+                    'titulo' => $boletin['Titulo'],
+                    'suscrito' => $idRelacion,
+                );
+            }
+        }
+        
+        return $array;
+    }
 }
 
 ?>

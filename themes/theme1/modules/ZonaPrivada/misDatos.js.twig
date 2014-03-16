@@ -42,6 +42,20 @@ $(function(){
     });    
 }); 
 
+/**
+ * Crear o borra la relación entre una entidad-id y otra entidad-id
+ */
+function actualizaRelacion(entidadOrigen,idOrigen,entidadDestino,idDestino,onOff) {
+    var parametros = 'entidadOrigen='+entidadOrigen+'&idOrigen='+idOrigen+'&entidadDestino='+entidadDestino+'&idDestino='+idDestino+'&onOff='+onOff;
+
+    $.ajax({
+        url: appPath + '/lib/actualizaRelacion.php',
+        type: 'GET',
+        async: true,
+        data: parametros
+    });    
+}
+
 function validaCrear() {
     
     var html = '';

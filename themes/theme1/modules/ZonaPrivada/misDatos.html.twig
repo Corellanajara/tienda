@@ -10,15 +10,19 @@
             <li><a href="#misDatos">{{values.LABELS.misDatos}}</a></li>
             <li><a href="#misDirecciones">{{values.LABELS.misDirecciones}}</a></li>
             <li><a href="#pedidos">{{values.LABELS.pedidos}}</a></li>
+            <li><a href="#boletiones">{{values.LABELS.boletines}}</a></li>
         </ul>
         <div id="misDatos" class="caracteristicas">
             {% include 'ZonaPrivada/formularioRegistro.html.twig' %} {# ESTE ES EL FORMULARIO DE REGISTRO DE USUARIO #} 
         </div>
-        <div id="misDirecciones" class="caracteristicas">
+        <div id="misDirecciones" class="detallesTecnicos">
             {% include 'ZonaPrivada/misDirecciones.html.twig' %} {# ESTE ES EL FORMULARIO DE DIRECCIONES DE ENTREGA #} 
         </div>
         <div id="pedidos" class="detallesTecnicos">&nbsp;
             {% include 'ZonaPrivada/misPedidos.html.twig' %}
+        </div>    
+        <div id="boletiones" class="detallesTecnicos">&nbsp;
+            {% include 'ZonaPrivada/misBoletines.html.twig' %}
         </div>    
     </div>
  
