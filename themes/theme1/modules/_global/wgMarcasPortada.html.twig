@@ -2,6 +2,7 @@
 
 {% set marcas = values.widgets.getMarcas(1,0,10) %}
 
+{% if marcas|length %}
 <h3 class="formulario">{{macro.idioma('marcas')}}</h3>
 <ul id="accordionMarcas" class="accordion menu">
     {% for marca in marcas %}       
@@ -21,3 +22,4 @@
         </li>           
     {% endfor %}                         
 </ul>
+{% endif %}

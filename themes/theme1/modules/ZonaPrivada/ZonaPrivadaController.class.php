@@ -188,7 +188,7 @@ class ZonaPrivadaController extends ControllerProject {
                 $_SESSION['usuarioWeb'] = array(
                     'Id' => $usuario->getPrimaryKeyValue(),
                     'nombre' => $usuario->getRazonSocial(),
-                        //'IdPerfil' => $usuario->getIdPerfil()->getPrimaryKeyValue(),
+                    'IdPerfil' => $usuario->getIDPerfilWeb()->getPrimaryKeyValue(),
                 );
                 $this->values['login']['error'] = 0;
                 // Actualizar el número de logins

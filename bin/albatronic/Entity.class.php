@@ -543,7 +543,7 @@ class Entity {
                 $filtro .= " AND ( (Privacy='0') OR (Privacy='2') )";
             } else {
                 $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
-                $filtro .= " AND ( (Privacy='2') OR (Privacy='1') OR LOCATE('{$idPerfil}',AccessProfileListWeb) )";
+                $filtro .= " AND ( (Privacy='2') OR ( (Privacy='1') AND LOCATE('{$idPerfil}',AccessProfileListWeb) ) )";
             }
 
             if ($condicion != '')
@@ -665,7 +665,7 @@ class Entity {
                 $filtro .= " AND ( (Privacy='0') OR (Privacy='2') )";
             } else {
                 $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
-                $filtro .= " AND ( (Privacy='2') OR (Privacy='1') OR LOCATE('{$idPerfil}',AccessProfileListWeb) )";
+                $filtro .= " AND ( (Privacy='2') OR ( (Privacy='1') AND LOCATE('{$idPerfil}',AccessProfileListWeb) ) )";
             }
 
             $query = "SELECT {$this->_primaryKeyName} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$condicion})";

@@ -131,7 +131,7 @@ class EntityComunes extends Entity {
      * @orm Column(type="tinyint")
      * @var entities\ValoresPrivacy
      */
-    protected $Privacy = '0';
+    protected $Privacy = '2';
 
     /**
      * @orm Column(type="integer")

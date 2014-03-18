@@ -15,7 +15,6 @@ class CpanRelaciones extends CpanRelacionesEntity {
         return $this->getId();
     }
 
-
     /**
      * Devuelve el id de la eventual relación entre una entidad-idEntidad origen y 
      * otra entidad-idEntidad destino
@@ -33,7 +32,7 @@ class CpanRelaciones extends CpanRelacionesEntity {
 
         return ($row[0]['Id']);
     }
-    
+
     /**
      * Borrar todas las relaciones existentes con la entidad e
      * id de entidad origen
@@ -42,7 +41,7 @@ class CpanRelaciones extends CpanRelacionesEntity {
      * @param integer $idOrigen El id de la entidad origen
      */
     public function eraseRelaciones($entidadOrigen, $idOrigen) {
-        
+
         $em = new EntityManager($this->getConectionName());
         if ($em->getDbLink()) {
             $query = "delete from {$this->getDataBaseName()}.{$this->getTableName()} WHERE EntidadOrigen='{$entidadOrigen}' AND IdEntidadOrigen='{$idOrigen}'";
@@ -51,7 +50,7 @@ class CpanRelaciones extends CpanRelacionesEntity {
         }
         unset($em);
     }
-    
+
     /**
      * Devuelve un array con objetos relacionados
      * 
@@ -61,19 +60,46 @@ class CpanRelaciones extends CpanRelacionesEntity {
      * @return array Array de objetos relacionados
      */
     public function getObjetosRelacionados($entidadOrigen, $idOrigen, $entidadDestino = '') {
-        
+
         $array = array();
-        
+
         if ($entidadDestino != '')
             $filtroDestino = "AND EntidadDestino='{$entidadDestino}'";
 
-        $relaciones = $this->cargaCondicion("EntidadDestino,IdEntidadDestino","EntidadOrigen='{$entidadOrigen}' AND IdEntidadOrigen='{$idOrigen}' {$filtroDestino}","EntidadDestino ASC");
-        
-        foreach ($relaciones as $relacion) 
+        $relaciones = $this->cargaCondicion("EntidadDestino,IdEntidadDestino", "EntidadOrigen='{$entidadOrigen}' AND IdEntidadOrigen='{$idOrigen}' {$filtroDestino}", "EntidadDestino ASC");
+
+        foreach ($relaciones as $relacion)
             $array[] = new $relacion['EntidadDestino']($relacion['IdEntidadDestino']);
-        
+
         return $array;
     }
+
+    /**
+     * Devuelve un array con objetos relacionados
+     * 
+     * @param string $entidadDestino El nombre de la entidad destino
+     * @param integer $idDestino El id de la entidad destino
+     * @param string $entidadOrigen El nombre de la entidad origen. Opcional. Por defecto todas
+     * @return array Array de objetos relacionados
+     */
+    public function getObjetosRelacionadosInverso($entidadDestino, $idDestino, $entidadOrigen = '') {
+
+        $array = array();
+
+        if ($entidadOrigen != '')
+            $filtroOrigen = "AND EntidadOrigen='{$entidadOrigen}'";
+
+        $relaciones = $this->cargaCondicion("EntidadOrigen,IdEntidadOrigen,CreatedAt", "EntidadDestino='{$entidadDestino}' AND IdEntidadDestino='{$idDestino}' {$filtroOrigen}", "EntidadOrigen,SortOrder ASC");
+
+        foreach ($relaciones as $relacion)
+            $array[] = array(
+                'objeto' => new $relacion['EntidadOrigen']($relacion['IdEntidadOrigen']),
+                'fechaRelacion' => $relacion['CreatedAt'],
+            );
+
+        return $array;
+    }
+
 }
 
 ?>

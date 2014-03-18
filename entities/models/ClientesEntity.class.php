@@ -269,6 +269,12 @@ class ClientesEntity extends EntityComunes {
     protected $FechaMandato = '0000-00-00';
 
     /**
+     * @orm:Column(type="integer")
+     * @assert:NotBlank(groups="clientes")
+     */
+    protected $IDPerfilWeb = '1';
+
+    /**
      * Nombre de la conexion a la DB
      * @var string
      */
@@ -719,6 +725,15 @@ class ClientesEntity extends EntityComunes {
         return $ddmmaaaa;
     }
 
+    public function setIDPerfilWeb($IDPerfilWeb) {
+        $this->IDPerfilWeb = $IDPerfilWeb;
+    }
+
+    public function getIDPerfilWeb() {
+        if (!($this->IDPerfilWeb instanceof WebPerfiles))
+            $this->IDPerfilWeb = new WebPerfiles($this->IDPerfilWeb);
+        return $this->IDPerfilWeb;
+    }
 }
 
 // END class clientes

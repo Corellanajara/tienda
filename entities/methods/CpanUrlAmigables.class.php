@@ -11,6 +11,9 @@
  */
 class CpanUrlAmigables extends CpanUrlAmigablesEntity {
 
+    protected $Publish = '1';
+    protected $Privacy = '2';
+    
     public function __toString() {
         return $this->getId();
     }
@@ -36,14 +39,7 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
             }
         }
     }
-    
-    public function create() {
-        
-        $this->setPublish(1);
-        $this->setPrivacy(2); // Ambos (público y privado)        
-        return parent::create();
-    }
-    
+   
     /**
      * LLama al método erase
      *
@@ -189,6 +185,6 @@ class CpanUrlAmigables extends CpanUrlAmigablesEntity {
 
         return $encontrado;
     }
-}
+        }
 
 ?>
