@@ -161,7 +161,7 @@ class ControllerWeb {
         $locations = explode(",", $this->varWeb['Pro']['signatures']['locations']);
         $location = trim($locations[rand(0, count($locations) - 1)]);
 
-        $idioma = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+        $idioma = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
         if (!is_array($this->varWeb['Pro']['signatures']['services'][$idioma]))
             $idioma = 'es';
 
@@ -477,9 +477,9 @@ class ControllerWeb {
         unset($objetoPadre);
 
         foreach ($meta['pro'] as $key => $value) {
-            if ($meta['objetoActual'][$key] != '') {
+            if (isset($meta['objetoActual'][$key])) {
                 $metaInformacion[$key] = $meta['objetoActual'][$key];
-            } elseif ($meta['objetoPadre'][$key] != '') {
+            } elseif (isset($meta['objetoPadre'][$key])) {
                 $metaInformacion[$key] = $meta['objetoPadre'][$key];
             } else {
                 $metaInformacion[$key] = $value;
@@ -625,6 +625,7 @@ class ControllerWeb {
 
         $_SESSION['idiomas']['disponibles'] = $idiomasPermitidos;
         $_SESSION['idiomas']['actual'] = $idIdioma;
+        $_SESSION['LANGUAGE'] = $_SESSION['idiomas']['disponibles'][$idIdioma]['codigo'];
     }
 
 }

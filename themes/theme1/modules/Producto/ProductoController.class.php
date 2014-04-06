@@ -55,7 +55,7 @@ class ProductoController extends ControllerProject {
 
         /* ARTICULOS RELACIONADOS */
         if ($nProductosRelacionados > 0) {
-            $this->values['articulosRelacionados'] = ErpArticulos::getArticulosRelacionados($idProducto, $productosRelacionados);
+            $this->values['articulosRelacionados'] = ErpArticulos::getArticulosRelacionados($idProducto, $nProductosRelacionados);
         }
 
         /* COMENTARIOS WEB DEL ARTICULO */

@@ -11,7 +11,7 @@ class Calendario {
 
     static $mes;
     static $ano;
-    
+
     /**
      * Correspondencia entre el tipo de evento
      * a mostrar en el día del calendario y el controller a lanzar
@@ -143,7 +143,7 @@ class Calendario {
             $diaSemana = date('N', mktime(0, 0, 0, self::$mes, $dia, self::$ano));
             $calendario['semanas'][$semana][$diaSemana] = array(
                 'dia' => $dia,
-                'nEventos' => $eventos[$dia],
+                'nEventos' => (isset($eventos[$dia])) ? $eventos[$dia] : 0,
             );
         }
         unset($eventos);
@@ -171,7 +171,7 @@ class Calendario {
      */
     static function getHtmlCalendario($calendario, $tipo, $pintarSemana = false, $nCaracteresDiaSemana = 3) {
 
-        $cabecera .= "<tr>";
+        $cabecera = "<tr>";
         if ($pintarSemana)
             $cabecera .= "<td class='nombredias_calendario'>Sem</td>";
 
@@ -183,16 +183,22 @@ class Calendario {
         $cabecera .= "</tr>";
         unset($diasSemana);
 
+        $cuerpo = "";
         foreach ($calendario['semanas'] as $keySemana => $semana) {
 
             $cuerpo .= "<tr>";
             if ($pintarSemana)
                 $cuerpo .= "<td>{$keySemana}</td>";
-            for ($dia = 1; $dia <= 7; $dia++)
-                if ($semana[$dia]['nEventos'])
-                    $cuerpo .= "<td class='dia_con_evento_calendario'><a href='{$_SESSION['appPath']}/{$tipo}/{$calendario['ano']}-{$calendario['mes']}-{$semana[$dia]['dia']}'>{$semana[$dia]['dia']}</a></td>";
-                else
-                    $cuerpo .= "<td class='diasactuales_calendario'>{$semana[$dia]['dia']}</td>";
+            for ($dia = 1; $dia <= 7; $dia++) {
+                if (isset($semana[$dia])) {
+                    if ($semana[$dia]['nEventos'])
+                        $cuerpo .= "<td class='dia_con_evento_calendario'><a href='{$_SESSION['appPath']}/{$tipo}/{$calendario['ano']}-{$calendario['mes']}-{$semana[$dia]['dia']}'>{$semana[$dia]['dia']}</a></td>";
+                    else
+                        $cuerpo .= "<td class='diasactuales_calendario'>{$semana[$dia]['dia']}</td>";
+                } else {
+                    $cuerpo .= "<td class='diasactuales_calendario'>&nbsp;</td>";
+                }
+            }
             $cuerpo .= "</tr>";
         }
 

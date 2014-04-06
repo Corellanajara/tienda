@@ -68,7 +68,7 @@ class ErpArticulos {
 
         $array = array();
 
-        $em = new EntityManager($_SESSION['project']['conection']);
+        $em = new EntityManager("");
         $select = "SELECT p.Titulo, v.Valor FROM ErpArticulosPropiedades ap
             LEFT JOIN ErpPropiedades p ON ap.IDPropiedad = p.Id
             LEFT JOIN ErpPropiedadesValores v ON ap.IDValor = v.Id";

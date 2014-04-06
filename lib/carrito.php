@@ -30,9 +30,9 @@ $app = $config['config']['app'];
 // ---------------------------------------------------------------
 // ACTIVAR EL AUTOLOADER DE CLASES Y FICHEROS A INCLUIR
 // ---------------------------------------------------------------
-define(APP_PATH, $_SERVER['DOCUMENT_ROOT'] . $app['path'] . "/");
+define("APP_PATH", $_SERVER['DOCUMENT_ROOT'] . $app['path'] . "/" . $app['theme']);
 include_once "../" . $app['framework'] . "Autoloader.class.php";
-Autoloader::setCacheFilePath(APP_PATH . 'tmp/class_path_cache.txt');
+Autoloader::setCacheFilePath(APP_PATH . '/cache/class_path_cache.txt');
 Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
 Autoloader::setClassPaths(array(
     '../' . $app['framework'],
@@ -44,6 +44,8 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
 $parametros = $_REQUEST['parametros'];
 $accion = $parametros['accion'];
 $datos = $parametros['datos'];
+
+$errores = $alertas = array();
 
 switch ($accion) {
     case 'add':
@@ -80,7 +82,7 @@ if (count($errores))
 if (count($alertas))
     $status = "alerta";
 
-$linea = ($idLinea) ? ErpCarrito::getLinea($idLinea)->iterator() : array();
+$linea = isset($idLinea) ? ErpCarrito::getLinea($idLinea)->iterator() : array();
 
 $resultado = array(
     'status' => $status,

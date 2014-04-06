@@ -34,9 +34,9 @@ $app = $config['config']['app'];
 // ---------------------------------------------------------------
 // ACTIVAR EL AUTOLOADER DE CLASES Y FICHEROS A INCLUIR
 // ---------------------------------------------------------------
-define(APP_PATH, $_SERVER['DOCUMENT_ROOT'] . $app['path'] . "/");
+define("APP_PATH", $_SERVER['DOCUMENT_ROOT'] . $app['path'] . "/" . $app['theme']);
 include_once "../" . $app['framework'] . "Autoloader.class.php";
-Autoloader::setCacheFilePath(APP_PATH . 'tmp/class_path_cache.txt');
+Autoloader::setCacheFilePath(APP_PATH . '/cache/class_path_cache.txt');
 Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
 Autoloader::setClassPaths(array(
             '../' . $app['framework'],

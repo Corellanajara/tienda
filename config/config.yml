@@ -82,9 +82,9 @@ config:
   #    SIGUIENTE REGLA: SI EN LA PROPIEDAD $_conectionName DEL MODELO DE DATOS DE CADA TABLA NO SE INDICA 
   #    NINGUN VALOR, SE ENTENDER?? QUE LA CONEXI??N SER?? LA PRIMERA QUE HAYA DEFINIDA DENTRO DE ESTE NODO (conections).
   conections:
-    albatro_aeroprint:
+    albatro_demo:
       dbEngine: mysql
       host: localhost
       user: root
-      password: albatronic
+      password: root
       database: albatro_demo

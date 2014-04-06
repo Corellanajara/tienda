@@ -120,7 +120,7 @@ class Enlaces {
         return $array;
     }
 
-    private function getSecciondeEnlaces($idSeccion) {
+    static function getSecciondeEnlaces($idSeccion) {
 
         $seccion = new EnlSecciones($idSeccion);
         $array = array(

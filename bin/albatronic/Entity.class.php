@@ -1229,10 +1229,6 @@ class Entity {
      * @return string Nombre de la conexión
      */
     public function getConectionName() {
-
-        if ($this->_conectionName == '') {
-            $this->_conectionName = $_SESSION['project']['conection'];
-        }
         return $this->_conectionName;
     }
 

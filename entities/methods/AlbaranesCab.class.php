@@ -22,12 +22,12 @@ class AlbaranesCab extends AlbaranesCabEntity {
         if ($this->IDAlbaran == '') {
             //Si el nº de albaran está vacio (se ha instanciado un objeto vacio),
             //asigno valores por defecto (agente,comercial,sucursal,almacen y cliente).
-            $this->setIDAgente($_SESSION['usuarioPortal']['Id']);
+            $this->setIDAgente($_SESSION['usuarioWeb']['Id']);
 
-            $agente = new Agentes($_SESSION['usuarioPortal']['Id']);
+            $agente = new Agentes($_SESSION['usuarioWeb']['Id']);
             $esComercial = ($agente->getEsComercial());
             if ($esComercial) {
-                $idComercial = $_SESSION['usuarioPortal']['Id'];
+                $idComercial = $_SESSION['usuarioWeb']['Id'];
                 $this->setIDComercial($idComercial);
             }
 
@@ -447,7 +447,7 @@ class AlbaranesCab extends AlbaranesCabEntity {
         // Crear la cabecera del albaran
         $destino = $this;
         $destino->setIDAlbaran('');
-        $destino->setIDAgente($_SESSION['usuarioPortal']['Id']);
+        $destino->setIDAgente($_SESSION['usuarioWeb']['Id']);
         $destino->setIDEstado(0);
         $destino->setFecha(date('d-m-Y'));
         $destino->setFechaEntrega('00-00-0000');
@@ -463,7 +463,7 @@ class AlbaranesCab extends AlbaranesCabEntity {
             foreach ($rows as $row) {
                 $lineaDestino = new AlbaranesLineas($row['IDLinea']);
                 $lineaDestino->setIDAlbaran($idDestino);
-                $lineaDestino->setIDAgente($_SESSION['usuarioPortal']['Id']);
+                $lineaDestino->setIDAgente($_SESSION['usuarioWeb']['Id']);
                 $lineaDestino->setIDEstado(0);
                 $lineaDestino->setPrimaryKeyMD5('');
                 $lineaDestino->valida(); // Toma los precios vigentes (tarifa, promociones, etc)
@@ -509,7 +509,7 @@ class AlbaranesCab extends AlbaranesCabEntity {
             $factura->setIDSucursal($this->IDSucursal);
             $factura->setIDContador($idContador);
             $factura->setNumeroFactura($numeroFactura);
-            $factura->setIDAgente($_SESSION['usuarioPortal']['Id']);
+            $factura->setIDAgente($_SESSION['usuarioWeb']['Id']);
             $factura->setIDComercial($this->IDComercial);
             $factura->setFecha($fecha);
             $factura->setIDCliente($this->IDCliente);
@@ -569,7 +569,7 @@ class AlbaranesCab extends AlbaranesCabEntity {
                     $linFactura->setComisionAgente($row['ComisionAgente']);
                     $linFactura->setComisionMontador($row['ComisionMontador']);
                     $linFactura->setComisionar($row['Comisionar']);
-                    $linFactura->setIDAgente($_SESSION['usuarioPortal']['Id']);
+                    $linFactura->setIDAgente($_SESSION['usuarioWeb']['Id']);
                     $linFactura->setIDComercial($row['IDComercial']);
                     $linFactura->setIDPromocion($row['IDPromocion']);
                     $linFactura->setAltoAl($row['AltoAl']);
@@ -667,7 +667,7 @@ class AlbaranesCab extends AlbaranesCabEntity {
                     $lineaAlbaran->setUnidades($reKilos);
                     $lineaAlbaran->setPrecio($articulo->getPrecioVenta());
                     $lineaAlbaran->setImporte($reImporte);
-                    $lineaAlbaran->setIDAgente($_SESSION['usuarioPortal']['Id']);
+                    $lineaAlbaran->setIDAgente($_SESSION['usuarioWeb']['Id']);
                     $lineaAlbaran->setIDComercial($this->IDComercial);
                     $lineaAlbaran->setIDAlmacen($this->IDAlmacen);
                     $lineaAlbaran->setIva($articulo->getIDIva()->getIva());

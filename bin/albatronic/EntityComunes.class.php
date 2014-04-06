@@ -620,12 +620,12 @@ class EntityComunes extends Entity {
         //$ddmmaaaahhmmss = $date->getddmmaaaahhmmss();
         //unset($date);
         //return $ddmmaaaahhmmss;
-        return date_format(date_create($this->PublishedAt), 'd-m-Y H:i:s');        
+        return date_format(date_create($this->PublishedAt), 'd-m-Y H:i:s');
     }
 
     public function setActiveFrom($ActiveFrom) {
-        if ($ActiveFrom == '0000-00-00 00:00:00')
-            $ActiveFrom = $_SESSION['VARIABLES']['EnvPro']['activeFrom'];
+        //if ($ActiveFrom == '0000-00-00 00:00:00')
+        //    $ActiveFrom = $_SESSION['VARIABLES']['EnvPro']['activeFrom'];
 
         $date = new Fecha($ActiveFrom);
         $this->ActiveFrom = $date->getFechaTime();
@@ -640,8 +640,8 @@ class EntityComunes extends Entity {
     }
 
     public function setActiveTo($ActiveTo) {
-        if ($ActiveTo == '0000-00-00 00:00:00')
-            $ActiveTo = $_SESSION['VARIABLES']['EnvPro']['activeTo'];
+        //if ($ActiveTo == '0000-00-00 00:00:00')
+        //    $ActiveTo = $_SESSION['VARIABLES']['EnvPro']['activeTo'];
 
         $date = new Fecha($ActiveTo);
         $this->ActiveTo = $date->getFechaTime();

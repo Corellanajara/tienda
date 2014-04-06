@@ -23,6 +23,8 @@ class ErpCarrito {
 
         $carrito = new Carrito();
 
+        $lineas = array();
+        
         $filtro = "sesion='{$_SESSION['IdSesion']}'";
         $rows = $carrito->cargaCondicion("Id", $filtro, "Id ASC");
         foreach ($rows as $row) {
@@ -58,7 +60,7 @@ class ErpCarrito {
         $filtro = "sesion='{$_SESSION['IdSesion']}' and IDArticulo='{$idArticulo}'";
         $carrito = new Carrito();
         $rows = $carrito->cargaCondicion("Id", $filtro);
-        if ($rows[0]['Id']) {
+        if (isset($rows[0]['Id'])) {
             $carrito = new Carrito($rows[0]['Id']);
             $carrito->setUnidades($carrito->getUnidades() + $unidades);
             $carrito->setImporte($carrito->getUnidades() * $carrito->getPrecio() * (1 - $carrito->getDescuento() / 100));

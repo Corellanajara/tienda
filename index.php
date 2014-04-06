@@ -66,7 +66,7 @@ $_SESSION['theme'] = $app['theme'];
 // ---------------------------------------------------------------
 // ACTIVAR EL AUTOLOADER DE CLASES Y FICHEROS A INCLUIR
 // ---------------------------------------------------------------
-define(APP_PATH, $_SERVER['DOCUMENT_ROOT'] . $app['path'] . "/" . $app['theme']);
+define("APP_PATH", $_SERVER['DOCUMENT_ROOT'] . $app['path'] . "/" . $app['theme']);
 include_once $app['framework'] . "Autoloader.class.php";
 Autoloader::setCacheFilePath(APP_PATH . '/cache/class_path_cache.txt');
 Autoloader::excludeFolderNamesMatchingRegex('/^CVS|\..*$/');
@@ -103,7 +103,7 @@ if (file_exists($config['twig']['motor'])) {
 // ------------------------------------------------
 // COMPROBAR DISPOSITIVO DE NAVEGACION
 // ------------------------------------------------
-if (!$_SESSION['isMobile']) {
+if (!isset($_SESSION['isMobile'])) {
     $browser = new Browser();
     $_SESSION['isMobile'] = $browser->isMobile();
     unset($browser);
@@ -259,7 +259,7 @@ if (!file_exists($app['theme'] . '/modules/' . $result['template']) or ($result[
 
 // Establecer el layout segun el dispositivo de navegación
 // Si fuese mobile pero no hay layout mobile, se toma el layout laptop
-if (!$_SESSION['layout']) {
+if (!isset($_SESSION['layout'])) {
     $_SESSION['layout'] = "_global/layoutLaptop.html.twig";
     if ($_SESSION['isMobile']) {
         $aux = "_global/layoutMobile.html.twig";
@@ -272,7 +272,7 @@ if (!$_SESSION['layout']) {
 // Renderizo el template y los valores devueltos por el método
 $twig->addGlobal('appPath', $app['path']);
 $twig->addGlobal('theme', $app['theme']);
-$twig->addGlobal('language', $_SESSION['idiomas']['disponibles'][$_SESSION['idiomas']['actual']]['codigo']);
+$twig->addGlobal('language', $_SESSION['LANGUAGE']);
 $twig->addGlobal('urlAmigable', $row['UrlFriendly']);
 $twig->addGlobal('LABELS', $result['values']['LABELS']);
 unset($result['values']['LABELS']);

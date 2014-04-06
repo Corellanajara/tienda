@@ -135,6 +135,8 @@ class Contenidos {
         if ($nImagenes <= 0)
             $nImagenes = 99999;
 
+        $arrayComentarios = array();
+                
         $contenido = self::getContenido($idContenido);
         $idSeccionVideos = $contenido->getIDSeccionVideos()->getId();
         $videos = ($idSeccionVideos > 0) ? Videos::getVideos($idSeccionVideos, -1) : array();

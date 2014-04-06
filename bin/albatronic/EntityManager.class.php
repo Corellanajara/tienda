@@ -81,7 +81,7 @@ class EntityManager {
                 if (file_exists($fileConfig)) {
                     $yaml = sfYaml::load($fileConfig);
                     // Si no se ha indicado el nombre de la conexión, se tomara la primera
-                    if ($conection == '')
+                    if ($conection == '') 
                         list($conection, $nada) = each($yaml['config']['conections']);
                     self::$conection = $yaml['config']['conections'][$conection];
                 } else {
