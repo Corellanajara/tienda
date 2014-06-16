@@ -115,5 +115,3 @@ class CpanPlantillas extends CpanPlantillasEntity {
         return new $this($rows[0][$this->_primaryKeyName]);
     }
 }
-
-?>

@@ -2,5 +2,11 @@
 
 <div class="right">
     <div>{{macro.idioma('total')}} <span id="total">{{values.carrito.totales.Importe|number_format}}</span></div>
-    <input type="button" class="btn_azul" value="{{macro.idioma('comprar')}}" />    
+    <form name="formCarrito" id="formCarrito" action="" method="POST">
+        <div class="oculto">
+            <input name="controller" value="Carrito"/>
+            <input name="action" value="Comprar"/>
+        </div>
+        <input type="submit" class="btn_azul" value="{{macro.idioma('comprar')}}" />          
+    </form>  
 </div>

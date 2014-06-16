@@ -64,10 +64,12 @@ class Eventos {
         } else {
             $eventos = $rows;
         }
-
+        
+        $hoy = date('Y/m/d');
+        
         foreach ($eventos as $row) {
             $evento = new $row['Entidad']($row['IdEntidad']);
-            if ($evento->getPublish()->getIdTipo() == '1') {
+            if ( ($evento->getPublish()->getIdTipo() == '1') && ($evento->getActiveFrom('aaaammdd')<=$hoy) && ($evento->getActiveTo('aaaammdd')>=$hoy) ) {
                 $array[] = array(
                     'fecha' => $row['Fecha'],
                     'horaInicio' => $row['HoraInicio'],

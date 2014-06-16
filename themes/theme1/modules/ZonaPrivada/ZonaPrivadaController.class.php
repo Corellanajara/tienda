@@ -117,7 +117,7 @@ class ZonaPrivadaController extends ControllerProject {
 
         return array(
             'template' => $template,
-            'values' => $this->values
+            'values' => $this->values,
         );
     }
 

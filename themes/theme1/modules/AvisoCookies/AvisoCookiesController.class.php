@@ -20,5 +20,3 @@ class AvisoCookiesController extends ControllerProject {
         return parent::IndexAction();
     }
 }
-
-?>

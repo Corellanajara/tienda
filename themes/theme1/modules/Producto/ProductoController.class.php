@@ -78,7 +78,7 @@ class ProductoController extends ControllerProject {
     }
 
     /**
-     * Crear un comentario al articuo
+     * Crear un comentario al articulo
      * @return type
      */
     public function ComentarioAction() {
@@ -1027,4 +1027,3 @@ class ProductoController extends ControllerProject {
 
 }
 
-?>

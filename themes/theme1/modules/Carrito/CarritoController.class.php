@@ -15,7 +15,7 @@ class CarritoController extends ControllerProject {
         $this->values['carrito'] = ErpCarrito::getCarrito();
 
         // Obtener artículos relacionados con los que hay en el carrito
-        $nArticulosRelacionados = (int)$this->varWeb['Pro']['shop']['carrito']['nArticulosRelacionadosFamilia'];
+        $nArticulosRelacionados = (int) $this->varWeb['Pro']['shop']['carrito']['nArticulosRelacionadosFamilia'];
 
         if ($nArticulosRelacionados > 0) {
             $arrayRelacionados = array();
@@ -33,10 +33,10 @@ class CarritoController extends ControllerProject {
         $this->values['combinaciones'] = $combinaciones;
         $this->values['combinacionesJSON'] = json_encode($combinaciones);
 
-        foreach ($combinaciones as $key=>$combinacion) {
+        foreach ($combinaciones as $key => $combinacion) {
             $zona = new ZonasTransporte($key);
             $zonas[$key] = $zona->getZona();
-            foreach ($combinacion as $keyFp=>$formaPago) {
+            foreach ($combinacion as $keyFp => $formaPago) {
                 $fp = new FormasPago($keyFp);
                 $formasPago[$keyFp] = $fp->getDescripcion();
             }
@@ -45,6 +45,15 @@ class CarritoController extends ControllerProject {
         $this->values['formasPago'] = $formasPago;
 
         return parent::IndexAction();
+    }
+
+    public function ComprarAction() {
+        if (!isset($_SESSION['usuarioWeb']['id'])) {
+            // Aún no está logado, lo redirijo al controller de login
+            return $this->redirect("ZonaPrivada");
+        } else {
+            
+        }
     }
 
 }

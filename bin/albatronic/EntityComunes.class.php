@@ -632,11 +632,19 @@ class EntityComunes extends Entity {
         unset($date);
     }
 
-    public function getActiveFrom() {
+    public function getActiveFrom($formato = "ddmmaaaahhmmss") {
         $date = new Fecha($this->ActiveFrom);
-        $ddmmaaaahhmmss = $date->getddmmaaaahhmmss();
+
+        switch ($formato) {
+            case 'ddmmaaaahhmmss':
+                $valor = $date->getddmmaaaahhmmss();
+                break;
+            case 'aaaammdd':
+                $valor = $date->getaaaammdd();
+        }
+
         unset($date);
-        return $ddmmaaaahhmmss;
+        return $valor;
     }
 
     public function setActiveTo($ActiveTo) {
@@ -648,11 +656,17 @@ class EntityComunes extends Entity {
         unset($date);
     }
 
-    public function getActiveTo() {
+    public function getActiveTo($formato = "ddmmaaaahhmmss") {
         $date = new Fecha($this->ActiveTo);
-        $ddmmaaaahhmmss = $date->getddmmaaaahhmmss();
+        switch ($formato) {
+            case 'ddmmaaaahhmmss':
+                $valor = $date->getddmmaaaahhmmss();
+                break;
+            case 'aaaammdd':
+                $valor = $date->getaaaammdd();
+        }
         unset($date);
-        return $ddmmaaaahhmmss;
+        return $valor;
     }
 
     public function setUrlPrefix($UrlPrefix) {
