@@ -48,11 +48,11 @@ class CarritoController extends ControllerProject {
     }
 
     public function ComprarAction() {
-        if (!isset($_SESSION['usuarioWeb']['id'])) {
+        if ($_SESSION['usuarioWeb']['Id'] > 0) {
+            return $this->redirect("ZonaPrivada", "MisDatos");
+        } else {
             // Aún no está logado, lo redirijo al controller de login
             return $this->redirect("ZonaPrivada");
-        } else {
-            
         }
     }
 

@@ -628,18 +628,20 @@ class ControllerWeb {
     }
 
     /**
-     * Redirige al método Index del controller indicado
+     * Redirige al método $action del controller indicado
      * 
      * @param string $controller El nombre del controller
+     * @param string $action El nombre del método. Por defecto el Index
      * @return array
      */
-    protected function redirect($controller) {
-        
+    protected function redirect($controller, $action = "Index") {
+
         $controlador = "{$controller}Controller";
-        $fileController = $_SESSION['theme']. "/modules/{$controller}/{$controller}Controller.class.php";
+        $metodo = "{$action}Action";
+        $fileController = $_SESSION['theme'] . "/modules/{$controller}/{$controller}Controller.class.php";
         include_once($fileController);
         $controller = new $controlador($this->request);
-        return $controller->IndexAction();
+        return $controller->{$metodo}();
     }
 
 }

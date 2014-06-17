@@ -72,7 +72,7 @@ class ZonaPrivadaController extends ControllerProject {
                         $cliente->setIDZona(0);
                         $cliente->setLogin($datos['EMail']);
                         $ok = $cliente->create();
-                        if (!$ok) {
+                        if (!$ok) {print_r($cliente->getErrores());
                             $this->errores[] = "ErrorCrear";
                         }
                     }
@@ -83,6 +83,7 @@ class ZonaPrivadaController extends ControllerProject {
                         $_SESSION['usuarioWeb'] = array(
                             'Id' => $cliente->getPrimaryKeyValue(),
                             'nombre' => $cliente->getRazonSocial(),
+                            'IdPerfil' => $cliente->getIDPerfilWeb()->getId(),
                         );
                         $template = "Index/index.html.twig";
                         $this->enviaCorreoWebMaster($cliente);
@@ -221,13 +222,8 @@ class ZonaPrivadaController extends ControllerProject {
      * @return type
      */
     public function LogoutAction() {
-        unset($_SESSION['usuarioWeb']['Id']);
-        unset($_SESSION['usuarioWeb']['nombre']);
-        unset($_SESSION['usuarioWeb']['IdPerfil']);
-        include $_SESSION['theme'] . "/modules/Index/IndexController.class.php";
-        $index = new IndexController($this->request);
-
-        return $index->IndexAction();
+        $_SESSION['usuarioWeb'] = array();
+        return $this->redirect("Index");
     }
 
     public function OlvidoAction() {
