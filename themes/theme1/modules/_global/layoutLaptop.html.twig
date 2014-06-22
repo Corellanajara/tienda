@@ -47,7 +47,9 @@
     {% if not chequeadaResolucionVisitante %}
     <script type="text/javascript">chequeaResolucionVisitante();</script>
     {% endif %}   
-
+    
+    <div id="mensajes" title="Mensaje"></div>
+    
     {% if values._debugMode %}
         <div style="clear: both;">
             <pre>{{values._debugValues}}</pre>

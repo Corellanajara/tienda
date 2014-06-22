@@ -1,12 +1,47 @@
 {# TOTAL DEL CARRITO #}
 
-<div class="right">
-    <div>{{macro.idioma('total')}} <span id="total">{{values.carrito.totales.Importe|number_format}}</span></div>
+<div class="priceSummary">
+    <div class="totalPedido">
+        <span>{{macro.idioma('total')}}</span> <span id="total">{{values.carrito.totales.Importe|number_format}}</span>
+        <br/><br/>
+    </div>
+
+    {# CUPON DE DESCUENTO #}
+    <div class="wraper_cupon">
+        <label class="" for="cupon">
+            {{macro.idioma("introduzcaCupon")}}
+            <strong>{{macro.idioma("aplicar")}}</strong>
+        </label>
+        <div class="cupon">
+            <input id="codigoCupon" type="text" value="" name="cupon"></input>
+            <a id="aplicarCupon" class="btn" title="{{macro.idioma("aplicarCupon")}}" href="javascript:;">
+                {{macro.idioma("aplicar")}}
+                <span id="icon-ok-cupon" class="icon-ok" style="display:none;"></span>
+            </a>
+        </div>
+        <div id="boxCupon" class="warning cupon oculta">
+            <div class="icon-ok-sign"></div>
+            <p id="descripcionCupon"></p>
+        </div>
+    </div>
+    {# FIN CUPON DE DESCUENTO #}
+    
+    <div class="form_control">
+        <input type="hidden" value="1" name="mode_update"></input>
+        <div class="botones_cesta">
+            <a id="btn_realizar" class="btn" onclick="return checkPagoEnvio()" href="https://www.altairlibreria.com/es/registro/formPedido.php?fr_accion=noRegistrar" style="display:none;">{{macro.idioma("realizarPedido")}}</a>
+            <a class="btn-condiciones" onclick="window.history.back();return false;" href="#">{{macro.idioma("seguirComprando")}}</a> | 
+            <input id="condiciones" type="checkbox" name="condiciones" value="1"></input>
+            {{macro.idioma("heLeidoYAcepto")}}
+            <a class="btn-condiciones" href="{{app.path}}/condiciones-de-venta">{{macro.idioma("condicionesVenta")}}</a>
+        </div>
+    </div>    
+    
     <form name="formCarrito" id="formCarrito" action="" method="POST">
         <div class="oculto">
             <input name="controller" value="Carrito"/>
             <input name="action" value="Comprar"/>
         </div>
-        <input type="submit" class="btn_azul" value="{{macro.idioma('comprar')}}" />          
+        <input type="submit" class="btn_azul" value="{{macro.idioma('realizarPedido')}}" />          
     </form>  
 </div>

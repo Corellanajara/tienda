@@ -2,28 +2,39 @@
 {% set primeraZona = values.combinaciones|keys|first %}
 {% set primeraFP = values.combinaciones[primeraZona]|keys|first %}
 {% set primeraAgencia = values.combinaciones[primeraZona][primeraFP]|keys|first %}
-<div class="left">
+<div class="gastosEnvio">
     <h3>{{macro.idioma('datosEnvio')}}</h3>
-    <fieldset>
-        <label for="zonaEnvio">{{macro.idioma('zonaEnvio')}}</label>
-        <select name="zonaEnvio" id="zonaEnvio">
-            {% for keyZona,zona in values.combinaciones %}
-            <option value="{{keyZona}}">{{values.zonas[keyZona]}}</option>
-            {% endfor %}
-        </select><br/>
-        <label for="formaPago">{{macro.idioma('formaPago')}}</label>
-        <select name="formaPago" id="formaPago">
-            {% for keyFP,formaPago in values.combinaciones[primeraZona] %}
-            <option value="{{keyFP}}">{{values.formasPago[keyFP]}}</option>
-            {% endfor %}
-        </select> <br/>       
-        <label for="metodoEnvio">{{macro.idioma('metodoEnvio')}}</label>
-        <select name="metodoEnvio" id="metodoEnvio">
-            {% for keyAgencia,agencia in values.combinaciones[primeraZona][primeraFP] %}
-            <option value="{{keyAgencia}}">{{agencia.agencia}}</option>
-            {% endfor %}
-        </select>         
-    </fieldset>
-    <div>{{macro.idioma('gastosEnvio')}} <span id="gastosEnvio">{{values.carrito.totales.gastosEnvio|number_format}}</span></div>    
-    <div>{{macro.idioma('plazoEntrega')}} <span id="plazoEntrega"></span></div>    
+    <div class="selectEnvio">
+        <fieldset>
+            <label for="zonaEnvio">{{macro.idioma('zonaEnvio')}}</label>
+            <select name="zonaEnvio" id="zonaEnvio">
+                {% for keyZona,zona in values.combinaciones %}
+                <option value="{{keyZona}}">{{values.zonas[keyZona]}}</option>
+                {% endfor %}
+            </select><br/>
+            <label for="formaPago">{{macro.idioma('formaPago')}}</label>
+            <select name="formaPago" id="formaPago">
+                {% for keyFP,formaPago in values.combinaciones[primeraZona] %}
+                <option value="{{keyFP}}">{{values.formasPago[keyFP]}}</option>
+                {% endfor %}
+            </select> <br/>       
+            <label for="metodoEnvio">{{macro.idioma('metodoEnvio')}}</label>
+            <select name="metodoEnvio" id="metodoEnvio">
+                {% for keyAgencia,agencia in values.combinaciones[primeraZona][primeraFP] %}
+                <option value="{{keyAgencia}}">{{agencia.agencia}}</option>
+                {% endfor %}
+            </select>         
+        </fieldset>
+    </div>
+    <div class="gastos">{{macro.idioma('gastosEnvio')}} <p id="gastosEnvio">{{values.carrito.totales.gastosEnvio|number_format}}</p></div>    
+    <div class="plazoEntrega">{{macro.idioma('plazoEntrega')}} <p id="plazoEntrega"></p></div> 
+    
+    <div class="pagos">
+        <p class="title_footer">{{macro.idioma("formasDePago")}}</p>
+        <img alt="Visa" src="{{theme}}/images/visa.png"></img>
+        <img alt="MasterCard" src="{{theme}}/images/masterCard.png"></img>
+        <a class="paipal" onclick="javascript:window.open('https://www.paypal.com/es/webapps/mpp/paypal-popup','WIPaypal','toolbat=no,directories=no,status=no,menubar=no,scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" title="{{macro.idioma("comoFuncionaPaypal")}}" href="https://www.paypal.com/es/webapps/mpp/paypal-popup">
+            <img alt="Paipal" src="{{theme}}/images/paypal.png"/>
+        </a>
+    </div>
 </div>

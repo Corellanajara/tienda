@@ -3,8 +3,7 @@
 <!-- JQUERY UI -->
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- jQuery UI -->  
 <script src="{{theme}}/js/albatronic.js"></script>
-<script src="{{theme}}/js/pirobox_extended.js"></script>
-<script src="{{theme}}/js/pirobox_function.js"></script> {# pirobox #}
+
 <!-- SLIDER HOME -->
 <script src="{{theme}}/js/bjqs-1.3.min.js"></script>
 <script src="{{theme}}/js/bjqs-function.js"></script>
@@ -14,6 +13,25 @@
 var combinaciones = {{values.combinacionesJSON|raw}};
 
 $(function(){
+    
+    $("#mensajes").dialog({
+        autoOpen: false,
+        width: 340,
+        //height: 420,
+        position: ['center','center'],
+        closeOnEscape: true,
+        modal: true,
+        resizable: false,
+        dialogClass: "no-close",
+        buttons: [
+            {
+                text: "Cerrar",
+                click: function() {$( this ).dialog( "close" );}
+            }
+       ]        
+    }
+    );
+    
     $('#zonaEnvio').change(function(){
         html = "";
         zona = $('#zonaEnvio').val();
@@ -47,6 +65,30 @@ $(function(){
         updateGastos(gastos,plazoEntrega);       
     });
     
+    $('#aplicarCupon').click(function(){
+
+        var datos = {
+            'cupon' : $("#codigoCupon").val()
+        };
+
+        $.ajax({
+            url: appPath + '/lib/cupon.php',
+            dataType: 'html',
+            type: 'post',
+            data: {'parametros': {'accion': 'valida', 'datos': datos} },
+            success: function(resultado) {
+                var datos = $.parseJSON(resultado);  
+                if (datos.status === 'error') {
+                    $("#descripcionCupon").html("");
+                    $('#mensajes').html(datos.errores);
+                    $('#mensajes').dialog('open');
+                } else {
+                    $("#boxCupon").removeClass('oculta');
+                    $("#descripcionCupon").html(datos.cupon.mensaje);
+                }
+            }
+        });        
+    });
 });
 
 /**
@@ -71,7 +113,7 @@ function actualizar(idLinea) {
     var datos = {
         'IDLinea' : idLinea,
         'Unidades' : $('#unidades'+idLinea).val()
-    }
+    };
 
     $.ajax({
         url: appPath + '/lib/carrito.php',
@@ -101,7 +143,7 @@ function eliminar(idLinea) {
 
     var datos = {
         'IDLinea' : idLinea
-    }
+    };
 
     $.ajax({
         url: appPath + '/lib/carrito.php',
@@ -124,4 +166,5 @@ function eliminar(idLinea) {
         }
     });         
 }
+
 </script>

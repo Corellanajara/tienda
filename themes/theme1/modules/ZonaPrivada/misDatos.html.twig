@@ -5,7 +5,8 @@
 <section class="central">
     <h2 class="superTitular rojo">{{macro.idioma('miCuenta')}}</h2>
     {% include 'ZonaPrivada/mensajes.html.twig' %} {# ESTOS SON LOS MENSAJES DE RESPUESTA DEL FORMULARIO #}                                 
-    <div id="solapas">
+    <input name="solapaActiva" id="solapaActiva" value="{{ values.solapaActiva }}" type="text" />
+    <div id="solapas"> 
         <ul>
             <li><a href="#misDatos">{{macro.idioma('misDatos')}}</a></li>
             <li><a href="#misDirecciones">{{macro.idioma('misDirecciones')}}</a></li>
@@ -16,7 +17,7 @@
             {% include 'ZonaPrivada/formularioRegistro.html.twig' %} {# ESTE ES EL FORMULARIO DE REGISTRO DE USUARIO #} 
         </div>
         <div id="misDirecciones" class="detallesTecnicos">
-            {% include 'ZonaPrivada/misDirecciones.html.twig' %} {# ESTE ES EL FORMULARIO DE DIRECCIONES DE ENTREGA #} 
+            {% include values.templateDirecciones %} {# ESTE ES EL FORMULARIO DE DIRECCIONES DE ENTREGA #} 
         </div>
         <div id="pedidos" class="detallesTecnicos">&nbsp;
             {% include 'ZonaPrivada/misPedidos.html.twig' %}

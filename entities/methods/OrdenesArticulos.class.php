@@ -95,10 +95,23 @@ class OrdenesArticulos extends OrdenesArticulosEntity {
 
         $em = new EntityManager($this->getConectionName());
         if ($em->getDbLink()) {
+            
+            // Condición de vigencia
+            $ahora = date("Y-m-d H:i:s");
+            $filtro = "(a.Deleted='0') AND (a.Publish='1') AND (a.ActiveFrom<='{$ahora}') AND ( (a.ActiveTo>='{$ahora}') or (a.ActiveTo='0000-00-00 00:00:00') )";
+
+            // Condición de privacidad
+            if (!$_SESSION['usuarioWeb']['Id']) {
+                $filtro .= " AND ( (a.Privacy='0') OR (a.Privacy='2') )";
+            } else {
+                $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
+                $filtro .= " AND ( a.Privacy='2') OR ( (a.Privacy='1') AND LOCATE('{$idPerfil}',a.AccessProfileListWeb) ) )";
+            }
+
             $query = "
                 SELECT a.IDArticulo as Id
                 FROM {$em->getDataBase()}.ErpOrdenesArticulos r, {$em->getDataBase()}.ErpArticulos a
-                WHERE r.IDRegla='{$idRegla}' AND r.IDArticulo=a.IDArticulo AND {$filtroAdicional} AND a.Publish='1' AND a.Vigente='1' AND a.Deleted='0'
+                WHERE r.IDRegla='{$idRegla}' AND r.IDArticulo=a.IDArticulo AND {$filtroAdicional} AND a.Vigente='1' AND {$filtro}
                 ORDER BY r.SortOrder ASC
                 LIMIT {$nItems}";
             $em->query($query);
@@ -117,5 +130,3 @@ class OrdenesArticulos extends OrdenesArticulosEntity {
     }
 
 }
-
-?>

@@ -205,7 +205,7 @@ table {
 /* /reset */
 input,
 textarea {
-  border: 0;
+  border: 1px solid;
 }
 img {
   vertical-align: middle !important;
@@ -2520,3 +2520,96 @@ h2.tituloOtrosProductos {
     text-decoration:none;
 }
 
+.gastosEnvio {
+    background-color: #F9F9F9;
+    border: 1px solid #EEE;
+    float: left;
+    margin-top: 20px;
+    padding: 20px 15px 15px;
+    width: 96%;
+    border-radius: 0.2em;
+}
+.selectEnvio {
+    float: left;
+    margin: 0px 0px 0px 15px;
+    width: 99%;
+}
+.plazoEntrega {
+    float: left;
+    margin: 12px 0px 0px 15px;
+    width: 550px;
+}
+
+.gastosEnvio .pagos {
+    clear: both;
+    float: left;
+}
+
+.gastosEnvio .pagos .title_footer {
+    color: #414141;
+    float: left;
+    margin: 20px 20px 20px 0px;
+}
+.priceSummary {
+    float: left;
+    padding: 20px 0px;
+    width: 100%;
+}
+.totalPedido {
+    float: right;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding-right: 10px;
+    text-align: left;
+    color: #B8312F;
+}
+.wraper_cupon {
+    background-color: #F9F9F9;
+    border: 1px solid #EEE;
+    border-radius: 0.2em;
+    float: left;
+    margin: 25px 0px;
+    padding: 20px 25px;
+    text-align: left;
+    width: 93%;    
+}
+
+.cupon {
+    clear: both;
+    width: 100%;    
+}
+#linkAplicar {
+    float: none;
+}
+a.btn, a.btntwo {
+    padding: 5px 12px 6px;
+    line-height: 1em;
+}
+
+.btn {
+    margin-left: 10px;
+    display: inline-block;
+    float: right;
+    overflow: hidden;
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #D1B37F;
+    border-radius: 0.2em;
+    text-decoration: none;
+    background: none repeat scroll 0% 0% #D1B37F;    
+}
+.form_control {
+    width: 100%;
+    display: block;
+    clear: both;
+    color: #3D4043;
+}
+.botones_cesta {
+    width: 100%;
+    float: left;
+    padding-top: 12px;
+    border-top: 1px solid #CCC;
+}

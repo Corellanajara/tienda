@@ -177,7 +177,7 @@ class ErpArticulos {
 
         $filtroZona = ($zona == '') ? "1" : "Zona='{$zona}'";
 
-        $zonas = new CpanEsqueletoWeb();
+        $zonas = new Escaparates();
         $reglas = $zonas->cargaCondicion("Id,Zona,NItems,ItemsPagina", "Controller='{$controller}' AND {$filtroZona}", "SortOrder ASC");
         unset($zonas);
 

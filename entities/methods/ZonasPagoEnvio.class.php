@@ -45,5 +45,3 @@ class ZonasPagoEnvio extends ZonasPagoEnvioEntity {
     }
 
 }
-
-?>

@@ -38,8 +38,34 @@ class ZonaPrivadaController extends ControllerProject {
      * @return type
      */
     public function MisDatosAction() {
-
+        print_r($this->request);
         $cliente = new Clientes($_SESSION['usuarioWeb']['Id']);
+
+        switch ($this->request['METHOD']) {
+            
+            case 'GET':
+                if ($this->request[2] !== '') {
+                    $this->values['direccion'] = new ClientesDentrega($this->request[2]);
+                    $this->values['solapaActiva'] = "direcciones";
+                    $this->values['templateDirecciones'] = $this->entity . "/misDireccionesForm.html.twig";
+                } else {
+                    $this->values['templateDirecciones'] = $this->entity . "/misDireccionesList.html.twig";
+                }
+                break;
+                
+            case 'POST':
+                $direccion = new ClientesDentrega();
+                $direccion->bind($this->request['ClientesDentrega']);
+                if ($direccion->valida(array())) {
+                    $id = $direccion->create();
+                    if ($id) {
+                        
+                    }
+                }
+                $this->values['templateDirecciones'] = $this->entity . "/misDireccionesForm.html.twig";                
+                break;
+        }
+        
 
         $this->values['cliente'] = $cliente;
 
@@ -85,18 +111,20 @@ class ZonaPrivadaController extends ControllerProject {
                             'nombre' => $cliente->getRazonSocial(),
                             'IdPerfil' => $cliente->getIDPerfilWeb()->getId(),
                         );
-                        $template = "Index/index.html.twig";
                         $this->enviaCorreoWebMaster($cliente);
+                        return $this->redirect("Index");
                         //$template = "{$this->entity}/confirmacionRegistro.html.twig";
                         //$this->CorreoConfirmacionRegistro($cliente);
-                    } else
+                    } else {
                         $template = "{$this->entity}/registro.html.twig";
+                        $this->values['solapaActiva'] = "misDatos";
+                    }
 
                     break;
 
                 case 'guardar':
                     $cliente = new Clientes($datos['IDCliente']);
-                    $datos['Password'] = ($datos['Password'] != '') ?
+                    $datos['Password'] = ($datos['Password'] !== '') ?
                             md5($datos['Password'] . $this->getSemilla()) :
                             $cliente->getPassword();
 
@@ -106,14 +134,16 @@ class ZonaPrivadaController extends ControllerProject {
                             $this->errores[] = "ErrorGuardar";
                     }
                     $this->values['errores'] = $this->errores;
-                    $template = "{$this->entity}/misdatos.html.twig";
+                    $template = "{$this->entity}/misDatos.html.twig";
+                    $this->values['solapaActiva'] = "misDatos";
                     break;
             }
 
             $this->values['cliente'] = $cliente;
         } else {
             $this->values['cliente'] = new Clientes();
-            $template = "{$this->entity}/registro.html.twig";
+            $this->values['solapaActiva'] = "0";            
+            $template = "{$this->entity}/misDatos.html.twig";
         }
 
         return array(
@@ -211,9 +241,7 @@ class ZonaPrivadaController extends ControllerProject {
                 'values' => $this->values,
             );
         } else {
-            include $_SESSION['theme'] . "/modules/Index/IndexController.class.php";
-            $indexController = new IndexController($this->request);
-            return $indexController->IndexAction();
+            return $this->redirect("Favoritos");
         }
     }
 

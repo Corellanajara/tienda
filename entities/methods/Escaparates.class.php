@@ -7,14 +7,20 @@
  */
 
 /**
- * @orm:Entity(CpanEsqueletoWeb)
+ * @orm:Entity(Escaparates)
  */
-class CpanEsqueletoWeb extends CpanEsqueletoWebEntity {
+class Escaparates extends EscaparatesEntity {
 
     public function __toString() {
         return $this->getId();
     }
-
+    
+    public function create() {
+        
+        $this->Publish = 1;
+        return parent::create();
+    }
+   
     /**
      * Guardo la regla, borro los eventuales ordenes
      * que existieran y los vuelvo a crear.
@@ -89,6 +95,13 @@ class CpanEsqueletoWeb extends CpanEsqueletoWebEntity {
         $idSubfamilia = $articulo->getIDSubfamilia()->getIDFamilia();
         unset($articulo);
 
+        $filtroLote = "IDLote='0'";
+        $lotes = new LotesWeb();
+        foreach($lotes->getArrayLotesArticulo($idArticulo) as $key=>$lote) {
+            $filtroLote .= " OR IDLote='{$lote}'";
+        }
+        $filtroLote = "(" . $filtroLote . ")";
+        
         $filtroEstado = "IDEstado='0'";
         if ($idEstado1 > 0)
             $filtroEstado .= " OR IDEstado='{$idEstado1}'";
@@ -117,7 +130,8 @@ class CpanEsqueletoWeb extends CpanEsqueletoWebEntity {
         if ($idSubfamilia > 0)
             $filtroSubfamilia .= " OR IDSubfamilia='{$idSubfamilia}'";
 
-        $filtro = "({$filtroEstado}) AND ({$filtroFabricante}) AND ({$filtroCategoria}) AND ({$filtroFamilia}) AND ({$filtroSubfamilia})";
+        $filtro = "({$filtroLote}) AND ({$filtroEstado}) AND ({$filtroFabricante}) AND ({$filtroCategoria}) AND ({$filtroFamilia}) AND ({$filtroSubfamilia})";
+        //echo $filtro;
         $reglas = $this->cargaCondicion("Id", $filtro);
         foreach ($reglas as $regla) {
             $array[] = $regla['Id'];
@@ -167,8 +181,18 @@ class CpanEsqueletoWeb extends CpanEsqueletoWebEntity {
      */
     public function aplicaRegla($idRegla = '') {
 
-        $regla = ($idRegla == '') ? $this : new CpanEsqueletoWeb($idRegla);
+        $regla = ($idRegla == '') ? $this : new Escaparates($idRegla);
 
+        if ($regla->IDLote > 0) {
+            $lote = new LotesWeb($regla->IDLote);
+
+            foreach($lote->getArrayObjetosArticulos() as $articulo) {
+                $filtroLote .= "IDArticulo='{$articulo->getPrimaryKeyValue()}' OR ";
+            }
+            $filtroLote = "(" . substr($filtroLote, 0,-4) . ")";
+        } else {
+            $filtroLote = "(1)";
+        }
         $filtroEstado = ($regla->IDEstado > 0) ?
                 "(IDEstado1='{$regla->IDEstado}' OR IDEstado2='{$regla->IDEstado}' OR IDEstado3='{$regla->IDEstado}'  OR IDEstado4='{$regla->IDEstado}'  OR IDEstado5='{$regla->IDEstado}')" :
                 "(1)";
@@ -188,7 +212,8 @@ class CpanEsqueletoWeb extends CpanEsqueletoWebEntity {
                 "({$filtroAdicional})" :
                 "(1)";
 
-        $filtro = "(Vigente='1') AND {$filtroEstado} AND {$filtroMarca} AND {$filtroCategoria} AND {$filtroFamilia} AND {$filtroSubfamilia} AND {$filtroAdicional}";
+        $filtro = "(Vigente='1') AND {$filtroLote} AND {$filtroEstado} AND {$filtroMarca} AND {$filtroCategoria} AND {$filtroFamilia} AND {$filtroSubfamilia} AND {$filtroAdicional}";
+        //echo $filtro;
         $articulo = new Articulos();
         $rows = $articulo->cargaCondicion("IDArticulo,Descripcion", $filtro);
         unset($articulo);
@@ -204,5 +229,3 @@ class CpanEsqueletoWeb extends CpanEsqueletoWebEntity {
     }
 
 }
-
-?>

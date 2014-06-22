@@ -292,4 +292,3 @@ unset($con);
 unset($loader);
 unset($twig);
 unset($config);
-?>

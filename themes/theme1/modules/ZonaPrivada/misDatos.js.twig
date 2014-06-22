@@ -17,7 +17,10 @@ $(function(){
     });
     
     $('#solapas').tabs();
-    
+    $( "#solapas" ).tabs({active: parseInt($('#solapaActiva').val(),10)});
+    $('#solapas ul li').click(function(){
+        $('#solapaActiva').val( $("#solapas").tabs("option","active") );
+    });     
     $('#divDialogo').dialog({
         autoOpen: false,
         modal: true
@@ -73,8 +76,7 @@ function validaGuardar() {
     
     var html = '';
 
-    if (!$('#leidoPolitica').is(':checked')) html = html + "<p>Debe acepta la política de privacidad</p>";
-    
+    if (!$('#leidoPolitica').is(':checked')) html = html + "<p>Debe acepta la política de privacidad</p>";    
     $('#divDialogo').html(html);
     
     return (html === '');    

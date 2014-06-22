@@ -639,11 +639,15 @@ class ControllerWeb {
         $controlador = "{$controller}Controller";
         $metodo = "{$action}Action";
         $fileController = $_SESSION['theme'] . "/modules/{$controller}/{$controller}Controller.class.php";
+        if (!file_exists($fileController)) {
+            $controlador = "Error404Controller";
+            $metodo = "IndexAction";
+            $fileController = "{$_SESSION['theme']}/modules/Error404/Error404Controller.class.php";
+        }
         include_once($fileController);
+        //echo $fileController;
         $controller = new $controlador($this->request);
         return $controller->{$metodo}();
     }
 
 }
-
-?>

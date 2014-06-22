@@ -654,11 +654,11 @@ class Entity {
 
         if (is_resource($this->_dbLink)) {
 
-            $condicion = "({$columna}='{$valor}')";
+            $filtro = "({$columna}='{$valor}')";
 
             // Condición de vigencia
             $ahora = date("Y-m-d H:i:s");
-            $condicion .= " AND Publish='1' AND (Deleted='0') AND (ActiveFrom<='{$ahora}') AND ( (ActiveTo>='{$ahora}') or (ActiveTo='0000-00-00 00:00:00') )";
+            $filtro .= " AND (Deleted='0') AND (Publish='1') AND (ActiveFrom<='{$ahora}') AND ( (ActiveTo>='{$ahora}') or (ActiveTo='0000-00-00 00:00:00') )";
 
             // Condición de privacidad
             if (!$_SESSION['usuarioWeb']['Id']) {
@@ -667,8 +667,8 @@ class Entity {
                 $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
                 $filtro .= " AND ( (Privacy='2') OR ( (Privacy='1') AND LOCATE('{$idPerfil}',AccessProfileListWeb) ) )";
             }
-
-            $query = "SELECT {$this->_primaryKeyName} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$condicion})";
+            
+            $query = "SELECT {$this->_primaryKeyName} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$filtro})";
             $this->_em->query($query);//echo $query;
             $this->setStatus($this->_em->numRows());
             $rows = $this->_em->fetchResult();
