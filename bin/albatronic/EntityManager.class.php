@@ -165,14 +165,18 @@ class EntityManager {
      */
     public function query($query) {
         $this->result = null;
-
+        
+        if ($_SESSION['VARIABLES']['EnvPro']['log'] === '1') {
+            $fp = fopen("log/queries.sql", "a");
+            fwrite($fp, date("Y-m-d H:i:s") . "\t" . $query . "\n");
+            fclose($fp);
+        }
+        
         switch (self::$dbEngine) {
             case 'mysql':
                 //mysql_select_db($this->getdataBase());
                 $this->result = mysql_query($query, self::$dbLinkInstance);
-                //$fp = fopen("log/queries.sql", "a");
-                //fwrite($fp, date("Y-m-d H:i:s") . "\t" . $query . "\n");
-                //fclose($fp);
+
                 if (!$this->result)
                     $this->setError("query");
                 else
@@ -499,6 +503,19 @@ class EntityManager {
             }
         }
 
+        // ESCRIBE EL ERROR EN EL LOG
+        $fp = fopen("log/error_query.log", "a");
+        if ($fp) {
+            fwrite($fp, date('Y-m-d H:i:s') . "\t" . $_SERVER['PHP_SELF'] . "\t" . $mensaje . "\n");
+            fclose($fp);
+        }
+
+        // ENVIA CORREO AL SUPER ADMINISTRADOR
+        $email = trim($_SESSION['VARIABLES']['EnvPro']['eMailSuperAdministrator']);
+        if ($email != '') {
+            mail($email, "Error query", $mensaje);
+        }
+        
         $this->error[] = $mensaje;
     }
 

@@ -1,0 +1,13 @@
+{# CAROUSEL #}
+
+<div class="carousel">
+   <ul>
+       {% for objeto in objetos %}
+       <li>
+           <a href="{{objeto.Href.url}}" title="{{objeto.__toString}}">
+           <img src="{{app.path}}/{{theme}}/{{objeto.getPathNameImagenN(nImagen)}}" alt="{{objeto.__toString}}">
+           </a>
+       </li>
+       {% endfor %}
+   </ul>
+</div>

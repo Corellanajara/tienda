@@ -3,20 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/MAMP/htdocs/tienda/bin/albatronic/ErpArticulos.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/misDireccionesForm.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/CarritoController.class.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/ZonaPrivadaController.class.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/css/style.css</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/formularioRegistro.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/envio.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/index.js.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/lib/cupon.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/layoutLaptop.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/ZonaPrivadaController.class.php</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/formularioRegistro.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/misDatos.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/index.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Index/index.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/envio.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/totales.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/index.js.twig</file>
         </group>
     </open-files>
 </project-private>

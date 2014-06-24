@@ -78,6 +78,18 @@ class Widgets {
     }
 
     /**
+     * Devuelve array de objetos LotesWeb
+     * con los objetos Articulos que constituyen cada lote
+     * 
+     * @param integer $mostrarEnPortada 0=No portada, 1=Si portada, 2=Todos
+     * @param integer $nItems Número de lotes a devolver. Por defecto 1
+     * @return array Array de lotes
+     */
+    public function getLotesWeb($mostrarEnPortada = 2, $nItems = 1) {
+        return ErpArticulos::getLotesWeb($mostrarEnPortada, $nItems);
+    }
+    
+    /**
      * Devuelve un array con BANNERS.
      * 
      * @param int $zona El nombre de la zona de banner a filtrar. Opcional. Defecto la primera que encuentre.
@@ -218,5 +230,3 @@ class Widgets {
     }
 
 }
-
-?>

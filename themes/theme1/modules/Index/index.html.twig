@@ -11,6 +11,9 @@
 
 {% block content %}
     <div class="central">
+        {% set lote = values.widgets.getLotesWeb(1) %}
+        {% include '_global/carousel.html.twig' with {'objetos':lote[0].articulos,'nImagen': 3}%}
+        
         <section id="noticias">
             {% set articulos = values.widgets.getArticulosZona(values.controller,1) %}
             <h2><span>{{macro.idioma('productos')}} </span>{{macro.idioma('destacados')}}</h2> 

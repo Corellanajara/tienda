@@ -54,6 +54,24 @@ class BlogComentarios extends BlogComentariosEntity {
         }
     }
 
-}
+    /**
+     * Devuelve array de objetos \BlogComentarios
+     * de la entidad $entidad e $idEntidad
+     * 
+     * @param string $entidad
+     * @param integer $idEntidad
+     */
+    public function getComentarios($entidad,$idEntidad) {
+        
+        $array = array();
+        
+        $rows = $this->cargaCondicion("Id","Entidad='{$entidad}' AND IdEntidad='{$idEntidad}'","TiempoUnix DESC");
+        foreach($rows as $row) {
+            $array[] = new BlogComentarios($row['Id']);
+        }
+        
+        return $array;
+        
+    }    
 
-?>
+}

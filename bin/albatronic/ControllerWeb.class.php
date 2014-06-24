@@ -304,8 +304,9 @@ class ControllerWeb {
             }
 
             return $array;
-        } else
+        } else {
             return $objeto;
+        }
     }
 
     /**
@@ -330,20 +331,24 @@ class ControllerWeb {
         $filtro = "";
         if (count($enQueEntidades)) {
             foreach ($enQueEntidades as $entidad) {
-                if ($filtro != "")
+                if ($filtro != "") {
                     $filtro .= " OR ";
+                }
                 $filtro .= "Entity='{$entidad}'";
             }
-        } else
+        } else {
             $filtro = "1";
+        }
 
         $urls = new CpanUrlAmigables();
         $rows = $urls->cargaCondicion("Entity,IdEntity", $filtro, "NumberVisits DESC {$limite}");
         unset($urls);
 
-        foreach ($rows as $row)
-            if (class_exists($row['Entity']))
+        foreach ($rows as $row) {
+            if (class_exists($row['Entity'])) {
                 $array[] = new $row['Entity']($row['IdEntity']);
+            }
+        }
 
         return $array;
     }
@@ -551,8 +556,9 @@ class ControllerWeb {
 
         $array = array();
 
-        foreach ($rows as $row)
+        foreach ($rows as $row) {
             $array[$row['Idioma']] = $row['UrlFriendly'];
+        }
 
         return $array;
     }
@@ -608,8 +614,9 @@ class ControllerWeb {
         $idiomasPermitidos = explode(",", trim($variables['globales']['lang']));
 
         $idIdioma = array_search($idiomaVisitante, $idiomasPermitidos);
-        if (!$idIdioma)
+        if (!$idIdioma) {
             $idIdioma = 0;
+        }
 
         foreach ($idiomasPermitidos as $key => $value) {
             $idiomas = new Idiomas($value);

@@ -244,6 +244,41 @@ class ErpArticulos {
         return $array;
     }
 
+    /**
+     * Devuelve array de objetos LotesWeb
+     * con los objetos Articulos que constituyen cada lote
+     * 
+     * @param integer $mostrarEnPortada 0=No portada, 1=Si portada, 2=Todos
+     * @param integer $nItems Número de lotes a devolver. Por defecto 1
+     * @return array Array de lotes
+     */
+    static function getLotesWeb($mostrarEnPortada = 2, $nItems = 1) {
+
+        $array = array();
+
+        $limite = ($nItems > 0) ? "limit {$nItems}" : "";
+        
+        if ($mostrarEnPortada == 0) {
+            $condicion = "MostrarEnPortada = '0'";
+        } elseif ($mostrarEnPortada == 1) {
+            $condicion = "MostrarEnPortada = '1'";
+        } else {
+            $condicion = "1";
+        }
+
+        $lotes = New LotesWeb();
+        $rows = $lotes->cargaCondicion("Id", $condicion, "SortOrder ASC {$limite}");
+        unset($lotes);
+
+        foreach ($rows as $row) {
+            $lote = new LotesWeb($row['Id']);
+            $array[] = array(
+                'lote' => $lote,
+                'articulos' => $lote->getArrayObjetosArticulos(),
+            );
+        }
+
+        return $array;        
+    }
 }
 
-?>

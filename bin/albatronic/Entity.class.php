@@ -1037,6 +1037,37 @@ class Entity {
     }
 
     /**
+     * Devuelve un array de objetos relacionados
+     * con la entidad/idEntidad en curso
+     * 
+     * @param string $entidadDestino EL nombre de la entidad destino. Por defecto todas.
+     * @return array
+     */
+    public function getObjetosRelacionados($entidadDestino = "") {
+
+        $relaciones = new CpanRelaciones();
+        $objetos = $relaciones->getObjetosRelacionados($this->getClassName(), $this->getPrimaryKeyValue(), $entidadDestino);
+        unset($relaciones);
+
+        return $objetos;
+    }
+
+    /**
+     * Devuelve array \BlogComentarios asociados
+     * a la entidad e idEntidad en curso
+     * 
+     * @return array Array de objetos comentarios
+     */
+    public function getComentarios() {
+
+        $comentarios = new BlogComentarios();
+        $array = $comentarios->getComentarios($this->getClassName(), $this->getPrimaryKeyValue());
+        unset($comentarios);
+
+        return $array;
+    }
+    
+    /**
      * Devuelve un array cuyo índice es el nombre de la propiedad
      * y el valor es el valor de dicha propiedad
      * No devuelve las propiedades que empiezan por guión bajo "_"
