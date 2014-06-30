@@ -11,7 +11,9 @@
             <li><a href="#misDatos">{{macro.idioma('misDatos')}}</a></li>
             <li><a href="#misDirecciones">{{macro.idioma('misDirecciones')}}</a></li>
             <li><a href="#pedidos">{{macro.idioma('pedidos')}}</a></li>
+            {% if values.conBoletines %}
             <li><a href="#boletiones">{{macro.idioma('boletines')}}</a></li>
+            {% endif %}
         </ul>
         <div id="misDatos" class="caracteristicas">
             {% include 'ZonaPrivada/formularioRegistro.html.twig' %} {# ESTE ES EL FORMULARIO DE REGISTRO DE USUARIO #} 
@@ -21,10 +23,12 @@
         </div>
         <div id="pedidos" class="detallesTecnicos">&nbsp;
             {% include 'ZonaPrivada/misPedidos.html.twig' %}
-        </div>    
+        </div> 
+        {% if values.conBoletines %}
         <div id="boletiones" class="detallesTecnicos">&nbsp;
             {% include 'ZonaPrivada/misBoletines.html.twig' %}
         </div>    
+        {% endif %}
     </div>
  
 </section>

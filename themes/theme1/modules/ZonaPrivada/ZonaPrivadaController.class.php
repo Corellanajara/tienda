@@ -38,7 +38,7 @@ class ZonaPrivadaController extends ControllerProject {
      * @return type
      */
     public function MisDatosAction() {
-        print_r($this->request);
+
         $cliente = new Clientes($_SESSION['usuarioWeb']['Id']);
 
         switch ($this->request['METHOD']) {
@@ -68,7 +68,7 @@ class ZonaPrivadaController extends ControllerProject {
         
 
         $this->values['cliente'] = $cliente;
-
+        
         return array(
             'template' => $this->entity . '/misDatos.html.twig',
             'values' => $this->values

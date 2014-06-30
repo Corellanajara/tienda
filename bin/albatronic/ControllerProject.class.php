@@ -39,6 +39,12 @@ class ControllerProject extends ControllerWeb {
         
         // TOTALES DEL CARRITO
         $this->values['carrito']['totales'] = ErpCarrito::getTotales();
+        
+        // Con beletines
+        $this->values['conBoletines'] = ($this->varEnv['Pro']['shop']['boletines'] == '1');
+        
+        // Con gestión de cupones descuento
+        $this->values['conCupon'] = ($this->varEnv['Pro']['shop']['cupones'] == '1');        
     }
 
 }

@@ -31,7 +31,9 @@ class EntityManager {
     public static $conection = array();
     private $result = null;
     private $affectedRows = null;
-
+    private $logErrorQueryFile;
+    private $logQueryFile;
+    
     /**
      * Guardar el eventual error producido en la conexión
      * @var array
@@ -63,6 +65,9 @@ class EntityManager {
      */
     public function __construct($conection, $fileConfig = '') {
 
+        $this->logErrorQueryFile = str_replace("bin/albatronic","",__DIR__) . "log/error_query.log";
+        $this->logQueryFile = str_replace("bin/albatronic","",__DIR__) . "log/query.log";
+        
         //if (is_null(self::$dbLinkInstance)) {
         if (is_array($conection)) {
             self::$dbEngine = $conection['dbEngine'];
@@ -76,7 +81,7 @@ class EntityManager {
         } else {
             if (count(self::$conection) == 0) {
                 if ($fileConfig == '') {
-                    $fileConfig = $_SERVER['DOCUMENT_ROOT'] . $_SESSION['appPath'] . "/" . $this->file;
+                    $fileConfig = str_replace("bin/albatronic","",__DIR__) . $this->file;
                 }
                 if (file_exists($fileConfig)) {
                     $yaml = sfYaml::load($fileConfig);
@@ -165,9 +170,9 @@ class EntityManager {
      */
     public function query($query) {
         $this->result = null;
-        
-        if ($_SESSION['VARIABLES']['EnvPro']['log'] === '1') {
-            $fp = fopen("log/queries.sql", "a");
+
+        if ($_SESSION['varEnv']['Pro']['log'] === '1') {
+            $fp = fopen($this->logQueryFile, "a");
             fwrite($fp, date("Y-m-d H:i:s") . "\t" . $query . "\n");
             fclose($fp);
         }
@@ -504,18 +509,17 @@ class EntityManager {
         }
 
         // ESCRIBE EL ERROR EN EL LOG
-        $fp = fopen("log/error_query.log", "a");
+        $fp = fopen($this->logErrorQueryFile, "a");
         if ($fp) {
             fwrite($fp, date('Y-m-d H:i:s') . "\t" . $_SERVER['PHP_SELF'] . "\t" . $mensaje . "\n");
             fclose($fp);
         }
 
         // ENVIA CORREO AL SUPER ADMINISTRADOR
-        $email = trim($_SESSION['VARIABLES']['EnvPro']['eMailSuperAdministrator']);
+        $email = trim($_SESSION['varEnv']['Pro']['eMailSuperAdministrator']);
         if ($email != '') {
-            mail($email, "Error query", $mensaje);
+            mail($email, "Error query " . $_SESSION['varEnv']['Pro']['url'], $mensaje);
         }
-        
         $this->error[] = $mensaje;
     }
 
@@ -528,5 +532,3 @@ class EntityManager {
     }
 
 }
-
-?>

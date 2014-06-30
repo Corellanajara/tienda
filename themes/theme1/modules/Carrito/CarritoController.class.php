@@ -28,6 +28,7 @@ class CarritoController extends ControllerProject {
             $this->values['carrito']['articulosRelacionados'] = $arrayRelacionados;
         }
 
+        // Obtener las combinaciones de formas de pago, zonas y formas de envío
         $zonasPagoEnvio = new ZonasPagoEnvio();
         $combinaciones = $zonasPagoEnvio->getCombinaciones('2');
         $this->values['combinaciones'] = $combinaciones;
