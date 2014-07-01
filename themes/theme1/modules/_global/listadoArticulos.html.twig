@@ -13,7 +13,7 @@
         {% if articulo.Resumen != articulo.Descripcion %}
             <div class="resumen">{{articulo.Resumen}}</div>
         {% endif %}
-        {% set precioActual = articulo.PrecioVentaConImpuestos %}
+        {% set precioActual = articulo.PrecioWeb %}
         {% if articulo.PvpAnterior > 0 and articulo.PrecioAnterior != precioActual %}
             <div class="precios precioAnterior">{{macro.moneda(articulo.PvpAnterior)}}</div>                
         {% endif %}

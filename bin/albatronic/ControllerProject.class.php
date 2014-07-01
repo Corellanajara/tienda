@@ -45,6 +45,9 @@ class ControllerProject extends ControllerWeb {
         
         // Con gestión de cupones descuento
         $this->values['conCupon'] = ($this->varEnv['Pro']['shop']['cupones'] == '1');        
+        
+        // Con carrusel en portada
+        $this->values['carruselPortada'] = ($this->varEnv['Pro']['shop']['carruselPortada'] == '1');        
     }
 
 }

@@ -71,6 +71,11 @@ class FormasPagoEntity extends EntityComunes {
      */
     protected $Uso = '0';    
     /**
+     * @orm:Column(type="integer")
+     * @assert:NotBlank(groups="formas_pago")
+     */
+    protected $Accion = '0';    
+    /**
      * Nombre de la conexion a la DB
      * @var string
      */
@@ -196,7 +201,14 @@ class FormasPagoEntity extends EntityComunes {
             $this->Uso = new UsoWeb($this->Uso);
         return $this->Uso;
     }
-}
 
-// END class formas_pago
-?>
+    public function setAccion($Accion) {
+        $this->Accion = trim($Accion);
+    }
+
+    public function getAccion() {
+        if (!($this->Accion instanceof AccionesFormasPago))
+            $this->Accion = new AccionesFormasPago($this->Accion);
+        return $this->Accion;
+    }
+}

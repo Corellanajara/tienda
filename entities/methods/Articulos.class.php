@@ -52,7 +52,7 @@ class Articulos extends ArticulosEntity {
         $this->Pmc = $this->Pvd;
 
         $id = parent::create();
-        if (($id) and ($this->Vigente == '1')) {
+        if (($id) and ( $this->Vigente == '1')) {
             $reglas = new CpanEsqueletoWeb();
             $reglas->aplicaReglasArticulo($id);
             unset($reglas);
@@ -78,7 +78,7 @@ class Articulos extends ArticulosEntity {
             $reglasNuevas = $reglas->getReglasArticulo($this->IDArticulo);
             $diferenciaReglas1 = array_diff($reglasAntes, $reglasNuevas);
             $diferenciaReglas2 = array_diff($reglasNuevas, $reglasAntes);
-            
+
             if ((count($diferenciaReglas1) + count($diferenciaReglas2)) > 0) {
 
                 // Borro los eventuales ordenes que existieran para el artículo
@@ -93,7 +93,7 @@ class Articulos extends ArticulosEntity {
                     unset($reglas);
                 }
             }
-            
+
             // Borro el eventual escandallo
             if ($this->AllowsChildren == '0') {
                 $escan = new ArticulosEscandallos();
@@ -103,7 +103,7 @@ class Articulos extends ArticulosEntity {
         }
         return $ok;
     }
-    
+
     /**
      * Marco de borrado el artículo y borro sus eventuales órdenes y propiedades.
      * 
@@ -141,11 +141,10 @@ class Articulos extends ArticulosEntity {
                     $escan = new ArticulosEscandallos();
                     $escan->queryDelete("IDArticuloOrigen='{$id}'");
                     unset($escan);
-                }                
-                
+                }
             }
         }
-        
+
         return $ok;
     }
 
@@ -206,7 +205,8 @@ class Articulos extends ArticulosEntity {
         for ($i = 1; $i <= 5; $i++) {
             $idEstado = $this->{"IDEstado$i"};
             if (isset($valida[$idEstado]))
-                $this->{"IDEstado$i"} = 0; else
+                $this->{"IDEstado$i"} = 0;
+            else
                 $valida[$idEstado] = '1';
         }
 
@@ -276,6 +276,23 @@ class Articulos extends ArticulosEntity {
         $pvp = $this->Pvp * $this->{"getC$um"}() * (1 + $this->getIDIva()->getIva() / 100);
 
         return round($pvp, $decimales);
+    }
+
+    /**
+     * Devuelve el PVP para la web con o sin iva incluido
+     * según la variable de entorno de proyecto shop.ivaIncluido
+     * 
+     * @param string La Unidad de Medida.Por defecto la de venta
+     * @param integer El número de decimales
+     * @return decimal El PVP.
+     */
+    public function getPrecioWeb($um = 'UMV', $decimales = 2) {
+        
+        $pvp = ($_SESSION['varEnv']['Pro']['shop']['ivaIncluido'] === '1') ?
+            $this->getPrecioVentaConImpuestos($um, $decimales) :
+            $this->getPrecioVenta($um, $decimales);
+
+        return $pvp;
     }
 
     /**
@@ -351,7 +368,7 @@ class Articulos extends ArticulosEntity {
 
         $hayPromo = false;
         if (count($promociones)) {
-            while ((!$hayPromo) and (list(, $promocion) = each($promociones))) {
+            while ((!$hayPromo) and ( list(, $promocion) = each($promociones))) {
 
                 // El articulo está en promocion, ver si aplica al cliente o grupo de clientes
                 $promoCliente = new PromocionesClientes();
@@ -429,7 +446,7 @@ class Articulos extends ArticulosEntity {
         // en el cambio de precio de venta o margen. Si no estuviera definido,
         // se respeta el PVP a costa del MARGEN
         $parametro = $_SESSION['usuarioWeb']['actuPrecios'];
-        if (($parametro != 'MARGEN') and ($parametro != 'PVP'))
+        if (($parametro != 'MARGEN') and ( $parametro != 'PVP'))
             $parametro = 'MARGEN';
 
         // Calculo el nuevo margen o el nuevo precio de venta (según el parámetro) sobre el PRECIO MEDIO DE COSTO

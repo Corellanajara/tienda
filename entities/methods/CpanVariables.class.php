@@ -402,5 +402,3 @@ class CpanVariables extends CpanVariablesEntity {
     }
 
 }
-
-?>
