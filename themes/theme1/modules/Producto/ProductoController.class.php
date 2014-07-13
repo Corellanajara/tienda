@@ -10,7 +10,7 @@
  */
 class ProductoController extends ControllerProject {
 
-    protected $entity = "Producto";
+    protected $controller = "Producto";
     var $formContacta = array();
     var $formDenuncia = array();
     protected $varEnvMod = array();
@@ -111,7 +111,7 @@ class ProductoController extends ControllerProject {
         $this->values['productos'] = ErpArticulos::getArticulosPaginadosUsuario($idAnunciante, '', $nPagina, 0);
 
         return array(
-            'template' => $this->entity . '/anunciante.html.twig',
+            'template' => $this->controller . '/anunciante.html.twig',
             'values' => $this->values
         );
     }
@@ -164,7 +164,7 @@ class ProductoController extends ControllerProject {
         $this->values['formContacta'] = $this->formContacta;
 
         return array(
-            'template' => $this->entity . '/index.html.twig',
+            'template' => $this->controller . '/index.html.twig',
             'values' => $this->values,
         );
     }
@@ -215,7 +215,7 @@ class ProductoController extends ControllerProject {
         $this->values['formDenuncia'] = $this->formDenuncia;
 
         return array(
-            'template' => $this->entity . '/index.html.twig',
+            'template' => $this->controller . '/index.html.twig',
             'values' => $this->values,
         );
     }
@@ -244,7 +244,7 @@ class ProductoController extends ControllerProject {
                     $this->values['articulo'] = $articulo;
                     unset($articulo);
 
-                    $template = $this->entity . "/editProducto.html.twig";
+                    $template = $this->controller . "/editProducto.html.twig";
                 } else {
                     // Si el usuario no está logeado, lo invito a que se logee.
                     include "modules/ZonaPrivada/ZonaPrivadaController.class.php";
@@ -412,7 +412,7 @@ class ProductoController extends ControllerProject {
                 /* MARCAS */
                 $this->values['marcas'] = ErpMarcas::getMarcas();
 
-                $template = $this->entity . "/editProducto.html.twig";
+                $template = $this->controller . "/editProducto.html.twig";
                 unset($articulo);
                 break;
         }

@@ -61,6 +61,8 @@ class ControllerWeb {
      */
     public function __construct($request) {
 
+        $this->values['controller'] = $this->controller;
+        
         // Cargar lo que viene en el request
         $this->request = $request;
 
@@ -88,7 +90,7 @@ class ControllerWeb {
         // CORRESPONDIENTES AL IDIOMA SELECCIONADO
         //$this->values['TEXTS'] = $this->getTextosIdioma($codigoIdiomaActual);
         $textos = new CpanTextos();
-        $this->values['LABELS'] = $textos->getTextos($this->entity);
+        $this->values['LABELS'] = $textos->getTextos($this->controller);
         unset($textos);
 
         // CONTROL DE VISITAS, SI ESTÁ ACTIVO POR LA VARIABLE DE ENTORNO
@@ -135,7 +137,7 @@ class ControllerWeb {
     public function IndexAction() {
 
         return array(
-            'template' => $this->entity . "/index.html.twig",
+            'template' => $this->controller . "/index.html.twig",
             'values' => $this->values,
         );
     }
@@ -530,7 +532,7 @@ class ControllerWeb {
 
         $array = array();
 
-        $file = APP_PATH . "/modules/{$this->entity}/lang.yml";
+        $file = APP_PATH . "/modules/{$this->controller}/lang.yml";
         if (file_exists($file)) {
             $textos = sfYaml::load($file);
             $array = isset($textos[$lang]) ? $textos[$lang] : $textos['es'];

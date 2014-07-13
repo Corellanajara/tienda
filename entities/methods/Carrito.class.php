@@ -21,5 +21,3 @@ class Carrito extends CarritoEntity {
     }
 
 }
-
-?>

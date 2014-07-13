@@ -10,7 +10,7 @@
  */
 class AvisoCookiesController extends ControllerProject {
 
-    protected $entity = "AvisoCookies";
+    protected $controller = "AvisoCookies";
 
     public function IndexAction() {
         

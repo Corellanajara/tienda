@@ -10,7 +10,7 @@
  */
 class DescargasController extends ControllerProject {
 
-    protected $entity = "Descargas";
+    protected $controller = "Descargas";
 
     public function IndexAction() {
 

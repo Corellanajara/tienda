@@ -74,7 +74,12 @@ class FormasPagoEntity extends EntityComunes {
      * @orm:Column(type="integer")
      * @assert:NotBlank(groups="formas_pago")
      */
-    protected $Accion = '0';    
+    protected $Accion = '0'; 
+    /**
+     * @orm:Column(type="integer")
+     * @assert:NotBlank(groups="formas_pago")
+     */
+    protected $TipoTpv = '0';     
     /**
      * Nombre de la conexion a la DB
      * @var string
@@ -210,5 +215,15 @@ class FormasPagoEntity extends EntityComunes {
         if (!($this->Accion instanceof AccionesFormasPago))
             $this->Accion = new AccionesFormasPago($this->Accion);
         return $this->Accion;
+    }
+
+    public function setTipoTpv($TipoTpv) {
+        $this->TipoTpv = trim($TipoTpv);
+    }
+
+    public function getTipoTpv() {
+        if (!($this->TipoTpv instanceof TiposTpv))
+            $this->TipoTpv = new TiposTpv($this->TipoTpv);
+        return $this->TipoTpv;
     }
 }

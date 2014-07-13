@@ -2,7 +2,7 @@
 
 class FabricantesController extends ControllerProject {
     
-    protected $entity = "Fabricantes";
+    protected $controller = "Fabricantes";
     
     
     protected $ordenes = array(
@@ -38,7 +38,7 @@ class FabricantesController extends ControllerProject {
                 break;
         }
 
-        $this->values['destacados'] = ErpArticulos::getArticulosZona($this->entity, 1,"IDFabricante='{$idFabricante}'");          
+        $this->values['destacados'] = ErpArticulos::getArticulosZona($this->controller, 1,"IDFabricante='{$idFabricante}'");          
         $this->values['fabricante'] = ErpMarcas::getObjetoMarca($idFabricante);
         $this->values['articulos'] = ErpMarcas::getArticulosPaginados($idFabricante, $orden, $pagina, $itemsPorPagina);
         $this->values['orden'] = $orden;

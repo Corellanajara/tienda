@@ -8,7 +8,7 @@
  */
 class FavoritosController extends ControllerProject {
 
-    protected $entity = "Favoritos";
+    protected $controller = "Favoritos";
 
     public function IndexAction() {
 

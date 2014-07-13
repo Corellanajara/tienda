@@ -10,7 +10,7 @@
  */
 class ContenidosController extends ControllerProject {
 
-    protected $entity = "Contenidos";
+    protected $controller = "Contenidos";
     var $formContacta = array();
 
     public function IndexAction() {
@@ -18,7 +18,7 @@ class ContenidosController extends ControllerProject {
         $contenido = Contenidos::getContenidoDesarrollado($this->request['IdEntity'], 12);
         $this->values['contenidoDesarrollado'] = $contenido;
 
-        $template = $this->entity . "/index.html.twig";
+        $template = $this->controller . "/index.html.twig";
 
         switch ($this->request['METHOD']) {
             case 'GET':

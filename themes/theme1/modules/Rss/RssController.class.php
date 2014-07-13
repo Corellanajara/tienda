@@ -8,7 +8,7 @@
  */
 class RssController extends ControllerProject {
 
-    protected $entity = "Rss";
+    protected $controller = "Rss";
 
     public function IndexAction() {
 
@@ -93,7 +93,7 @@ class RssController extends ControllerProject {
         //echo $xml;exit;
         
         return array(
-            'template' => $this->entity . "/index.xml.twig",
+            'template' => $this->controller . "/index.xml.twig",
             'values' => $this->values,
         );
     }

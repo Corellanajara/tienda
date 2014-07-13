@@ -10,6 +10,6 @@
  */
 class IndexController extends ControllerProject {
 
-    protected $entity = "Index";
+    protected $controller = "Index";
 
 }

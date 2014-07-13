@@ -31,8 +31,10 @@ class ZonasPagoEnvio extends ZonasPagoEnvioEntity {
             $rows = $this->_em->fetchResult();
         }
 
-        $array = array();
+        $array[0] = array();
         foreach ($rows as $row) {
+            $array[$row['IDZona']][0] = $row['Zona'];
+            $array[$row['IDZona']][$row['IDFP']][0] = $row['Descripcion'];
             $array[$row['IDZona']][$row['IDFP']][$row['IDAgencia']] = array(
                 'zona' => $row['Zona'],
                 'formaPago' => $row['Descripcion'],

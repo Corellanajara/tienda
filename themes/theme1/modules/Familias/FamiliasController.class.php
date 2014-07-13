@@ -7,7 +7,7 @@
 
 class FamiliasController extends ControllerProject {
 
-    protected $entity = "Familias";
+    protected $controller = "Familias";
     
     protected $ordenes = array(
         array('Id' => 'SortOrder ASC', 'Value' => 'Orden a-z'),
@@ -58,7 +58,7 @@ class FamiliasController extends ControllerProject {
                 break;
         } 
         
-        $this->values['destacados'] = ErpArticulos::getArticulosZona($this->entity, 1,"{$campo}='{$idFamilia}'");   
+        $this->values['destacados'] = ErpArticulos::getArticulosZona($this->controller, 1,"{$campo}='{$idFamilia}'");   
         $this->values['familia'] = ErpFamilias::getObjetoFamilia($idFamilia);
         $this->values['articulos'] = ErpFamilias::getArticulosPaginados($idFamilia, $orden, $pagina, $itemsPorPagina);
         $this->values['orden'] = $orden;

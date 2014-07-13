@@ -1,0 +1,91 @@
+{# DATOS DE ENVÍO #}    
+<div class="gastosEnvio">
+    <h3>{{macro.idioma('datosEnvio')}}</h3>
+    <div class="selectEnvio">
+        <fieldset>
+            <label for="zonaEnvio">{{macro.idioma('zonaEnvio')}}</label>
+            <select name="zonaEnvio" id="zonaEnvio">
+                {% for keyZona,zona in values.combinaciones %}
+                <option value="{{keyZona}}" {%if values.carrito.totales.zonaEnvio == keyZona%} SELECTED{%endif%}>{{zona[0]}}</option>
+                {% endfor %}
+            </select><br/>
+            <label for="formaPago">{{macro.idioma('formaPago')}}</label>
+            <select name="formaPago" id="formaPago">             
+                {% for keyFP,formaPago in values.combinaciones[values.carrito.totales.zonaEnvio] %}
+                <option value="{{keyFP}}" {%if values.carrito.totales.formaPago == keyFP%} SELECTED{%endif%}>{{formaPago[0]}}</option>
+                {% endfor %}
+            </select> <br/>       
+            <label for="metodoEnvio">{{macro.idioma('metodoEnvio')}}</label>
+            <select name="metodoEnvio" id="metodoEnvio">
+                {% for keyAgencia,agencia in values.combinaciones[values.carrito.totales.zonaEnvio][values.carrito.totales.formaPago] %}
+                <option value="{{keyAgencia}}" {%if values.carrito.totales.formaEnvio == keyAgencia%} SELECTED{%endif%}>{{agencia.agencia}}</option>
+                {% endfor %}
+            </select>         
+        </fieldset>
+    </div>
+    <div class="plazoEntrega">{{macro.idioma('plazoEntrega')}} <p id="plazoEntrega">{{values.carrito.totales.plazoEntrega}}</p></div> 
+    
+    <div class="pagos">
+        <p class="title_footer">{{macro.idioma("formasDePago")}}</p>
+        <img alt="Visa" src="{{theme}}/images/visa.png"></img>
+        <img alt="MasterCard" src="{{theme}}/images/masterCard.png"></img>
+        <a class="paipal" onclick="javascript:window.open('https://www.paypal.com/es/webapps/mpp/paypal-popup','WIPaypal','toolbat=no,directories=no,status=no,menubar=no,scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" title="{{macro.idioma("comoFuncionaPaypal")}}" href="https://www.paypal.com/es/webapps/mpp/paypal-popup">
+            <img alt="Paipal" src="{{theme}}/images/paypal.png"/>
+        </a>
+    </div>
+</div>
+
+{# TOTAL DEL CARRITO #}
+<div class="priceSummary">
+    <div class="totalPedido">
+        <div><span>{{macro.idioma('subTotal')}}</span> <span id="subtotal">{{values.carrito.totales.Importe|number_format}}</span></div>
+        <div><span>{{macro.idioma('gastosEnvio')}}</span> <span id="gastosEnvio">{{values.carrito.totales.gastosEnvio|number_format}}</span></div>      
+        <div><span>{{macro.idioma('total')}}</span> <span id="total">{{values.carrito.totales.total|number_format}}</span></div>     
+        <br/><br/>
+    </div>
+
+    {# CUPON DE DESCUENTO #}
+    {% if values.conCupon == '1' %}
+    <div class="wraper_cupon">
+        {% if values.cupon.Id > 0%}
+            <p>{{macro.idioma("tieneCupon")}}</p>
+            <p>{{values.cupon.mensaje}}</p>
+        {% else %}
+        <label class="" for="cupon">
+            {{macro.idioma("introduzcaCupon")}}
+            <strong>{{macro.idioma("aplicar")}}</strong>
+        </label>
+        <div class="cupon">
+            <input id="codigoCupon" type="text" value="" name="cupon"></input>
+            <a id="aplicarCupon" class="btn" title="{{macro.idioma("aplicarCupon")}}" href="javascript:;">
+                {{macro.idioma("aplicar")}}
+                <span id="icon-ok-cupon" class="icon-ok" style="display:none;"></span>
+            </a>
+        </div>
+        <div id="boxCupon" class="warning cupon oculta">
+            <div class="icon-ok-sign"></div>
+            <p id="descripcionCupon"></p>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    {# FIN CUPON DE DESCUENTO #}
+
+    <form name="formCarrito" id="formCarrito" action="" method="POST">
+        <div class="oculto">
+            <input name="controller" value="Carrito"/>
+            <input name="action" value="Comprar"/>
+            <input name="return" value="Carrito"/>
+        </div>    
+        <div class="form_control">
+            <div class="botones_cesta">
+                <a class="btn-condiciones" href="{{app.path}}">{{macro.idioma("seguirComprando")}}</a> | 
+                <input id="condiciones" type="checkbox" name="condiciones" value="1"/>
+                {{macro.idioma("heLeidoYAcepto")}}
+                <a class="btn-condiciones" href="{{app.path}}/condiciones-de-venta">{{macro.idioma("condicionesVenta")}}</a>
+            </div>
+        </div>    
+        <input type="submit" id="botonRealizarPedido" class="btn_azul" value="{{macro.idioma('realizarPedido')}}" />          
+    </form>     
+</div>
+         

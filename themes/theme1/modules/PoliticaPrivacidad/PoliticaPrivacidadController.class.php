@@ -10,7 +10,7 @@
  */
 class PoliticaPrivacidadController extends ControllerProject {
 
-    protected $entity = "PoliticaPrivacidad";
+    protected $controller = "PoliticaPrivacidad";
 
     public function IndexAction() {
         

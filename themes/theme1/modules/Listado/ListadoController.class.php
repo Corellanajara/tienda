@@ -10,7 +10,7 @@
  */
 class ListadoController extends ControllerProject {
 
-    protected $entity = "Listado";
+    protected $controller = "Listado";
     protected $ordenes = array(
         array('Id' => 'SortOrder ASC', 'Value' => 'Orden a-z'),
         array('Id' => 'Descripcion ASC', 'Value' => 'Nombre a-z'),

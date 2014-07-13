@@ -10,7 +10,7 @@
  */
 class AvisoLegalController extends ControllerProject {
 
-    protected $entity = "AvisoLegal";
+    protected $controller = "AvisoLegal";
 
     public function IndexAction() {
         

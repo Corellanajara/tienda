@@ -24,7 +24,7 @@
 #
 
 config:
-  debug_mode: true
+  debug_mode: false
 
   # PARA MOSTRAR O NO EL BOTON DE LA AUDITORIA DE LOS FORMULARIOS
   audit_mode: true

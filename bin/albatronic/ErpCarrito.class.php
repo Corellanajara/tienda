@@ -24,7 +24,7 @@ class ErpCarrito {
         $carrito = new Carrito();
 
         $lineas = array();
-        
+
         $filtro = "sesion='{$_SESSION['IdSesion']}'";
         $rows = $carrito->cargaCondicion("Id", $filtro, "Id ASC");
         foreach ($rows as $row) {
@@ -145,7 +145,109 @@ class ErpCarrito {
         $filtro = "sesion='{$_SESSION['IdSesion']}'";
         $rows = $carrito->cargaCondicion("sum(Unidades) as Unidades, sum(Importe) as Importe", $filtro);
 
+        foreach($_SESSION['carrito'] as $key=>$value) {
+            $rows[0][$key] = $value;
+        }
+        $rows[0]['total'] = $rows[0]['Importe'] +$rows[0]['gastosEnvio'];
+        
         return $rows[0];
+    }
+
+    /**
+     * Crea pedido web en base a lo que hay
+     * en el carrito de la sesion en curso.
+     * 
+     * Si ya hubiera un pedido asociado a esa sesion,
+     * lo borra y lo crea de nuevo
+     * 
+     * @return integer $idPedido
+     */
+    static function creaPedido() {
+
+        // Borra las posibles líneas de pedido que estén sin confirmar
+        $idPedido = PedidosWebCab::BorraLineasPedidoSesion();
+
+        if ($idPedido > 0) {
+            // Ya existía, lo actualizo
+            $pedido = new PedidosWebCab($idPedido);
+            $pedido->setsesion($_SESSION['IdSesion']);
+            $pedido->setFecha(date('Y-m-d'));
+            $pedido->setIDCliente($_SESSION['usuarioWeb']['Id']);
+            $pedido->setIDCupon(0);
+            $pedido->setDescuento(0);
+            $pedido->setIDZonaEnvio($_SESSION['carrito']['zonaEnvio']);
+            $pedido->setIDFP($_SESSION['carrito']['formaPago']);
+            $pedido->setIDAgencia($_SESSION['carrito']['formaEnvio']);
+            $pedido->setGastosEnvio($_SESSION['carrito']['gastosEnvio']);
+            $pedido->setPlazoEntrega($_SESSION['carrito']['plazoEntrega']);
+            if ($_SESSION['idAfiliado']>0) {
+                $pedido->setIDAfiliado($_SESSION['idAfiliado']);
+            }
+            $pedido->save();
+        } else {
+            // No existía, lo creo
+            $pedido = new PedidosWebCab();
+            $pedido->setsesion($_SESSION['IdSesion']);
+            $pedido->setFecha(date('Y-m-d'));
+            $pedido->setIDCliente($_SESSION['usuarioWeb']['Id']);
+            $pedido->setIDZonaEnvio($_SESSION['carrito']['zonaEnvio']);
+            $pedido->setIDFP($_SESSION['carrito']['formaPago']);
+            $pedido->setIDAgencia($_SESSION['carrito']['formaEnvio']);
+            $pedido->setGastosEnvio($_SESSION['carrito']['gastosEnvio']); 
+            $pedido->setPlazoEntrega($_SESSION['carrito']['plazoEntrega']);  
+            if ($_SESSION['idAfiliado']>0) {
+                $pedido->setIDAfiliado($_SESSION['idAfiliado']);
+            }            
+            $idPedido = $pedido->create();
+        }
+
+        // Crear las líneas de pedido con lo que haya en el carrito
+        //print_r($pedido->getErrores());
+        if ($idPedido > 0) {
+            // Crear las líneas
+            $carrito = new Carrito();
+            $filtro = "sesion='{$_SESSION['IdSesion']}'";
+            $rows = $carrito->cargaCondicion("*", $filtro, "Id ASC");
+            unset($carrito);
+            foreach ($rows as $row) {
+                $linea = new PedidosWebLineas();
+                $linea->setIDPedido($idPedido);
+                $linea->setIDArticulo($row['IDArticulo']);
+                $linea->setDescripcion($row['Descripcion']);
+                $linea->setUnidades($row['Unidades']);
+                $linea->setUnidadMedida($row['UnidadMedida']);
+                $linea->setPrecio($row['Precio']);
+                $linea->setDescuento($row['Descuento']);
+                $linea->setImporte($row['Importe']);
+                $linea->setIva($row['Iva']);
+                $linea->setRecargo($row['Recargo']);
+                $linea->setIDEstado(0);
+                $linea->create();
+            }
+            // Totalizar el pedido
+            $pedido = new PedidosWebCab($idPedido);
+            $pedido->recalcula();
+            $pedido->save();
+
+            $pedido->aplicaCupon();
+        }
+
+        return $idPedido;
+    }
+
+    /**
+     * Vacia el carrito de la sesion en curso
+     * 
+     * @return boolean True si éxito
+     */
+    static function vaciaCarrito() {
+
+        $carrito = new Carrito();
+        $filtro = "sesion='{$_SESSION['IdSesion']}'";
+        $ok = ($carrito->queryDelete($filtro) > 0);
+        unset($carrito);
+
+        return $ok;
     }
 
     static function getErrores() {

@@ -9,7 +9,7 @@
  */
 class ContactoController extends ControllerProject {
 
-    var $entity = "Contacto";
+    var $controller = "Contacto";
     var $formContacta = array();
 
     public function IndexAction() {

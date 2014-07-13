@@ -11,7 +11,7 @@
 {%if values.carrito.totales.Unidades%}
     <ul>
         <li><span>{{macro.idioma('productos')}}</span><span id="carritoUnidades">{{values.carrito.totales.Unidades}}</span></li>
-        <li><span>{{macro.idioma('importe')}}</span><span id="carritoImporte">{{values.carrito.totales.Importe}}</span></li>
+        <li><span>{{macro.idioma('importe')}}</span><span id="carritoImporte">{{macro.moneda(values.carrito.totales.Importe)}}</span></li>
     </ul>
 {%else%}
     <span>{{macro.idioma('carroVacio')}}</span>

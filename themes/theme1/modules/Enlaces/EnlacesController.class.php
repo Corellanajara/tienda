@@ -10,7 +10,7 @@
  */
 class EnlacesController extends ControllerProject {
 
-    protected $entity = "Enlaces";
+    protected $controller = "Enlaces";
 
     public function IndexAction() {
 

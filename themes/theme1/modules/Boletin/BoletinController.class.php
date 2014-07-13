@@ -10,7 +10,7 @@
  */
 class BoletinController extends ControllerProject {
 
-    protected $entity = "Boletin";
+    protected $controller = "Boletin";
 
     public function IndexAction() {
         

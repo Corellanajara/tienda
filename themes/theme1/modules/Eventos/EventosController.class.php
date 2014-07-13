@@ -10,7 +10,7 @@
  */
 class EventosController extends ControllerProject {
 
-    protected $entity = "Eventos";
+    protected $controller = "Eventos";
 
     public function IndexAction() {
 

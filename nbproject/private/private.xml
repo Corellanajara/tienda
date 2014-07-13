@@ -6,10 +6,11 @@
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/misDireccionesForm.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/CarritoController.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/layoutLaptop.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/resultado.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/formularioRegistro.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/misDatos.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Index/IndexController.class.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Producto/ProductoController.class.php</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/bin/albatronic/ControllerWeb.class.php</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/lib/notificacionRedsys.php</file>
         </group>
     </open-files>
 </project-private>

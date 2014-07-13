@@ -236,7 +236,7 @@ if ($_SESSION['isMobile']) {
 }
 
 $result['values']['urlAmigable'] = $_SESSION['urlFriendly'];
-$result['values']['controller'] = $controller;
+//$result['values']['controller'] = $controller;
 $result['values']['action'] = $metodo;
 $result['values']['archivoCss'] = ControllerWeb::getArchivoCss($result['template']);
 $result['values']['archivoJs'] = ControllerWeb::getArchivoJs($result['template']);

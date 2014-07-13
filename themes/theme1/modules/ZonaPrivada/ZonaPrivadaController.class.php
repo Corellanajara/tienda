@@ -10,7 +10,7 @@
  */
 class ZonaPrivadaController extends ControllerProject {
 
-    protected $entity = "ZonaPrivada";
+    protected $controller = "ZonaPrivada";
     private $errores = array();
 
     public function IndexAction() {
@@ -29,6 +29,7 @@ class ZonaPrivadaController extends ControllerProject {
                 if ($this->ConfirmacionRegistro())
                     return $this->MisProductosAction();
             default:
+                $this->values['return'] = ($this->request['return'] !== '') ? $this->request['return'] : 'Favoritos';
                 return parent::IndexAction();
         }
     }
@@ -42,17 +43,17 @@ class ZonaPrivadaController extends ControllerProject {
         $cliente = new Clientes($_SESSION['usuarioWeb']['Id']);
 
         switch ($this->request['METHOD']) {
-            
+
             case 'GET':
                 if ($this->request[2] !== '') {
                     $this->values['direccion'] = new ClientesDentrega($this->request[2]);
                     $this->values['solapaActiva'] = "direcciones";
-                    $this->values['templateDirecciones'] = $this->entity . "/misDireccionesForm.html.twig";
+                    $this->values['templateDirecciones'] = $this->controller . "/misDireccionesForm.html.twig";
                 } else {
-                    $this->values['templateDirecciones'] = $this->entity . "/misDireccionesList.html.twig";
+                    $this->values['templateDirecciones'] = $this->controller . "/misDireccionesList.html.twig";
                 }
                 break;
-                
+
             case 'POST':
                 $direccion = new ClientesDentrega();
                 $direccion->bind($this->request['ClientesDentrega']);
@@ -62,15 +63,15 @@ class ZonaPrivadaController extends ControllerProject {
                         
                     }
                 }
-                $this->values['templateDirecciones'] = $this->entity . "/misDireccionesForm.html.twig";                
+                $this->values['templateDirecciones'] = $this->controller . "/misDireccionesForm.html.twig";
                 break;
         }
-        
+
 
         $this->values['cliente'] = $cliente;
-        
+
         return array(
-            'template' => $this->entity . '/misDatos.html.twig',
+            'template' => $this->controller . '/misDatos.html.twig',
             'values' => $this->values
         );
     }
@@ -98,7 +99,8 @@ class ZonaPrivadaController extends ControllerProject {
                         $cliente->setIDZona(0);
                         $cliente->setLogin($datos['EMail']);
                         $ok = $cliente->create();
-                        if (!$ok) {print_r($cliente->getErrores());
+                        if (!$ok) {
+                            print_r($cliente->getErrores());
                             $this->errores[] = "ErrorCrear";
                         }
                     }
@@ -113,10 +115,10 @@ class ZonaPrivadaController extends ControllerProject {
                         );
                         $this->enviaCorreoWebMaster($cliente);
                         return $this->redirect("Index");
-                        //$template = "{$this->entity}/confirmacionRegistro.html.twig";
+                        //$template = "{$this->controller}/confirmacionRegistro.html.twig";
                         //$this->CorreoConfirmacionRegistro($cliente);
                     } else {
-                        $template = "{$this->entity}/registro.html.twig";
+                        $template = "{$this->controller}/registro.html.twig";
                         $this->values['solapaActiva'] = "misDatos";
                     }
 
@@ -134,7 +136,7 @@ class ZonaPrivadaController extends ControllerProject {
                             $this->errores[] = "ErrorGuardar";
                     }
                     $this->values['errores'] = $this->errores;
-                    $template = "{$this->entity}/misDatos.html.twig";
+                    $template = "{$this->controller}/misDatos.html.twig";
                     $this->values['solapaActiva'] = "misDatos";
                     break;
             }
@@ -142,8 +144,8 @@ class ZonaPrivadaController extends ControllerProject {
             $this->values['cliente'] = $cliente;
         } else {
             $this->values['cliente'] = new Clientes();
-            $this->values['solapaActiva'] = "0";            
-            $template = "{$this->entity}/misDatos.html.twig";
+            $this->values['solapaActiva'] = "0";
+            $template = "{$this->controller}/misDatos.html.twig";
         }
 
         return array(
@@ -237,11 +239,14 @@ class ZonaPrivadaController extends ControllerProject {
 
         if ($this->values['login']['error']) {
             return array(
-                'template' => $this->entity . "/index.html.twig",
+                'template' => $this->controller . "/index.html.twig",
                 'values' => $this->values,
             );
         } else {
-            return $this->redirect("Favoritos");
+            if ($this->request['return'] === '') {
+                $this->request['return'] = "Favoritos";
+            }
+            return $this->redirect($this->request['return']);
         }
     }
 
@@ -297,7 +302,7 @@ class ZonaPrivadaController extends ControllerProject {
         }
 
         return array(
-            'template' => $this->entity . '/olvidoContrasena.html.twig',
+            'template' => $this->controller . '/olvidoContrasena.html.twig',
             'values' => $this->values
         );
     }
@@ -356,7 +361,7 @@ class ZonaPrivadaController extends ControllerProject {
         $this->values['noticia'] = Noticias::getNoticias(true, 1);
 
         return array(
-            'template' => $this->entity . '/misProductos.html.twig',
+            'template' => $this->controller . '/misProductos.html.twig',
             'values' => $this->values
         );
     }

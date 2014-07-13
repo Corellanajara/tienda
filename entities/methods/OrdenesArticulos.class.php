@@ -105,7 +105,7 @@ class OrdenesArticulos extends OrdenesArticulosEntity {
                 $filtro .= " AND ( (a.Privacy='0') OR (a.Privacy='2') )";
             } else {
                 $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
-                $filtro .= " AND ( a.Privacy='2') OR ( (a.Privacy='1') AND LOCATE('{$idPerfil}',a.AccessProfileListWeb) ) )";
+                $filtro .= " AND ( a.Privacy='2') OR ( (a.Privacy='1') AND LOCATE('{$idPerfil}',a.AccessProfileListWeb) )";
             }
 
             $query = "
@@ -113,7 +113,7 @@ class OrdenesArticulos extends OrdenesArticulosEntity {
                 FROM {$em->getDataBase()}.ErpOrdenesArticulos r, {$em->getDataBase()}.ErpArticulos a
                 WHERE r.IDRegla='{$idRegla}' AND r.IDArticulo=a.IDArticulo AND {$filtroAdicional} AND a.Vigente='1' AND {$filtro}
                 ORDER BY r.SortOrder ASC
-                LIMIT {$nItems}";
+                LIMIT {$nItems}";//echo $query;
             $em->query($query);
             $rows = $em->fetchResult();
             $em->desConecta();

@@ -37,7 +37,7 @@ class Cupones extends CuponesEntity {
             $mensaje .= ($cupones->getTipo()->getIDTipo() === '0') ? "%" : "€";
             $mensaje .= " de descuento aplicables a " . $cupones->getAplicaA()->getDescripcion();
             if ($cupones->getImporteMinimo()>0) {
-                $mensaje .= " para un pedido mínimo de " . $cupones->getImporteMinimo();
+                $mensaje .= " para un pedido mínimo de " . $cupones->getImporteMinimo() ." €";
             }
             $this->_mensajeCupon = $mensaje;
         } else {

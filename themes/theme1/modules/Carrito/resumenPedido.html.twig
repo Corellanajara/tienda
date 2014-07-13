@@ -1,0 +1,48 @@
+{# FORMULARIO DE CONFIRMACION DE PEDIDO, EL ULTIMO PASO #}
+
+{% extends layout %}
+
+{% set pedido = values.pedido %}
+    
+{% block content %}
+    <li>Pedido {{pedido.IDPedido}}</li>
+    <li>Fecha {{pedido.Fecha}}</li>
+    <li>Cliente {{pedido.IDCliente}}</li>
+    <li>{{pedido.IDZonaEnvio}}</li>
+    <li>{{pedido.IDFP}}</li>
+    <li>{{pedido.IDAgencia}}</li>
+    <li>{{pedido.PlazoEntrega}}</li>
+
+    {% if pedido.Descuento %}
+    <li>Importe Bruto {{macro.moneda(pedido.Importe)}}</li>
+    <li>Dcto Cupón {{macro.moneda(pedido.Descuento)}}</li>
+    {% endif %}
+    <li>Base Imponible {{macro.moneda(pedido.TotalBases)}}</li>
+    <li>Iva {{macro.moneda(pedido.TotalIva)}}</li>    
+    <li>{{macro.idioma("total")}} {{macro.moneda(pedido.Total)}}</li>   
+    <li>{{macro.idioma("gastosEnvio")}} {{macro.moneda(pedido.GastosEnvio)}}</li>
+    <li>{{macro.idioma("totalAPagar")}} {{macro.moneda(pedido.total + pedido.GastosEnvio)}}</li>
+    
+    <form name="formResumenPedido" id="formResumenPedido" method="POST" action="{%if (values.pasarela.url_tpv != '') %}{{values.pasarela.url_tpv}}{% endif %}">
+        <div class="oculto">
+            {% for key,value in values.pasarela %}
+                {% if key != 'url_tpv' %}
+                    <input name="{{key}}" value="{{value}}"/>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        <input type="submit" name="confirmarPedido" id="confirmarPedido" value="{{macro.idioma('confirmarPedido')}}"/>
+        <p id="mensajeConectando" class="oculto">{{macro.idioma('conectandoPasarela')}}</p>
+    </form>
+
+<script>
+$(function(){
+    $('#confirmarPedido').click(function(){
+        $(this).hide();
+        $('#mensajeConectando').show();
+        $('#formResumenPedido').submit();
+    });
+});
+</script>
+{% endblock %}

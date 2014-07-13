@@ -152,9 +152,7 @@
 {% endmacro%}
 
 {% macro idioma(clave)%}
-    {% if LABELS[clave] %}
-        {%spaceless%}{{LABELS[clave]}}{%endspaceless%}
-    {% else %}
-        [{{clave}}]
-    {% endif %}
+{%spaceless%}    
+{% if LABELS[clave] %}{{LABELS[clave]}}{% else %}[{{clave}}]{% endif %}
+{%endspaceless%}
 {% endmacro%}
