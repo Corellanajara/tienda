@@ -214,16 +214,15 @@ class AlbaranesCab extends AlbaranesCabEntity {
 
             //Calcular el peso, volumen y n. de bultos de los productos inventariables
             switch ($_SESSION['ver']) {
-                case '0': //Estandar
-                    $columna = "Unidades";
-                    break;
                 case '1': //Cristal
-                    $columna = "MtsAl";
-                    break;
+                    $columna = "MtsAl";                
+                case '0': //Estandar
+                default:
+                    $columna = "Unidades";
             }
             $em = new EntityManager($this->getConectionName());
             $query = "select sum(a.Peso*l.{$columna}) as Peso,
-                        sum(aVolumen*l.{$columna}) as Volumen,
+                        sum(a.Volumen*l.{$columna}) as Volumen,
                         sum(Unidades) as Bultos 
                       from {$tableArticulos} as a,{$tableLineas} as l
                       where (l.IDArticulo=a.IDArticulo)

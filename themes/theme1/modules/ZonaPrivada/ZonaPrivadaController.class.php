@@ -224,6 +224,9 @@ class ZonaPrivadaController extends ControllerProject {
                     'IdPerfil' => $usuario->getIDPerfilWeb()->getPrimaryKeyValue(),
                 );
                 $this->values['login']['error'] = 0;
+                
+                SeguimientoVisitas::cambiaVisitasUsuario();
+                
                 // Actualizar el número de logins
                 $usuario->queryUpdate(array("NumberVisits" => $usuario->getNumberVisits() + 1, "DateTimeLastVisit" => time()), "{$usuario->getPrimaryKeyName()}='{$usuario->getPrimaryKeyValue()}'");
             } else {

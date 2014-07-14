@@ -14,5 +14,3 @@ class TiposBanners extends Tipos {
         array('Id' => '1', 'Value' => 'Aleatorio',),
     );
 }
-
-?>

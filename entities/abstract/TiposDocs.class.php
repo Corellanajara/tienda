@@ -21,5 +21,3 @@ class TiposDocs extends Tipos {
         array('Id' => 'audio',    'Value' => 'audio',   'limit' => ''),
     );
 }
-
-?>

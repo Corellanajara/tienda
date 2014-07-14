@@ -19,4 +19,3 @@ class RequestMethods extends Tipos {
         array('Id' => '1', 'Value' => 'POST'),
     );
 }
-?>

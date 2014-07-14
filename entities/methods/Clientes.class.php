@@ -479,6 +479,30 @@ class Clientes extends ClientesEntity {
     }
 
     /**
+     * Devuelve un array con objetos de PedidosWebCab del cliente en curso
+     * 
+     * @param type $idEstado Por defecto >=2 (a partir de Confirmado)
+     * @return \PedidosWebCab Array de objetos PedidosWebCab
+     */
+    public function getPedidosWeb($idEstado = '2') {
+
+        $filtro = "IDCliente='{$this->IDCliente}'";
+        if ($idEstado != '')
+            $filtro .= " AND IDEstado>='{$idEstado}'";
+
+        $array = array();
+
+        $pedido = new PedidosWebCab();
+        $rows = $pedido->querySelect("IDPedido", $filtro, "Fecha DESC");
+        unset($pedido);
+        foreach ($rows as $row) {
+            $array[] = new PedidosWebCab($row['IDPedido']);
+        }
+
+        return $array;
+    }
+
+    /**
      * Devuelve un array con objetos de albaranesCab del cliente en curso
      * 
      * @param type $idEstado
@@ -529,14 +553,14 @@ class Clientes extends ClientesEntity {
      * @return array
      */
     public function getSuscripciones() {
-        
+
         $array = array();
-        
+
         $tipoBoletines = new BolTipos();
         $tipos = $tipoBoletines->cargaCondicion("Id,Titulo");
         foreach ($tipos as $tipo) {
             $boletin = new BolBoletines();
-            $boletines = $boletin->cargaCondicion("Id,Titulo","IDTipo='{$tipo['Id']}'");
+            $boletines = $boletin->cargaCondicion("Id,Titulo", "IDTipo='{$tipo['Id']}'");
             foreach ($boletines as $boletin) {
                 $relaciones = new CpanRelaciones();
                 $idRelacion = $relaciones->getIdRelacion("Clientes", $this->IDCliente, "BolBoletines", $boletin['Id']);
@@ -546,9 +570,10 @@ class Clientes extends ClientesEntity {
                 );
             }
         }
-        
+
         return $array;
     }
+
 }
 
 ?>

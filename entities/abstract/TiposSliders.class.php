@@ -16,5 +16,3 @@ class TiposSliders extends Tipos {
         array('Id' => '3', 'Value' => 'Fijo en la WEB excepto HOME',),
     );
 }
-
-?>

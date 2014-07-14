@@ -93,7 +93,11 @@ class ControllerWeb {
         $this->values['LABELS'] = $textos->getTextos($this->controller);
         unset($textos);
 
-        // CONTROL DE VISITAS, SI ESTÁ ACTIVO POR LA VARIABLE DE ENTORNO
+        /**
+         * CONTROL DE VISITAS, SI ESTÁ ACTIVO POR LA VARIABLE DE ENTORNO
+         *
+         *OBSOLETO: SE GESTIONA DESDE GOOGLE ANALYTICS
+        
         if ($_SESSION['varEnv']['Pro']['visitas']['activo']) {
 
             // Borrar la tabla temporal de visitas, si procede según la
@@ -114,10 +118,17 @@ class ControllerWeb {
             $visita->anotaVisita($this->request);
             unset($visita);
         }
+         * 
+         */
 
         // LECTURA DE METATAGS
         $this->values['meta'] = $this->getMetaInformacion();
 
+        // INCREMENTA EL NÚMERO DE VISITAS DE LA URL AMIGABLE Y SU ENTIDAD ASOCIADA
+        $urlAmigable = new CpanUrlAmigables($this->request['IdUrlAmigable']);
+        $urlAmigable->IncrementaVisitas();
+        unset($urlAmigable);
+        
         /**
          *
          * PROCESOS PARA AUTOMATIZAR VIA CRON: BORRAR VISITAS NO HUMANAS, WS LOCALIZACION IPS, ETC

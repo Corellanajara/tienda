@@ -34,7 +34,7 @@ class Widgets {
      * Devuelve las marcas/fabricantes
      * @param boolean $enPortada
      * @param integer $posicionInicio
-     * @param integer $nItems. por defecto todas
+     * @param integer $nItems Número de marcas a devolver, por defecto todas
      * @return array
      */
     public function getMarcas($enPortada = true, $posicionInicio = 0, $nItems = 0) {
@@ -229,4 +229,27 @@ class Widgets {
         return Eventos::getDiasConEventos($mes, $ano);
     }
 
+    /**
+     * Devuelve array de objetos $entidadVisitada que han sido visitados
+     * por el usuario en la sesión en curso
+     * 
+     * @param string $entidadVisitada EL nombre de la entidad visitada. Opcional. Por defecto Articulos
+     * @param integer $nVisitas El número de visitas a devolver. Opcional. Por defecto 5
+     * @return array Array de objetos \entidadVisitada
+     */
+    static function getVisitasSesion($entidadVisitada = 'Articulos', $nVisitas = 5) {
+        return SeguimientoVisitas::getVisitasSesion($entidadVisitada, $nVisitas);
+    }
+
+    /**
+     * Devuelve array de objetos $entidadVisitada que han sido visitados
+     * por el usuario en curso (en todas sus sesiones)
+     * 
+     * @param string $entidadVisitada EL nombre de la entidad visitada. Opcional. Por defecto Articulos
+     * @param integer $nVisitas El número de visitas a devolver. Opcional. Por defecto 15
+     * @return array Array de objetos \entidadVisitada
+     */
+    static function getVisitasUsuario($entidadVisitada = 'Articulos', $nVisitas = 15) {
+        return SeguimientoVisitas::getVisitasUsuario($entidadVisitada, $nVisitas);
+    }    
 }

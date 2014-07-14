@@ -18,4 +18,3 @@ class Roles extends Tipos {
         array('Id' => '9', 'Value' => 'Super'),
     );
 }
-?>

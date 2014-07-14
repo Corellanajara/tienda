@@ -23,5 +23,3 @@ class ValoresPrivacy extends Tipos {
     );
 
 }
-
-?>

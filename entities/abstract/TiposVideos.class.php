@@ -14,5 +14,3 @@ class TiposVideos extends Tipos {
         array('Id' => '1', 'Value' => 'Vimeo',),
     );
 }
-
-?>

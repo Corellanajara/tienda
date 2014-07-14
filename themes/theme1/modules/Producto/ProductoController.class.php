@@ -36,6 +36,10 @@ class ProductoController extends ControllerProject {
             ),
         );
 
+        if ($this->varEnv['Pro']['shop']['seguimientoVisitas']) {
+            SeguimientoVisitas::setVisita("Articulos", $this->request['IdEntity']);
+        }
+        
         $variables = CpanVariables::getVariables("Web", "Mod", "Articulos");
 
         $nProductosRelacionados = (int) $variables['especificas']['NumArticulosRelacionados'];

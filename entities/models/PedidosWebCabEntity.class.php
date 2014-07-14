@@ -218,7 +218,7 @@ class PedidosWebCabEntity extends EntityComunes {
     protected $IDEstado = '0';
 
     /**
-     * @var entities\AlbarnaesCab
+     * @var entities\AlbaranesCab
      * @assert NotBlank(groups="ErpPedidosWebCab")
      */
     protected $IDAlbaran = '0';
@@ -360,7 +360,7 @@ class PedidosWebCabEntity extends EntityComunes {
         'Clientes',
         'ClientesDentrega',
         'EstadosPedidosWeb',
-        'AlbarnaesCab',
+        'AlbaranesCab',
         'Agencias',
         'ValoresSN',
         'FormasPago',
@@ -678,8 +678,8 @@ class PedidosWebCabEntity extends EntityComunes {
     }
 
     public function getIDAlbaran() {
-        if (!($this->IDAlbaran instanceof AlbarnaesCab))
-            $this->IDAlbaran = new AlbarnaesCab($this->IDAlbaran);
+        if (!($this->IDAlbaran instanceof AlbaranesCab))
+            $this->IDAlbaran = new AlbaranesCab($this->IDAlbaran);
         return $this->IDAlbaran;
     }
 

@@ -16,4 +16,3 @@ class UsoWeb extends Tipos {
         array('Id' => '2', 'Value' => 'Solo Web'),
     );
 }
-?>

@@ -31,5 +31,3 @@ class ValoresChangeFreq extends Tipos {
     );
 
 }
-
-?>

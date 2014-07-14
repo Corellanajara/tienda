@@ -19,5 +19,3 @@ class RequestOrigins extends Tipos {
         array('Id' => '1', 'Value' => 'Externo'),
     );
 }
-
-?>

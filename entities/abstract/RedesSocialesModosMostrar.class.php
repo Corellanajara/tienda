@@ -16,5 +16,3 @@ class RedesSocialesModosMostrar extends Tipos {
     );
 
 }
-
-?>

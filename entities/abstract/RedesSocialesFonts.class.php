@@ -19,4 +19,3 @@ class RedesSocialesFonts extends Tipos {
     );
 
 }
-?>
