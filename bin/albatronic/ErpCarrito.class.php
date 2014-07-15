@@ -46,6 +46,26 @@ class ErpCarrito {
     }
 
     /**
+     * Devuelve array con los ids de los artículos del carrito
+     * @return array
+     */
+    static function getArrayIDSArticulos() {
+
+        $array = array();
+
+        $filtro = "sesion='{$_SESSION['IdSesion']}'";
+        $carrito = new Carrito();
+        $rows = $carrito->cargaCondicion("IDArticulo", $filtro, "Id ASC");
+        unset($carrito);
+        
+        foreach ($rows as $row) {
+            $array[$row['IDArticulo']] = $row['IDArticulo'];
+        }
+
+        return $array;
+    }
+
+    /**
      * Añade o incrementa un artículo al carrito asociado
      * a la sesión en curso
      * 
@@ -145,11 +165,11 @@ class ErpCarrito {
         $filtro = "sesion='{$_SESSION['IdSesion']}'";
         $rows = $carrito->cargaCondicion("sum(Unidades) as Unidades, sum(Importe) as Importe", $filtro);
 
-        foreach($_SESSION['carrito'] as $key=>$value) {
+        foreach ($_SESSION['carrito'] as $key => $value) {
             $rows[0][$key] = $value;
         }
-        $rows[0]['total'] = $rows[0]['Importe'] +$rows[0]['gastosEnvio'];
-        
+        $rows[0]['total'] = $rows[0]['Importe'] + $rows[0]['gastosEnvio'];
+
         return $rows[0];
     }
 
@@ -180,7 +200,7 @@ class ErpCarrito {
             $pedido->setIDAgencia($_SESSION['carrito']['formaEnvio']);
             $pedido->setGastosEnvio($_SESSION['carrito']['gastosEnvio']);
             $pedido->setPlazoEntrega($_SESSION['carrito']['plazoEntrega']);
-            if ($_SESSION['idAfiliado']>0) {
+            if ($_SESSION['idAfiliado'] > 0) {
                 $pedido->setIDAfiliado($_SESSION['idAfiliado']);
             }
             $pedido->save();
@@ -193,11 +213,11 @@ class ErpCarrito {
             $pedido->setIDZonaEnvio($_SESSION['carrito']['zonaEnvio']);
             $pedido->setIDFP($_SESSION['carrito']['formaPago']);
             $pedido->setIDAgencia($_SESSION['carrito']['formaEnvio']);
-            $pedido->setGastosEnvio($_SESSION['carrito']['gastosEnvio']); 
-            $pedido->setPlazoEntrega($_SESSION['carrito']['plazoEntrega']);  
-            if ($_SESSION['idAfiliado']>0) {
+            $pedido->setGastosEnvio($_SESSION['carrito']['gastosEnvio']);
+            $pedido->setPlazoEntrega($_SESSION['carrito']['plazoEntrega']);
+            if ($_SESSION['idAfiliado'] > 0) {
                 $pedido->setIDAfiliado($_SESSION['idAfiliado']);
-            }            
+            }
             $idPedido = $pedido->create();
         }
 

@@ -47,7 +47,12 @@ class ControllerProject extends ControllerWeb {
         $this->values['conCupon'] = ($this->varEnv['Pro']['shop']['cupones'] == '1');        
         
         // Con carrusel en portada
-        $this->values['carruselPortada'] = ($this->varEnv['Pro']['shop']['carruselPortada'] == '1');        
+        $this->values['carruselPortada'] = ($this->varEnv['Pro']['shop']['carruselPortada'] == '1');  
+        
+        $this->values['mostrarStock'] = ($this->varEnv['Pro']['shop']['mostrarStock'] == '1');
+        $this->values['mostrarSinStock'] = ($this->varEnv['Pro']['shop']['mostrarSinStock'] == '1');
+        $this->values['mostrarDisponibilidad'] = ($this->varEnv['Pro']['shop']['mostrarDisponibilidad'] == '1');
+        $this->values['avisadorStock'] = ($this->varEnv['Pro']['shop']['avisadorStock'] == '1');
     }
 
 }

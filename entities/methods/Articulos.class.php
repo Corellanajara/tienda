@@ -218,6 +218,45 @@ class Articulos extends ArticulosEntity {
     }
 
     /**
+     * Devuelve el registro de existencias del artículo para cada almacén
+     * @return array
+     */
+    public function getExistencias() {
+
+        $array = array();
+
+        $existencias = new Existencias();
+        $tablaExistencias = $existencias->getDataBaseName() . "." . $existencias->getTableName();
+        $almacenes = new Almacenes();
+        $tablaAlmacenes = $almacenes->getDataBaseName() . "." . $almacenes->getTableName();
+
+        $em = new EntityManager($this->getConectionName());
+        if ($em->getDbLink()) {
+            $query = "select
+                        a.Nombre,
+                        sum(e.Reales) as Reales,
+                        sum(e.Pales) as Pales,
+                        sum(e.Cajas) as Cajas,
+                        sum(e.Reservadas) as Reservadas,
+                        sum(e.Entrando) as Entrando,
+                        sum(e.Reales)-sum(e.Reservadas) as Disponibles
+                      from
+                        {$tablaExistencias} as e
+                        left join {$tablaAlmacenes} as a on e.IDAlmacen=a.IDAlmacen
+                      where
+                        e.IDArticulo='{$this->IDArticulo}'
+                      group by a.Nombre
+                      order by a.Nombre ASC";
+            $em->query($query);
+            $array = $em->fetchResult();
+            $em->desConecta();
+        }
+        unset($em);
+
+        return $array;
+    }
+    
+    /**
      * Devuelve el PVP SIN impuestos correspondiente a la unidad de medida indicada.
      * Por defecto la Unidad de Venta.
      *

@@ -104,22 +104,6 @@ class ProductoController extends ControllerProject {
         return $this->IndexAction();
     }
 
-    public function ProductosAnuncianteAction() {
-
-        $idAnunciante = $this->request['idAnunciante'];
-        $nPagina = $this->request['nPagina'];
-
-        $this->values['anunciante'] = new Clientes($idAnunciante);
-
-        /* PRODUCTOS PRINCIPALES */
-        $this->values['productos'] = ErpArticulos::getArticulosPaginadosUsuario($idAnunciante, '', $nPagina, 0);
-
-        return array(
-            'template' => $this->controller . '/anunciante.html.twig',
-            'values' => $this->values
-        );
-    }
-
     public function ContactarAction() {
 
         $idProducto = $this->request['idProducto'];
@@ -166,57 +150,6 @@ class ProductoController extends ControllerProject {
         $this->values['noticia'] = Noticias::getNoticias(true, 1);
 
         $this->values['formContacta'] = $this->formContacta;
-
-        return array(
-            'template' => $this->controller . '/index.html.twig',
-            'values' => $this->values,
-        );
-    }
-
-    public function DenunciarAction() {
-
-        $idProducto = $this->request['idProducto'];
-
-        /* PRODUCTO */
-        $this->values['producto'] = ErpArticulos::getArticulo($idProducto);
-
-        $this->formDenuncia['campos'] = $this->request['campos'];
-
-        if ($this->ValidaDenuncia()) {
-            if ((file_exists('docs/plantillaMailVisitante.htm')) and (file_exists('docs/plantillaMailWebMaster.htm'))) {
-
-                $mailer = new Mail($this->varWeb['Pro']['mail']);
-                //$envioOk = $this->enviaVisitante($mailer, 'docs/plantillaMailVisitante.htm');
-                //if ($envioOk)
-                $envioOk = $this->enviaWebMaster($mailer, 'docs/plantillaMailWebMaster.htm');
-
-                $this->formDenuncia['resultado'] = $envioOk;
-                $this->formDenuncia['mensaje'] = ($envioOk) ?
-                        $this->varWeb['Pro']['mail']['mensajeExito'] :
-                        $this->varWeb['Pro']['mail']['mensajeError'];
-
-                unset($mailer);
-            } else {
-                $this->formDenuncia['resultado'] = 'error';
-                $this->formDenuncia['mensaje'] = "No se han definido las plantillas.";
-            }
-        } else {
-            $this->formDenuncia['resultado'] = 'error';
-        }
-
-        $this->values['formActivo'] = "denuncia";
-        $this->formDenuncia['accion'] = 'envio';
-
-        /* DETALLES TÉCNICOS */
-        $this->values['detalleTecnico'] = ErpArticulos::getDetalleTecnico($idProducto);
-
-        /* ARTÍCULOS RELACIONADOS */
-        $this->values['articulosRelacionados'] = ErpArticulos::getArticulosRelacionados($idProducto, 5);
-
-        /* NOTICIAS - mostrar solo 1 noticias */
-        $this->values['noticia'] = Noticias::getNoticias(true, 1);
-
-        $this->values['formDenuncia'] = $this->formDenuncia;
 
         return array(
             'template' => $this->controller . '/index.html.twig',

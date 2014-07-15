@@ -1,0 +1,17 @@
+{# MOSTRAR STOCK #}
+
+{% if values.mostrarStock %}
+    
+    {% set stock = idArticulo.getExistencias %}
+
+    {% if stock.Disponibles>0 %}
+        En stock {{stock.Disponibles}}
+    {% else %}
+        {% if values.avisadorStock %}
+            Avisador stock
+        {% else %}
+            Sin stock
+        {% endif %}
+    {% endif %}
+
+{% endif %}

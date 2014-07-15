@@ -49,13 +49,16 @@ class SeguimientoVisitas {
      * 
      * @param string $entidadVisitada EL nombre de la entidad visitada. Opcional. Por defecto Articulos
      * @param integer $nVisitas El número de visitas a devolver. Opcional. Por defecto 5
+     * @param boolean $sinCarrito Si true no se tienen en cuenta los artículos visitados que ya estén el el carrito
      * @return array Array de objetos \entidadVisitada
      */
-    static function getVisitasSesion($entidadVisitada = 'Articulos', $nVisitas = 5) {
+    static function getVisitasSesion($entidadVisitada = 'Articulos', $nVisitas = 5, $sinCarrito = true) {
 
         $array = array();
 
-        $limit = ($nVisitas <= 0) ? "limit 5" : "limit {$nVisitas}";
+        if ($nVisitas <= 0) {
+            $nVisitas = 5;
+        }
 
         $idCliente = ($_SESSION['usuarioWeb']['Id'] > 0) ?
                 $_SESSION['usuarioWeb']['Id'] :
@@ -66,11 +69,25 @@ class SeguimientoVisitas {
                 . "EntidadDestino='{$entidadVisitada}' AND "
                 . "Observations='{$_SESSION['IdSesion']}'";
         $visitas = new CpanRelaciones();
-        $rows = $visitas->cargaCondicion("IDEntidadDestino Id", $filtro, "CreatedAt ASC {$limit}");
+        $rows = $visitas->cargaCondicion("IDEntidadDestino Id", $filtro, "CreatedAt DESC");
         unset($visitas);
 
+        if ($entidadVisitada === 'Articulos' && $sinCarrito) {
+            $articulosCarrito = ErpCarrito::getArrayIDSArticulos();
+        }
+
         foreach ($rows as $row) {
-            $array[] = new $entidadVisitada($row['Id']);
+            $objeto = new $entidadVisitada($row['Id']);
+            if ($entidadVisitada === 'Articulos' && $sinCarrito) {
+                if ( ! in_array($row['Id'],$articulosCarrito) ) {
+                    $array[] = $objeto;
+                }
+            } else {
+                $array[] = $objeto;
+            }
+            if (count($array) == $nVisitas) {
+                break;
+            }
         }
 
         return $array;
