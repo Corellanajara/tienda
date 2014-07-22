@@ -1,0 +1,43 @@
+<?php
+
+/* _global/debuger.html.twig */
+class __TwigTemplate_d0336003c4fef64b43059a19d6181cbe5bd653fde5285788d029e98315a82a48 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 2
+        echo "
+<div style=\"clear:both;\">
+    <pre>";
+        // line 4
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "_debugValues"), "html", null, true);
+        echo "</pre>
+</div>      ";
+    }
+
+    public function getTemplateName()
+    {
+        return "_global/debuger.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  23 => 4,  19 => 2,  87 => 12,  84 => 11,  76 => 26,  73 => 25,  67 => 22,  63 => 21,  58 => 18,  55 => 17,  52 => 16,  50 => 15,  47 => 14,  43 => 12,  41 => 11,  32 => 6,  27 => 5,  25 => 4,  20 => 1,  86 => 38,  53 => 8,  38 => 6,  34 => 5,  31 => 4,  28 => 3,);
+    }
+}
+

@@ -53,7 +53,7 @@ class ErpArticulos {
     }
 
     /**
-     * Devuelve un array en el detalle técnico del artículo $idArticulo
+     * Devuelve un array con el detalle técnico del artículo $idArticulo
      * 
      * El array tiene tantos items como propiedades técnicas
      * y cada item tiene dos elementos:

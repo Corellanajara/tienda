@@ -21,21 +21,12 @@ class ControllerProject extends ControllerWeb {
         $this->values['menuCabecera'] = Menu::getMenuN(2, 5);
         $this->values['menuDerecho'] = Menu::getMenuN(1, 5);
         $this->values['menuPie'] = Menu::getMenuN(5, 5);
-        $this->values['datosContacto'] = $this->varWeb['Pro']['globales'];  
-        
-        // El objeto widgets para que esté disponible en todas las vistas
-        $this->values['widgets'] = new Widgets();     
+        $this->values['datosContacto'] = $this->varWeb['Pro']['globales'];   
         
         // Sliders y opciones de menú para el bloque head
         $this->values['sliders'] = Sliders::getSliders(1);
         $this->values['menuCabeceraIzq'] = Menu::getMenuN(2, 3);
         $this->values['menuCabeceraDcha'] = Menu::getMenuN(3, 3);       
-
-        // GESTION DE COOKIES. El cartel debe mostrarse cada 7 días
-        if (empty($_COOKIE["SESS_ID_CARTEL_COOKIE"])) {
-            setcookie("SESS_ID_CARTEL_COOKIE", uniqid(time()), time() + (86400 * 7), "/");
-        }
-        $this->values["session_id"] = $_COOKIE["SESS_ID_CARTEL_COOKIE"];
         
         // TOTALES DEL CARRITO
         $this->values['carrito']['totales'] = ErpCarrito::getTotales();

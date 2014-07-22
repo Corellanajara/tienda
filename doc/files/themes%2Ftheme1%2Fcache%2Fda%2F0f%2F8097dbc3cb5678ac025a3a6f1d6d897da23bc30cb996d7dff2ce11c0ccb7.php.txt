@@ -1,0 +1,67 @@
+<?php
+
+/* Listado/index.html.twig */
+class __TwigTemplate_da0f8097dbc3cb5678ac025a3a6f1d6d897da23bc30cb996d7dff2ce11c0ccb7 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'content' => array($this, 'block_content'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_content($context, array $blocks = array())
+    {
+        // line 4
+        echo "    <div class=\"central\">
+        <h2><span>Buscando \"";
+        // line 5
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "textoBusqueda"), "html", null, true);
+        echo "\" (";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macros"]) ? $context["macros"] : null), "idioma", array(0 => "hay"), "method"), "html", null, true);
+        echo " ";
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "articulos"), "paginacion"), "totalItems"), "html", null, true);
+        echo " ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macros"]) ? $context["macros"] : null), "idioma", array(0 => "articulos"), "method"), "html", null, true);
+        echo ")</span></h2>
+
+        <section id=\"noticias\">
+            ";
+        // line 8
+        $this->env->loadTemplate("_global/listadoArticulosPaginados.html.twig")->display(array_merge($context, array("articulos" => $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "articulos"), "articulos"), "paginacion" => $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "articulos"), "paginacion"), "linkBy" => $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "textoBusqueda"))));
+        // line 9
+        echo "        </section>        
+
+    </div>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "Listado/index.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  46 => 9,  44 => 8,  32 => 5,  29 => 4,  26 => 3,);
+    }
+}
+

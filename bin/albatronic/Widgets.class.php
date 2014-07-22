@@ -10,6 +10,58 @@
 class Widgets {
 
     /**
+     * Devuelve el objeto contenido cuyo id es $idContenido, o
+     * un array con las columnas indicadas en $arrayColumnas
+     * 
+     * Este método existe por compatibilidad con otras versiones. Lo correcto
+     * es usar el método más genérico 'getObjeto'
+     * 
+     * @param integer $idContenido El id del contenido
+     * @param array $arrayColumnas Array con los nombres de las columnas a obtener. Opcional. 
+     * Si se indica se devuelve array, sino se devuelve el objeto contenido
+     * @return mixed Objeto contenido o array de columnas
+     */
+    static function getContenido($idContenido, $arrayColumnas = '') {
+        return Contenidos::getContenido('GconContenidos', $idContenido, $arrayColumnas);
+    }
+
+    /**
+     * Devuelve un array de contenidos paginados correspondientes a la sección $idSeccion
+     * Si no se indica seccion, se devuelven todas
+     * 
+     * Los contenidos se ordenan ascendentemente por SortOrder
+     * 
+     * Si no se indica $nItems se paginará según el valor de la variable web
+     * del módulo de contenidos ['especificas']['NumContenidosPorPaginaListado']
+     * 
+     * @param int $idSeccion El id de la seccion de contenidos
+     * @param int $nPagina El número de página
+     * @param int $nItems EL número de contenidos por página
+     * @return array Array de contenidos
+     */
+    static function getContenidosSeccion($idSeccion = 0, $nPagina = 1, $nItems = 0) {
+        return Contenidos::getContenidosSeccion($idSeccion, $nPagina, $nItems);
+    }
+
+    /**
+     * Devuelve array con las contenidos más visitados
+     * 
+     * 
+     * Las contenidos se ordenan descendentemente por número de visitas (NumberVisits)
+     * 
+     * El array tiene 2 elementos:
+     * 
+     * - subtitulo => el subtitulo de la noticia (seccion)
+     * - url => array(url => texto, targetBlank => boolean)
+     * 
+     * @param integer $nItems El numero máximo de elementos a devolver. Opcional. (0=todos)
+     * @return array Array con los contenidos
+     */
+    static function getContenidosMasVisitados($nItems = 0) {
+        return Contenidos::getContenidosMasVisitados($nItems);
+    }
+
+    /**
      * Devuelve el calendario
      * @param integer $mes
      * @param integer $anio
@@ -78,6 +130,21 @@ class Widgets {
     }
 
     /**
+     * Devuelve $nItems objetos articulos que están relacionados
+     * con el articulo cuyo id es $idArticulo.
+     * 
+     * EL criterio que se sigue para relacionar es en base a la familia
+     * y si no tiene familia en base a la categoria.
+     * 
+     * @param integer $idArticulo EL id de articulo
+     * @param integer $nItems Número de artículos a devolver
+     * @return array Array con objetos articulos
+     */
+    static function getArticulosRelacionados($idArticulo, $nItems) {
+        return ErpArticulos::getArticulosRelacionados($idArticulo, $nItems);
+    }
+
+    /**
      * Devuelve array de objetos LotesWeb
      * con los objetos Articulos que constituyen cada lote
      * 
@@ -88,7 +155,33 @@ class Widgets {
     public function getLotesWeb($mostrarEnPortada = 2, $nItems = 1) {
         return ErpArticulos::getLotesWeb($mostrarEnPortada, $nItems);
     }
-    
+
+    /**
+     * Devuelve un array con el detalle técnico del artículo $idArticulo
+     * 
+     * El array tiene tantos items como propiedades técnicas
+     * y cada item tiene dos elementos:
+     * 
+     * - titulo: el título de la propiedad
+     * - valor: el valor de la propiedad
+     * 
+     * @param int $idArticulo El id del artículo
+     * @return array
+     */
+    public function getArticuloDetalleTecnico($idArticulo) {
+        return ErpArticulos::getDetalleTecnico($idArticulo);
+    }
+
+    /**
+     * Devuelve un array con objetos artículos que son favoritos
+     * del usuario web en curso
+     * 
+     * @return \Articulos Array de objetos articulos
+     */
+    static function getFavoritos() {
+        return ErpFavoritosWeb::getFavoritos();
+    }
+
     /**
      * Devuelve un array con BANNERS.
      * 
@@ -100,6 +193,92 @@ class Widgets {
      */
     public function getBanners($zona = '*', $tipo = 0, $mostrarEnListado = 0, $nItems = 0) {
         return Banners::getBanners($zona, $tipo, $mostrarEnListado, $nItems);
+    }
+
+    /**
+     * Devuelve un array con las secciones de enlaces de interes con
+     * un máximo de $nItems secciones
+     * 
+     * Cada elemento del array es de la forma:
+     * 
+     * - titulo: el titulo de la seccion
+     * - subtitulo: el subtitulo de la seccion
+     * - resumen: el resumen de la seccion
+     * - url: array ('url'=>, targetBlank=> boolean)
+     *  
+     * @param int $nItems Número máximo de secciones a devolver
+     * @return array Array de secciones de enlaces
+     */
+    static function getSeccionesDeEnlaces($nItems = 999999) {
+        return Enlaces::getSeccionesDeEnlaces($nItems);
+    }
+
+    /**
+     * Devuelve un array con los parametros que definen las redes sociales
+     * 
+     * Cada ocurrencia del array tiene los siguientes elementos:
+     * 
+     * - titulo : el titulo de la red social
+     * - idUsuario: el id o login de la red social
+     * - url: la url
+     * - numeroItems: número de tweets/caras a mostrar
+     * - mostrarAvatar: Booleano, mostrar o no el avatar
+     * - mensaje: El mensaje para el caso que no haya tweets a mostrar
+     * - botonEnviar: Booleano, mostrar o no el boton eviar
+     * - modoMostar:
+     * - font
+     * - class
+     * - action
+     * - ancho
+     * - alto
+     * - size
+     * - colorFondo
+     * - colorBorde
+     * - count
+     * - imagen: path a la imagen de diseño 1
+     * 
+     * @return array Array con la informacion de la red
+     */
+    static function getRedesSociales() {
+        return RedesSociales::getRedes();
+    }
+
+    /**
+     * Devuelve un array con objetos Servicios
+     * 
+     * @param int $idFamilia El id de la familia de servicios. Si es <= 0 se muestran todas las familias. Por defecto 0
+     * @param int $mostrarEnPortada Menor a 0 para todos, 0 para los NO portada, 1 para los SI portada. Por defecto 0
+     * @param int $nItems Número máximo de servicios a devolver. Por defecto todos.
+     * @param int $idExcluir El id del servicio a excluir en la lista de servicios devueltos
+     * @return array Array con objetos servicios
+     */
+    static function getServicios($idFamilia = 0, $mostrarEnPortada = 0, $nItems = 999999, $idExcluir = 0) {
+        return Servicios::getServicios($idFamilia, $mostrarEnPortada, $nItems, $idExcluir);
+    }
+
+    /**
+     * Devuelve un array con SLIDERS.
+     * 
+     * Están ordenados ASCEDENTEMENTE por Id.
+     * 
+     * Si el registro de slider existe pero no tiene imagen de diseño 1
+     * o, teniéndola no está marcada publicar, no se tendrá en cuenta.
+     * 
+     * El array tiene 5 elementos:
+     * 
+     * - titulo => el titulo del slider
+     * - subtitulo => el subtitulo del slider
+     * - resumen => el resumen del slider si MostrarTextos = TRUE
+     * - url => array(url => texto, targetBlank => boolean)
+     * - imagen => Path de la imagen de diseño 1
+     * 
+     * @param int $idZona El id de la zona de slider a filtrar. Opcional. Defecto la primera que encuentre
+     * @param int $tipo El tipo de sliders. Opcional. Por defecto el tipo 0. Valores posibles en entities/abstract/TiposSliders.class.php
+     * @param int $nItems Número máximo de sliders a devolver. Opcional. Defecto todos
+     * @return array Array de sliders
+     */
+    static function getSliders($idZona = '*', $tipo = 0, $nItems = 0) {
+        return Sliders::getSliders($idZona, $tipo, $nItems);
     }
 
     /**
@@ -251,5 +430,6 @@ class Widgets {
      */
     static function getVisitasUsuario($entidadVisitada = 'Articulos', $nVisitas = 15) {
         return SeguimientoVisitas::getVisitasUsuario($entidadVisitada, $nVisitas);
-    }    
+    }
+
 }

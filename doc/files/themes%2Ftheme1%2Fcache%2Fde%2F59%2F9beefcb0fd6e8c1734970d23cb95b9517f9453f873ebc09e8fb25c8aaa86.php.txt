@@ -1,0 +1,309 @@
+<?php
+
+/* ZonaPrivada/misDireccionesForm.html.twig */
+class __TwigTemplate_de599beefcb0fd6e8c1734970d23cb95b9517f9453f873ebc09e8fb25c8aaa86 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 2
+        echo "<form name=\"formDirecciones\" id=\"formDirecciones\" method=\"POST\" enctype=\"multipart/form-data\" action=\"\">
+    <div id=\"input_oculto\">
+        <input name=\"controller\" value=\"ZonaPrivada\" />
+        <input name=\"action\" id=\"action\" value=\"MisDatos\" />
+        <input name=\"accion\" id=\"accion\" value=\"\" />
+        <input name=\"direccion[IDDirec]\" value=\"";
+        // line 7
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDDirec"), "html", null, true);
+        echo "\" />
+        <input name=\"direccion[IDCliente]\" value=\"";
+        // line 8
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDCliente"), "html", null, true);
+        echo "\" />
+    </div>
+    
+    <section class=\"width100x100\">
+        <article>
+            <label>";
+        // line 13
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "email"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"text\" id=\"email\" name=\"direccion[EMail]\" value=\"";
+        // line 14
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "EMail"), "html", null, true);
+        echo "\" class=\"celda celda90\" ";
+        if ($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDCliente")) {
+            echo "readonly";
+        }
+        echo "/>
+        </article>
+
+        <article>
+            <label>";
+        // line 18
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "contraseña"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"password\" id=\"password\" name=\"direccion[Password]\" value=\"\" class=\"celda celda50\" />
+        </article>
+
+        <article class=\"cont50\">
+            <label>";
+        // line 23
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "repetirContraseña"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"password\" id=\"repitePassword\" name=\"repitePassword\" class=\"celda celda50\" />
+        </article>  
+    </section>        
+    <section class=\"width100x100 marginTop40\">
+        <h3 class=\"titularGrande\">";
+        // line 28
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "datosDeFacturacion"), "method"), "html", null, true);
+        echo "</h3>
+        <article class=\"cont90 marginRight30\">
+            <label>";
+        // line 30
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "nombreYApellidos"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"text\" name=\"direccion[RazonSocial]\" value=\"";
+        // line 31
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "RazonSocial"), "html", null, true);
+        echo "\" class=\"celda celda90\" />
+        </article>
+        <article class=\"cont90 marginRight30\">
+            <label>";
+        // line 34
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "dniCif"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"text\" name=\"direccion[Cif]\" value=\"";
+        // line 35
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "Cif"), "html", null, true);
+        echo "\" class=\"celda celda90\" />
+        </article>
+        <article class=\"cont5 marginRight30\">
+            <label>";
+        // line 38
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "pais"), "method"), "html", null, true);
+        echo "</label>
+            <select name=\"direccion[IDPais]\" class=\"select celda celda30\">
+                ";
+        // line 40
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDPais"), "fetchAll", array(0 => "Pais"), "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["pais"]) {
+            // line 41
+            echo "                    <option value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pais"]) ? $context["pais"] : null), "Id"), "html", null, true);
+            echo "\" ";
+            if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDPais"), "IDPais") == $this->getAttribute((isset($context["pais"]) ? $context["pais"] : null), "Id"))) {
+                echo " SELECTED";
+            }
+            echo ">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pais"]) ? $context["pais"] : null), "Value"), "html", null, true);
+            echo "</option>
+                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pais'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 43
+        echo "            </select>
+        </article> 
+        <article class=\"cont5 marginRight30\">
+            <label>";
+        // line 46
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "provincia"), "method"), "html", null, true);
+        echo "</label>
+            <select name=\"direccion[IDProvincia]\" id=\"cliente_IDProvincia\" class=\"select celda celda30\">
+                ";
+        // line 48
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDProvincia"), "fetchAll", array(0 => "Provincia"), "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["provincia"]) {
+            // line 49
+            echo "                    <option value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["provincia"]) ? $context["provincia"] : null), "Id"), "html", null, true);
+            echo "\" ";
+            if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDProvincia"), "IDProvincia") == $this->getAttribute((isset($context["provincia"]) ? $context["provincia"] : null), "Id"))) {
+                echo " SELECTED";
+            }
+            echo ">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["provincia"]) ? $context["provincia"] : null), "Value"), "html", null, true);
+            echo "</option>
+                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['provincia'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 51
+        echo "            </select>
+        </article> 
+        <article class=\"cont50 marginRight30\">
+            <label>";
+        // line 54
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "poblacion"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"hidden\" name=\"direccion[IDPoblacion]\" id=\"cliente_IDPoblacion\" value=\"";
+        // line 55
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDPoblacion"), "IDMunicipio"), "html", null, true);
+        echo "\" class=\"celda celda50\" />
+            <input type=\"text\" id=\"cliente_IDPoblacion_autoComplete\" class=\"celda celda50\" value=\"";
+        // line 56
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDPoblacion"), "html", null, true);
+        echo "\"
+                   onkeyup=\"autoComplete('cliente_IDPoblacion_autoComplete','cliente_IDPoblacion','cliente_IDPoblacion_autoComplete','municipios','Municipio',\$('#cliente_IDProvincia').val());\"/>
+        </article>
+        <article class=\"cont50 marginRight30\">
+            <label>";
+        // line 60
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "direccion"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"text\" name=\"direccion[Direccion]\" value=\"";
+        // line 61
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "Direccion"), "html", null, true);
+        echo "\" class=\"celda celda50\" />
+        </article>
+
+        <article class=\"cont5 marginRight30\">
+            <label>";
+        // line 65
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "codigoPostal"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"text\" name=\"direccion[CodigoPostal]\" value=\"";
+        // line 66
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "CodigoPostal"), "html", null, true);
+        echo "\" class=\"celda celda5\" />
+        </article> 
+        
+        <article class=\"cont5 marginRight30\">
+            <label>";
+        // line 70
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "telefono"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"text\" name=\"direccion[Telefono]\" value=\"";
+        // line 71
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "Telefono"), "html", null, true);
+        echo "\" class=\"celda celda30\" />
+        </article>         
+        
+        <article class=\"cont5 marginRight30\">
+            <label>";
+        // line 75
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "movil"), "method"), "html", null, true);
+        echo "</label>
+            <input type=\"text\" name=\"direccion[Movil]\" value=\"";
+        // line 76
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "Movil"), "html", null, true);
+        echo "\" class=\"celda celda30\" />
+        </article> 
+        
+        <article class=\"cont5 marginRight30\">
+            <label>";
+        // line 80
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "formaDePago"), "method"), "html", null, true);
+        echo "</label>
+            <select name=\"direccion[IDFP]\" id=\"cliente_IDFP\" class=\"select celda celda30\">
+                ";
+        // line 82
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDFP"), "fetchAllWeb", array(), "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["fpago"]) {
+            // line 83
+            echo "                    <option value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["fpago"]) ? $context["fpago"] : null), "Id"), "html", null, true);
+            echo "\" ";
+            if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDFP"), "IDFP") == $this->getAttribute((isset($context["fpago"]) ? $context["fpago"] : null), "Id"))) {
+                echo " SELECTED";
+            }
+            echo ">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["fpago"]) ? $context["fpago"] : null), "Value"), "html", null, true);
+            echo "</option>
+                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['fpago'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 85
+        echo "            </select>
+        </article>         
+    </section>  
+
+    ";
+        // line 101
+        echo "    
+    <div id=\"contenedorEnviar\">
+        <div class=\"checkbox\">
+            <input id=\"leidoPolitica\" type=\"checkbox\" ";
+        // line 104
+        if ($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDCliente")) {
+            echo " checked";
+        }
+        echo "/>
+            <label class=\"textoCheckbox\" for=\"checkbox2\">";
+        // line 105
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "leidoPolitica"), "method"), "html", null, true);
+        echo " <a href=\"";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+        echo "/politica-de-privacidad\" rel=\"iframe-1000-360\" class=\"pirobox\" title=\"";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "politicaPrivacidad"), "method"), "html", null, true);
+        echo "\">";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "politicaPrivacidad"), "method"), "html", null, true);
+        echo ".</a></label>                
+        </div>
+    </div>
+        
+    <article class=\"botonera marginTop20\">
+        ";
+        // line 111
+        echo "        ";
+        if (($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "direccion"), "IDCliente") == "")) {
+            // line 112
+            echo "        <a href=\"javascript:;\" id=\"botonCrearCuenta\" data-type=\"submit\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "crearCuenta"), "method"), "html", null, true);
+            echo "\" class=\"botonNaranja right\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "crearCuenta"), "method"), "html", null, true);
+            echo "</a>
+        ";
+        } else {
+            // line 114
+            echo "        <a href=\"javascript:;\" id=\"botoGuardarCambios\" data-type=\"submit\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "guardarCambios"), "method"), "html", null, true);
+            echo "\" class=\"botonNaranja right\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "guardarCambios"), "method"), "html", null, true);
+            echo "</a>
+        ";
+        }
+        // line 116
+        echo "    </article>
+</form>
+
+<div id=\"divDialogo\" title=\"";
+        // line 119
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "mensajes"), "method"), "html", null, true);
+        echo "\"></div>";
+    }
+
+    public function getTemplateName()
+    {
+        return "ZonaPrivada/misDireccionesForm.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  290 => 119,  285 => 116,  277 => 114,  269 => 112,  266 => 111,  252 => 105,  246 => 104,  241 => 101,  235 => 85,  220 => 83,  216 => 82,  211 => 80,  204 => 76,  200 => 75,  193 => 71,  189 => 70,  182 => 66,  178 => 65,  171 => 61,  167 => 60,  160 => 56,  156 => 55,  152 => 54,  147 => 51,  132 => 49,  128 => 48,  123 => 46,  118 => 43,  103 => 41,  99 => 40,  94 => 38,  88 => 35,  84 => 34,  78 => 31,  74 => 30,  69 => 28,  61 => 23,  53 => 18,  42 => 14,  38 => 13,  30 => 8,  26 => 7,  19 => 2,);
+    }
+}
+

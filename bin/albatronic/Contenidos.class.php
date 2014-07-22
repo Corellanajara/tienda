@@ -16,9 +16,10 @@ class Contenidos {
      * Este método existe por compatibilidad con otras versiones. Lo correcto
      * es usar el método más genérico 'getObjeto'
      * 
-     * @param type $idContenido
-     * @param type $arrayColumnas
-     * @return type
+     * @param integer $idContenido El id del contenido
+     * @param array $arrayColumnas Array con los nombres de las columnas a obtener. Opcional. 
+     * Si se indica se devuelve array, sino se devuelve el objeto contenido
+     * @return mixed Objeto contenido o array de columnas
      */
     static function getContenido($idContenido, $arrayColumnas = '') {
         return ControllerWeb::getObjeto('GconContenidos', $idContenido, $arrayColumnas);
@@ -161,7 +162,7 @@ class Contenidos {
     }
 
     /**
-     * Genera el array con las contenidos más visitados
+     * Devuelve array con las contenidos más visitados
      * 
      * 
      * Las contenidos se ordenan descendentemente por número de visitas (NumberVisits)
@@ -197,5 +198,3 @@ class Contenidos {
     }
 
 }
-
-?>

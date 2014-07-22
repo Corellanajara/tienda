@@ -1,0 +1,171 @@
+<?php
+
+/* Eventos/index.html.twig */
+class __TwigTemplate_cecbe961306b62496d72f7c22274c01b85436cefe13fdcb82ad4e06533444735 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'navegacion' => array($this, 'block_navegacion'),
+            'aside' => array($this, 'block_aside'),
+            'contenido' => array($this, 'block_contenido'),
+            'bannerPie' => array($this, 'block_bannerPie'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_navegacion($context, array $blocks = array())
+    {
+        $this->env->loadTemplate("_global/navegacionGeneral.html.twig")->display($context);
+    }
+
+    // line 5
+    public function block_aside($context, array $blocks = array())
+    {
+        $this->env->loadTemplate("_global/asideGeneralyHome.html.twig")->display($context);
+    }
+
+    // line 7
+    public function block_contenido($context, array $blocks = array())
+    {
+        // line 8
+        echo "
+<section class=\"contenedorGrande\">
+    ";
+        // line 10
+        $this->env->loadTemplate("_global/ruta.html.twig")->display($context);
+        // line 11
+        echo "    ";
+        if ((twig_length_filter($this->env, $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "eventos")) > 0)) {
+            // line 12
+            echo "        <h1>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "eventos"), "method"), "html", null, true);
+            echo "</h1>
+        
+        <section class=\"noticias\">
+            ";
+            // line 15
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "eventos"));
+            foreach ($context['_seq'] as $context["_key"] => $context["evento"]) {
+                // line 16
+                echo "            <article class=\"noticia\">
+                ";
+                // line 17
+                if ($this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "imagen")) {
+                    // line 18
+                    echo "                <figure>
+                    <a href=\"";
+                    // line 19
+                    echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "url"), "url"), "html", null, true);
+                    echo "\" ";
+                    if ($this->getAttribute($this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "url"), "targetBlank")) {
+                        echo " target=\"_blank\" ";
+                    }
+                    echo " title=\"";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "titulo"), "html", null, true);
+                    echo "\">
+                        <img src=\"";
+                    // line 20
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+                    echo "/";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "imagen"), "html", null, true);
+                    echo "\" title=\"\" alt=\"\" />
+                    </a>
+                </figure>
+                ";
+                }
+                // line 24
+                echo "                <div class=\"info\">
+                    <h3>";
+                // line 25
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "link", array(0 => $this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "titulo"), 1 => null, 2 => $this->getAttribute($this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "url"), "url"), 3 => $this->getAttribute($this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "url"), "targetBlank")), "method"), "html", null, true);
+                echo "</h3>
+                    <div class=\"resumen\">";
+                // line 26
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "resumen"), "html", null, true);
+                echo "</div>
+                    <article class=\"botonera\">
+                        <span class=\"fecha\"><span class=\"sprite\"></span>";
+                // line 28
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "fecha"), "d/m/Y"), "html", null, true);
+                echo "</span>
+                        <a href=\"";
+                // line 29
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "url"), "url"), "html", null, true);
+                echo "\" ";
+                if ($this->getAttribute($this->getAttribute((isset($context["evento"]) ? $context["evento"] : null), "url"), "targetBlank")) {
+                    echo " target=\"_blank\" ";
+                }
+                echo " title=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "saberMas"), "method"), "html", null, true);
+                echo "\" class=\"saberMas right\">";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "saberMas"), "method"), "html", null, true);
+                echo "
+                            <span class=\"sprite\"></span>
+                        </a>
+                    </article>
+                </div>
+            </article>
+            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['evento'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 36
+            echo "        </section>
+
+        <!-- PAGINACION -->
+        ";
+            // line 40
+            echo "    ";
+        } else {
+            // line 41
+            echo "        <h1>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "eventosNoHay"), "method"), "html", null, true);
+            echo "</h1>
+    ";
+        }
+        // line 43
+        echo "</section>   
+";
+    }
+
+    // line 46
+    public function block_bannerPie($context, array $blocks = array())
+    {
+        // line 47
+        echo "    ";
+        $this->env->loadTemplate("_global/bannerPie.html.twig")->display($context);
+        echo "   
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "Eventos/index.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  150 => 47,  147 => 46,  142 => 43,  136 => 41,  133 => 40,  128 => 36,  107 => 29,  103 => 28,  98 => 26,  94 => 25,  91 => 24,  82 => 20,  72 => 19,  69 => 18,  67 => 17,  64 => 16,  60 => 15,  53 => 12,  50 => 11,  48 => 10,  44 => 8,  41 => 7,  35 => 5,  29 => 3,);
+    }
+}
+

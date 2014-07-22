@@ -44,5 +44,3 @@ class BoletinController extends ControllerProject {
         );
     }
 }
-
-?>

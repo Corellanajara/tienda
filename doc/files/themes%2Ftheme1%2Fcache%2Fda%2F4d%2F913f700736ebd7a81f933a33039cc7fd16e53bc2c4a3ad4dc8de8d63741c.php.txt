@@ -1,0 +1,114 @@
+<?php
+
+/* Contacto/index.html.twig */
+class __TwigTemplate_da4d913f700736ebd7a81f933a33039cc7fd16e53bc2c4a3ad4dc8de8d63741c extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'aside' => array($this, 'block_aside'),
+            'content' => array($this, 'block_content'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_aside($context, array $blocks = array())
+    {
+        // line 4
+        echo "    ";
+        $this->env->loadTemplate("_global/asideLeft.html.twig")->display($context);
+    }
+
+    // line 7
+    public function block_content($context, array $blocks = array())
+    {
+        // line 8
+        echo "<section class=\"contenedorGrande\">    
+    ";
+        // line 9
+        $this->env->loadTemplate("Contacto/formulario.html.twig")->display($context);
+        // line 10
+        echo "    ";
+        // line 11
+        echo "
+\t<section id=\"localizacion\">
+            <h2><span>";
+        // line 13
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "contacta"), "method"), "html", null, true);
+        echo "</span> ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "conNosotros"), "method"), "html", null, true);
+        echo "</h2>
+            <ul>
+                ";
+        // line 15
+        $context["contacto"] = $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "datosContacto");
+        // line 16
+        echo "                <li class=\"spriteDireccion\">";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contacto"]) ? $context["contacto"] : null), "direccion"), "html", null, true);
+        echo "<br />";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contacto"]) ? $context["contacto"] : null), "codigoPostal"), "html", null, true);
+        echo " - ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contacto"]) ? $context["contacto"] : null), "poblacion"), "html", null, true);
+        echo " (";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contacto"]) ? $context["contacto"] : null), "provincia"), "html", null, true);
+        echo ")</li>
+                <li><span class=\"spriteTelefono\"></span>";
+        // line 17
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contacto"]) ? $context["contacto"] : null), "telefono1"), "html", null, true);
+        echo "</li>
+                <li><span class=\"spriteFax\"></span>";
+        // line 18
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contacto"]) ? $context["contacto"] : null), "telefono2"), "html", null, true);
+        echo "</li>
+                <li><span class=\"spriteEmail\"></span>";
+        // line 19
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contacto"]) ? $context["contacto"] : null), "emailInfo"), "html", null, true);
+        echo "</li>
+                <li id=\"facebookContacto\">
+                    <a href=\"#\" title=\"";
+        // line 21
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "facebook"), "method"), "html", null, true);
+        echo "\"></a>
+                </li>
+                <li id=\"twitterContacto\">
+                    <a href=\"#\" title=\"";
+        // line 24
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "twitter"), "method"), "html", null, true);
+        echo "\"></a>
+                </li>
+            </ul>
+\t</section>        
+
+\t<section id=\"map_canvas\"></section>
+</section>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "Contacto/index.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  88 => 24,  82 => 21,  77 => 19,  73 => 18,  69 => 17,  58 => 16,  56 => 15,  49 => 13,  45 => 11,  43 => 10,  41 => 9,  38 => 8,  35 => 7,  30 => 4,  27 => 3,);
+    }
+}
+

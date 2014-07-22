@@ -1,0 +1,88 @@
+<?php
+
+/* _global/wgCajaCarrito.html.twig */
+class __TwigTemplate_26dea84816fac82f677e994c7dbe87ef364940892d223330b927591ea87dd349 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 2
+        echo "
+<h3 id=\"verCarrito\" class=\"formulario\">
+";
+        // line 4
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "carrito"), "totales"), "Unidades")) {
+            // line 5
+            echo "    <a href=\"";
+            echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
+            echo "/carrito\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "verCarrito"), "method"), "html", null, true);
+            echo "</a>
+";
+        } else {
+            // line 7
+            echo "    ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "carrito"), "method"), "html", null, true);
+            echo "
+";
+        }
+        // line 9
+        echo "</h3>
+<div id=\"cajaCarrito\" class=\"cajetin\">
+";
+        // line 11
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "carrito"), "totales"), "Unidades")) {
+            // line 12
+            echo "    <ul>
+        <li><span>";
+            // line 13
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "productos"), "method"), "html", null, true);
+            echo "</span><span id=\"carritoUnidades\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "carrito"), "totales"), "Unidades"), "html", null, true);
+            echo "</span></li>
+        <li><span>";
+            // line 14
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "importe"), "method"), "html", null, true);
+            echo "</span><span id=\"carritoImporte\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "carrito"), "totales"), "Importe")), "method"), "html", null, true);
+            echo "</span></li>
+    </ul>
+";
+        } else {
+            // line 17
+            echo "    <span>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "carroVacio"), "method"), "html", null, true);
+            echo "</span>
+";
+        }
+        // line 18
+        echo "    
+</div>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "_global/wgCajaCarrito.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  68 => 18,  62 => 17,  54 => 14,  48 => 13,  45 => 12,  43 => 11,  39 => 9,  33 => 7,  25 => 5,  23 => 4,  19 => 2,);
+    }
+}
+

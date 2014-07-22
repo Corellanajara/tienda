@@ -39,7 +39,7 @@ $(function(){
     $('#quitarTodos').click(function(){
         var datos = {
             'accion' : 'quitarTodos'
-        }
+        };
 
         $.ajax({
             url: appPath + '/lib/favoritos.php',
@@ -63,7 +63,7 @@ $(function(){
 
         var datos = {
             'accion' : 'alCarrito'
-        }
+        };
 
         $.ajax({
             url: appPath + '/lib/favoritos.php',
@@ -85,7 +85,7 @@ function check(IDArticulo) {
         'accion' : 'check',            
         'IDArticulo' : IDArticulo,
         'Checked' : ($('#check'+IDArticulo).is(':checked')) ? 1 : 0
-    }
+    };
 
     $.ajax({
         url: appPath + '/lib/favoritos.php',
@@ -103,7 +103,7 @@ function addCart(IDArticulo,unidades) {
     var datos = {
         'IDArticulo' : IDArticulo,
         'Unidades' : unidades
-    }
+    };
 
     $.ajax({
         url: appPath + '/lib/carrito.php',

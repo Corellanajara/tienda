@@ -19,5 +19,3 @@ class AvisoLegalController extends ControllerProject {
         return parent::IndexAction();
     }
 }
-
-?>

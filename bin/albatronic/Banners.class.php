@@ -89,5 +89,3 @@ class Banners {
         return $array;
     }
 }
-
-?>

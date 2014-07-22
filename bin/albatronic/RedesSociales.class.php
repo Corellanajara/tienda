@@ -68,7 +68,34 @@ class RedesSociales {
 
         return $array;
     }
-
+    
+    /**
+     * Devuelve un array con los parametros que definen una red social
+     * 
+     * Cada ocurrencia del array tiene los siguientes elementos:
+     * 
+     * - titulo : el titulo de la red social
+     * - idUsuario: el id o login de la red social
+     * - url: la url
+     * - numeroItems: número de tweets/caras a mostrar
+     * - mostrarAvatar: Booleano, mostrar o no el avatar
+     * - mensaje: El mensaje para el caso que no haya tweets a mostrar
+     * - botonEnviar: Booleano, mostrar o no el boton eviar
+     * - modoMostar:
+     * - font
+     * - class
+     * - action
+     * - ancho
+     * - alto
+     * - size
+     * - colorFondo
+     * - colorBorde
+     * - count
+     * - imagen: path a la imagen de diseño 1
+     * 
+     * @param string $id El id de la red social
+     * @return array Array con la informacion de la red
+     */
     static function getRedSocialById($id) {
         
         $red = new Networking($id);
@@ -101,9 +128,30 @@ class RedesSociales {
     }
     
     /**
-     * Devuelve en array con todas las redes sociales
+     * Devuelve un array con los parametros que definen las redes sociales
      * 
-     * @return array
+     * Cada ocurrencia del array tiene los siguientes elementos:
+     * 
+     * - titulo : el titulo de la red social
+     * - idUsuario: el id o login de la red social
+     * - url: la url
+     * - numeroItems: número de tweets/caras a mostrar
+     * - mostrarAvatar: Booleano, mostrar o no el avatar
+     * - mensaje: El mensaje para el caso que no haya tweets a mostrar
+     * - botonEnviar: Booleano, mostrar o no el boton eviar
+     * - modoMostar:
+     * - font
+     * - class
+     * - action
+     * - ancho
+     * - alto
+     * - size
+     * - colorFondo
+     * - colorBorde
+     * - count
+     * - imagen: path a la imagen de diseño 1
+     * 
+     * @return array Array con la informacion de la red
      */
     static function getRedes() {
         
@@ -113,11 +161,10 @@ class RedesSociales {
         $rows = $redes->cargaCondicion("Id");
         unset($redes);
         
-        foreach ($rows as $row)
+        foreach ($rows as $row) {
             $array[] = self::getRedSocialById($row['Id']);
+        }
         
         return $array;
     }
 }
-
-?>

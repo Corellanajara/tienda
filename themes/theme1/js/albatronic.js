@@ -115,10 +115,10 @@ function isEmail(email) {
 
     var posPunto = email.indexOf('.', posArroba);
 
-    if (posPunto == -1)
+    if (posPunto === -1)
         return false;
 
-    if (posPunto + 1 == email.length)
+    if (posPunto + 1 === email.length)
         return false;
     // Despues del punto solo puede haber: a-z 0-9 . _-
     if (!contieneCaracteresPermitidos(email.substr(posPunto + 1), "._-"))
@@ -162,7 +162,7 @@ function contieneCaracteresPermitidos(valor, caracteresValidos) {
             continue;
         } else {
             for (var j = 0; j < caracteresValidos.length; j++) {
-                if (caracteresValidos.indexOf(c) == -1) {
+                if (caracteresValidos.indexOf(c) === -1) {
                     return false;
                 }
             }

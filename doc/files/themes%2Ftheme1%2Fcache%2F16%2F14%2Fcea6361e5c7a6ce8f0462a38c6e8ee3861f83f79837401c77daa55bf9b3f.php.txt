@@ -1,0 +1,156 @@
+<?php
+
+/* Carrito/envio.html.twig */
+class __TwigTemplate_1614cea6361e5c7a6ce8f0462a38c6e8ee3861f83f79837401c77daa55bf9b3f extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 2
+        $context["primeraZona"] = twig_first($this->env, twig_get_array_keys_filter($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "combinaciones")));
+        // line 3
+        $context["primeraFP"] = twig_first($this->env, twig_get_array_keys_filter($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "combinaciones"), (isset($context["primeraZona"]) ? $context["primeraZona"] : null), array(), "array")));
+        // line 4
+        $context["primeraAgencia"] = twig_first($this->env, twig_get_array_keys_filter($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "combinaciones"), (isset($context["primeraZona"]) ? $context["primeraZona"] : null), array(), "array"), (isset($context["primeraFP"]) ? $context["primeraFP"] : null), array(), "array")));
+        // line 5
+        echo "<div class=\"gastosEnvio\">
+    <h3>";
+        // line 6
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "datosEnvio"), "method"), "html", null, true);
+        echo "</h3>
+    <div class=\"selectEnvio\">
+        <fieldset>
+            <label for=\"zonaEnvio\">";
+        // line 9
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "zonaEnvio"), "method"), "html", null, true);
+        echo "</label>
+            <select name=\"zonaEnvio\" id=\"zonaEnvio\">
+                ";
+        // line 11
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "combinaciones"));
+        foreach ($context['_seq'] as $context["keyZona"] => $context["zona"]) {
+            // line 12
+            echo "                <option value=\"";
+            echo twig_escape_filter($this->env, (isset($context["keyZona"]) ? $context["keyZona"] : null), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "zonas"), (isset($context["keyZona"]) ? $context["keyZona"] : null), array(), "array"), "html", null, true);
+            echo "</option>
+                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['keyZona'], $context['zona'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 14
+        echo "            </select><br/>
+            <label for=\"formaPago\">";
+        // line 15
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "formaPago"), "method"), "html", null, true);
+        echo "</label>
+            <select name=\"formaPago\" id=\"formaPago\">
+                ";
+        // line 17
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "combinaciones"), (isset($context["primeraZona"]) ? $context["primeraZona"] : null), array(), "array"));
+        foreach ($context['_seq'] as $context["keyFP"] => $context["formaPago"]) {
+            // line 18
+            echo "                <option value=\"";
+            echo twig_escape_filter($this->env, (isset($context["keyFP"]) ? $context["keyFP"] : null), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "formasPago"), (isset($context["keyFP"]) ? $context["keyFP"] : null), array(), "array"), "html", null, true);
+            echo "</option>
+                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['keyFP'], $context['formaPago'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 20
+        echo "            </select> <br/>       
+            <label for=\"metodoEnvio\">";
+        // line 21
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "metodoEnvio"), "method"), "html", null, true);
+        echo "</label>
+            <select name=\"metodoEnvio\" id=\"metodoEnvio\">
+                ";
+        // line 23
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "combinaciones"), (isset($context["primeraZona"]) ? $context["primeraZona"] : null), array(), "array"), (isset($context["primeraFP"]) ? $context["primeraFP"] : null), array(), "array"));
+        foreach ($context['_seq'] as $context["keyAgencia"] => $context["agencia"]) {
+            // line 24
+            echo "                <option value=\"";
+            echo twig_escape_filter($this->env, (isset($context["keyAgencia"]) ? $context["keyAgencia"] : null), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["agencia"]) ? $context["agencia"] : null), "agencia"), "html", null, true);
+            echo "</option>
+                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['keyAgencia'], $context['agencia'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 26
+        echo "            </select>         
+        </fieldset>
+    </div>
+    <div class=\"gastos\">";
+        // line 29
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "gastosEnvio"), "method"), "html", null, true);
+        echo " <p id=\"gastosEnvio\">";
+        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "carrito"), "totales"), "gastosEnvio")), "html", null, true);
+        echo "</p></div>    
+    <div class=\"plazoEntrega\">";
+        // line 30
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "plazoEntrega"), "method"), "html", null, true);
+        echo " <p id=\"plazoEntrega\"></p></div> 
+    
+    <div class=\"pagos\">
+        <p class=\"title_footer\">";
+        // line 33
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "formasDePago"), "method"), "html", null, true);
+        echo "</p>
+        <img alt=\"Visa\" src=\"";
+        // line 34
+        echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
+        echo "/images/visa.png\"></img>
+        <img alt=\"MasterCard\" src=\"";
+        // line 35
+        echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
+        echo "/images/masterCard.png\"></img>
+        <a class=\"paipal\" onclick=\"javascript:window.open('https://www.paypal.com/es/webapps/mpp/paypal-popup','WIPaypal','toolbat=no,directories=no,status=no,menubar=no,scrollbars=yes, resizable=yes, width=1060, height=700'); return false;\" title=\"";
+        // line 36
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "comoFuncionaPaypal"), "method"), "html", null, true);
+        echo "\" href=\"https://www.paypal.com/es/webapps/mpp/paypal-popup\">
+            <img alt=\"Paipal\" src=\"";
+        // line 37
+        echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
+        echo "/images/paypal.png\"/>
+        </a>
+    </div>
+</div>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "Carrito/envio.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  133 => 37,  129 => 36,  125 => 35,  121 => 34,  117 => 33,  111 => 30,  105 => 29,  100 => 26,  89 => 24,  85 => 23,  80 => 21,  77 => 20,  66 => 18,  62 => 17,  57 => 15,  54 => 14,  43 => 12,  39 => 11,  34 => 9,  28 => 6,  25 => 5,  23 => 4,  21 => 3,  19 => 2,);
+    }
+}
+

@@ -14,6 +14,7 @@
             {% if values.conBoletines %}
             <li><a href="#boletiones">{{macro.idioma('boletines')}}</a></li>
             {% endif %}
+            <li><a href="#buzon">{{macro.idioma('buzon')}}</a></li>            
         </ul>
         <div id="misDatos" class="caracteristicas">
             {% include 'ZonaPrivada/formularioRegistro.html.twig' %} {# ESTE ES EL FORMULARIO DE REGISTRO DE USUARIO #} 
@@ -21,14 +22,17 @@
         <div id="misDirecciones" class="detallesTecnicos">
             {% include values.templateDirecciones %} {# ESTE ES EL FORMULARIO DE DIRECCIONES DE ENTREGA #} 
         </div>
-        <div id="pedidos" class="detallesTecnicos">&nbsp;
+        <div id="pedidos" class="detallesTecnicos">
             {% include 'ZonaPrivada/misPedidos.html.twig' %}
         </div> 
         {% if values.conBoletines %}
-        <div id="boletiones" class="detallesTecnicos">&nbsp;
+        <div id="boletiones" class="detallesTecnicos">
             {% include 'ZonaPrivada/misBoletines.html.twig' %}
         </div>    
         {% endif %}
+        <div id="buzon" class="detallesTecnicos">
+            {% include 'ZonaPrivada/miBuzon.html.twig' %}
+        </div>         
     </div>
  
 </section>

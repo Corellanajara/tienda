@@ -1,0 +1,188 @@
+<?php
+
+/* Favoritos/listado.html.twig */
+class __TwigTemplate_d63d5f12caca602eb0cd39dbc8d63175af0d892197b564a3148e0b901b216825 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 2
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "favoritos"));
+        $context['_iterated'] = false;
+        foreach ($context['_seq'] as $context["_key"] => $context["articulo"]) {
+            // line 3
+            echo "<article>
+    ";
+            // line 4
+            if ($this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "PathNameImagenN")) {
+                // line 5
+                echo "    <figure>
+        <a href=\"";
+                // line 6
+                echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "UrlFriendly"), "html", null, true);
+                echo "\" title=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Descripcion"), "html", null, true);
+                echo "\">
+            <img src=\"";
+                // line 7
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+                echo "/";
+                echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
+                echo "/";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "PathNameImagenN", array(0 => 1), "method"), "html", null, true);
+                echo "\" title=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Descripcion"), "html", null, true);
+                echo "\" alt=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Descripcion"), "html", null, true);
+                echo "\" />
+        </a>
+    </figure>
+    ";
+            }
+            // line 11
+            echo "    <div class=\"info\">
+        <h3><a href=\"";
+            // line 12
+            echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "UrlFriendly"), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Descripcion"), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Descripcion"), "html", null, true);
+            echo "</a></h3>
+        ";
+            // line 13
+            if (($this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Resumen") != $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Descripcion"))) {
+                // line 14
+                echo "            <div class=\"resumen\">";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "Resumen"), "html", null, true);
+                echo "</div>
+        ";
+            }
+            // line 16
+            echo "        ";
+            $context["precioActual"] = $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "PrecioVentaConImpuestos");
+            // line 17
+            echo "        ";
+            if ((($this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "PvpAnterior") > 0) && ($this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "PrecioAnterior") != (isset($context["precioActual"]) ? $context["precioActual"] : null)))) {
+                // line 18
+                echo "            <div class=\"precios precioAnterior\">";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "PvpAnterior")), "method"), "html", null, true);
+                echo "</div>                
+        ";
+            }
+            // line 20
+            echo "        <div class=\"precioActual\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => (isset($context["precioActual"]) ? $context["precioActual"] : null)), "method"), "html", null, true);
+            echo "</div>
+        <div class=\"comprar\">
+            <input type=\"button\" class=\"boton btn_azul left\" value=\"Comprar\" onclick=\"addCart('";
+            // line 22
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "IDArticulo"), "html", null, true);
+            echo "',1);\"/>
+            <form name=\"formFavoritos";
+            // line 23
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "IDArticulo"), "html", null, true);
+            echo "\" id=\"formFavoritos";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "IDArticulo"), "html", null, true);
+            echo "\" method=\"POST\">
+                <div id=\"input_oculto\">
+                <input name=\"controller\" value=\"Favoritos\"/>
+                <input name=\"action\" value=\"remove\"/>
+                <input name=\"idArticulo\" value=\"";
+            // line 27
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "IDArticulo"), "html", null, true);
+            echo "\"/>
+                </div>        
+                <input type=\"submit\" class=\"boton btn_azul left\" value=\"";
+            // line 29
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "removeFavorito"), "method"), "html", null, true);
+            echo "\"/>           
+            </form>
+            <input type=\"checkbox\" class=\"marcarFavorito\" id=\"check";
+            // line 31
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "IDArticulo"), "html", null, true);
+            echo "\" onchange=\"check('";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "IDArticulo"), "html", null, true);
+            echo "');\" ";
+            if (($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Checked") == "1")) {
+                echo "checked";
+            }
+            echo "/>
+        </div>        
+        <article class=\"botonera\">
+            <a href=\"";
+            // line 34
+            echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "articulo"), "UrlFriendly"), "html", null, true);
+            echo "\" title=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "masInfo"), "method"), "html", null, true);
+            echo "\" class=\"saberMas\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "saberMas"), "method"), "html", null, true);
+            echo "
+                <span class=\"sprite\"></span>
+            </a>
+        </article>
+    </div>
+</article>
+";
+            $context['_iterated'] = true;
+        }
+        if (!$context['_iterated']) {
+            // line 41
+            echo "<p>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "noHayFavoritos"), "method"), "html", null, true);
+            echo "</p>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['articulo'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 43
+        echo "
+";
+        // line 44
+        if ((twig_length_filter($this->env, $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "favoritos")) > 0)) {
+            // line 45
+            echo "    <input type=\"button\" id=\"ponerTodos\" class=\"boton btn_azul left\" value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "ponerTodos"), "method"), "html", null, true);
+            echo "\"/>
+    <input type=\"button\" id=\"quitarTodos\" class=\"boton btn_azul left\" value=\"";
+            // line 46
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "quitarTodos"), "method"), "html", null, true);
+            echo "\"/>
+    <input type=\"button\" id=\"alCarrito\" class=\"boton btn_azul left\" value=\"";
+            // line 47
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "alCarrito"), "method"), "html", null, true);
+            echo "\"/>
+";
+        }
+    }
+
+    public function getTemplateName()
+    {
+        return "Favoritos/listado.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  167 => 47,  163 => 46,  158 => 45,  156 => 44,  153 => 43,  144 => 41,  127 => 34,  115 => 31,  110 => 29,  105 => 27,  96 => 23,  92 => 22,  86 => 20,  80 => 18,  77 => 17,  74 => 16,  68 => 14,  66 => 13,  57 => 12,  54 => 11,  39 => 7,  27 => 4,  24 => 3,  19 => 2,  40 => 10,  38 => 9,  32 => 6,  29 => 5,  26 => 4,);
+    }
+}
+

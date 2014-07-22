@@ -7,7 +7,8 @@
     RewriteRule .* - [L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
-    # EXCEPCION A LA CARPETA Cpanel
+    # EXCEPCION A LA CARPETA docs
+    RewriteCond %{REQUEST_URI} !/doc
     RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
 

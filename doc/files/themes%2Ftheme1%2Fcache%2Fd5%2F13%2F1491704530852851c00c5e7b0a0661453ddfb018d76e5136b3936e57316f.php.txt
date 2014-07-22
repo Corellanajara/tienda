@@ -1,0 +1,51 @@
+<?php
+
+/* PollasEnOllas/index.html.twig */
+class __TwigTemplate_d5131491704530852851c00c5e7b0a0661453ddfb018d76e5136b3936e57316f extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'content' => array($this, 'block_content'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 4
+        $context["widgets"] = $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "widgets");
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 6
+    public function block_content($context, array $blocks = array())
+    {
+        // line 7
+        echo "\t<p>Template autogenerado para el controlador PollasEnOllas</p>
+\t<p>Edítalo en themes/theme1/modules/PollasEnOllas/index.html.twig</p>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "PollasEnOllas/index.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  31 => 7,  28 => 6,  23 => 4,);
+    }
+}
+

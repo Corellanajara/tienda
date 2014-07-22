@@ -1,0 +1,63 @@
+<?php
+
+/* ZonaPrivada/registro.html.twig */
+class __TwigTemplate_2acc0fc497e0c7fad4637298be4f21208f8b0ed5e7de70197b78ef060172278a extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'content' => array($this, 'block_content'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_content($context, array $blocks = array())
+    {
+        // line 4
+        echo "<section class=\"central\">
+    <h2 class=\"superTitular rojo\">";
+        // line 5
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "registroUsuario"), "method"), "html", null, true);
+        echo "</h2>
+    ";
+        // line 6
+        $this->env->loadTemplate("ZonaPrivada/mensajes.html.twig")->display($context);
+        echo " ";
+        echo "                                 
+    ";
+        // line 7
+        $this->env->loadTemplate("ZonaPrivada/formularioRegistro.html.twig")->display($context);
+        echo " ";
+        // line 8
+        echo "</section>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "ZonaPrivada/registro.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  44 => 8,  41 => 7,  36 => 6,  32 => 5,  29 => 4,  26 => 3,);
+    }
+}
+

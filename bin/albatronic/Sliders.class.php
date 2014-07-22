@@ -38,8 +38,9 @@ class Sliders {
 
         // Valido el tipo de slider. Si no es correcto lo pongo a tipo 0 (variable)
         $tipoSlider = new TiposSliders($tipo);
-        if ($tipoSlider->getIDTipo() == null)
+        if ($tipoSlider->getIDTipo() == null) {
             $tipo = 0;
+        }
 
         $where = ($idZona == '*') ? "(1)" : "s.IdZona='{$idZona}'";
         $where .= " AND s.IdTipo='{$tipo}'";
@@ -90,5 +91,3 @@ class Sliders {
     }
 
 }
-
-?>

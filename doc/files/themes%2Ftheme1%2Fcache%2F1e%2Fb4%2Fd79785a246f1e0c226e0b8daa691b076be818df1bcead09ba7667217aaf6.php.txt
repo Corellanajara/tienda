@@ -1,0 +1,168 @@
+<?php
+
+/* Carrito/resumenPedido.html.twig */
+class __TwigTemplate_1eb4d79785a246f1e0c226e0b8daa691b076be818df1bcead09ba7667217aaf6 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'content' => array($this, 'block_content'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 5
+        $context["pedido"] = $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "pedido");
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 7
+    public function block_content($context, array $blocks = array())
+    {
+        // line 8
+        echo "    <li>Pedido ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "IDPedido"), "html", null, true);
+        echo "</li>
+    <li>Fecha ";
+        // line 9
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "Fecha"), "html", null, true);
+        echo "</li>
+    <li>Cliente ";
+        // line 10
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "IDCliente"), "html", null, true);
+        echo "</li>
+    <li>";
+        // line 11
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "IDZonaEnvio"), "html", null, true);
+        echo "</li>
+    <li>";
+        // line 12
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "IDFP"), "html", null, true);
+        echo "</li>
+    <li>";
+        // line 13
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "IDAgencia"), "html", null, true);
+        echo "</li>
+    <li>";
+        // line 14
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "PlazoEntrega"), "html", null, true);
+        echo "</li>
+
+    ";
+        // line 16
+        if ($this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "Descuento")) {
+            // line 17
+            echo "    <li>Importe Bruto ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "Importe")), "method"), "html", null, true);
+            echo "</li>
+    <li>Dcto Cupón ";
+            // line 18
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "Descuento")), "method"), "html", null, true);
+            echo "</li>
+    ";
+        }
+        // line 20
+        echo "    <li>Base Imponible ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "TotalBases")), "method"), "html", null, true);
+        echo "</li>
+    <li>Iva ";
+        // line 21
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "TotalIva")), "method"), "html", null, true);
+        echo "</li>    
+    <li>";
+        // line 22
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "total"), "method"), "html", null, true);
+        echo " ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "Total")), "method"), "html", null, true);
+        echo "</li>   
+    <li>";
+        // line 23
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "gastosEnvio"), "method"), "html", null, true);
+        echo " ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "GastosEnvio")), "method"), "html", null, true);
+        echo "</li>
+    <li>";
+        // line 24
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "totalAPagar"), "method"), "html", null, true);
+        echo " ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => ($this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "total") + $this->getAttribute((isset($context["pedido"]) ? $context["pedido"] : null), "GastosEnvio"))), "method"), "html", null, true);
+        echo "</li>
+    
+    <form name=\"formResumenPedido\" id=\"formResumenPedido\" method=\"POST\" action=\"";
+        // line 26
+        if (($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "pasarela"), "url_tpv") != "")) {
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "pasarela"), "url_tpv"), "html", null, true);
+        }
+        echo "\">
+        <div class=\"oculto\">
+            ";
+        // line 28
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "pasarela"));
+        foreach ($context['_seq'] as $context["key"] => $context["value"]) {
+            // line 29
+            echo "                ";
+            if (((isset($context["key"]) ? $context["key"] : null) != "url_tpv")) {
+                // line 30
+                echo "                    <input name=\"";
+                echo twig_escape_filter($this->env, (isset($context["key"]) ? $context["key"] : null), "html", null, true);
+                echo "\" value=\"";
+                echo twig_escape_filter($this->env, (isset($context["value"]) ? $context["value"] : null), "html", null, true);
+                echo "\"/>
+                ";
+            }
+            // line 32
+            echo "            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['key'], $context['value'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 33
+        echo "        </div>
+        
+        <input type=\"submit\" name=\"confirmarPedido\" id=\"confirmarPedido\" value=\"";
+        // line 35
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "confirmarPedido"), "method"), "html", null, true);
+        echo "\"/>
+        <p id=\"mensajeConectando\" class=\"oculto\">";
+        // line 36
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "conectandoPasarela"), "method"), "html", null, true);
+        echo "</p>
+    </form>
+
+<script>
+\$(function(){
+    \$('#confirmarPedido').click(function(){
+        \$(this).hide();
+        \$('#mensajeConectando').show();
+        \$('#formResumenPedido').submit();
+    });
+});
+</script>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "Carrito/resumenPedido.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  137 => 36,  133 => 35,  129 => 33,  123 => 32,  115 => 30,  112 => 29,  108 => 28,  101 => 26,  94 => 24,  88 => 23,  82 => 22,  78 => 21,  73 => 20,  68 => 18,  63 => 17,  61 => 16,  56 => 14,  52 => 13,  48 => 12,  44 => 11,  40 => 10,  36 => 9,  31 => 8,  28 => 7,  23 => 5,);
+    }
+}
+

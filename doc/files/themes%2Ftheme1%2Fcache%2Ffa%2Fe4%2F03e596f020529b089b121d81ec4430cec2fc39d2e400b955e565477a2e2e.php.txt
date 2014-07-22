@@ -1,0 +1,105 @@
+<?php
+
+/* ZonaPrivada/misdatos.html.twig */
+class __TwigTemplate_fae403e596f020529b089b121d81ec4430cec2fc39d2e400b955e565477a2e2e extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'content' => array($this, 'block_content'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 4
+    public function block_content($context, array $blocks = array())
+    {
+        // line 5
+        echo "<section class=\"central\">
+    <h2 class=\"superTitular rojo\">";
+        // line 6
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "miCuenta"), "method"), "html", null, true);
+        echo "</h2>
+    ";
+        // line 7
+        $this->env->loadTemplate("ZonaPrivada/mensajes.html.twig")->display($context);
+        echo " ";
+        echo "                                 
+    <div id=\"solapas\">
+        <ul>
+            <li><a href=\"#misDatos\">";
+        // line 10
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "misDatos"), "method"), "html", null, true);
+        echo "</a></li>
+            <li><a href=\"#misDirecciones\">";
+        // line 11
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "misDirecciones"), "method"), "html", null, true);
+        echo "</a></li>
+            <li><a href=\"#pedidos\">";
+        // line 12
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "pedidos"), "method"), "html", null, true);
+        echo "</a></li>
+            <li><a href=\"#boletiones\">";
+        // line 13
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "boletines"), "method"), "html", null, true);
+        echo "</a></li>
+        </ul>
+        <div id=\"misDatos\" class=\"caracteristicas\">
+            ";
+        // line 16
+        $this->env->loadTemplate("ZonaPrivada/formularioRegistro.html.twig")->display($context);
+        echo " ";
+        echo " 
+        </div>
+        <div id=\"misDirecciones\" class=\"detallesTecnicos\">
+            ";
+        // line 19
+        $this->env->loadTemplate("ZonaPrivada/misDirecciones.html.twig")->display($context);
+        echo " ";
+        echo " 
+        </div>
+        <div id=\"pedidos\" class=\"detallesTecnicos\">&nbsp;
+            ";
+        // line 22
+        $this->env->loadTemplate("ZonaPrivada/misPedidos.html.twig")->display($context);
+        // line 23
+        echo "        </div>    
+        <div id=\"boletiones\" class=\"detallesTecnicos\">&nbsp;
+            ";
+        // line 25
+        $this->env->loadTemplate("ZonaPrivada/misBoletines.html.twig")->display($context);
+        // line 26
+        echo "        </div>    
+    </div>
+ 
+</section>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "ZonaPrivada/misdatos.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  83 => 26,  81 => 25,  77 => 23,  75 => 22,  68 => 19,  61 => 16,  55 => 13,  51 => 12,  47 => 11,  43 => 10,  36 => 7,  32 => 6,  29 => 5,  26 => 4,);
+    }
+}
+

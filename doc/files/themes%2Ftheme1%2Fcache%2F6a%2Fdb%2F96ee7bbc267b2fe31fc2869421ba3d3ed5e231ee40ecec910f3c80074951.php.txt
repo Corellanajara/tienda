@@ -1,0 +1,88 @@
+<?php
+
+/* ZonaPrivada/misBoletines.html.twig */
+class __TwigTemplate_6adb96ee7bbc267b2fe31fc2869421ba3d3ed5e231ee40ecec910f3c80074951 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 2
+        $context["tipos"] = $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "cliente"), "getSuscripciones");
+        // line 3
+        echo "
+";
+        // line 4
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["tipos"]) ? $context["tipos"] : null));
+        foreach ($context['_seq'] as $context["keyTipo"] => $context["boletines"]) {
+            // line 5
+            echo "<ul>
+    ";
+            // line 6
+            echo twig_escape_filter($this->env, (isset($context["keyTipo"]) ? $context["keyTipo"] : null), "html", null, true);
+            echo "
+    ";
+            // line 7
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["boletines"]) ? $context["boletines"] : null));
+            foreach ($context['_seq'] as $context["keyBoletin"] => $context["boletin"]) {
+                // line 8
+                echo "    <li>
+        <input type=\"checkbox\" ";
+                // line 9
+                if ($this->getAttribute((isset($context["boletin"]) ? $context["boletin"] : null), "suscrito")) {
+                    echo "checked";
+                }
+                echo " 
+               onclick=\"
+                   \$(this).val(\$(this).is(':checked')?'1':'0');
+                   actualizaRelacion('Clientes', '";
+                // line 12
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "cliente"), "IDCliente"), "html", null, true);
+                echo "', 'BolBoletines', '";
+                echo twig_escape_filter($this->env, (isset($context["keyBoletin"]) ? $context["keyBoletin"] : null), "html", null, true);
+                echo "', \$(this).val());\"/> 
+        ";
+                // line 13
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["boletin"]) ? $context["boletin"] : null), "titulo"), "html", null, true);
+                echo "
+    </li>
+    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['keyBoletin'], $context['boletin'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 16
+            echo "</ul>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['keyTipo'], $context['boletines'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+    }
+
+    public function getTemplateName()
+    {
+        return "ZonaPrivada/misBoletines.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  65 => 16,  50 => 12,  42 => 9,  39 => 8,  35 => 7,  31 => 6,  28 => 5,  98 => 32,  92 => 28,  79 => 24,  71 => 22,  67 => 21,  63 => 20,  56 => 13,  48 => 13,  44 => 12,  40 => 11,  24 => 4,  22 => 3,  95 => 31,  89 => 27,  80 => 24,  76 => 23,  72 => 22,  64 => 20,  60 => 19,  53 => 17,  45 => 12,  41 => 11,  37 => 10,  33 => 9,  23 => 4,  21 => 3,  19 => 2,  83 => 25,  81 => 25,  77 => 23,  75 => 23,  68 => 21,  61 => 16,  55 => 13,  51 => 12,  47 => 11,  43 => 10,  36 => 10,  32 => 9,  29 => 8,  26 => 5,);
+    }
+}
+

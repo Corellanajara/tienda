@@ -66,5 +66,3 @@ class ListadoController extends ControllerProject {
     }
 
 }
-
-?>

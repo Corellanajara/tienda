@@ -1,0 +1,172 @@
+<?php
+
+/* Noticias/index.html.twig */
+class __TwigTemplate_6c79692dd2e8a47a5db1a7e47076db177f374b869424e25fec3f2f01313bd66f extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'navegacion' => array($this, 'block_navegacion'),
+            'aside' => array($this, 'block_aside'),
+            'contenido' => array($this, 'block_contenido'),
+            'bannerPie' => array($this, 'block_bannerPie'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_navegacion($context, array $blocks = array())
+    {
+        $this->env->loadTemplate("_global/navegacionGeneral.html.twig")->display($context);
+    }
+
+    // line 5
+    public function block_aside($context, array $blocks = array())
+    {
+        $this->env->loadTemplate("_global/asideGeneralyHome.html.twig")->display($context);
+    }
+
+    // line 7
+    public function block_contenido($context, array $blocks = array())
+    {
+        // line 8
+        echo "
+<section class=\"contenedorGrande\">
+    ";
+        // line 10
+        $this->env->loadTemplate("_global/ruta.html.twig")->display($context);
+        // line 11
+        echo "    ";
+        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "noticias"), "paginacion"), "totalItems") > 0)) {
+            // line 12
+            echo "        <h1>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "noticiasActualidad"), "method"), "html", null, true);
+            echo "</h1>
+        
+        <section class=\"noticias\">
+            ";
+            // line 15
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "noticias"), "rows"));
+            foreach ($context['_seq'] as $context["_key"] => $context["noticia"]) {
+                // line 16
+                echo "            <article class=\"noticia\">
+                ";
+                // line 17
+                if ($this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "PathNameImagenN", array(0 => 3), "method")) {
+                    // line 18
+                    echo "                <figure>
+                    <a href=\"";
+                    // line 19
+                    echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "UrlFriendly"), "html", null, true);
+                    echo "\" title=\"";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "Titulo"), "html", null, true);
+                    echo "\">
+                        <img src=\"";
+                    // line 20
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+                    echo "/";
+                    echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "PathNameImagenN", array(0 => 3), "method"), "html", null, true);
+                    echo "\" title=\"\" alt=\"\" />
+                    </a>
+                </figure>
+                ";
+                }
+                // line 24
+                echo "                <div class=\"info\">
+                    <h3><a href=\"";
+                // line 25
+                echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "UrlFriendly"), "html", null, true);
+                echo "\" title=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "Titulo"), "html", null, true);
+                echo "\">";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "Titulo"), "html", null, true);
+                echo "</a></h3>
+                    <div class=\"resumen\">";
+                // line 26
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "Resumen"), "html", null, true);
+                echo "</div>
+                    <article class=\"botonera\">
+                        <span class=\"fecha\"><span class=\"sprite\"></span>";
+                // line 28
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "PublishedAt"), "d/m/Y"), "html", null, true);
+                echo "</span>
+                        <a href=\"";
+                // line 29
+                echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["noticia"]) ? $context["noticia"] : null), "UrlFriendly"), "html", null, true);
+                echo "\" title=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "saberMas"), "method"), "html", null, true);
+                echo "\" class=\"saberMas right\">";
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "saberMas"), "method"), "html", null, true);
+                echo "
+                            <span class=\"sprite\"></span>
+                        </a>
+                    </article>
+                </div>
+            </article>
+            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['noticia'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 36
+            echo "        </section>
+
+        <!-- PAGINACION -->
+        ";
+            // line 39
+            $this->env->loadTemplate("_global/paginacion.html.twig")->display($context);
+            // line 40
+            echo "    ";
+        } else {
+            // line 41
+            echo "        <h1>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "noticiasNoHay"), "method"), "html", null, true);
+            echo "</h1>
+    ";
+        }
+        // line 43
+        echo "</section>   
+";
+    }
+
+    // line 46
+    public function block_bannerPie($context, array $blocks = array())
+    {
+        // line 47
+        echo "    ";
+        $this->env->loadTemplate("_global/bannerPie.html.twig")->display($context);
+        echo "   
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "Noticias/index.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  151 => 47,  148 => 46,  143 => 43,  137 => 41,  134 => 40,  132 => 39,  127 => 36,  109 => 29,  105 => 28,  100 => 26,  91 => 25,  88 => 24,  79 => 20,  72 => 19,  69 => 18,  67 => 17,  64 => 16,  60 => 15,  53 => 12,  50 => 11,  48 => 10,  44 => 8,  41 => 7,  35 => 5,  29 => 3,);
+    }
+}
+

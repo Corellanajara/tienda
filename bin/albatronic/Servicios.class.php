@@ -32,19 +32,22 @@ class Servicios {
 
         $filtroFamilia = ($idFamilia <= 0) ? "(1)" : "(IdFamilia='{$idFamilia}')";
 
-        if ($mostrarEnPortada < 0)
+        if ($mostrarEnPortada < 0) {
             $filtroPortada = "(1)";
-        else
+        } else {
             $filtroPortada = ($mostrarEnPortada == 0) ? "(MostrarPortada='0')" : "(MostrarPortada='1')";
+        }
 
-        if ($nItems <= 0)
+        if ($nItems <= 0) {
             $nItems = 999999;
+        }
 
         $filtro = "{$filtroFamilia} AND {$filtroPortada}";
-        
-        if ($idExcluir > 0)
+
+        if ($idExcluir > 0) {
             $filtro .= " AND (Id <> '$idExcluir')";
-        
+        }
+
         $orden = ($mostrarEnPortada > 0) ? "MostrarPortadaOrden ASC" : "SortOrder ASC";
 
         $servicio = new ServServicios();
@@ -53,8 +56,9 @@ class Servicios {
 
         $servicios = array();
 
-        foreach ($rows as $row)
+        foreach ($rows as $row) {
             $servicios[] = new ServServicios($row['Id']);
+        }
 
         return $servicios;
     }

@@ -1,0 +1,100 @@
+<?php
+
+/* Carrito/index.html.twig */
+class __TwigTemplate_4110730bcefb81dd7bfad786a785139e84642faf55f7cadc1248efa1ea4f02c2 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->blocks = array(
+            'aside' => array($this, 'block_aside'),
+            'content' => array($this, 'block_content'),
+        );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return $this->env->resolveTemplate((isset($context["layout"]) ? $context["layout"] : null));
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_aside($context, array $blocks = array())
+    {
+        // line 4
+        echo "    ";
+        $this->env->loadTemplate("_global/asideLeft.html.twig")->display($context);
+    }
+
+    // line 7
+    public function block_content($context, array $blocks = array())
+    {
+        // line 8
+        echo "    <section class=\"contenedorGrande\">
+        <h1 class=\"tituloCesta\">";
+        // line 9
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "cestaDeLaCompra"), "method"), "html", null, true);
+        echo "</h1>
+        ";
+        // line 10
+        if (($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "carrito"), "totales"), "Importe") > 0)) {
+            // line 11
+            echo "            ";
+            $template = $this->env->resolveTemplate(($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "controller") . "/lineas.html.twig"));
+            $template->display($context);
+            echo " 
+            <div class=\"salto10\"></div>
+            <div>
+            ";
+            // line 14
+            $template = $this->env->resolveTemplate(($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "controller") . "/pie.html.twig"));
+            $template->display($context);
+            echo " 
+            </div>
+            <div class=\"salto20\"></div>
+            ";
+            // line 17
+            $this->env->loadTemplate("_global/wgArticulosRelacionados.html.twig")->display(array_merge($context, array("articulos" => $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "carrito"), "articulosRelacionados"))));
+            echo " 
+            ";
+            // line 18
+            $this->env->loadTemplate("_global/wgSeguimientoVisita.html.twig")->display($context);
+            echo " 
+        ";
+        } else {
+            // line 20
+            echo "            <p>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "irAFavoritos"), "method"), "html", null, true);
+            echo " <a href=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+            echo "/favoritos\">";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "favoritos"), "method"), "html", null, true);
+            echo "</a></p>
+        ";
+        }
+        // line 22
+        echo "    </section>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "Carrito/index.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  81 => 22,  71 => 20,  66 => 18,  62 => 17,  55 => 14,  47 => 11,  45 => 10,  41 => 9,  38 => 8,  35 => 7,  30 => 4,  27 => 3,);
+    }
+}
+

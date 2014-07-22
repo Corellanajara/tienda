@@ -45,12 +45,12 @@ config:
   ip_control: true
   
   # ENTORNO DE LA APLICACION
-  # SI LA APP EST?? EN EL RAIZ, 'path' debe estar vac??o
-  # NORMALMENTE, EN PRODUCCION 'path' estar?? vacio
+  # SI LA APP ESTÁ EN EL RAIZ, 'path' debe estar vacío
+  # NORMALMENTE, EN PRODUCCION 'path' estará vacio
   app:
     name: 'Albatronic Cloud Solutions'
-    url: http://localhost/tienda
-    path: /tienda
+    url: http://tienda.local
+    path: 
     framework: bin/albatronic/
     theme: themes/theme1
 

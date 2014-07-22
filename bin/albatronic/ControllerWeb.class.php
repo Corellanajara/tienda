@@ -62,7 +62,7 @@ class ControllerWeb {
     public function __construct($request) {
 
         $this->values['controller'] = $this->controller;
-        
+
         // Cargar lo que viene en el request
         $this->request = $request;
 
@@ -82,45 +82,48 @@ class ControllerWeb {
         // La carga se realiza si no se ha hecho previamente o si estamos en
         // entorno de desarrollo
         $codigoIdiomaActual = $_SESSION['idiomas']['disponibles'][$_SESSION['idiomas']['actual']]['codigo'];
-
-        $this->values['LANGUAGE'] = $codigoIdiomaActual;
-        //$this->values['LABELS'] = $this->getEtiquetasIdioma($codigoIdiomaActual);
-        //$_SESSION['LABELS'] = $this->values['LABELS'];
-        // CARGA LOS TEXTOS DE LOS PÁRRAFOS DEL CONTROLLER EN CURSO
-        // CORRESPONDIENTES AL IDIOMA SELECCIONADO
-        //$this->values['TEXTS'] = $this->getTextosIdioma($codigoIdiomaActual);
         $textos = new CpanTextos();
         $this->values['LABELS'] = $textos->getTextos($this->controller);
         unset($textos);
 
+        $this->values['LANGUAGE'] = $codigoIdiomaActual;
+
+        // GESTION DE COOKIES. El cartel debe mostrarse cada 7 días
+        if (empty($_COOKIE["SESS_ID_CARTEL_COOKIE"])) {
+            setcookie("SESS_ID_CARTEL_COOKIE", uniqid(time()), time() + (86400 * 7), "/");
+        }
+        $this->values["session_id"] = $_COOKIE["SESS_ID_CARTEL_COOKIE"];
+
+        // El objeto widgets para que esté disponible en todas las vistas
+        $this->values['widgets'] = new Widgets();
+
         /**
          * CONTROL DE VISITAS, SI ESTÁ ACTIVO POR LA VARIABLE DE ENTORNO
          *
-         *OBSOLETO: SE GESTIONA DESDE GOOGLE ANALYTICS
-        
-        if ($_SESSION['varEnv']['Pro']['visitas']['activo']) {
+         * OBSOLETO: SE GESTIONA DESDE GOOGLE ANALYTICS
 
-            // Borrar la tabla temporal de visitas, si procede según la
-            // frecuencia de horas de borrado
-            if (!$_SESSION['borradoTemporalVisitas']) {
-                $temp = new VisitVisitasTemporal();
-                $temp->borraTemporal();
-                unset($temp);
-            }
+          if ($_SESSION['varEnv']['Pro']['visitas']['activo']) {
 
-            // Control de visitas UNICAS a la url amigable
-            $temp = new VisitVisitasTemporal();
-            $temp->anotaVisitaUrlUnica($this->request['IdUrlAmigable']);
-            unset($temp);
+          // Borrar la tabla temporal de visitas, si procede según la
+          // frecuencia de horas de borrado
+          if (!$_SESSION['borradoTemporalVisitas']) {
+          $temp = new VisitVisitasTemporal();
+          $temp->borraTemporal();
+          unset($temp);
+          }
 
-            // Anotar en el registro de visitas
-            $visita = new VisitVisitas();
-            $visita->anotaVisita($this->request);
-            unset($visita);
-        }
+          // Control de visitas UNICAS a la url amigable
+          $temp = new VisitVisitasTemporal();
+          $temp->anotaVisitaUrlUnica($this->request['IdUrlAmigable']);
+          unset($temp);
+
+          // Anotar en el registro de visitas
+          $visita = new VisitVisitas();
+          $visita->anotaVisita($this->request);
+          unset($visita);
+          }
          * 
          */
-
         // LECTURA DE METATAGS
         $this->values['meta'] = $this->getMetaInformacion();
 
@@ -128,13 +131,6 @@ class ControllerWeb {
         $urlAmigable = new CpanUrlAmigables($this->request['IdUrlAmigable']);
         $urlAmigable->IncrementaVisitas();
         unset($urlAmigable);
-        
-        /**
-         *
-         * PROCESOS PARA AUTOMATIZAR VIA CRON: BORRAR VISITAS NO HUMANAS, WS LOCALIZACION IPS, ETC
-         * VOLCADOS DE LOGS
-         * 
-         */
     }
 
     /**
@@ -510,49 +506,6 @@ class ControllerWeb {
     }
 
     /**
-     * Devuelve un array con la traducción de los textos de la etiquetas
-     * de la web en el idioma $lang.
-     * 
-     * @param string $lang El idioma a cargar.
-     * @return array Array con la traducción
-     */
-    protected function getEtiquetasIdioma($lang) {
-
-        $array = array();
-
-        $file = APP_PATH . "/lang/{$lang}.yml";
-        if (file_exists($file)) {
-            $etiquetas = sfYaml::load($file);
-            $array = $etiquetas['lang'];
-        }
-
-        return $array;
-    }
-
-    /**
-     * Devuelve un array con la traducción de los párrafos
-     * del controller en curso en el idioma $lang.
-     * 
-     * Si el idioma solicitado no estuviese disponible (no contratado, no traducido),
-     * se muestra el español.
-     * 
-     * @param string $lang El idioma a cargar.
-     * @return array Array con la traducción
-     */
-    protected function getTextosIdioma($lang) {
-
-        $array = array();
-
-        $file = APP_PATH . "/modules/{$this->controller}/lang.yml";
-        if (file_exists($file)) {
-            $textos = sfYaml::load($file);
-            $array = isset($textos[$lang]) ? $textos[$lang] : $textos['es'];
-        }
-
-        return $array;
-    }
-
-    /**
      * Devuelve un array con las urls amigables en los distintos idiomas
      * correspondientes a la entidad e identidad en curso
      * 
@@ -668,6 +621,66 @@ class ControllerWeb {
         //echo $fileController;
         $controller = new $controlador($this->request);
         return $controller->{$metodo}();
+    }
+
+    /**
+     * Comprueba la existencia del controlador, si no existe
+     * intenta crearlo
+     * 
+     * @param string $controller El nombre del controlador
+     * @return string El nombre del controller si existe o ha podido crearlo. Vacio si no ha podido crearlo
+     */
+    static function validaController($controller) {
+
+        $pathController = "{$_SESSION['theme']}/modules/{$controller}";
+        $fileController = "{$_SESSION['theme']}/modules/{$controller}/{$controller}Controller.class.php";
+        $fileTemplate = "{$_SESSION['theme']}/modules/{$controller}/index.html.twig";
+        if (!file_exists($fileController)) {
+            if (mkdir($pathController)) {
+                $fp = fopen($fileController, "w");
+                if ($fp) {
+                    // Crear controlador
+                    $texto = "<?php\n\n" .
+                            "/**\n" .
+                            " * Description of {$controller}sController\n" .
+                            " *\n" .
+                            " * AUTOGENERATED\n\n" .
+                            " * @author Sergio Pérez <sergio.perez@albatronic.com>\n" .
+                            " * @copyright Informática ALBATRONIC\n" .
+                            " * @date " . date('d-M-Y') . "\n" .
+                            " *\n" .
+                            " */\n" .
+                            "class {$controller}Controller extends ControllerProject {\n\n" .
+                            "    protected \$controller = \"{$controller}\";\n\n" .
+                            "}";
+                    fwrite($fp, $texto);
+                    fclose($fp);
+                    $ok = true;
+
+                    // Crear template
+                    $fp = fopen($fileTemplate, "w");
+                    if ($fp) {
+                        $texto = "{# " . $controller . " #}\n" .
+                                "{% extends layout %}\n\n" .
+                                "{% set widgets = values.widgets %}\n\n" .
+                                "{% block content %}\n" .
+                                "\t<p>Template autogenerado para el controlador {$controller}</p>\n" .
+                                "\t<p>Edítalo en {$fileTemplate}</p>\n" .
+                                "{% endblock %}";
+                        fwrite($fp, $texto);
+                        fclose($fp);
+                    }
+                } else {
+                    $ok = false;
+                }
+            } else {
+                $ok = false;
+            }
+        } else {
+            $ok = true;
+        }
+
+        return ($ok) ? $controller : "";
     }
 
 }

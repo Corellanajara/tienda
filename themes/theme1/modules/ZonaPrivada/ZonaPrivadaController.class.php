@@ -111,6 +111,7 @@ class ZonaPrivadaController extends ControllerProject {
                         $_SESSION['usuarioWeb'] = array(
                             'Id' => $cliente->getPrimaryKeyValue(),
                             'nombre' => $cliente->getRazonSocial(),
+                            'email' => $cliente->getEMail(),
                             'IdPerfil' => $cliente->getIDPerfilWeb()->getId(),
                         );
                         $this->enviaCorreoWebMaster($cliente);
@@ -221,6 +222,7 @@ class ZonaPrivadaController extends ControllerProject {
                 $_SESSION['usuarioWeb'] = array(
                     'Id' => $usuario->getPrimaryKeyValue(),
                     'nombre' => $usuario->getRazonSocial(),
+                    'email' => $usuario->getEMail(),                    
                     'IdPerfil' => $usuario->getIDPerfilWeb()->getPrimaryKeyValue(),
                 );
                 $this->values['login']['error'] = 0;

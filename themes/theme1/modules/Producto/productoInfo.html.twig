@@ -37,7 +37,7 @@
                 <input type="button" class="boton btn_azul left" value="Comprar" onclick="addCart('{{values.producto.IDArticulo}}',$('#unidades{{values.producto.IDArticulo}}').val());"/>
             </div>
             {% include '_global/addFavoritos.html.twig' with {'idArticulo': values.producto.IDArticulo} %}
-            {% include '_global/wgStock.html.twig' with {'idArticulo': values.producto.IDArticulo} %}
+            {% include '_global/wgStock.html.twig' with {'idArticulo': values.producto} %}
         {% endif %}
     </div>
     

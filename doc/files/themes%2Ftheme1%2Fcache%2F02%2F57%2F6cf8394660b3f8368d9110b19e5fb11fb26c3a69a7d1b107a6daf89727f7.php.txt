@@ -1,0 +1,123 @@
+<?php
+
+/* Contenidos/noticia.html.twig */
+class __TwigTemplate_02576cf8394660b3f8368d9110b19e5fb11fb26c3a69a7d1b107a6daf89727f7 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 1
+        echo "<div class=\"contenedorNoticia\">
+    ";
+        // line 2
+        $context["contenido"] = $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "contenidoDesarrollado"), "contenido");
+        echo "    
+    
+    ";
+        // line 4
+        if (($this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "ShowPublishedAt"), "IDTipo") == "1")) {
+            // line 5
+            echo "        <span class=\"fecha width100\">
+            Publicado: ";
+            // line 6
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "PublishedAt"), "d/m/Y"), "html", null, true);
+            echo "
+            ";
+            // line 12
+            echo "        </span>
+    ";
+        }
+        // line 14
+        echo "
+    ";
+        // line 15
+        if (($this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "MostrarTituloContenido"), "IDTipo") && $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Titulo"))) {
+            // line 16
+            echo "        <h1>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Titulo"), "html", null, true);
+            echo "</h1>
+    ";
+        }
+        // line 18
+        echo "
+    ";
+        // line 19
+        if (($this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "MostrarSubtituloContenido"), "IDTipo") && $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Subtitulo"))) {
+            // line 20
+            echo "        <h2>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Subtitulo"), "html", null, true);
+            echo "</h2>
+    ";
+        }
+        // line 22
+        echo "
+    ";
+        // line 23
+        if (($this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "MostrarResumenContenido"), "IDTipo") && $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Resumen"))) {
+            // line 24
+            echo "        <h3>";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Resumen"), "html", null, true);
+            echo "</h3>
+    ";
+        }
+        // line 26
+        echo "
+    ";
+        // line 27
+        if ($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Desarrollo")) {
+            // line 28
+            echo "\t<p>";
+            echo $this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "Desarrollo");
+            echo "</p>
+    ";
+        }
+        // line 30
+        echo "
+    ";
+        // line 31
+        if (($this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "videoYoutube"), "video") != "")) {
+            // line 32
+            echo "    <div class=\"videos_youtube\">
+        <iframe width=\"";
+            // line 33
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "videoYoutube"), "ancho"), "html", null, true);
+            echo "\" height=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "videoYoutube"), "alto"), "html", null, true);
+            echo "\" src=\"http://www.youtube.com/embed/";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "videoYoutube"), "video"), "html", null, true);
+            echo "\" frameborder=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["contenido"]) ? $context["contenido"] : null), "videoYoutube"), "anchoBorde"), "html", null, true);
+            echo "\"></iframe>
+    </div>
+    ";
+        }
+        // line 36
+        echo "      
+</div>";
+    }
+
+    public function getTemplateName()
+    {
+        return "Contenidos/noticia.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  104 => 36,  92 => 33,  89 => 32,  87 => 31,  84 => 30,  78 => 28,  76 => 27,  73 => 26,  67 => 24,  62 => 22,  56 => 20,  51 => 18,  45 => 16,  40 => 14,  36 => 12,  32 => 6,  29 => 5,  27 => 4,  22 => 2,  19 => 1,  96 => 30,  93 => 29,  83 => 24,  77 => 20,  71 => 19,  69 => 18,  65 => 23,  59 => 15,  57 => 14,  54 => 19,  48 => 11,  46 => 10,  43 => 15,  41 => 8,  37 => 6,  34 => 5,  28 => 3,);
+    }
+}
+

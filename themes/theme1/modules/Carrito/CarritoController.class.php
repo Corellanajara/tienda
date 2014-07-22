@@ -41,7 +41,6 @@ class CarritoController extends ControllerProject {
             $this->values['combinacionesJSON'] = json_encode($combinaciones);
             $this->values['cupon'] = $_SESSION['cupon'];
             $this->values['seguimientoVisitas'] = ($this->varEnv['Pro']['shop']['seguimientoVisitas']);
-            //print_r(Widgets::getVisitasSesion());
             return parent::IndexAction();
         }
     }

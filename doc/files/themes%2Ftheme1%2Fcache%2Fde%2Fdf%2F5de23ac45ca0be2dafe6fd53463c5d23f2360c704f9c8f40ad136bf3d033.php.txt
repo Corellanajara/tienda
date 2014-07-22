@@ -1,0 +1,61 @@
+<?php
+
+/* _global/wgBuscador.html.twig */
+class __TwigTemplate_dedf5de23ac45ca0be2dafe6fd53463c5d23f2360c704f9c8f40ad136bf3d033 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        // line 2
+        echo "
+<h3 class=\"formulario\">";
+        // line 3
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "busqueda"), "method"), "html", null, true);
+        echo "</h3>
+<div class=\"cajetin\">
+    <form name=\"buscador\" id=\"buscador\" method=\"POST\" action=\"\">
+        <div id=\"input_oculto\">
+            <input name=\"controller\" value=\"Listado\"/>
+            <input name=\"action\" value=\"Index\"/>
+        </div>
+        <input name=\"textoBusqueda\" id=\"textoBusqueda\" value=\"Texto a buscar\" type=\"text\" class=\"buscador\"
+               onblur=\"if (\$(this).val() === '') \$(this).val('Texto a buscar');\"
+               onfocus=\"\$(this).val('');\"/>
+        <a href=\"#\" onclick=\"if (\$('#textoBusqueda').val() !== '";
+        // line 13
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "textoABuscar"), "method"), "html", null, true);
+        echo "') \$('#buscador').submit(); else return false;\" title=\"";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "buscar"), "method"), "html", null, true);
+        echo "\" class=\"buscador\">
+        <span class=\"buscador sprite\"></span>
+        </a>
+    </form>
+</div>
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "_global/wgBuscador.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  94 => 24,  77 => 20,  70 => 18,  46 => 11,  121 => 41,  117 => 40,  107 => 32,  87 => 24,  52 => 16,  102 => 26,  90 => 23,  83 => 26,  76 => 24,  30 => 7,  24 => 4,  27 => 5,  23 => 2,  21 => 2,  142 => 39,  126 => 35,  120 => 33,  116 => 32,  100 => 30,  96 => 28,  89 => 24,  82 => 22,  73 => 17,  69 => 16,  50 => 10,  42 => 10,  31 => 5,  539 => 158,  536 => 157,  531 => 156,  528 => 155,  517 => 154,  501 => 151,  486 => 150,  471 => 147,  468 => 146,  465 => 145,  462 => 144,  450 => 143,  438 => 127,  427 => 125,  424 => 124,  413 => 122,  411 => 121,  408 => 120,  395 => 119,  380 => 104,  374 => 103,  366 => 102,  360 => 101,  356 => 100,  351 => 99,  346 => 97,  341 => 96,  325 => 95,  313 => 82,  298 => 80,  294 => 79,  289 => 77,  278 => 75,  268 => 74,  263 => 73,  251 => 72,  233 => 60,  225 => 59,  214 => 57,  208 => 55,  206 => 54,  178 => 43,  174 => 42,  169 => 41,  162 => 37,  150 => 30,  134 => 43,  131 => 26,  129 => 25,  111 => 23,  97 => 16,  93 => 27,  88 => 14,  68 => 10,  65 => 16,  63 => 8,  60 => 14,  49 => 6,  38 => 129,  35 => 13,  25 => 5,  22 => 3,  19 => 2,  195 => 35,  192 => 53,  189 => 33,  183 => 30,  179 => 29,  176 => 28,  171 => 24,  165 => 23,  161 => 19,  158 => 35,  155 => 17,  151 => 15,  148 => 41,  145 => 13,  140 => 38,  133 => 36,  127 => 53,  124 => 34,  122 => 24,  118 => 49,  114 => 48,  112 => 47,  108 => 31,  105 => 44,  99 => 41,  95 => 40,  91 => 39,  86 => 36,  84 => 23,  80 => 31,  78 => 25,  71 => 21,  67 => 17,  61 => 14,  59 => 18,  56 => 17,  53 => 16,  51 => 13,  47 => 11,  39 => 9,  34 => 6,  28 => 6,  44 => 153,  41 => 149,  36 => 11,  32 => 6,  29 => 6,  26 => 5,);
+    }
+}
+

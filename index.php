@@ -193,6 +193,8 @@ switch ($rq->getMethod()) {
         break;
 }
 
+$controller = ControllerWeb::validaController($controller);
+
 // Si no se ha localizado el controlador, lo pongo a Error404
 if ($controller == '') {
     $controller = 'Error404';
@@ -205,10 +207,10 @@ if ($action == '') {
 // Si no existe el controller lo pongo a 'Error404'
 $fileController = "{$_SESSION['theme']}/modules/{$controller}/{$controller}Controller.class.php";
 
-if (!file_exists($fileController)) {
-    $controller = "Error404";
-    $fileController = "{$_SESSION['theme']}/modules/Error404/Error404Controller.class.php";
-}
+//if (!file_exists($fileController)) {
+//    $controller = "Error404";
+//    $fileController = "{$_SESSION['theme']}/modules/Error404/Error404Controller.class.php";
+//}
 
 $clase = $controller . "Controller";
 $metodo = $action . "Action";
@@ -284,7 +286,6 @@ $twig->loadTemplate($result['template'])
             'chequeadaResolucionVisitante' => isset($_SESSION['resolucionVisitante']),
             'user' => $_SESSION['usuarioWeb'],
         ));
-
 //------------------------------------------------------------
 
 unset($rq);
