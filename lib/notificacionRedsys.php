@@ -61,7 +61,7 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
     [Ds_AuthorisationCode] => 461980
 */
 
-$fp = fopen("pasarela.log", "a");
+$fp = fopen("../log/pasarela.log", "a");
 fwrite($fp,print_r($_GET,true));
 fclose($fp);
 exit;

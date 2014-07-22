@@ -11,7 +11,11 @@
 class EstadosLineasPedidosWeb extends Tipos {
 
     protected $tipos = array(
-        array('Id' => '0', 'Value' => 'Pendiente'),
-        array('Id' => '1', 'Value' => 'Albaranado'),        
+        array('Id' => '0', 'Value' => 'En tramite'),
+        array('Id' => '1', 'Value' => 'Anulado'),
+        array('Id' => '2', 'Value' => 'Confirmado Pagado'),
+        array('Id' => '3', 'Value' => 'Confirmado Pte. Pago'),
+        array('Id' => '4', 'Value' => 'Albaranado Parcial'),
+        array('Id' => '5', 'Value' => 'Albaranado Total'),   
     );
 }

@@ -42,10 +42,45 @@ class CpanPlantillas extends CpanPlantillasEntity {
         $plantilla = $row[0]['Observations'];
 
         foreach ($sustituir as $key => $value) {
-            $plantilla = str_replace($separadorInicio . $key . $separadorFin, $value, $plantilla);
+            if (is_array($value)) {
+                $plantilla = $this->sustituirBloque($plantilla, $key, $value);
+            } else {
+                $plantilla = str_replace($separadorInicio . $key . $separadorFin, $value, $plantilla);
+            }
         }
 
         return $plantilla;
+    }
+
+    /**
+     * Sustituye un bloque de texto iterándolo
+     * @param type $texto
+     * @param type $nombreBloque
+     * @param array $valores
+     * @param type $separadorInicio
+     * @param type $separadorFin
+     * @return text
+     */
+    public function sustituirBloque(&$texto, $nombreBloque, array $valores, $separadorInicio = "{{", $separadorFin = "}}") {
+
+        // Quedarme con el bloque que voy a sustituir
+        $separador = $separadorInicio . $nombreBloque . $separadorFin;
+        $longSeparador = strlen($separador);
+        $inicio = strpos($texto, $separador);
+        $fin = strpos($texto, $separador, $inicio + $longSeparador);
+        $trozo = substr($texto, $inicio + $longSeparador, $fin - $inicio - $longSeparador);
+        $textoNuevo = "";
+
+        foreach ($valores as $keyLinea => $linea) {
+            $textoLinea = $trozo;
+            foreach ($linea as $key => $valor) {
+                $textoLinea = str_replace($separadorInicio . $key . $separadorFin, $valor, $textoLinea);
+            }
+            $textoNuevo .= $textoLinea;
+        }
+
+        $texto = str_replace($separador.$trozo.$separador, $textoNuevo, $texto);
+        return $texto;
     }
 
     /**
@@ -84,6 +119,7 @@ class CpanPlantillas extends CpanPlantillasEntity {
 
         return $rows;
     }
+
     /**
      * Devuelve un objeto cuyo valor de la columna $columna es igual a $valor
      *
@@ -104,7 +140,7 @@ class CpanPlantillas extends CpanPlantillasEntity {
             $condicion .= " AND Publish='1' AND (Deleted='0') AND (ActiveFrom<='{$ahora}') AND ( (ActiveTo>='{$ahora}') or (ActiveTo='0000-00-00 00:00:00') )";
 
             $query = "SELECT {$this->_primaryKeyName} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$condicion})";
-            $this->_em->query($query);//echo $query;
+            $this->_em->query($query); //echo $query;
             $this->setStatus($this->_em->numRows());
             $rows = $this->_em->fetchResult();
             $this->_em->desConecta();
@@ -114,4 +150,5 @@ class CpanPlantillas extends CpanPlantillasEntity {
 
         return new $this($rows[0][$this->_primaryKeyName]);
     }
+
 }

@@ -78,41 +78,56 @@ class CarritoController extends ControllerProject {
     public function NotificacionAction() {
 
         $this->values['idPedido'] = $_SESSION['idPedido'];
-        
+
         switch ($this->request[2]) {
             case 'paypal':
                 if ($this->request[3] == 'ok') {
-                    // Confirmar pedido
+                    // Confirmar pedido pagado
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
                     ErpCarrito::vaciaCarrito();
                     $this->values['mensaje'] = "Pedido tramitado con éxito";
                 } else {
                     // Anular pedido
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "Operación rechazada por paypal";                    
+                    $this->values['mensaje'] = "Operación rechazada por paypal";
                 }
-                $_SESSION['idpedido'] = '';
                 break;
-                
+
             case 'redsys':
                 if ($this->request[3] == 'ok') {
-                    // Confirmar pedido
+                    // Confirmar pedido pagado
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
-                    ErpCarrito::vaciaCarrito();                    
+                    ErpCarrito::vaciaCarrito();
                     $this->values['mensaje'] = "Pedido tramitado con éxito";
                 } else {
                     // Anular pedido
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "Operación rechazada por la pasarela";                    
+                    $this->values['mensaje'] = "Operación rechazada por la pasarela";
                 }
-                $_SESSION['idpedido'] = '';
-                break;                
+                break;
 
+            default:
+                // Sin pasarela
+                // Confirmar pedido pendiente de pago
+                PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 3);
+                ErpCarrito::vaciaCarrito();
+                $this->values['mensaje'] = "Pedido tramitado con éxito";
+                $this->request[3] = 'ok';
         }
-        
+
+        if ($this->request[3] === 'ok') {
+            PedidosWebCab::enviaCorreos($_SESSION['idPedido']);
+            $template = $this->controller . "/pedidoOk.html.twig";
+            $this->values['pedido'] = new PedidosWebCab($_SESSION['idPedido']);
+        } else {
+            $template = $this->controller . "/pedidoKo.html.twig";
+        }
+
+        $_SESSION['idpedido'] = '';
+
         return array(
             'values' => $this->values,
-            'template' => $this->controller . "/resultado.html.twig",
+            'template' => $template,
         );
     }
 

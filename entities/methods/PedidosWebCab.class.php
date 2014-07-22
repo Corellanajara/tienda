@@ -42,16 +42,21 @@ class PedidosWebCab extends PedidosWebCabEntity {
     }
 
     /**
-     * Cambia el estado del pedidio
+     * Cambia el estado de la cabecera y lineas
+     * del PedidoWeb
+     * 
      * @param type $idPedido
      * @param type $idEstado
      */
     static function cambiaEstado($idPedido, $idEstado) {
 
         $pedido = new PedidosWebCab();
-        $pedido->queryUpdate( array("IDEstado" => $idEstado), "`IDPedido`='{$idPedido}'");
-
+        $pedido->queryUpdate(array("IDEstado" => $idEstado), "`IDPedido`='{$idPedido}'");
         unset($pedido);
+
+        $lineas = new PedidosWebLineas();
+        $lineas->queryUpdate(array("IDEstado" => $idEstado), "`IDPedido`='{$idPedido}'");
+        unset($lineas);
     }
 
     public function aplicaCupon() {
@@ -194,7 +199,7 @@ class PedidosWebCab extends PedidosWebCabEntity {
             //Calcular el peso, volumen y n. de bultos de los productos inventariables
             switch ($_SESSION['ver']) {
                 case '1': //Cristal
-                    $columna = "MtsAl";                
+                    $columna = "MtsAl";
                 case '0': //Estandar
                 default:
                     $columna = "Unidades";
@@ -240,6 +245,91 @@ class PedidosWebCab extends PedidosWebCabEntity {
             if ($this->Bultos == 0)
                 $this->setBultos($rows[0]['Bultos']);
         }
+    }
+
+    /**
+     * Devuelve array de objetos líneas de pedidos Web
+     * 
+     * @return \PedidosWebLineas Array de objetos lineas de pedidos Web
+     */
+    public function getLineas() {
+
+        $array = array();
+
+        $lineas = new PedidosWebLineas();
+        $rows = $lineas->cargaCondicion("IDLinea", "IDPedido='{$this->IDPedido}'");
+        foreach ($rows as $row) {
+            $array[] = new PedidosWebLineas($row['IDLinea']);
+        }
+        unset($lineas);
+
+        return $array;
+    }
+
+    /**
+     * Envía por mail el pedido $idPedido al cliente y CCo al email
+     * de notificación de pedidos indicado en la varEnv['Pro']['shop']['eMailPedidos']
+     * 
+     * Utiliza la plantilla 'emailPedido' en el idioma en curso
+     * 
+     * @param integer $idPedido El número de pedido
+     * @return integer El número de envío realizados. Cero en caso de error.
+     */
+    static function enviaCorreos($idPedido) {
+        
+        $varEnv = CpanVariables::getVariables("Env", "Pro");
+        $varWeb = CpanVariables::getVariables("Web", "Pro");
+
+        // Reemplazar los valores en la plantilla 'emailPedido'
+        $pedido = new PedidosWebCab($idPedido);
+        $cliente = $pedido->getIDCliente();
+        $sustituir = array(
+            'webName' => $varWeb['mail']['from_name'],
+            'idPedido' => $pedido->getIDPedido(),
+            'razonSocial' => $cliente->getRazonSocial(),
+            'fecha' => $pedido->getFecha(),
+            'total' => $pedido->getTotal(),
+            'gastosEnvio' => $pedido->getGastosEnvio(),
+            'totalPagar' => $pedido->getTotal() + $pedido->getGastosEnvio(),
+            'zonaEnvio' => $pedido->getIDZonaEnvio()->getZona(),
+            'formaPago' => $pedido->getIDFP()->getDescripcion(),
+            'formaEnvio' => $pedido->getIDAgencia()->getAgencia(),
+            'envolver' => $pedido->getEnvolver()->getDescripcion(),
+            'nombreFactura' => $cliente->getRazonSocial(),
+            'direccionFactura' => $cliente->getDireccion(),
+            'localidadFactura' => $cliente->getIDPoblacion(),
+            'codigoPostalFactura' => $cliente->getCodigoPostal(),
+            'provinciaFactura' => $cliente->getIDProvincia()->getProvincia(),
+            'paisFactura' => $cliente->getIDPais()->getPais(),
+            'emailFactura' => $cliente->getEMail(),
+            'telefonoFactura' => $cliente->getTelefono(),
+            'faxFactura' => $cliente->getFax(),
+            'cifFactura' => $cliente->getCif(),
+            'observaciones' => $pedido->getObservaciones(),
+        );
+        foreach ($pedido->getLineas() as $linea) {
+            $sustituir['LINEAS'][] = array(
+                'codigo' => $linea->getIDArticulo()->getCodigo(),
+                'descripcion' => $linea->getDescripcion(),
+                'unidades' => $linea->getUnidades(),
+                'precio' => $linea->getPrecio(),
+            );
+        }
+        $plantilla = new CpanPlantillas();
+        $texto = $plantilla->getPlantilla("", "emailPedido", $sustituir);
+        unset($plantilla);
+        
+        // Enviar correo al cliente y con CCo al email de pedidos
+        $mailer = new Mail($varWeb['mail']);
+        $ok = $mailer->send(
+                $cliente->getEmail(), 
+                $varWeb['mail']['from'], 
+                $varWeb['mail']['from_name'],
+                "",
+                $varEnv['shop']['eMailPedidos'], "Resguardo de Pedido", $texto, array()
+        );
+        
+        return $ok;
     }
 
 }

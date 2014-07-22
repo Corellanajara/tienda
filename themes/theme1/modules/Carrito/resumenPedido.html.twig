@@ -25,22 +25,28 @@
     
     <form name="formResumenPedido" id="formResumenPedido" method="POST" action="{%if (values.pasarela.url_tpv != '') %}{{values.pasarela.url_tpv}}{% endif %}">
         <div class="oculto">
-            {% for key,value in values.pasarela %}
-                {% if key != 'url_tpv' %}
-                    <input name="{{key}}" value="{{value}}"/>
-                {% endif %}
-            {% endfor %}
+            {%if (values.pasarela.url_tpv != '') %}
+                {% for key,value in values.pasarela %}
+                    {% if key != 'url_tpv' %}
+                        <input name="{{key}}" value="{{value}}"/>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <input name="controller" value="Carrito" />
+                <input name="action" id="action" value="Notificacion" />
+            {% endif %}
         </div>
         
         <input type="submit" name="confirmarPedido" id="confirmarPedido" value="{{macro.idioma('confirmarPedido')}}"/>
+        <a class="btn-condiciones" href="{{app.path}}/">{{macro.idioma("seguirComprando")}}</a>       
         <p id="mensajeConectando" class="oculto">{{macro.idioma('conectandoPasarela')}}</p>
     </form>
 
 <script>
 $(function(){
     $('#confirmarPedido').click(function(){
-        $(this).hide();
-        $('#mensajeConectando').show();
+        $(this).hide('slow');
+        $('#mensajeConectando').removeClass('oculto');
         $('#formResumenPedido').submit();
     });
 });

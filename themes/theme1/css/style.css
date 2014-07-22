@@ -2613,3 +2613,28 @@ a.btn, a.btntwo {
     padding-top: 12px;
     border-top: 1px solid #CCC;
 }
+
+/**
+* RESGUARDO DE PEDIDO
+**/
+.resguardoPedido {
+    width: 100%;
+    display: block;
+    font-size: 14px;
+}
+.resguardo, .cabecera {
+    width: 100%;
+}
+.resguardoPedido, .cabecera, .detalle, .pie {
+    margin-bottom: 10px;
+}
+.reguardoPedido, .cabecera, .itemsLeft {
+    float: left;
+}
+.resguardoPedido, .cabecera, .itemsRight {
+    float: left;
+    margin-left: 7px;    
+}
+.resaltado {
+    font-weight: bold;
+}

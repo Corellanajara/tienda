@@ -20,7 +20,13 @@
 
     <section class="anchoTotal">
         <section class="contenedorCentral" id="contenidoPagina">
-            {% block aside %}{% include '_global/asideGenerico.html.twig' %}{% endblock %} 
+            {% block asideLeft %}
+                {% include '_global/asideLeft.html.twig' %}
+            {% endblock %}
+
+            {% block asideRight %}
+                {% include '_global/asideRight.html.twig' %}
+            {% endblock %} 
             {% block content %}{% endblock %}             
         </section>
     </section>

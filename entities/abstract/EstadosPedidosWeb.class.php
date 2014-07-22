@@ -13,8 +13,9 @@ class EstadosPedidosWeb extends Tipos {
     protected $tipos = array(
         array('Id' => '0', 'Value' => 'En tramite'),
         array('Id' => '1', 'Value' => 'Anulado'),
-        array('Id' => '2', 'Value' => 'Confirmado'),
-        array('Id' => '3', 'Value' => 'Albaranado Parcial'),
-        array('Id' => '3', 'Value' => 'Albaranado Total'),
+        array('Id' => '2', 'Value' => 'Confirmado Pagado'),
+        array('Id' => '3', 'Value' => 'Confirmado Pte. Pago'),
+        array('Id' => '4', 'Value' => 'Albaranado Parcial'),
+        array('Id' => '5', 'Value' => 'Albaranado Total'),
     );
 }

@@ -493,7 +493,7 @@ class Clientes extends ClientesEntity {
         $array = array();
 
         $pedido = new PedidosWebCab();
-        $rows = $pedido->querySelect("IDPedido", $filtro, "Fecha DESC");
+        $rows = $pedido->querySelect("IDPedido", $filtro, "Fecha DESC, IDPedido DESC");
         unset($pedido);
         foreach ($rows as $row) {
             $array[] = new PedidosWebCab($row['IDPedido']);
