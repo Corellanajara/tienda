@@ -85,11 +85,11 @@ class CarritoController extends ControllerProject {
                     // Confirmar pedido pagado
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
                     ErpCarrito::vaciaCarrito();
-                    $this->values['mensaje'] = "Pedido tramitado con éxito";
+                    $this->values['mensaje'] = "pedidoTramitado";
                 } else {
                     // Anular pedido
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "Operación rechazada por paypal";
+                    $this->values['mensaje'] = "operacionRechazada";
                 }
                 break;
 
@@ -98,11 +98,11 @@ class CarritoController extends ControllerProject {
                     // Confirmar pedido pagado
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
                     ErpCarrito::vaciaCarrito();
-                    $this->values['mensaje'] = "Pedido tramitado con éxito";
+                    $this->values['mensaje'] = "pedidoTramitado";
                 } else {
                     // Anular pedido
                     PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "Operación rechazada por la pasarela";
+                    $this->values['mensaje'] = "operacionRechazada";
                 }
                 break;
 
@@ -111,7 +111,7 @@ class CarritoController extends ControllerProject {
                 // Confirmar pedido pendiente de pago
                 PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 3);
                 ErpCarrito::vaciaCarrito();
-                $this->values['mensaje'] = "Pedido tramitado con éxito";
+                $this->values['mensaje'] = "pedidoTramitado";
                 $this->request[3] = 'ok';
         }
 

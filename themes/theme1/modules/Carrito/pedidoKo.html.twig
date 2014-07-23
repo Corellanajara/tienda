@@ -2,7 +2,11 @@
 
 {% extends layout %}
 
+{% block asideRight %}{% endblock %}
+
 {% block content %}
-    {{ values.idPedido }}
-    {{ values.mensaje }}
+    <section class="contenedorGrande">
+        <h1 class="tituloCesta">{{macro.idioma('pedido')}} {{values.idPedido}}</h1>
+        <p>{{macro.idioma(values.mensaje)}}</p>
+    </section>    
 {% endblock %}

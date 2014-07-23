@@ -44,6 +44,9 @@ class ControllerProject extends ControllerWeb {
         $this->values['mostrarSinStock'] = ($this->varEnv['Pro']['shop']['mostrarSinStock'] == '1');
         $this->values['mostrarDisponibilidad'] = ($this->varEnv['Pro']['shop']['mostrarDisponibilidad'] == '1');
         $this->values['avisadorStock'] = ($this->varEnv['Pro']['shop']['avisadorStock'] == '1');
+        
+        // Chat Online Zopim
+        $this->values['idChatZopim'] = $this->varEnv['Pro']['shop']['idChatZopim'];
     }
 
 }

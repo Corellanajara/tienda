@@ -27,6 +27,7 @@
             {% block asideRight %}
                 {% include '_global/asideRight.html.twig' %}
             {% endblock %} 
+            
             {% block content %}{% endblock %}             
         </section>
     </section>
@@ -48,7 +49,8 @@
     </script>
 
     {% include values.archivoJs %}
-
+    {% include '_global/wgZopim.js.twig' %}
+    
     <!-- Obtener la resolución del dispositivo de navegación del cliente web -->
     {% if not chequeadaResolucionVisitante %}
     <script type="text/javascript">chequeaResolucionVisitante();</script>
