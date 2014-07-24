@@ -1,0 +1,4057 @@
+
+
+body {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/wb.jpg.pagespeed.ic.5-FfwoOBKf.webp");
+    color: #575758;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: x-small;
+}
+.remp {
+    position: relative;
+    top: -5000000px;
+    z-index: -1;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    font-family: Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset, img {
+    border: 0 none;
+}
+address, caption, cite, code, dfn, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+ol, ul {
+    list-style: none outside none;
+}
+caption, th {
+    text-align: left;
+}
+q:before, q:after {
+    content: "";
+}
+abbr, acronym {
+    border: 0 none;
+}
+img {
+    border: 0 none;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+a {
+    outline: medium none;
+}
+.hidden, .collapsed, .block_hidden_only_for_screen {
+    display: none;
+}
+.to-right {
+    text-align: right;
+}
+.to-left {
+    text-align: left;
+}
+.to-centre {
+    text-align: center;
+}
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.clear {
+    clear: both;
+}
+.clear_line {
+    border: medium none !important;
+    clear: both !important;
+    height: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 0 !important;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+* html .clearfix {
+    height: 1%;
+}
+.align_center {
+    text-align: center;
+}
+.align_right {
+    text-align: right;
+}
+.middle {
+    vertical-align: middle;
+}
+.align_justify {
+    text-align: justify;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.bold {
+    font-weight: bold;
+}
+.strike {
+    text-decoration: line-through;
+}
+.italic {
+    font-style: italic;
+}
+.top {
+    vertical-align: top;
+}
+.span_link {
+    cursor: pointer;
+}
+.span_link:hover {
+    text-decoration: underline;
+}
+noscript ul {
+    background: none repeat scroll 0 0 #000;
+    border: 1px solid gray;
+    color: #fff;
+    list-style-type: none;
+    padding: 10px;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+* html .clearfix {
+}
+:first-child + html .clearfix {
+}
+.transferProduct {
+    border: 2px solid #888;
+}
+.inline_list {
+    list-style-type: none;
+    margin-top: 1em;
+}
+.inline_list li {
+    float: left;
+    text-align: center;
+}
+.inline_list img {
+    display: block;
+}
+ul.half {
+    float: left;
+    margin-right: 1em;
+    width: 45%;
+}
+span.grower {
+    cursor: pointer;
+}
+a {
+    color: #201f20;
+    outline: medium none;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.input:focus {
+    outline: 0 none;
+}
+a img {
+    border: medium none;
+    outline: medium none;
+    text-decoration: none;
+}
+h1 {
+    background-image: none;
+    color: #4d4d4f;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
+}
+h2 {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+h3 {
+    font-size: 1.1em;
+    margin-left: 0;
+    margin-right: 0;
+}
+h4 {
+    font-size: 1em;
+}
+.page {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: center -2970px;
+    background-repeat: no-repeat;
+    margin: auto;
+    width: 100%;
+}
+#header {
+    border-bottom: 3px solid #627723;
+    box-shadow: 0 0 0 2px #9ec21a;
+    height: 130px;
+    margin: auto;
+    width: 100%;
+}
+#top {
+    margin-bottom: 1em;
+}
+#main_center_column {
+    clear: both;
+    margin: auto;
+    width: 940px;
+}
+#left_column #left_column {
+    clear: left;
+    margin-top: 6px;
+    width: 160px;
+}
+#center_column {
+    margin: auto;
+    padding: 0 0 1em;
+    width: 940px;
+}
+#categories_block_left {
+    font-size: 1.2em;
+}
+#blog_banner {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1379px -67px;
+    display: block;
+    height: 150px;
+    margin-left: -30px;
+    margin-top: 30px;
+    position: relative;
+    width: 202px;
+}
+.block h4 {
+    color: #afbe7a;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 32px;
+    line-height: 32px;
+    text-transform: none;
+}
+#categories_block_left li {
+    margin-top: 10px;
+}
+#categories_block_left li ul li {
+    background-image: none;
+    padding-left: 5px;
+}
+#categories_block_left li ul li ul li {
+    background-image: none;
+    padding-left: 25px;
+}
+#categories_block_left li ul li a, #categories_block_left li ul li ul li a {
+    background-image: none;
+}
+#categories_block_left li ul li a:before {
+    color: #627723;
+    content: "+ ";
+    font-size: 10px;
+}
+#categories_block_left li ul li ul li a:before {
+    color: #627723;
+    content: "- ";
+    font-size: 10px;
+}
+#categories_block_left li a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: 0 -204px;
+    color: #627723;
+    display: block;
+    padding-left: 12px;
+    text-decoration: none;
+}
+#categories_block_left .selected {
+    color: #333;
+}
+.menu_dieta {
+    margin-top: 0.3em;
+}
+#categories_block_left h4 {
+    color: #ee831a;
+}
+.categorie_product {
+    clear: both;
+    display: block;
+    padding-top: 2em;
+}
+.categorie_product li {
+    border-bottom: 1px dotted #f0f0f0;
+    display: block;
+    float: left;
+    margin-bottom: 40px;
+    width: 210px;
+}
+.categorie_product .centro {
+    margin-left: 35px;
+    margin-right: 35px;
+}
+.categorie_product li img {
+    border: 1px solid #e4e1d5;
+    height: 208px;
+    width: 208px;
+}
+.categorie_product h3 {
+    display: block;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 22px;
+    height: 50px;
+    line-height: 24px;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+    overflow: hidden;
+}
+.list_categorie_product #product_list .ajax_add_to_cart_button {
+    background-color: #e3004f;
+    border-radius: 4px;
+    color: #fff;
+    float: right;
+    font-size: 11px;
+    margin-top: 0.5em;
+    padding: 5px;
+}
+.list_categorie_product #product_list .ajax_add_to_cart_button:hover {
+    background-color: #ee831a;
+    text-decoration: none;
+}
+.categorie_product .pprice {
+    display: block;
+    width: 105px;
+}
+.categorie_product .precio_categoria {
+    height: 25px;
+    width: 210px;
+}
+.categorie_product .pprice span, .list_categorie_product #product_list .pprice span {
+    color: #e3004f;
+    display: block;
+    float: left;
+    font-size: 25px;
+    font-style: italic;
+    font-weight: bold;
+    height: 25px;
+    letter-spacing: -1px;
+    overflow: hidden;
+    width: 105px;
+}
+.categorie_product .product_desc {
+    display: block;
+    font-size: 1.2em;
+    height: 43px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.categorie_product .check_list_compare {
+    border: 1px solid #e4e1d5;
+    border-radius: 4px;
+    display: block;
+    float: left;
+    margin-top: 0.5em;
+    padding: 5px;
+    width: auto;
+}
+.categorie_product .check_list_compare input {
+    float: left;
+    margin-right: 0.5em;
+}
+.categorie_product .check_list_compare label {
+    font-size: 11px;
+    line-height: 11px;
+    margin: 0;
+    padding: 0;
+}
+.product-pack h2 {
+    color: #000;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.product-pack {
+    float: right;
+    width: 340px;
+}
+ul#product_list-pack {
+    list-style-position: inherit;
+    list-style-type: square;
+    margin: 20px 0 12px;
+    padding: 0;
+    width: auto;
+}
+#product_list-pack.categorie_product li {
+    border: medium none;
+    display: list-item;
+    float: none;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+    margin-left: 16px;
+    width: auto;
+}
+div.cms {
+    float: right;
+    margin-top: 1.8em;
+    padding-bottom: 2em;
+    width: 670px;
+}
+#old_center_column {
+    display: none;
+}
+.ac_results_instant {
+    display: none;
+    visibility: hidden;
+}
+#instant_search_results a.close {
+    background: url("data:image/gif;base64,R0lGODlhEAAQANUAAO8AAP3ExPdBMfkoI/5RUf/x8fEaE+4SEv9GQvcyMv/MzP8AAP7q6v9pXPhKO/k6OvYcF/tWSP5hVPUJCf8TE/ouKfUfGf/39/dKQv8zM/xKSv1eUfYQEP5mWfwoKO8XF/okHvcAAPw7N/86MfwmIftXSfpSQ/9aVwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABcALAAAAAAQABAAAAaQwItwSCwWKYukkmK8UDyNjrQjIXGOUERmWxFtQFfhs3FSECoVjUITAQsXHYSiUNBoGAVFxQR4dzIEeHR0DxAOfRcLEhlpggUPHByHbxIeHneDkJKICxseCI4FDAkTApwbGXMMDw94ARCmQhwgJXKaCQEJAgYfQ7MmA5EcE7C8RRwWDsoCzMZGBwDR0gdN1UVBADs=") no-repeat scroll right 2px transparent;
+    float: right;
+    margin-right: 7px;
+    padding-right: 21px;
+    text-transform: none;
+}
+.rte, .mceContentBody {
+    font-size: 1.3em;
+    text-align: left;
+}
+body.mceContentBody {
+    margin: 9px 6px;
+    width: 556px;
+}
+.rte html, .rte div, .rte span, .rte applet, .rte object, .rte iframe, .rte h1, .rte h2, .rte h3, .rte h4, .rte h5, .rte h6, .rte p, .rte blockquote, .rte pre, .rte a, .rte abbr, .rte acronym, .rte address, .rte big, .rte cite, .rte code, .rte del, .rte dfn, .rte em, .rte font, .rte img, .rte ins, .rte kbd, .rte q, .rte s, .rte samp, .rte small, .rte strike, .rte strong, .rte sub, .rte sup, .rte tt, .rte var, .rte dl, .rte dt, .rte dd, .rte ol, .rte ul, .rte li, .rte fieldset, .rte form, .rte label, .rte legend, .rte table, .rte caption, .rte tbody, .rte tfoot, .rte thead, .rte tr, .rte th, .rte td, .mceContentBody html, .mceContentBody div, .mceContentBody span, .mceContentBody applet, .mceContentBody object, .mceContentBody iframe, .mceContentBody h1, .mceContentBody h2, .mceContentBody h3, .mceContentBody h4, .mceContentBody h5, .mceContentBody h6, .mceContentBody p, .mceContentBody blockquote, .mceContentBody pre, .mceContentBody a, .mceContentBody abbr, .mceContentBody acronym, .mceContentBody address, .mceContentBody big, .mceContentBody cite, .mceContentBody code, .mceContentBody del, .mceContentBody dfn, .mceContentBody em, .mceContentBody font, .mceContentBody img, .mceContentBody ins, .mceContentBody kbd, .mceContentBody q, .mceContentBody s, .mceContentBody samp, .mceContentBody small, .mceContentBody strike, .mceContentBody strong, .mceContentBody sub, .mceContentBody sup, .mceContentBody tt, .mceContentBody var, .mceContentBody dl, .mceContentBody dt, .mceContentBody dd, .mceContentBody ol, .mceContentBody ul, .mceContentBody li, .mceContentBody fieldset, .mceContentBody form, .mceContentBody label, .mceContentBody legend, .mceContentBody table, .mceContentBody caption, .mceContentBody tbody, .mceContentBody tfoot, .mceContentBody thead, .mceContentBody tr, .mceContentBody th, .mceContentBody td {
+    border: 0 none;
+    color: #201f20;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+.rte h1, .rte h2, .rte h3, .rte h4, .rte h5, .rte h6, .mceContentBody h1, .mceContentBody h2, .mceContentBody h3, .mceContentBody h4, .mceContentBody h5, .mceContentBody h6 {
+    color: #374853;
+    margin: 0.75em 0 0.3em;
+}
+.rte h1, .mceContentBody h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+.rte h2, .mceContentBody h2, #idTab5 h2 {
+    color: #627622;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 0.5em;
+    padding: 0;
+    text-transform: none;
+}
+.rte h3, .mceContentBody h3 {
+    color: #627622;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 24px;
+    font-weight: 200;
+}
+.rte h4, .mceContentBody h4 {
+    color: #627622;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+}
+.rte h5, .mceContentBody h5 {
+    color: #627622;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+}
+.rte h6, div.rte h6 {
+    font-size: 8px;
+}
+.rte ol, .mceContentBody ul, div.rte ol, .mceContentBody ul {
+    padding-left: 2em;
+}
+.rte ul, .mceContentBody ul {
+    line-height: 1.6em;
+    list-style-type: square;
+    margin-bottom: 1em;
+    margin-left: 20px;
+}
+.rte strong, .mceContentBody strong {
+    font-weight: bold;
+}
+.rte em, .mceContentBody em {
+    font-style: italic;
+}
+.rte table, .mceContentBody table {
+    border-collapse: separate;
+    border-spacing: 1px;
+    width: auto;
+}
+.rte caption, .rte th, .rte td, .rte table, .mceContentBody caption, .mceContentBody th, .mceContentBody td, .mceContentBody table {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #e5e6e7;
+    font-weight: normal;
+    height: inherit;
+    text-align: center;
+}
+.rte th, .mceContentBody th {
+    background: none repeat scroll 0 0 #e5e6e7;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.rte a {
+    color: #4a690b;
+    text-decoration: underline;
+}
+#center_column .rte p, .mceContentBody p {
+    line-height: 1.5em;
+    margin: 0 0 1em;
+    padding-left: 0;
+}
+.rte ol, .mceContentBody ol {
+    list-style-type: decimal;
+    margin-left: 10px;
+}
+div.global_steps {
+    width: 700px;
+}
+ul.step {
+    clear: both;
+    display: block;
+    height: 75px;
+    list-style: none outside none;
+    margin-bottom: 1.5em;
+    margin-top: 2em;
+    width: 700px;
+}
+ul.step a {
+    color: #7f904b;
+    text-decoration: none;
+}
+ul.step strong {
+    display: block;
+    font-size: 35px;
+    font-style: normal;
+    line-height: 20px;
+}
+ul.step li {
+    background-color: #e8f3c5;
+    border-radius: 50px;
+    float: left;
+    font-size: 12px;
+    height: 55px;
+    margin-right: 40px;
+    padding-top: 20px;
+    text-align: center;
+    width: 75px;
+}
+ul.step li.step_current {
+    color: #7f904b;
+}
+ul.step li.step_todo {
+    color: #bce236;
+}
+ul.step li#step_end {
+}
+ul#order_step {
+}
+#commitment {
+    border: 1px solid #e4e4e4;
+    float: left;
+    margin-bottom: 0.5em;
+    margin-top: 2em;
+    text-shadow: 0 1px 1px #fff;
+    width: 99.7%;
+}
+#commitment ul {
+    width: 750px;
+}
+#commitment li {
+    float: left;
+    margin: 0 0 0 0.3em;
+    padding: 0.5em;
+    width: 146px;
+}
+#commitment h6 {
+    border-bottom: 2px solid #fff;
+    color: #333;
+    display: inline-block;
+    font-family: "Courier New",Courier,monospace;
+    font-size: 11px;
+    margin-bottom: 0.3em;
+    padding: 0 0 0.2em;
+    text-transform: uppercase;
+}
+#commitment p {
+    color: #5f5f5f;
+    font-style: italic;
+}
+#commitment img {
+    margin-top: 0.2em;
+}
+#commitment a {
+    color: #06c;
+    font-weight: bold;
+}
+#commitment span {
+    color: #000;
+    font-weight: bold;
+}
+div.table_block {
+    float: right;
+    font-size: 1.15em;
+    padding-bottom: 6px;
+    width: 700px;
+}
+div.table_block h3 {
+    clear: both;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 30px;
+    font-weight: 200;
+    margin-bottom: 0.5em;
+}
+div.table_block h1 {
+    margin-bottom: 0.5em;
+}
+table.std {
+}
+table.std {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 0 0;
+    width: 100%;
+}
+table.std td, table.std th {
+    font-size: 1.1em;
+    padding: 0.4em 0.5em;
+}
+table.std th {
+    background-color: #e8f3c5;
+    text-align: left;
+    white-space: nowrap;
+}
+table.std thead {
+    background-color: #e8f3c5;
+}
+table.std tr.alternate_item td, table.std tr.alternate_item th {
+    background-color: #f1f2f4;
+}
+table.std thead th {
+    font-weight: bold;
+    height: 24px;
+    text-align: left;
+    white-space: nowrap;
+}
+table.std thead th.cart_product {
+    padding-left: 1.6em;
+    text-align: left;
+}
+table.std thead th.cart_product h5 span {
+    font-weight: normal;
+}
+table.std thead th.cart_description {
+    padding-left: 1.5em;
+    text-align: left;
+}
+table.std thead th.cart_ref {
+    padding-left: 0.7em;
+    text-align: left;
+}
+table.std thead th.cart_unit {
+    padding-right: 1.6em;
+    text-align: right;
+}
+table.std thead th.cart_availability {
+    text-align: center;
+    width: 100px;
+}
+table.std thead th.cart_quantity {
+    padding-left: 2em;
+    text-align: left;
+}
+table.std thead th.last_item {
+    padding-right: 1.5em;
+    text-align: right;
+}
+table.std thead th.carrier_price {
+    padding-left: 0.5em;
+    text-align: left;
+}
+table.std thead th.total_details {
+    text-align: right;
+}
+table.std thead th.history_total_details {
+    padding-right: 0.5em;
+    text-align: right;
+}
+table.std thead th.item {
+}
+table.std tfoot td {
+    color: #000;
+    text-align: right;
+    white-space: nowrap;
+}
+form.std {
+    clear: both;
+}
+form.std h3 {
+    border-bottom: 1px solid #ebebeb;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 0 0.5em;
+    padding: 0.5em 0;
+    text-align: left;
+}
+form.std fieldset {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+form.std legend {
+    border-color: #d0d1d5;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1.6em;
+    font-weight: 100;
+    margin: 1em 0 1em 0.5em;
+    padding: 0.3em 0.6em;
+}
+form.std h4, form.std p {
+    clear: both;
+    padding: 0.3em 0;
+}
+form.std label, form.std p span {
+    float: left;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-align: right;
+    width: 30%;
+}
+form.std p span.like_input {
+    width: auto;
+}
+span.editable {
+    color: #201f20;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    height: 15px;
+    padding: 1px 1px 1px 5px;
+}
+input, textarea, select {
+    border: 1px solid #b2b2b2;
+    border-radius: 4px;
+    color: #686868;
+    font-size: 12px;
+    height: auto;
+    padding: 5px;
+}
+.checkbox input, .radio input {
+    border: medium none;
+}
+form.std .checkbox label, form.std .radio label, form.std span.form_info {
+    float: none;
+    margin: 0;
+    text-align: left;
+}
+.required sup {
+    color: #da0f00;
+}
+form.std p.checkbox {
+    padding-left: 33%;
+}
+form.std p.submit {
+    margin-bottom: 1.5em;
+    padding-left: 31% !important;
+}
+#center_column form.std p.submit2 {
+    margin-bottom: 1.5em;
+    padding-left: 170px;
+}
+#add_update_adress fieldset {
+    margin-bottom: 0;
+    width: 700px;
+}
+#add_update_adress fieldset div {
+    float: left;
+}
+#add_update_adress fieldset p {
+    padding: 7px 0 0;
+}
+#add_update_adress label {
+    background-color: #eeece6;
+    float: left;
+    padding: 7px 6px 6px;
+    text-align: right;
+    width: 30%;
+}
+#add_update_adress input {
+    font-family: Arial,Helvetica,sans-serif;
+    width: 250px;
+}
+a.address_add_new {
+    color: #333;
+    font-weight: normal;
+    text-align: left;
+    text-decoration: underline;
+    width: auto;
+}
+input.button_mini, input.button_small, input.button, input.button_large, input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, a.button_mini, a.button_small, a.button, a.button_large, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, span.button_mini, span.button_small, span.button, span.button_large, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+input.button_mini, input.button_small, input.button, input.button_large, input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled {
+}
+input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, span.button_mini, span.button_small, span.button, span.button_large, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+    background-position: left -36px;
+    color: #888;
+    cursor: default;
+}
+input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+    color: #4d4d4f;
+}
+input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+    color: #4d4d4f;
+}
+input.button_mini:hover, input.button_small:hover, input.button:hover, input.button_large:hover, input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, input.exclusive_large:hover, a.button_mini:hover, a.button_small:hover, a.button:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover {
+    background-color: #ee831b;
+}
+a.button_large:hover {
+    text-decoration: underline;
+}
+input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, input.exclusive_large:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover {
+}
+input.button_mini, input.button_mini_disabled, input.exclusive_mini, input.exclusive_mini_disabled, a.button_mini, a.exclusive_mini, span.button_mini, span.exclusive_mini {
+    width: 30px;
+}
+input.button_small, input.button_small_disabled, input.exclusive_small, input.exclusive_small_disabled, a.button_small, a.exclusive_small, span.button_small, span.exclusive_small {
+    width: 60px;
+}
+input.button, input.button_disabled, input.exclusive, input.exclusive_disabled, a.button, a.exclusive, span.button, span.exclusive {
+    background-color: #e6004f;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 7px;
+    text-transform: uppercase;
+}
+input.button_large, input.button_large_disabled, input.exclusive_large, input.exclusive_large_disabled, a.button_large, a.exclusive_large, span.button_large, span.exclusive_large {
+}
+input.exclusive, input.exclusive_disabled, a.exclusive, span.exclusive {
+    background-color: #e3004f;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin-left: 0.5em;
+    padding: 10px;
+}
+input.exclusive_mini, input.exclusive_mini_disabled, a.exclusive_mini, span.exclusive_mini {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAA2CAMAAADnEdnLAAABgFBMVEVxsV5aiFOmyaWqzqOu0pplo0Ghw6R+tHVhqjl2tlOOq5hmrkBgmUddpTSqzZxup1mcvJyaupOfwad/uW9uslVKe0lcmTlLhDlvpGJCdjikxpxzrGt6tWNCfCqnyZNVhExckjyVs5lxs0xjm05elkKTsZGQrZN7s25FgiZVjjShwZFFfTJUiUJShzptq1RyrGRqsEl9umVko0iAtHthklibu41qp15bm0U+eSSu0qF5uFxThUKt0J5RjTxKjSOfv49urkiXto5pqUVTmStYny9Pkydhnj5CgR0/dy2pzJVFhx9Ykzaiw4+kxpGv1J2rz5dTijc/fSBJhiahwpZom1xel09MjC5OhEWjwpJGeT5cj02XtZFXkEprrU5xsWJvrF1RkyyixaiUspJWh0lYjEVTkzVWkz9VmTJXmDmmyZpZnjaVtJWlxpWwyqBHgy1MhylZkD9IfD1eil+jxZKmw5RnpE5ln1Rno1huolaoy5agwZqZt5WbvIc3eRBLhyj///9xbBwbAAAAgHRSTlP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ADgFS2cAAAIMSURBVDjLddLbX9JwGMfx3yqkyOYmkrgBzTbAYEAxkyiMoqLzaTgcooDi+YgHQBHYv97zg1dXe/a5eC6e9+2XWMrAMcUiuiGKtRqxVauJoqGTgZiqz6CRlDggg1Q9ufEcaSNZTwEvgT5EAl8C7rYL99EK7S5wJ+16hOZKd4DlTPHwI9JhMSMDG5n9vQ9Ie/sZA3h9d6fR+GSvsbO7Tnm5XH6LVC4vU1YTZf0bkl5OqMCrs6cLn5EWTmdXRxwP/kUKxkfsO48HXyEF4+c+yr7K3BekuYoP+KxCHYn+z4ilO89Bt4h1PXTs2iKSX9O8aJrml8hQc0e9L5C8Xrc2JEN3NBB4jRQIRN3AVB8gUQcWU2TmKRKdIjCd4jskOkVg/1SygJac8lPuttMupHS7S3mlIxfR5M4KZXlSeYykTMqUFw1F+o4kKcYi5bVW6xlSq7U25m31D5K6PeILpqkmkNQmczFipvkGqclQlhjwJ0igjEQsyXkOEqzlpO/YiUVMbnrzDtrmNGeSPuhdNPA+6U+AZpHAJ8acy/6ylc39ZzZ3DynHjllgWYxZVqDcEw7Y30jsgdAD5npC6OarrZuQ0ONGXDoOIR2XxsyVzMufti7NEkd5ns/HYj9sxWJ5fp7yLZ9H429HfFTlXyLx1SPKnvBW9T1SdSvsoeyJhNEiHuAruJ4IEn1fEct0noNp/QP6+3ymsPj4pQAAAABJRU5ErkJggg==");
+}
+input.exclusive_small, input.exclusive_small_disabled, a.exclusive_small, span.exclusive_small {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA2CAMAAACsuQomAAABgFBMVEVlo0Fyq2ldlkNhqjh2tlNaiFNmrkBdpTN/uW+hw6RuslSrz6NcmTlCdjh+tHWOq5hgmUerzJ1xoFacvJynyZOaupNVhEyfwapKe0lKgjlupWFxs0yjxpunyqaTsZCQrZNqsElCfCpUi0RVjjRShzpdkj16tGOWtZp9umWbu41knVA+eSRurkiu0qGv05t5uFxTmStFgiaXto5ThUJMjSihwZFFfTJsqlVlo0uAtHt6sm6s0J5RjTxYny9pqUSfv45xsV9hnj5PkydKjSM/fSBFhx+iw49YkzY/dy2pzJWrz5dCgR2kxpFTijeu0pmv1J1JhiZel0+hwpaYtpKmyKBbkExOhEWpzaOjwpJGeT5yr2FgkVhlmFpqrU5Rkyxpo1dvq1xqnV1Wh0mmyZpTkzVWkz9VmTJXmDlZnjZYjEVeil+oy5alxpVHgy1KiC6fwZxIfD12tVqjxZKmw5St0ZqixahZkD+SsJeUspJvrVGVtJVqqEqbvIc3eRBLhyj///+LrS+uAAAAgHRSTlP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ADgFS2cAAAImSURBVEjHndTbX9JgHMfxh9UKIUEcCyQIGQxrRWUBG2ACnY+0MXHgARDPouJpIArsX+95Zq/uf8/74nv3uf0iixlTYiykag5HiYLDoalojFsXBVyPcdyW5+E25TaJQ/Lm/AMwXIdw3FKW71FYVlo4lhT0kAJSJBKXywfvwQ7KZRJrzP7eG7C9fUbDcW13p9n8ANXc2a3hWFiKpz9CpdPxJYHEiVP1M5h6miDx6tzJ4k+wxZO5VTvOxj6BxbJ2HDzLxl6AxbJnQRIHG9PfwKYbQRxPGqQGI9UEWSrtGagWsmYnlGYtJIZyOSeFXC4koknO43Q+A3M6PbkJmnjyyddwyWTeg+N8Mnl+H+wc1zh2rJVcT8BcpTUHidvD4Uuw4bBN4pAs3y6D3cpyiMQtRUFgitIi8ZaEXwxOkrZwvCHNPKIwI22QWGPEr2Aio5F4vdbvx8H6/dq6HR8Kv8GEQzs+YjtCAkzosEd2zHbegXVYEossrh+D4ZYVkSXSnoGIn8Q3ouSzUJ0LmGYEzDQDXB2NAmbEMNxAhhExAyM0mjINdwrMbZhTJF4xCqk/QKmCsXIX+wqVV0CVgu9/fFUBuvoX98Lb3R9g3e1wD8dcL+zvfgfq+sM9zo6rx36w4+pdzFXrF7+ALupVjsQLfDGT+QKUyRT5BRLrfJECr5N4cKPzz8F4/WaAY+/gWn8Lpl8PvCT2Rp9SiHpxfInXGwUj0SWy6rRnULf+AoAeyyLLjxwoAAAAAElFTkSuQmCC");
+}
+input.exclusive_large, input.exclusive_large_disabled, a.exclusive_large, span.exclusive_large {
+    background: none repeat scroll 0 0 #ef5057;
+    border: medium none;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px;
+    text-transform: uppercase;
+}
+form p.id_state {
+    display: none;
+}
+.table_block a {
+    color: #627723;
+    text-decoration: underline;
+}
+.table_block p.payment_aviso {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+.table_block ul.bullet {
+    font-size: 1em;
+    margin-left: 24px;
+}
+.table_confirmation a {
+    color: #627723;
+    text-decoration: underline;
+}
+.table_confirmation p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+.table_confirmation ul.bullet {
+    font-size: 1em;
+    margin-left: 24px;
+}
+ul.bullet li, .block ul.bullet li, li.bullet {
+    font-size: 1.2em;
+    list-style-type: square;
+    margin-bottom: 0.3em;
+    margin-left: 1em;
+}
+.price-discount {
+    text-decoration: line-through;
+}
+.price-pretax {
+    color: gray;
+}
+.price-ecotax {
+    color: #488c40;
+}
+img.icon {
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+.weight-price {
+    color: gray;
+    font-size: 0.75em;
+    text-align: right;
+}
+.volume-price {
+    color: gray;
+    font-size: 0.75em;
+    text-align: right;
+}
+.unity-price {
+    color: gray;
+    font-size: 0.75em;
+    text-align: right;
+}
+.price, .price-shipping, .price-wrapping {
+    color: #e3004f;
+    font-size: 1.2em;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.error p {
+    font-weight: bold;
+}
+.error li {
+    color: #c00 !important;
+    list-style-position: inside;
+    list-style-type: decimal-leading-zero;
+    padding-left: 3em;
+}
+.warning, .error {
+    background: -moz-linear-gradient(center top , #febbbb 0%, #fe9090 99%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #fe9090;
+    border-radius: 5px;
+    color: #600;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 15px;
+}
+.warning_inline {
+    color: #600;
+    font-weight: bold;
+}
+.success {
+    border: 1px dotted #690;
+    border-radius: 5px;
+    color: #690;
+    font-weight: bold;
+    padding: 10px;
+}
+.success_inline {
+    color: green;
+    font-weight: bold;
+}
+#header #logo {
+    height: 130px;
+    margin: auto;
+    width: 940px;
+}
+#header #logo #conasi {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -154px -5px;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    height: 129px;
+    width: 198px;
+}
+#header #logo p {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -351px -6px;
+    cursor: pointer;
+    float: right;
+    height: 130px;
+    width: 382px;
+}
+#footer {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: center -2420px;
+    clear: both;
+    padding-bottom: 20px;
+    padding-top: 80px;
+    width: 100%;
+}
+.footercopy {
+    display: block;
+    font-size: 1.15em;
+    margin-bottom: 35px;
+}
+#footer .path {
+    color: #201f20;
+    margin: auto;
+    width: 940px;
+}
+#footer li {
+    margin-bottom: 0.3em;
+}
+#footer #contact_block, #footer #block_contact_infos, #footer .myaccount, #footer #wishlist_block {
+    display: none;
+}
+#manufacturers_block_left select {
+    margin-bottom: 1em;
+    width: 100%;
+}
+#manufacturers_block_left {
+    float: left;
+    width: 140px;
+}
+div.sheets {
+    width: 100%;
+}
+#more_info_tabs {
+    display: block;
+    height: 30px;
+    margin-bottom: 1.5em;
+}
+#more_info_tabs li {
+    display: inline;
+    float: left;
+    font-size: 1.1em;
+    height: 30px;
+    margin-right: 2px;
+}
+#more_info_tabs li a {
+    background-color: #cfe18f;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #363636;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+#more_info_tabs li .selected {
+    background-color: #8fa05c;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #fff;
+}
+.block_links {
+    float: left;
+    margin-left: 55px;
+    width: 190px;
+}
+#social {
+    float: right;
+    margin-top: -70px;
+    width: 300px;
+}
+#social .bocadillo {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1074px 0;
+    display: block;
+    height: 161px;
+}
+#social ul li {
+    display: inline;
+    float: left;
+}
+#social ul li a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    display: block;
+    height: 32px;
+}
+#social ul .email a {
+    background-position: -1086px -158px;
+    height: 50px;
+    width: 195px;
+}
+#social ul .facebook a {
+    background-position: -1299px -175px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 32px;
+}
+#social ul .twitter a {
+    background-position: -1347px -175px;
+    width: 32px;
+}
+.breadcrumb {
+    border-bottom: 1px dotted #ccc;
+    border-top: 1px dotted #ccc;
+    color: #606060;
+    font-size: 1.2em;
+    height: 30px;
+    line-height: 30px;
+}
+.breadcrumb .navigation-pipe {
+    font-weight: normal;
+    padding: 0 0.3em;
+}
+.breadcrumb a {
+    color: #777;
+    text-decoration: underline;
+}
+.breadcrumb a:hover {
+    color: #606060;
+    text-decoration: none;
+}
+.breadcrumb p {
+    float: left;
+    font-style: italic;
+    overflow: hidden;
+    width: 81%;
+}
+.breadcrumb .accountop {
+    display: inline;
+    float: right;
+    font-style: normal;
+    text-align: right;
+    width: 18%;
+}
+.breadcrumb .accountop li {
+    display: inline;
+    float: right;
+    font-style: normal;
+    margin-left: 5px;
+    text-align: right;
+}
+.breadcrumb .accountop li span {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: 0 8px;
+    background-repeat: no-repeat;
+    display: block;
+    padding-left: 15px;
+}
+.sf-contener {
+    margin: auto;
+    width: 940px;
+}
+.sf-contener .sf-menu li {
+    color: #2a2a2a;
+    float: left;
+    font-size: 1.2em;
+    height: 50px;
+    line-height: 50px;
+}
+.sf-contener .sf-menu li a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1994px -120px;
+    background-repeat: no-repeat;
+    color: #2a2a2a;
+    display: block;
+    margin-right: 25px;
+    padding-left: 10px;
+    text-decoration: none;
+}
+.sf-contener .sf-menu .sf-search #search_query {
+    border: 1px solid #b2b2b2;
+    border-radius: 4px;
+    color: #686868;
+    font-size: 12px;
+    margin-right: 12px;
+    padding: 5px;
+    width: 120px;
+}
+.sf-contener .sf-menu .sf-search #search_query:focus {
+    background-color: #fff;
+}
+.sf-contener .sf-menu .sf-search #buscartop {
+    background-color: #9ec21a;
+    border: 1px dashed #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px #9ec21a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px;
+    width: 80px;
+}
+.sf-contener .sf-menu .sf-search #buscartop:hover {
+    background-color: #ef821c;
+    box-shadow: 0 0 0 2px #ef821c;
+}
+.shopping_cart_top {
+    color: #e3004f;
+    display: block;
+    font-size: 1.2em;
+    height: 16px;
+    margin-top: 10px;
+    padding-left: 15px;
+}
+.block.newsletter .input_buttonnewsletter {
+    margin-bottom: 0.5em;
+    width: 160px;
+}
+.block.newsletter .buttonnewsletter, .voucher_submit {
+    background-color: #afbe7a;
+    border-color: #afbe7a;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 0.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#authentication input#SubmitCreate {
+    background-color: #afbe7a;
+    border-color: #afbe7a;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 6px;
+    margin-top: 0.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.block p {
+    font-size: 1.15em;
+    margin-top: 0.7em;
+}
+.shopping_cart_top li {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: left -21px;
+    background-repeat: no-repeat;
+    color: #e3004f;
+    display: block;
+    float: right;
+    height: 15px;
+    padding-left: 15px;
+}
+.shopping_cart_top li a {
+    color: #e3004f;
+}
+.shopping_cart_top li a:hover {
+    color: #000;
+}
+div.pagination {
+}
+ul.pagination {
+    float: right;
+    margin-top: 2em;
+}
+ul.pagination li {
+    display: inline;
+    float: left;
+    margin-right: 0.2em;
+    width: auto;
+}
+ul.pagination li, ul.pagination a, ul.pagination span {
+    color: #999;
+    font-size: 1.1em;
+}
+ul.pagination a, ul.pagination span {
+    color: #999;
+    display: block;
+    padding: 0.1em 0.4em 0;
+}
+ul.pagination a {
+    text-decoration: none;
+}
+ul.pagination li a:hover {
+    color: #000;
+}
+ul.pagination li.current span {
+    color: #000;
+}
+ul.pagination li.truncate {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    padding: 0.3em;
+}
+#pagination_previous a, #pagination_previous span, #pagination_next a, #pagination_next span {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    color: silver;
+}
+#pagination_previous {
+    padding-left: 6px;
+}
+#pagination_previous a, #pagination_previous span {
+    border-left: medium none;
+}
+#pagination_next {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+}
+#pagination_next a, #pagination_next span {
+    border-right: medium none;
+    color: #999;
+}
+#pagination_next a:hover, #pagination_next span {
+    color: #000;
+}
+#pagination_previous a:hover, #pagination_previous a:hover span {
+    color: #000;
+}
+li.disabled span {
+    display: none;
+}
+form.product_list_compar {
+    clear: right;
+    float: right;
+    line-height: 16px;
+    margin-top: 0.2em;
+}
+form.product_list_compar input.list_compar_button, form.pagination input.switch_nb_item {
+    background-color: #e5e2d7;
+    border: 1px solid #e5e2d7;
+    color: #000;
+    cursor: pointer;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    margin-left: 15px;
+    margin-top: 1em;
+    padding: 5px;
+    text-transform: uppercase;
+}
+form.check_list_compare {
+    padding-top: 0.3em;
+}
+form.check_list_compare label {
+    color: #999;
+}
+li#productsSortForm {
+    float: left;
+    width: 100%;
+}
+form#productsSortForm select {
+    float: left;
+    letter-spacing: normal;
+    margin-top: 1em;
+}
+form#productsSortForm span {
+    border-bottom: 1px solid #e8e6e6;
+    float: right;
+    height: auto;
+    padding-bottom: 3px;
+}
+.select_Sort_ul {
+    background: none repeat scroll 0 0 transparent;
+    clear: right;
+    float: right;
+}
+form#forgot_password p {
+    padding-left: 0;
+}
+form#forgot_password label {
+    padding: 8px 8px 8px 0;
+    text-align: left;
+    width: 100%;
+}
+form#forgot_password input.text {
+    width: 250px;
+}
+form#forgot_password p.submit_pwd {
+    margin-right: 0;
+    text-align: left;
+}
+div.block {
+    margin-bottom: 3em;
+    width: 180px;
+}
+#block_various_links_footer div.block {
+    float: left;
+}
+div.block a:hover {
+    text-decoration: underline;
+}
+div.right_blocks a.right_blocks_sub_link {
+    color: #ef5057;
+    font-size: 10px;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px white;
+    text-transform: uppercase;
+}
+div.right_blocks li {
+    margin-top: 0.7em;
+}
+div.right_blocks li p strong {
+    color: #000;
+}
+.footer_stuffs {
+    float: left;
+    padding-right: 3.3em;
+    width: 280px;
+}
+.footer_stuffs h4 {
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 11px;
+    font-weight: bold;
+    height: 15px;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    text-transform: uppercase;
+    width: 92%;
+}
+.footer_stuffs h4 strong {
+    color: #000;
+    float: left;
+    font-weight: normal;
+}
+.footer_stuffs h4 a {
+    color: #9a9933;
+    float: right;
+    font-size: 11px;
+    font-weight: normal;
+}
+.footer_stuffs h5 a {
+    color: #515151;
+    font-size: 11px;
+    font-weight: normal;
+}
+.footer_stuffs h5 a:hover {
+    text-decoration: underline;
+}
+.footer_stuffs p {
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+}
+.footer_stuffs li {
+    color: #ccc;
+    float: left;
+}
+.footer_stuffs span {
+    margin: 0;
+    padding: 0;
+}
+.footer_stuffs span a {
+    color: #999;
+}
+.footer_stuffs img {
+    float: left;
+    margin: 0 0.5em 1em 0;
+}
+.footer_stuffs span {
+    display: block;
+}
+.footer_stuffs .linkview {
+    background: none repeat scroll 0 0 #000;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 0.1em 0.5em;
+}
+.footer_stuffs .new_product_pirce {
+    color: #dd2a81;
+    font-weight: bold;
+}
+#footer h4 {
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 21px;
+    margin-bottom: 0.3em;
+}
+.blockspecials {
+    float: left;
+    padding-left: 2em;
+    width: 280px;
+}
+.blockspecials h4 {
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 11px;
+    font-weight: bold;
+    height: 15px;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    text-transform: uppercase;
+    width: 80%;
+}
+.blockspecials h4 strong {
+    color: #000;
+    float: left;
+    font-weight: normal;
+}
+.blockspecials h4 a {
+    color: #46c5ec;
+    float: right;
+    font-size: 11px;
+    font-weight: normal;
+}
+.blockspecials h5 {
+    border-top: 1px solid #e4e4e4;
+    margin: -0.4em 0 0;
+    padding: 0.3em 0;
+}
+.blockspecials h5 a {
+    color: #515151;
+    font-size: 11px;
+    font-weight: normal;
+}
+.blockspecials h5 a:hover {
+    text-decoration: underline;
+}
+.blockspecials ul {
+    width: 80%;
+}
+.blockspecials .span_reduction {
+    color: #666;
+    display: block;
+    text-transform: uppercase;
+    width: 95%;
+}
+.blockspecials .linkview {
+    margin: 0.7em 0 0 5.5em;
+    position: absolute;
+}
+.blockspecials .chiftpirce {
+    color: #999;
+    text-decoration: line-through;
+}
+.blockspecials .newpirce {
+    color: #000;
+    font-weight: bold;
+    padding-bottom: 0.3em;
+}
+.blockspecials p {
+    text-align: center;
+}
+ul#manufacturers_list, ul#suppliers_list {
+    list-style-type: none;
+    margin-top: 1em;
+}
+ul#suppliers_list li, ul#manufacturers_list li {
+    border-top: 1px dotted #ebebeb;
+    float: left;
+    margin-bottom: 1.5em;
+    padding: 1.5em 0 0;
+    width: 100%;
+}
+ul#suppliers_list li a, ul#manufacturers_list li a {
+    color: #999;
+    font-size: 11px;
+    text-decoration: none;
+}
+ul#suppliers_list li h3, ul#manufacturers_list li h3 {
+    display: inline-block;
+    margin: 0 0 0.4em;
+}
+ul#suppliers_list li h3 a, ul#manufacturers_list li h3 a {
+    color: #000;
+    font-size: 12px;
+}
+ul#suppliers_list .left_side, ul#manufacturers_list .left_side {
+    float: left;
+    width: 300px;
+}
+ul#suppliers_list .logo, ul#manufacturers_list .logo {
+    float: left;
+}
+ul#suppliers_list .logo img, ul#manufacturers_list .logo img {
+    border: 2px solid #000;
+}
+ul#suppliers_list li p.description, ul#manufacturers_list li p.description {
+    font-size: 0.92em;
+}
+ul#suppliers_list li .right_side, ul#manufacturers_list li .right_side {
+    float: right;
+    width: 340px;
+}
+ul#suppliers_list .right_side span, ul#manufacturers_list .right_side span {
+    color: #000;
+    font-size: 1.6em;
+}
+ul#suppliers_list li a.manufa_link, ul#manufacturers_list li a.manufa_link {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAALCAAAAACW+8h0AAAAWklEQVQI1wXBUQqCQBSG0X899WIUg2ALdA1BZC7EF0El8K21VDN37v06R0YBd2GQMZV9zBhiTo8vqL6P3RCusrSH84iYTunSI3ul5kmI9XojI9/uAR8FlV/hD91qPf4sGegbAAAAAElFTkSuQmCC") no-repeat scroll 0 2px rgba(0, 0, 0, 0);
+    margin-top: 4em;
+    padding-left: 1em;
+}
+td.discount_value {
+    white-space: nowrap;
+}
+#order div.cart_last_product {
+    margin: 0 auto 12px;
+    width: 300px;
+}
+#order div.cart_last_product .cart_last_product_header, #order div.cart_last_product .cart_last_product_header div.left {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAh0AAAAaCAMAAAAkJB5EAAAAclBMVEW/wcWztbm2uLzFx8rP0dTQ0tXR09bT1NfU1tn////d3uD9/f29wMPCxMfLzdDIys3Bw8bO0NO+wcTT1dj29/e8v8LNz9O5vL/MztHDxcjHyMzIys7KzM+4ur6vsra1t7uytLi7vsG9v8PBw8ews7eusbUHYW/gAAAACnRSTlP///////////8AsswszwAAAJlJREFUaN7t29dtA1EQBMGR1x7oCco73r3OP0X9EtAqg648KlU1rQfSpbGeqipVq8Pm+ChdOm4Oq6rUaXmQ/lpOlWm+lzrzlN32Tupsdxn7W6mzH+FJ6hFepB7hQ+oR3qUe4U3qEW6kHuFV6hEWqUeI1CPMUo9wlnqEZ6lH+JR6hGupR/iWeoQrqUf4kXqEIfUIX1KPGHv0r18qpoJUAMptRwAAAABJRU5ErkJggg==") repeat scroll right 0 rgba(0, 0, 0, 0);
+}
+#order div.cart_last_product .cart_last_product_header div.left {
+    background-color: #fff;
+    background-position: 0 0;
+    color: #374853;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 5px;
+    padding-left: 27px;
+    width: 249px;
+}
+#order div.cart_last_product a.cart_last_product_img {
+    float: left;
+}
+#order div.cart_last_product a.cart_last_product_img img {
+    border: 1px solid #d0d1d5;
+    height: 45px;
+    margin: 0 6px;
+    width: 45px;
+}
+#order div.cart_last_product .cart_last_product_content {
+    float: right;
+    width: 241px;
+}
+#order div.cart_last_product .cart_last_product_content a {
+    text-decoration: none;
+}
+#order div.cart_last_product .cart_last_product_content h5 {
+    font-size: 9px;
+}
+#order div.cart_last_product .cart_last_product_content h5 a {
+    color: #595a5e;
+}
+p.cart_navigation {
+    float: left;
+    margin-top: 1em;
+    width: 100%;
+}
+p.cart_navigation a {
+    color: #627723;
+    font-size: 12px;
+}
+p.cart_navigation input.paiement_large {
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+p.cart_navigation .button, p.cart_navigation .button_large {
+    float: left;
+}
+p.cart_navigation .exclusive, p.cart_navigation .exclusive_large {
+    border-radius: 4px;
+    color: #fff;
+    float: right;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+form.std p.cart_navigation span {
+    float: none;
+    text-align: left;
+    width: auto;
+}
+#cart_summary tfoot tr td {
+    border-top: medium none;
+    line-height: 1.5em;
+}
+.price_checkout {
+    font-size: 18px;
+}
+.conf_checkout {
+    color: #000;
+    font-size: 12px;
+}
+#cart_summary tr.cart_item {
+    background: url("data:image/gif;base64,R0lGODlheQMBAIAAAP///9TU1CH5BAAAAAAALAAAAAB5AwEAAAIpDIynyesNn4x02oqvznz7Dn5iSI5miZ5qyq5uC79yTM92jd96zu8+WgAAOw==") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+}
+#cart_summary tfoot tr.cart_total_price td {
+    border-bottom: 2px solid #e8f3c5;
+    color: #e3004f;
+    font-size: 1.2em;
+}
+#cart_summary .price, #cart_summary .price-discount {
+    color: #595a5e;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+tr.cart_item td {
+    padding: 0.5em;
+}
+td.cart_product a {
+    margin: 0 0.6em;
+}
+td.cart_product a img {
+    border: 1px solid #d0d1d5;
+    height: 45px;
+    width: 45px;
+}
+td.cart_product a:hover img {
+    border: 1px solid #888;
+}
+td.cart_description a {
+    text-decoration: none;
+}
+td.cart_description a:hover {
+    text-decoration: underline;
+}
+td.cart_description h5 a, td.cart_ref, td.cart_total {
+    color: #595a5e;
+}
+td.cart_unit, td.cart_total, td.cart_discount_price {
+    font-size: 13px;
+    text-align: center;
+}
+td.cart_availability {
+    text-align: center;
+}
+th.cart_ref {
+    padding-left: 0;
+}
+td.cart_ref {
+    text-align: left;
+}
+td.cart_total .price {
+    font-weight: bold;
+}
+tr.cart_item td.cart_unit {
+    padding-right: 1em;
+}
+td.cart_quantity {
+    width: 5.5em;
+}
+td.cart_quantity p, td.cart_quantity a {
+    display: inline;
+    float: left;
+}
+.quantity_pr_order {
+    color: #000;
+    font-weight: bold;
+    padding-top: 0.6em;
+}
+td.cart_quantity p {
+    padding-right: 0.3em;
+}
+td.cart_quantity .icon {
+    margin-top: 0.6em;
+}
+td.cart_quantity a.cart_quantity_up, td.cart_quantity a.cart_quantity_down {
+    display: block;
+    padding-left: 0.3em;
+}
+tr.cart_free_shipping {
+    white-space: normal;
+}
+#order tfoot p {
+    float: left;
+    margin: 0;
+    width: 85%;
+}
+#order tfoot span {
+    display: block;
+    float: right;
+    width: 15%;
+}
+tr.cart_total_price {
+    font-weight: bold;
+}
+#order form#voucher fieldset {
+    border: medium none;
+    padding: 1em 0 0;
+}
+#order form#voucher h4, #order form#voucher p, #order form#voucher .button {
+    display: inline;
+}
+#order form#voucher h4 {
+    clear: both;
+    float: left;
+    line-height: 2em;
+    margin-bottom: 2em;
+    width: 200px;
+}
+#display_cart_vouchers {
+    margin-top: 2em;
+}
+#order form#voucher label {
+}
+#order form#voucher input.voucher_code {
+}
+#order form#voucher input.submit_voucher {
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    color: #000;
+    text-transform: uppercase;
+}
+#order #order_carrier {
+    border: 1px solid #e5e2d7;
+    clear: both;
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.6em 0.1em;
+}
+#order div#order_carrier h4 {
+    background-color: #d5ec84;
+    color: #333;
+    display: inline;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.5em;
+    text-transform: uppercase;
+    width: 50%;
+}
+#order-opc div.opc-main-block, div#opc_payment_methods-content {
+    border: 1px dotted #dfdfdf;
+    margin-bottom: 1.5em;
+    padding: 1em 2em;
+}
+#order #order_carrier img {
+    vertical-align: middle;
+}
+#order #order_carrier span {
+    background: none repeat scroll 0 0 #e5e2d7;
+    color: #000;
+    padding: 0.5em;
+}
+#order #gift_div {
+    display: none;
+}
+#order #gift_div textarea {
+    color: #000;
+    display: block;
+    font-size: 12px;
+    margin: 1em 0;
+    padding: 5px;
+    width: 98%;
+}
+#order #gift_div label {
+    color: #000;
+    font-size: 11px;
+}
+#order-opc form#voucher fieldset {
+    border: medium none;
+    margin-bottom: 1em;
+    padding: 1em 0;
+}
+#order-opc form#voucher h4, #order-opc form#voucher p, #order-opc form#voucher .button {
+    display: inline;
+}
+#order-opc form#voucher h4 {
+    float: left;
+    font-size: 12px;
+    line-height: 1.5em;
+    margin-right: 6em;
+}
+#order-opc form#voucher label {
+    color: #000;
+}
+#order-opc form#voucher input.voucher_code {
+    background: none repeat scroll 0 0 #636363;
+    border: 1px solid #636363;
+    color: #fff;
+}
+#order-opc form#voucher input.submit_voucher {
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    color: #000;
+    text-transform: uppercase;
+}
+#order-opc #order_carrier {
+    border: 1px solid #eee;
+    clear: both;
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.6em 0.1em;
+}
+#order-opc div#order_carrier h4 {
+    background: none repeat scroll 0 0 #636363;
+    color: #fff;
+    display: inline;
+    margin: 0;
+    padding: 0.5em;
+    text-transform: uppercase;
+    width: 50%;
+}
+#order-opc #order_carrier {
+    border: 1px solid #eee;
+    clear: both;
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.6em 0.1em;
+}
+#order-opc #order_carrier h4 {
+    background: none repeat scroll 0 0 #ef5057;
+    color: #fff;
+    display: inline;
+    margin: 0;
+    padding: 0.5em;
+    text-transform: uppercase;
+    width: 50%;
+}
+#order-opc #order_carrier img {
+    vertical-align: middle;
+}
+#order-opc #order_carrier span {
+    background: none repeat scroll 0 0 #eee;
+    color: #000;
+    padding: 0.5em;
+}
+#order-opc #gift_div {
+    display: none;
+}
+#order-opc #gift_div textarea {
+    color: #000;
+    display: block;
+    font-size: 12px;
+    margin: 0.3em 0 1em;
+    padding: 5px;
+    width: 98%;
+}
+#order-opc #gift_div label {
+    color: #000;
+    font-size: 11px;
+}
+span.view_scroll_spacer {
+    float: left;
+    height: 17px;
+    width: 17px;
+}
+ul.shop_info {
+    border: 1px solid #888;
+    list-style-position: inside;
+    list-style-type: square !important;
+    margin-left: 2em;
+    margin-top: 0.6em;
+    padding: 0.6em;
+}
+ul.shop_info li {
+    padding-bottom: 0.5em !important;
+    padding-left: 0.5em !important;
+}
+#conditions #right_column {
+    display: none;
+}
+#conditions h2 {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtoAAAAVCAMAAABPEblJAAAA0lBMVEX////+/v78/Pzx8vLw8vTw8fTx8vTw8fPw8fLv8fXv8fTv8fPv8PTv8PPv8PLv8PHu8PTu8PPu8PLu7/Lu7/Dt7/Ht7vLu7/Ht7vDt7u/s7vLs7vHs7fDs7e/s7e7r7fHr7fDr7e/r7O/q7O/q7O7q6+7r7O7q6+3p6+/p6+7p6+3p6u7o6u3o6ezp6uzo6Orn6ezn6Ovo6evn6Orn6Onm6Ovm6Orm5+rm5+nm5+jl5+vl5+rl5+nl5url5unk5+vk5+rl5ebk5ujk5ebf4OHe3+CQT/rJAAAAzklEQVRo3u3UUUrDYBRE4fsb0ZoXK4jQCBoIaEOLltKWJpFI22T/W3LSJfg4nG8Hwz3ciIisGUbAR5OllCKl06ma53n+4MJpC/5z/rzq+xv97MthLreAkcMlRXZ+uroDjJyzaJakDT/LJoZC7gEvxRDDy2QGeBljfJVHwIzSfpdnwIzSLstyAbhR2pW8AWaUdl3XH4Abpb1afQJ2lPZ6/QXYUdqbzRawc01bvgEvSns/2QFelHbbtkfAzZR213U/gBEl3Snt30kPeFHagKU/2QUGU+3vTw0AAAAASUVORK5CYII=") no-repeat scroll left top transparent;
+}
+#conditions #center_column {
+    text-align: justify;
+    width: 730px;
+}
+#conditions #center_column ul, #conditions #center_column ol {
+    margin-left: 2em;
+    padding: 0.6em;
+}
+#conditions #center_column ul {
+    list-style-type: circle;
+}
+#conditions #center_column li {
+    padding-bottom: 0.5em;
+}
+#conditions #center_column {
+    line-height: 1.3em;
+}
+.payment_module {
+    border-bottom: 1px dashed gray;
+    display: block;
+    margin: 20px 0 12px;
+    overflow: auto;
+    padding-bottom: 16px;
+}
+.payment_module img {
+    float: left;
+    margin-right: 1em;
+}
+span.payment-explicacion {
+    font-size: 0.95em;
+}
+div .table_block .payment_module h3 {
+    clear: none;
+    font-size: 1.6em;
+}
+.___table_block .payment_module a {
+    background: url("data:image/gif;base64,R0lGODlheQMBAIAAAP///9TU1CH5BAAAAAAALAAAAAB5AwEAAAIpDIynyesNn4x02oqvznz7Dn5iSI5miZ5qyq5uC79yTM92jd96zu8+WgAAOw==") repeat-x scroll center bottom rgba(0, 0, 0, 0);
+    padding: 0.6em 0.6em 1em;
+}
+.___payment_module a:hover, .___payment_module a:focus, .___payment_module a:active {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #e5e6e7;
+    border-color: #fff -moz-use-text-color;
+    border-image: none;
+    border-style: solid none;
+    border-width: 1px medium;
+    color: #374853;
+}
+#customization_block {
+    width: 556px;
+}
+.customization_block_title {
+    margin: 4px 4px 4px 2px;
+}
+#customization_block ul {
+    margin: 6px 6px 0;
+}
+.customization_block_input {
+    vertical-align: inherit;
+}
+img.customization_delete_icon {
+    margin: 2px;
+}
+li.customizationUploadLine {
+    clear: left;
+    display: block;
+    margin-right: 40px;
+    padding: 4px;
+    text-align: right;
+}
+div.customizationUploadBrowse {
+    float: left;
+}
+div.customizationUploadBrowseDescription {
+    padding: 6px;
+}
+img.customizationUploaded {
+    border: 1px solid #888;
+    margin: 2px;
+}
+ul.customizationUploaded {
+    list-style-type: none;
+    margin-left: 4px;
+}
+ul.customizationUploaded li {
+    display: inline;
+}
+ul.customizationUploaded a {
+    text-decoration: none;
+}
+div.customizationUploaded {
+    clear: left;
+}
+div.deletePictureUploaded {
+    float: right;
+}
+div.deleteCustomizableProduct {
+    float: right;
+}
+ul.typedText {
+    list-style-type: none;
+    padding-left: 6px;
+}
+#mywishlist div#block-order-detail form.wl_send fieldset p input {
+    margin-left: 60px;
+}
+#mywishlist div#block-order-detail {
+    display: block;
+    margin-top: 10px;
+}
+#mywishlist form.std fieldset label {
+    width: 30px;
+}
+#mywishlist form.std fieldset input#submitWishlist {
+    display: inline;
+}
+#mywishlist table.std thead th.mywishlist_first {
+    text-align: center;
+    width: 40px;
+}
+#mywishlist table.std thead th.mywishlist_second {
+    text-align: center;
+    width: 80px;
+}
+#mywishlist table.std thead th.first_item, #mywishlist table.std tbody tr td {
+    width: 200px;
+}
+#mywishlist div#block-order-detail ul li span.wishlist_product_detail select {
+    margin: 0;
+}
+#mywishlist div#block-order-detail {
+    margin-top: 10px;
+}
+#mywishlist #hideBoughtProducts, #mywishlist #showBoughtProducts {
+    float: left;
+    margin: -18px 0 0 5px;
+}
+#mywishlist #showBoughtProducts, #mywishlist #hideBoughtProductsInfos, #mywishlist #hideSendWishlist {
+    display: none;
+}
+#mywishlist #showBoughtProductsInfos, #mywishlist #hideBoughtProductsInfos {
+    margin-left: 5px;
+}
+#mywishlist #showSendWishlist, #mywishlist #hideSendWishlist, #mywishlist div#block-order-detail ul li a.exclusive {
+    float: right;
+    margin: -18px 0 0;
+}
+#mywishlist div#block-order-detail table.wlp_bought_infos thead tr th {
+    text-align: center;
+}
+#mywishlist div#block-order-detail table.wlp_bought_infos thead tr th.first_item {
+    width: 300px;
+}
+#mywishlist div#block-order-detail table.wlp_bought_infos {
+    margin: 0 0 0 10px;
+}
+#mywishlist div#block-order-detail ul li img {
+    float: left;
+}
+#view_wishlist #featured-products_block_center ul div li a img {
+    float: left;
+}
+#view_wishlist #featured-products_block_center ul div li a, #view_wishlist #featured-products_block_center ul div li span {
+    float: left;
+    text-decoration: none;
+}
+#view_wishlist #featured-products_block_center ul div li span.wishlist_product_detail, div#mywishlist div#block-order-detail ul li span.wishlist_product_detail {
+    float: left;
+    margin-left: 30px;
+}
+div#mywishlist div#block-order-detail ul li span.wishlist_product_detail {
+    margin-bottom: 5px;
+}
+#view_wishlist #featured-products_block_center ul div li a.exclusive, #view_wishlist #featured-products_block_center ul div li span.exclusive {
+    margin-left: 55px;
+}
+#view_wishlist #featured-products_block_center ul div li.address_name input.text {
+    border: 0 none;
+    color: #999;
+    font-size: 11px;
+    font-weight: bold;
+}
+.account_creation #reverso-form {
+    width: 100%;
+}
+.account_creation #reverso-form label {
+    margin-left: 10px;
+    text-align: left;
+    width: 250px;
+}
+.account_creation #reverso-form label#legend_reverso {
+    clear: both;
+    font-size: 10px;
+    text-align: left;
+    width: 100%;
+}
+.account_creation #reverso-form input#reverso_form {
+    margin-top: 20px;
+}
+.rating {
+    clear: both;
+    cursor: pointer;
+    display: block;
+    margin: 2em;
+}
+.rating:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    width: 0;
+}
+.cancel, .star {
+    cursor: pointer;
+    float: left;
+    height: 15px;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 17px;
+}
+.cancel, .cancel a {
+    background: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png") no-repeat scroll -1984px -48px rgba(0, 0, 0, 0);
+}
+.cancel a:hover {
+    background-position: -1984px -64px;
+}
+.star, .star a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1984px 0;
+    background-repeat: no-repeat;
+}
+.cancel a, .star a {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+div.star_on a {
+    background-position: -1984px -16px;
+}
+div.star_hover a, div.star a:hover {
+    background-position: -1984px -32px;
+}
+.pack_content {
+    margin: 10px 0;
+}
+.pack_price {
+    font-size: 12px;
+}
+.confirmation {
+    color: olive;
+    font-weight: bold;
+}
+form#sendComment {
+    margin-top: 1em;
+}
+form#sendComment p {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    padding: 0;
+}
+form#sendComment label {
+    padding-bottom: 6px;
+    padding-top: 6px;
+    text-align: left;
+    width: auto;
+}
+form#sendComment input.text {
+    width: 280px;
+}
+form#sendComment input.text, textarea {
+    margin: 0.3em 0 0;
+    padding: 5px;
+}
+textarea {
+    overflow: auto;
+}
+input#addCommentButton {
+    background-color: #afbe7a;
+    border: medium none;
+    color: #fff;
+    font-size: 1.1em;
+    margin-top: 1em;
+    padding: 5px;
+}
+input#SubmitCommentButton {
+    background-color: #8fa05c;
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 1em;
+    padding: 5px;
+}
+table.std_comments tbody tr td, table.std_comments tfoot tr td {
+    margin-bottom: 1em;
+    padding: 1em 2em 1em 0;
+}
+.std.std_comments td {
+    border-bottom: 2px solid #e8f3c5;
+}
+#more_info_block .std_comments {
+    clear: both;
+    margin-top: 1em;
+    width: 100%;
+}
+.no-registered {
+    background: none repeat scroll 0 0 #eeede6;
+    border-radius: 0.5em;
+    color: #2f5997;
+    display: block;
+    font-size: 12px;
+    margin: 10px 0 0 !important;
+    padding: 20px 30px;
+    text-align: center;
+}
+.no-registered a {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAkCAMAAAAn1TMnAAACTFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3QwkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArNQcAAAAqNAcAAAApMgcAAAAAAAAnLwclLgYjKwYiKgYiKgYhKQZBUAsAAAAgKAYgJwVATgsfJQU+TApdchA9Swo8Sgo8SQodIwUcIgVVaA43RAlUZg5TZg4bIQU2QwlPYQ1NXw1LXA0wOwhIWQxIWAxecxBccRBecxBccRBzjRRccBBabw9abg9wihNCUQtYbA9Xaw9Xag9Wag9ogBJnfhFmfRFRYw5jeRFhdxF0jhRfdBBxihNwihNuhxNshRJrgxJ7lxVXaw96lhV4kxR4kxRzjRRzjRODoRaBnhZ/mxV+mhV+mhV9mhV9mRV7lxV6lhV6lRV5lBWHphd2kRSFoxeEohaEoRZlfBGCnxZzjROBnhaAnhZ+mhWMrBiMqxiKqReKqhiJqBeJpxeIpxd6lRWHpheGpBeFoxeSsxmOrhiNrRiLqxiMqxiUthmTtBmRshmRsRmPsBiLqxiWuBqWuBqWuBmUthmTtBmavRqZuxqZvBqZuxqYuxqWuBqUthmcvxqbvhqcvxqbvhqbvhqZvBqfwxvOoF6vAAAAw3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi4vMDEyMzQ1Njc4OTo7Ozw8PT0/QEFESElKTE1OTk9QUlJSU1RVV1paW1tcXV1gYmZpaWprbGxubm9wcXFzc3R1dnh7fH2BgoOGh4iKi4+QkZGTlJqbm52foKGio6Wmp6ipq6utrrCwsbGytbW2t7e5uru8vL2/v8TGyMjN0NLT1Nrb3N3e4Ofo6Onq7e/z9PT19vhFIbQ7AAADsElEQVQ4y4WU93vbVBSGo30ly7ItW5JlecvbjqhUxXaCKWW0EChQmkBZocwCYZQ9UqCMUqCEPcsMJBBG7bKbBtI4nH8MSdRNE9z0/qTnue9zdM53vvsNDPQ/GEHSiGURQxE4NrDBwXAK+UUllkjEVSnoY4iz0xjJBpVUobrJsszBsh6P8GelcdovZ2pXvDC/AABHv3zKLMZFluwLY7SglW48CqfP8qGLdInrB2OUoNUOARx/787GkD207ZEvABZ25ySW6NMBkoqfwdKLjcFCNp1K6yVz1zws786E6DMKY65MDMOJqfthacLMRkWB9/GBiFasvwYLF2g8saonwwXCkqJquvEn3G0kg4jEMFc9LpJrzsPzOZHqqYQEOZmrGJY1NDL67P7hksL1ZMIZuToOv1YV5lRNQdEHm3sPf93udObefvy6S8yUiHowEciNABgq46FsOG2MzXRXZZqbtHXJR2HrWYzgpPy2Dzym0/mkc8z7ao9VVN6DcUaqjMMvVYX2RCpMnADozu5pNezNdnPLnlnnF93HaqqPcPsLZetf/TcbRoX0nc7dj6N2JZuIqbFEtmyPHnFKP1qWOYrixLQ1BUsXuprhnLb5N4DnRkqayHOIQRwvaoXmk13ojhWioqjmLn0flm7Kis4uyGD+GYCDw3qYpTDM2wnJiin7YYDZZlnPm5edgJP3VWR3x7RstGHx4oJI42d6Ij38JsA1Ez+9c8sDALe1soI7J4rZAC8PxVhsjYEilRsAnn7QmfHjn+HdLSlvwyheB9hnSPRaBwn61kV466q7Xj0JKwBj6VX2CVNex/pddvr8Teb4D44kn2cEl2VUaxmONBM+fE0PYmUHwH4jpeXrk8fhu4RXl4pUZ6C7oyKh1TflzJZqOrPtzAR9oXiheu15YeSWIoTMhLOJrcXeM3E0Q8GkdUcX2oaCCIoLRqQQ560bQ8qgY4a57SWFZ2gGIc4vxvL1251d7MoGSNfBNEOfKkMKSbsNsHhvLanI0ZiW1Mv25dPOQFNOX/i6x8iEctu/de4eapqGadmN1uRHrnemair/v1jAWdW68huAAzdPt9vtzu+eJ78/7cl1hSXj+r/g7w9Xelbvztxq6VIf1Jkuan8K8I8DHZt+4/DrL+1tGDk1iPrlEsbFr/bK/bGvZRu1SimXkAMshffNL1/iFYdcOdiqZWJyJBwSOCfr+ocdzkXvccw6amYkHtEUuVHgYnRAK9YqWcW/UdD2IgcJYSksoHOSXoyTNE2dm/wXdBgd93frT3IAAAAASUVORK5CYII=") no-repeat scroll 10px center #2f5997;
+    border-radius: 0.5em;
+    clear: both;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px !important;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 10px 20px 10px 35px;
+    width: 34%;
+}
+.paypalapi_about {
+    text-align: justify;
+}
+.paypalapi_about ul {
+    padding-left: 20px;
+}
+#cms div.content_only {
+    padding: 10px;
+    text-align: left;
+}
+.live_edit_feed_back_ok {
+    background-color: #dffad3;
+    border: 2px solid #72cb67;
+    color: #374853;
+    padding: 4px;
+}
+.live_edit_feed_back_ko {
+    background-color: #fae2e3;
+    border: 2px solid #ec9b9b;
+    color: #374853;
+    padding: 4px;
+}
+.add_module_live_edit {
+    background-color: #f1f2f4;
+    border: 2px solid #d0d3d8;
+    padding: 4px;
+}
+div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xsprite.png.pagespeed.ic.st9vlbRnvU.png");
+    background-repeat: no-repeat;
+}
+.selector, .radio, .checker, .uploader, .selector *, .radio *, .checker *, .uploader * {
+    margin: 0;
+    padding: 0;
+}
+div.selector {
+    background-position: -483px -130px;
+    height: 26px;
+    line-height: 26px;
+}
+div.selector span {
+    background-position: right 0;
+    height: 26px;
+    line-height: 26px;
+}
+div.selector select {
+    bottom: 3px;
+    left: 3px;
+    right: 0;
+    top: 3px;
+}
+div.selector:active, div.selector.active {
+    background-position: -483px -156px;
+}
+div.selector:active span, div.selector.active span {
+    background-position: right -26px;
+}
+div.selector.focus, div.selector.hover, div.selector:hover {
+    background-position: -483px -182px;
+}
+div.selector.focus span, div.selector.hover span, div.selector:hover span {
+    background-position: right -52px;
+}
+div.selector.focus:active, div.selector.focus.active, div.selector:hover:active, div.selector.active:hover {
+    background-position: -483px -208px;
+}
+div.selector.focus:active span, div.selector:hover:active span, div.selector.active:hover span, div.selector.focus.active span {
+    background-position: right -78px;
+}
+div.selector.disabled {
+    background-position: -483px -234px;
+}
+div.selector.disabled span {
+    background-position: right -104px;
+}
+div.checker {
+    height: 19px;
+    width: 19px;
+}
+div.checker input {
+    height: 19px;
+    width: 19px;
+}
+div.checker span {
+    background-position: 0 -260px;
+    height: 19px;
+    width: 19px;
+}
+div.checker:active span, div.checker.active span {
+    background-position: -19px -260px;
+}
+div.checker.focus span, div.checker:hover span {
+    background-position: -38px -260px;
+}
+div.checker.focus:active span, div.checker:active:hover span, div.checker.active:hover span, div.checker.focus.active span {
+    background-position: -57px -260px;
+}
+div.checker span.checked {
+    background-position: -76px -260px;
+}
+div.checker:active span.checked, div.checker.active span.checked {
+    background-position: -95px -260px;
+}
+div.checker.focus span.checked, div.checker:hover span.checked {
+    background-position: -114px -260px;
+}
+div.checker.focus:active span.checked, div.checker:hover:active span.checked, div.checker.active:hover span.checked, div.checker.active.focus span.checked {
+    background-position: -133px -260px;
+}
+div.checker.disabled span, div.checker.disabled:active span, div.checker.disabled.active span {
+    background-position: -152px -260px;
+}
+div.checker.disabled span.checked, div.checker.disabled:active span.checked, div.checker.disabled.active span.checked {
+    background-position: -171px -260px;
+}
+div.radio {
+    height: 18px;
+    width: 18px;
+}
+div.radio input {
+    height: 18px;
+    width: 18px;
+}
+div.radio span {
+    background-position: 0 -279px;
+    height: 18px;
+    width: 18px;
+}
+div.radio:active span, div.radio.active span {
+    background-position: -18px -279px;
+}
+div.radio.focus span, div.radio:hover span {
+    background-position: -36px -279px;
+}
+div.radio.focus:active span, div.radio:active:hover span, div.radio.active:hover span, div.radio.active.focus span {
+    background-position: -54px -279px;
+}
+div.radio span.checked {
+    background-position: -72px -279px;
+}
+div.radio:active span.checked, div.radio.active span.checked {
+    background-position: -90px -279px;
+}
+div.radio.focus span.checked, div.radio:hover span.checked {
+    background-position: -108px -279px;
+}
+div.radio.focus:active span.checked, div.radio:hover:active span.checked, div.radio.focus.active span.checked, div.radio.active:hover span.checked {
+    background-position: -126px -279px;
+}
+div.radio.disabled span, div.radio.disabled:active span, div.radio.disabled.active span {
+    background-position: -144px -279px;
+}
+div.radio.disabled span.checked, div.radio.disabled:active span.checked, div.radio.disabled.active span.checked {
+    background-position: -162px -279px;
+}
+div.uploader {
+    background-position: 0 -297px;
+    height: 28px;
+}
+div.uploader span.action {
+    background-position: right -409px;
+    height: 24px;
+    line-height: 24px;
+}
+div.uploader span.filename {
+    height: 24px;
+    line-height: 24px;
+    margin: 2px 0 2px 2px;
+}
+div.uploader.focus, div.uploader.hover, div.uploader:hover {
+    background-position: 0 -353px;
+}
+div.uploader.focus span.action, div.uploader.hover span.action, div.uploader:hover span.action {
+    background-position: right -437px;
+}
+div.uploader.active span.action, div.uploader:active span.action {
+    background-position: right -465px;
+}
+div.uploader.focus.active span.action, div.uploader.active:focus span.action, div.uploader.focus:active span.action, div.uploader:focus:active span.action {
+    background-position: right -493px;
+}
+div.uploader.disabled {
+    background-position: 0 -325px;
+}
+div.uploader.disabled span.action {
+    background-position: right -381px;
+}
+div.selector {
+    font-size: 12px;
+    margin-bottom: 5px;
+    width: auto;
+}
+div.selector select {
+    border: 1px solid #fff;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    width: 190px;
+}
+div.selector span {
+    cursor: pointer;
+    padding: 0 25px 0 2px;
+}
+div.selector span {
+    color: #666;
+    text-shadow: 0 1px 0 #fff;
+}
+div.selector.disabled span {
+    color: #bbb;
+}
+div.checker {
+    margin-right: 10px;
+}
+div.radio {
+}
+div.uploader {
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 190px;
+}
+div.uploader span.action {
+    background-color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    width: 85px;
+}
+div.uploader span.filename {
+    border-right: 1px solid #bbb;
+    color: #999;
+    font-size: 11px;
+    width: 82px;
+}
+div.uploader input {
+    width: 190px;
+}
+div.uploader.disabled span.action {
+    color: #aaa;
+}
+div.uploader.disabled span.filename {
+    border-color: #ddd;
+    color: #aaa;
+}
+.selector select:focus, .radio input:focus, .checker input:focus, uploader input:focus {
+    outline: 0 none;
+}
+div.selector {
+    margin-left: -2px;
+    padding-left: 10px;
+    position: relative;
+}
+div.selector span {
+    color: #000;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+div.selector select {
+    opacity: 0;
+    position: absolute;
+}
+div.checker {
+    float: left;
+    position: relative;
+}
+div.checker span {
+    display: block;
+    float: left;
+    text-align: center;
+}
+div.checker input {
+    display: inline-block;
+    opacity: 0;
+}
+div.radio {
+    float: left;
+    position: relative;
+}
+div.radio span {
+    display: block;
+    float: left;
+    text-align: center;
+}
+div.radio input {
+    display: inline-block;
+    opacity: 0;
+    text-align: center;
+}
+div.uploader {
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+div.uploader span.action {
+    cursor: pointer;
+    display: inline;
+    float: left;
+    overflow: hidden;
+    padding: 2px 0;
+}
+div.uploader span.filename {
+    cursor: pointer;
+    display: block;
+    float: left;
+    overflow: hidden;
+    padding: 0 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+div.uploader input {
+    bottom: 0;
+    float: right;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#primary_block, .products_block, #center_column div.list_categorie_product, #center_column .portada {
+    float: right;
+    padding-bottom: 2em;
+    padding-left: 0;
+    padding-right: 0;
+    width: 700px;
+}
+#primary_block #pb-right-column {
+    float: left;
+    width: 350px;
+}
+#primary_block #image-block {
+    background-color: #fff;
+    border: 1px solid #e4e1d5;
+    height: 340px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 340px;
+}
+#primary_block #image-block img#bigpic {
+    cursor: pointer;
+    height: 338px;
+    text-align: center;
+}
+#primary_block ul#usefull_link_block {
+    padding-top: 0.8em;
+}
+.view_full_size {
+    cursor: pointer;
+    font-size: 8px;
+    height: 9px;
+    line-height: 9px;
+    margin: 1em 0 0 1em;
+    position: absolute;
+    width: 60px;
+}
+#primary_block #pb-left-column {
+    float: right;
+    height: auto !important;
+    width: 340px;
+}
+#primary_block h1 {
+    border-bottom: 2px solid #cae47b;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 40px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+#short_description_block {
+    border-bottom: 2px solid #e6e6e6;
+    border-top: 2px solid #e6e6e6;
+    color: #333;
+    font-size: 1.5em;
+    font-style: italic;
+    margin-bottom: 35px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+#short_description_block p {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+#short_description_block ul li {
+    list-style-type: disc;
+    margin-left: 30px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+#image-block .on_sale {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -735px 0;
+    display: block;
+    height: 100px;
+    margin-left: 255px;
+    margin-top: -360px;
+    position: relative;
+    top: 0;
+    width: 89px;
+}
+#image-block .icons {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+#image-block .icons span {
+    display: block;
+    float: right;
+    height: 51px;
+    width: 45px;
+}
+#image-block .icons span.novedad {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1121px -217px;
+}
+#image-block .icons span.segunda_mano {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1166px -217px;
+}
+#image-block .icons span.outlet {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1211px -217px;
+}
+#primary_block #color_picker {
+    color: #a9a9a9;
+}
+#primary_block #color_picker ul {
+    padding: 5px 0;
+}
+#primary_block #color_picker h3 {
+    color: #777;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+#primary_block #color_picker p {
+    margin: 0 0 0.6em;
+    padding: 0;
+}
+#primary_block #color_to_pick_list li {
+    display: inline;
+    float: left;
+    margin: 0 0.2em 0.4em 0;
+}
+#primary_block a.color_pick {
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    margin: 0 0.5em 0.5em 0;
+    width: 20px;
+}
+#primary_block a.color_pick:hover {
+    border: 1px solid #000;
+}
+#primary_block a#color_all {
+    cursor: pointer;
+}
+#primary_block #image-block img#bigpic.jqzoom {
+    cursor: crosshair;
+    position: relative;
+}
+#primary_block p.buttons_bottom_block {
+    margin-bottom: 1em;
+}
+#primary_block p.buttons_bottom_block a, #primary_block p.buttons_bottom_block input {
+    margin: 0.9em auto 0;
+}
+#primary_block #buy_block span.on_sale, #primary_block #buy_block span.discount {
+    color: #e3004f;
+    font-size: 12px;
+    font-weight: bold;
+}
+#primary_block #buy_block .buttons_bottom_block {
+    display: none;
+}
+#primary_block #buy_block #attributes div {
+    float: left;
+}
+#primary_block p#attributes {
+    float: left;
+    margin: 0.5em 0;
+    padding-top: 0.5em;
+}
+#primary_block #attributes p {
+    margin-top: 1.5em;
+}
+#primary_block p#attributes label {
+    font-size: 11px;
+    text-transform: none;
+}
+#primary_block #buy_block select {
+    border: 1px solid #ccc;
+    height: auto;
+    margin-left: 3px;
+    padding: 0.1em;
+    text-align: left;
+}
+#primary_block form#buy_block option {
+    padding: 0 1em 0 0;
+}
+#primary_block #buy_block span#availability_label, span#availability_value {
+    float: left;
+    font-size: 11px;
+    margin-right: 0.2em;
+}
+#primary_block #quantity_wanted_p {
+    float: left;
+    margin: 0.8em 0 0;
+    text-transform: uppercase;
+}
+#primary_block #quantity_wanted_p label {
+    color: #333;
+    margin: 0;
+    text-align: right;
+    text-transform: uppercase;
+}
+#availability_statut {
+    height: 36px;
+}
+#availability_statut_cart {
+    height: 36px;
+    margin-top: 5px;
+}
+#primary_block #availability_statut .warning-inline {
+    background: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png") repeat scroll -1071px -275px transparent;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    color: #666;
+    display: block;
+    font: 11px Arial;
+    height: auto;
+    padding: 6px 0 6px 30px;
+}
+#availability_statut .warning-inline {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    color: #666;
+    display: block;
+    font: 11px Arial;
+    height: 20px;
+    padding: 3px 0 3px 35px;
+    position: relative;
+}
+#availability_statut .warning-inline span.texto {
+    vertical-align: middle;
+}
+#availability_statut .warning-inline .icon_warning {
+    background: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png") repeat scroll -1076px -279px transparent;
+    display: block;
+    float: left;
+    height: 19px;
+    left: 5px;
+    padding-right: 3px;
+    position: absolute;
+    top: 4px;
+    width: 19px;
+}
+#availability_statut_cart .warning-inline {
+    background: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png") repeat scroll -1071px -276px transparent;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    color: #666;
+    display: block;
+    font: 11px Arial;
+    padding: 6px 0 6px 30px;
+}
+#primary_block div#add_it {
+    float: left;
+    margin: 2em 0;
+    width: 100%;
+}
+#primary_block #add_to_cart {
+    float: right;
+}
+#primary_block input.add_to_cart {
+    background-color: #e3004f;
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: 110px -104px;
+    background-repeat: no-repeat;
+    border: 1px dashed #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px #e3004f;
+    color: #fff;
+    cursor: pointer;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 0.3em;
+    padding: 6px;
+    text-align: left;
+    width: 135px;
+}
+#primary_block input.add_to_cart:hover {
+    box-shadow: 0 0 5px 5px #e3004f;
+    text-decoration: none;
+}
+#primary_block #buy_block p#reduction_percent {
+    color: #da0f00;
+    font-size: 11px;
+}
+#primary_block #buy_block span#reduction_percent_display {
+    color: #333;
+    font-size: 12px;
+    letter-spacing: -1px;
+    padding-right: 5px;
+}
+#our_price_display {
+    clear: both;
+    color: #e3004f;
+    display: block;
+    font-size: 48px;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: -2px;
+    line-height: 40px;
+}
+.our_price_display {
+    color: #e3004f;
+    font-weight: normal;
+}
+#old_price_display {
+    color: #666;
+    font-size: 15px;
+    font-weight: normal;
+    text-decoration: line-through;
+}
+#global_price ul li {
+    float: right;
+    text-align: right;
+}
+.product_accessories_price {
+    margin-top: 5px;
+}
+#pb-left-column #buy_block h5 {
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 22px;
+    font-weight: 200;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    text-transform: none;
+}
+p#pQuantityAvailable span {
+    font-size: 11px;
+}
+#views_block {
+    float: left;
+    width: 350px;
+}
+#thumbs_list {
+    float: left;
+    overflow: hidden;
+    width: 235px;
+}
+#thumbs_list ul {
+    list-style-type: none;
+    margin-top: 5px;
+    padding-left: 0;
+}
+#thumbs_list li {
+    cursor: pointer;
+    float: left;
+    height: 80px;
+    text-align: center;
+    width: 80px;
+}
+#thumbs_list img {
+    border: 1px solid #e4e1d5;
+}
+span.view_scroll_spacer {
+    float: left;
+    height: 80px;
+    width: 17px;
+}
+#view_scroll_left, #view_scroll_right {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: 0 -134px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 15px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-top: 20px;
+    padding: 0;
+    text-indent: -3000px;
+    width: 8px;
+}
+#view_scroll_right {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -8px -134px;
+}
+.products_category h3, #center_column .table_block #form h2 {
+    clear: both;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 30px;
+    font-weight: 200;
+    margin-bottom: 0.5em;
+    padding-top: 1em;
+}
+#center_column .table_block #form h2 {
+    font-size: 24px;
+    margin: 0 0 0.5em;
+    padding: 0;
+}
+.products_category h4, .portada .destacados_home ul li h3, .comparison_infos h5 {
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 22px;
+    font-weight: 200;
+    height: 46px;
+    line-height: 22px;
+    margin-bottom: 0.2em;
+    overflow: hidden;
+}
+.product_accessories_description h4 {
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 22px;
+    font-weight: 200;
+    line-height: 22px;
+    margin-bottom: 0.2em;
+}
+.products_category .pprice, .accessories_block .pprice, .destacados_home ul li .pprice {
+    color: #e3004f;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: bold;
+}
+.accessories_block .shortdesc {
+    display: block;
+    font-size: 1.15em;
+}
+.accessories_block ul li {
+    clear: both;
+    display: block;
+    height: 127px;
+    margin-bottom: 25px;
+}
+.accessories_block ul li img {
+    border: 1px solid #e4e1d5;
+    float: left;
+    height: 125px;
+    margin-right: 20px;
+    width: 125px;
+}
+.products_category ul li {
+    float: left;
+    margin-right: 20px;
+    width: 160px;
+}
+.products_category ul li:last-child {
+    float: left;
+    margin-right: 0;
+    width: 160px;
+}
+#admin-action {
+    background-color: #dffad3;
+    border: 1px solid #72cb67;
+    color: #374853;
+    margin-bottom: 10px;
+    padding: 4px;
+}
+#admin-action input.exclusive {
+    float: right;
+}
+.products_category ul li img {
+    border: 1px solid #e4e1d5;
+    height: 158px;
+    width: 158px;
+}
+#more_info_block {
+    float: left;
+    margin-top: 20px;
+    width: 420px;
+}
+.ficha_right {
+    float: right;
+    margin-top: 20px;
+    width: 250px;
+}
+.ficha_right h3 {
+    color: #d7d6ce;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+.ficha_right .caracteristicas tr th, .ficha_right .caracteristicas tr td {
+    color: #333;
+    font-size: 1.1em;
+    margin: 0;
+    padding: 0.4em;
+    vertical-align: top;
+}
+.ficha_right .caracteristicas .odd {
+    background-color: #e9e8e0;
+}
+.ficha_right .caracteristicas th {
+    font-weight: bold;
+    width: 50%;
+}
+.ficha_right .caracteristicas {
+    margin-bottom: 2.5em;
+    margin-top: 1.2em;
+    width: 100%;
+}
+.garantia {
+    border: 2px dotted #ee831a;
+    border-radius: 4px;
+    font-size: 1.15em;
+    padding: 10px;
+}
+.garantia p strong {
+    color: #ee831a;
+    display: block;
+    font-size: 1.3em;
+    margin-bottom: 0.3em;
+}
+.garantia a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -838px 0;
+    background-repeat: no-repeat;
+    display: block;
+    padding-right: 75px;
+}
+.garantia a:hover {
+    color: #ee831a;
+}
+#enlaces_redes {
+    clear: both;
+    margin-bottom: 2em;
+    margin-top: 1em;
+    width: 700px;
+}
+.w_facebook {
+    float: left;
+    height: 250px;
+    width: 300px;
+}
+.social_m {
+    float: right;
+    height: 250px;
+    width: 350px;
+}
+.social_m h3, #blog #ultimosblog h3, #blog #month_recipe h4 a, .destacados_home h2 {
+    clear: both;
+    color: #545454;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 30px;
+    font-weight: 200;
+    margin-bottom: 15px;
+}
+.social_m p {
+    font-size: 1.3em;
+    margin-bottom: 1.5em;
+}
+.social_m ul li {
+    display: inline;
+}
+.social_m ul li a {
+    display: block;
+    float: left;
+    height: 64px;
+    margin-right: 10px;
+    width: 64px;
+}
+.social_m ul .bfacebook a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1379px 0;
+}
+.social_m ul .btwitter a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1443px 0;
+}
+.social_m ul .bgoogle a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1507px 0;
+}
+#blog {
+    clear: both;
+    font-size: 1.2em;
+    width: 700px;
+}
+#blog #ultimosblog li {
+    border-bottom: 1px dotted #e5e2d7;
+    display: block;
+    margin-bottom: 0.6em;
+}
+#blog #ultimosblog {
+    float: left;
+    width: 300px;
+}
+#ultimosblog .date {
+    color: #627723;
+    display: block;
+    font-size: 0.9em;
+}
+#blog #month_recipe {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -472px -217px;
+    float: right;
+    padding: 110px 40px 40px;
+    width: 270px;
+}
+#blog #month_recipe p {
+    margin-top: 1.5em;
+}
+#blog #month_recipe p a {
+    text-decoration: underline;
+}
+#month_recipe h3 {
+    display: none;
+}
+#blog #ultimosblog li a:before {
+    color: #201f20;
+    content: "+ ";
+}
+#blog #ultimosblog .todas a:before {
+    content: "";
+}
+#blog #ultimosblog .todas a {
+    text-decoration: underline;
+}
+.ficha_right #tags {
+    color: #666;
+    font-size: 1.25em;
+    line-height: 1.1em;
+    margin-top: 2em;
+}
+.ficha_right #tags a {
+    color: #666;
+    text-decoration: underline;
+}
+.ficha_right #tags a:hover {
+    color: #ee831a;
+    text-decoration: underline;
+}
+.destacados_home ul li {
+    display: block;
+    float: left;
+    height: 300px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 160px;
+}
+.portada .destacados_home ul .endrow {
+    margin-right: 0;
+}
+.destacados_home ul li img {
+    border: 1px solid #e5e2d7;
+    height: 158px;
+    width: 158px;
+}
+.destacados_home ul li .product_desc {
+    display: block;
+    font-size: 1.3em;
+    height: 32px;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    overflow: hidden;
+}
+.slides li, .slides {
+    display: block;
+    height: 330px;
+    overflow: hidden;
+    width: 700px;
+}
+.slides img {
+    display: block;
+    float: left;
+    height: 330px;
+    overflow: hidden;
+}
+.slides li h2 {
+    display: block;
+    float: right;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 33px;
+    margin-top: 50px;
+    overflow: hidden;
+    text-transform: none;
+    width: 360px;
+}
+.slides li .desc {
+    display: block;
+    float: right;
+    font-size: 1.4em;
+    height: 160px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    width: 360px;
+}
+.slides li .boton a {
+    background-color: #9ec21c;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    float: right;
+    font-size: 1.15em;
+    padding: 6px 8px;
+    text-align: center;
+    width: 110px;
+}
+.slides li .boton a:hover {
+    background-color: #b7e413;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.basic .lof-control-nav {
+    border-top: 2px solid #e5e2d7;
+    bottom: 0;
+    clear: both;
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-top: 5px;
+    text-align: right;
+    width: 270px;
+}
+.basic .lof-control-nav li {
+    display: inline;
+    margin-right: 5px;
+}
+.basic .lof-control-nav li:first-child {
+    margin-left: auto;
+    margin-right: 5px;
+}
+.basic .lof-control-nav li:last-child {
+    margin: 0;
+}
+.basic .lof-control-nav li a {
+    background-color: #e5e2d7;
+    border-radius: 16px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 10px;
+    text-decoration: none;
+    text-indent: -9999px;
+    width: 16px;
+}
+.basic .lof-control-nav li a:hover {
+    background-color: #d5cfbd;
+}
+.basic .lof-control-nav li a.active {
+    background-color: #b7e413;
+    cursor: default;
+}
+.banner_left img {
+    margin-bottom: 2em;
+    width: 180px;
+}
+.comparison_feature_value {
+    margin-top: 5px;
+    padding: 5px;
+}
+.comparison_infos .product_desc {
+    font-size: 1.2em;
+    margin-top: 2em;
+}
+.comparison_feature_odd {
+    background-color: #e5e2d7;
+    padding: 3px;
+}
+.comparison_feature_even {
+    padding: 3px;
+}
+.comparison_infos {
+    border-left: 1px dotted #595a5e;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: top;
+}
+.comparison_infos_first {
+    border-left: 1px dotted #595a5e;
+    border-right: 1px dotted #595a5e;
+}
+#product_comparison {
+    border-collapse: collapse;
+    margin-top: 2em;
+}
+tr.comparison_header td {
+    background-color: #afbe7a;
+    color: #fff;
+    font-weight: bold;
+    padding: 3px;
+}
+.product_desc a {
+    text-decoration: none;
+}
+.comparison_comment {
+    background-color: #fff;
+}
+.cluetip-comparison_comments {
+    background-color: #f1f2f4;
+    border: 1px solid gray;
+    opacity: 0.95;
+    padding: 10px;
+    text-align: justify;
+    width: 430px;
+}
+.comment .customer_name {
+    font-weight: bold;
+}
+.cmp_remove {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1982px -85px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    text-align: left;
+    width: 70px;
+}
+.comparison_availability_statut {
+    height: 27px;
+}
+.comparison_old_price {
+    height: 13px;
+}
+.comparison_product_infos {
+    text-align: center;
+    width: 100%;
+}
+.comparison_unit_price {
+    color: gray;
+    font-size: 0.75em;
+}
+.product_discount {
+    color: #e3004f;
+    font-weight: bold;
+    height: 13px;
+    text-transform: uppercase;
+}
+#cms .rte.cms.content_only {
+    background-color: #fff;
+    background-image: none;
+    float: none;
+    margin: auto;
+    padding: 20px;
+    width: auto;
+}
+#ordermsg {
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
+}
+#ordermsg, .addresses .checkbox, #form p.checkbox {
+    margin-bottom: 1.5em;
+}
+div.addresses {
+    margin-top: 1em;
+}
+div.addresses h3 {
+    margin: 0;
+}
+div.addresses p.checkbox input {
+    margin-top: 0 !important;
+}
+div.addresses ul.item {
+    clear: both;
+}
+ul.address {
+    background-color: #fff;
+    border: 1px solid #afbe7a;
+    float: left;
+    list-style: none outside none;
+    margin-bottom: 1em;
+    padding-bottom: 0.6em;
+    width: 325px;
+}
+ul.alternate_item {
+    background-color: #fff;
+    border: 1px solid #d8f0ba;
+    float: right;
+}
+ul.address li {
+    margin-top: 0.6em;
+    padding-left: 1.4em;
+}
+li.address_title {
+    color: #333;
+    font-size: 1.1em;
+    font-weight: normal;
+    height: 22px;
+    line-height: 20px;
+    margin-top: 0 !important;
+}
+ul.item li.address_title {
+    background-color: #afbe7a;
+    font-weight: normal;
+}
+ul.alternate_item li.address_title {
+    background-color: #d5ec84;
+}
+li.address_name, li.address_update a, li.address_delete a {
+    color: #333;
+}
+li.address_name {
+    color: #000;
+    font-weight: bold;
+}
+li.address_company {
+    color: #000;
+    font-weight: bold;
+}
+li.address_update, li.address_delete {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: 0 -204px;
+    background-repeat: no-repeat;
+    margin-left: 12px;
+}
+#center_column .address_add {
+}
+input#submitaddress {
+    background-color: #9ec21a;
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 4px;
+    width: auto;
+}
+form#sendOrderMessage {
+    clear: both;
+    margin-bottom: 1em;
+}
+form#sendOrderMessage p {
+    color: #999;
+    font-size: 10px;
+    margin: 0;
+    text-transform: uppercase;
+}
+form#sendOrderMessage input#submitMessage, form#forgot_password input#submitPassword {
+    background-color: #afbe7a;
+    border-style: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+div#adresses_infos {
+    margin-bottom: 1em;
+}
+div#adresses_infos h4 {
+    color: #86974a;
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0;
+}
+div#adresses_infos p {
+    margin: 0;
+}
+.back_account a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: block;
+    margin-top: 2em;
+    padding-left: 15px;
+    width: 150px;
+}
+.useracount {
+    margin-top: 2em;
+}
+.useracount li {
+    border: 1px dotted #ccc;
+    border-radius: 5px;
+    margin-bottom: 1.5em;
+    padding: 6px;
+}
+.destacados_home p.image_product_list, #product_list p.image_product_list {
+    position: relative;
+}
+.destacados_home p.image_product_list .icons, #product_list p.image_product_list .icons {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+.icono_novedad, .icono_outlet, .icono_segunda_mano, .icono_nuevo, .icono_oferta {
+    display: block;
+    height: 51px;
+    position: relative;
+    width: 45px;
+}
+.icono_novedad, .icono_nuevo {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1121px -217px;
+}
+.icono_oferta {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1076px -217px;
+}
+.icono_outlet {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1211px -217px;
+}
+.icono_segunda_mano {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-position: -1166px -217px;
+}
+p.icono_nuevo, p.icono_oferta {
+    left: 168px;
+    position: relative;
+    top: -50px;
+}
+span.icono_novedad, span.icono_outlet, span.icono_segunda_mano, span.icono_nuevo, span.icono_oferta {
+    float: right;
+}
+.cat_desc p {
+    font-size: 0.933em;
+    line-height: 1.4em;
+}
+.list_product .cat_desc {
+    border-bottom: 2px dotted #dbd8c8;
+    border-top: 2px dotted #dbd8c8;
+    font-size: 1.33em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+.list_product #subcategories ul {
+    margin-top: 2em;
+}
+.list_product #subcategories ul li {
+    color: #4d4d4f;
+    display: inline;
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+.list_product #subcategories ul li a {
+    background-color: #9ec21a;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1.1em;
+    padding: 5px;
+    text-decoration: none;
+}
+.list_product #subcategories ul li a:hover {
+    background-color: #ef831b;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+}
+div.myaccount {
+    background-color: #eeede6;
+    border-radius: 5px;
+    padding: 15px;
+    width: 150px;
+}
+div.myaccount h4 {
+    color: #c2bca7;
+    font-size: 30px;
+    margin: 0 0 5px;
+    padding: 0;
+}
+div.myaccount ul {
+    margin: 0;
+    padding: 0;
+}
+div.myaccount ul li {
+    border-bottom: 1px dotted #c2bca7;
+    font-size: 1.2em;
+    margin: 1px 0;
+    padding: 2px 0;
+}
+div.conline {
+    background-color: #eeede6;
+    border: 1px solid #e7e3d7;
+    border-radius: 5px;
+    height: 64px;
+    padding: 7px;
+    width: 166px;
+}
+div.conline img {
+    float: left;
+    margin-right: 8px;
+}
+div.conline p {
+    margin: 0;
+    padding: 0;
+}
+div.ccommons {
+    background-color: #eeede6;
+    border: 1px solid #e7e3d7;
+    border-radius: 5px;
+    height: 126px;
+    padding: 7px;
+    width: 166px;
+}
+div.ccommons img {
+    float: left;
+    margin-right: 8px;
+}
+div.ccommons p {
+    margin: 0;
+    padding: 0;
+}
+.old_price, .price_from {
+    color: #d6004a;
+    display: block;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    height: 15px;
+    margin-top: 0.1em;
+}
+.old_price {
+    color: #666;
+    font-weight: normal;
+    text-decoration: line-through;
+}
+.descuentos_cantidad {
+    font-size: 12px;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+.descuentos_cantidad th, .descuentos_cantidad td {
+    padding: 3px 10px;
+}
+.descuentos_cantidad th {
+    background-color: #ef831b;
+    border-right: 1px solid #fff;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 2px;
+}
+.descuentos_cantidad td {
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 12px;
+}
+.descuentos_cantidad .pdc {
+    border-left: 1px solid #e6e6e6;
+    font-size: 13px;
+}
+.descuentos_cantidad .even {
+    background-color: #eeede6;
+    font-size: 12px;
+    width: 100%;
+}
+#idTab9 li {
+    background-color: #e9e8e0;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    display: block;
+    font-size: 1.2em;
+    padding: 15px;
+}
+#idTab9 li a {
+    color: #333;
+    display: block;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+#idTab9 li a .flecha {
+    background-color: #c2bca7;
+    border: 1px solid #c2bca7;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 45px;
+    font-weight: bold;
+    height: 45px;
+    line-height: 30px;
+    margin-right: 15px;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    width: 45px;
+}
+#idTab9 li a:hover .flecha {
+    background-color: #9fc31b;
+    border: 1px solid #c2bca7;
+    border-radius: 5px;
+    color: #fff;
+}
+#idTab9 li a:hover {
+    color: #9fc31b;
+}
+#idTab5 {
+    font-size: 1.2em;
+}
+#idTab5 .stars {
+    float: left;
+    margin-bottom: 15px;
+}
+#idTab5 .stars p {
+    color: #999;
+    display: block;
+    float: left;
+    font-size: 17px;
+    font-weight: normal;
+    margin-right: 10px;
+    margin-top: -4px;
+    text-transform: uppercase;
+}
+table.orderConditions {
+    width: auto !important;
+}
+table.orderConditions tr td {
+    width: 25% !important;
+}
+#affilaites .portada legend {
+    background-image: none;
+    color: #4d4d4f;
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
+}
+#affilaites .portada p {
+    color: #000;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    padding: 0.4em 0.5em;
+}
+#affilaites .portada form p, #affilaites .portada p.no_margin {
+    margin-bottom: 0;
+}
+#affilaites .portada p label, #affilaites .portada label {
+    clear: both;
+    display: block;
+    float: none;
+    margin-bottom: 0.3em;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-align: left;
+    width: auto;
+}
+#affilaites .portada form input.button {
+    margin-top: 0.5em;
+}
+#affilaites .portada table.std {
+    margin-bottom: 20px;
+}
+#affilaites .portada table.std tr td {
+    background: none repeat scroll 0 0 #fff;
+    font-size: 1.2em;
+}
+#affilaites .portada table.std tr.alt_row td {
+    background: none repeat scroll 0 0 #f1f2f4;
+}
+#affilaites .portada table.std tr.voucher td {
+    background: none repeat scroll 0 0 #add8e6;
+}
+#affilaites .portada table.std tr.payment td {
+    background: none repeat scroll 0 0 #90ee90;
+}
+#affilaites .portada table.std tr td.commission {
+    font-weight: bold;
+    white-space: nowrap;
+}
+#affilaites .portada table.std tr td.commission_payent, #affilaites .portada table.std tr td.commission_voucher {
+    color: #e3004f;
+    font-weight: bold;
+    white-space: nowrap;
+}
+#affilaites .portada table.std tr td.code_voucher {
+    color: #000;
+    font-weight: bold;
+}
+#affilaites .portada form.std {
+}
+#affilaites .portada form.std fieldset {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+#affilaites .portada form.std textarea#paymentdetails, #affilaites .portada textarea#textcodesection, #affilaites .portada textarea#logocodesection, #affilaites .portada form.std textarea#codesection {
+    width: 680px;
+}
+#affilaites .portada form.std input.button {
+    float: right;
+}
+#affilaites .portada form.std .select label, #affilaites .portada form.std .categorylist label {
+    display: inline;
+}
+.table_afilaites {
+    background: none repeat scroll 0 0 #fff;
+}
+#affilaites p.product_image, #affilaites p.description {
+    margin: 0;
+    padding: 0;
+}
+#affilaites p.product_image img {
+    border: 1px solid #e4e1d5;
+}
+#affilaites h3 {
+    font-family: "Yanone Kaffeesatz",sans-serif;
+    font-size: 22px;
+    font-weight: 200;
+    height: 46px;
+    line-height: 22px;
+    margin-bottom: 0.2em;
+    overflow: hidden;
+}
+#affilaites .price {
+    color: #e3004f;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: left;
+}
+body#contact {
+    float: none;
+    padding: 0;
+    width: auto;
+}
+@media only screen and (min-width: 768px) and (max-width: 980px) {
+.page {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: center -2970px;
+    background-repeat: no-repeat no-repeat;
+    margin: auto;
+    width: 100%;
+}
+#header #logo #conasi {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: 0 0 !important;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    height: 88px;
+    margin-top: 5px;
+    width: 198px;
+}
+#header #logo p {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -199px 0 !important;
+    background-repeat: no-repeat !important;
+    height: 111px;
+    margin-top: 5px;
+}
+.icono_novedad, .icono_nuevo {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -639px 0 !important;
+}
+.icono_oferta {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -595px 0 !important;
+}
+.icono_outlet {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -729px 0 !important;
+}
+.icono_segunda_mano {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -684px 0 !important;
+}
+.shopping_cart_top li {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: 0 -445px !important;
+    background-repeat: no-repeat !important;
+}
+.breadcrumb .accountop li span {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: 0 -414px !important;
+    background-repeat: no-repeat !important;
+}
+#blog_banner {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -340px -135px !important;
+    margin-left: -10px;
+}
+.garantia a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -755px -64px !important;
+    background-repeat: no-repeat !important;
+}
+#footer {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: center -605px !important;
+    background-repeat: no-repeat !important;
+}
+.social_m ul .bfacebook a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -784px 0;
+}
+.social_m ul .btwitter a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -847px 0;
+}
+#social .bocadillo {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -2px -108px !important;
+}
+#social ul .email a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -15px -271px !important;
+}
+#social ul .facebook a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -226px -281px !important;
+}
+#social ul li a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -274px -284px !important;
+    background-repeat: no-repeat;
+}
+#categories_block_left li a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: 0 -390px;
+    background-repeat: no-repeat no-repeat;
+    color: #627723;
+    display: block;
+    padding-left: 12px;
+    text-decoration: none;
+}
+.sf-contener .sf-menu li a {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -1019px -46px !important;
+    background-repeat: no-repeat;
+}
+#blog #month_recipe {
+    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-position: -591px -147px !important;
+    background-repeat: no-repeat !important;
+}
+}
+@media print {
+.sf-contener {
+    display: none;
+}
+#left_column {
+    display: none;
+}
+.breadcrumb {
+    display: none;
+}
+#primary_block, .products_block, #center_column div.list_categorie_product, #center_column .portada {
+    width: 940px;
+}
+#primary_block #pb-left-column {
+    height: 460px !important;
+    width: 570px;
+}
+.shr-bookmarks {
+    display: none;
+}
+.ficha_right {
+    width: 370px;
+}
+#more_info_block {
+    width: 500px;
+}
+.garantia {
+    border: 2px dotted #ee831a;
+    border-radius: 4px;
+    font-size: 1.15em;
+    padding: 10px;
+    width: 228px;
+}
+#header #logo #conasi {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+#header #logo p {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+#header #logo #conasi:after {
+    content: url("http://www.conasi.eu/themes/matrice/img/xcabecera-print3.png.pagespeed.ic.MU_F_TECVr.png");
+}
+#footer {
+    display: none;
+}
+body {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+}
+.destacado_notice {
+    border-bottom: 1px dashed #ee831a;
+    border-top: 1px dashed #ee831a;
+    color: #627723;
+    display: block;
+    font-size: 14px;
+    margin: 10px 0 5px;
+    padding: 10px 0;
+    text-align: center;
+}

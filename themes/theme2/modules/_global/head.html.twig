@@ -1,0 +1,19 @@
+{# MENU DE CABECERA #}
+<div class="sf-contener">
+    <ul class="sf-menu">
+        <li><a href="/">{{macro.idioma('inicio')}}</a></li>
+        {% for item in values.menuCabecera %}
+            <li><a href="{{app.path}}/{{item.url.url}}" {% if item.url.targetBlank %} target="_blank"{% endif %}>{{item.titulo}}</a></li>
+        {% endfor %}
+        <li class="sf-search noBack" style="float:right">
+            <form id="searchbox" action="/search.php" method="get">
+                <input type="hidden" value="position" name="orderby"/>
+                <input type="hidden" value="desc" name="orderway"/>
+                <input type="text" id="search_query" name="search_query" value="{{macro.idioma('palabraBusqueda')}}" 
+                       onfocus="javascript:if (this.value === '{{macro.idioma('palabraBusqueda')}}') this.value = '';" 
+                       onblur="javascript:if (this.value === '') this.value = '{{macro.idioma('palabraBusqueda')}}';"/>
+                <input name="buscartop" id="buscartop" type="submit" value="{{macro.idioma('buscar')}}"/>
+            </form>
+        </li>
+    </ul>
+</div>

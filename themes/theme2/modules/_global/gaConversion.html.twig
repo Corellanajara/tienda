@@ -1,0 +1,32 @@
+{# INFORMA A ANALYTICS DE LA CONVERSIÓN     #}
+{# RECIBE COMO PARÁMETRO EL OBJETO 'PEDIDO' #}
+
+<script type="text/javascript">
+    var gaJsHost = (("https:" === document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    _gaq.push(['_setAccount', '{{values.meta.idGoogleAnalytics}}']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push(['_addTrans',
+      '{{pedido.IDPedido}}',                // order ID - required
+      '{{values.meta.webName}}',            // affiliation or store name
+      '{{pedido.Total}}',                   // total - required
+      '{{pedido.TotalIva}}',                // tax
+      '{{pedido.GastosEnvio}}',             // shipping
+      '{{pedido.IDCliente.IDPoblacion}}',   // city
+      '{{pedido.IDCliente.IDProvincia}}',   // state or province
+      '{{pedido.IDCliente.IDPais}}'         // country
+    ]);
+    {% for linea in pedido.getLineas()%}
+            _gaq.push(['_addItem',
+              '{{pedido.IDPedido}}',                       // order ID - required
+              '{{linea.IDArticulo.Codigo}}',               // SKU/code
+              '{{linea.Descripcion}}',                     // product name
+              '{{linea.IDArticulo.IDCategoria.Familia}}',  // category or variation
+              '{{linea.Precio}}',                          // unit price - required
+              '{{linea.Unidades}}'                         // quantity - required
+            ]);
+    {% endfor %}
+    _gaq.push(['_trackTrans']);
+</script>   

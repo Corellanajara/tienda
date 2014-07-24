@@ -1,0 +1,20 @@
+{# MUESTRA LOS 5 ARTÍCULOS VISITADOS EN LA SESION 
+   POR ORDEN CRONOLÓGICO ASCENDENTE
+#}
+
+{% set articulos = values.widgets.getVisitasSesion('Articulos',5) %}
+{% if articulos|length > 0 %}
+<div>
+    <p>Hoy has visto</p>
+    <ul>
+        {% for key,articulo in articulos %}
+            <li>
+                <div>
+                <a href="{{app.path}}{{articulo.Href.url}}"><img src="{{app.path}}/{{theme}}/{{articulo.getPathNameImagenN(3)}}" alt="{{articulo.Descripcion}}" title="{{articulo.Descripcion}}"></a>               
+                <!--<a href="{{app.path}}{{articulo.Href.url}}">{{articulo.Descripcion}}</a>-->
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

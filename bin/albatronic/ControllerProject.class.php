@@ -19,14 +19,11 @@ class ControllerProject extends ControllerWeb {
         $this->values['firma'] = $this->getFirma();     
         $this->values['redes'] = RedesSociales::getRedes();
         $this->values['menuCabecera'] = Menu::getMenuN(2, 5);
-        $this->values['menuDerecho'] = Menu::getMenuN(1, 5);
-        $this->values['menuPie'] = Menu::getMenuN(5, 5);
+        $this->values['menuPie'] = Menu::getMenuN(3, 5);
         $this->values['datosContacto'] = $this->varWeb['Pro']['globales'];   
-        
+
         // Sliders y opciones de menú para el bloque head
-        $this->values['sliders'] = Sliders::getSliders(1);
-        $this->values['menuCabeceraIzq'] = Menu::getMenuN(2, 3);
-        $this->values['menuCabeceraDcha'] = Menu::getMenuN(3, 3);       
+        $this->values['sliders'] = Sliders::getSliders(1);      
         
         // TOTALES DEL CARRITO
         $this->values['carrito']['totales'] = ErpCarrito::getTotales();

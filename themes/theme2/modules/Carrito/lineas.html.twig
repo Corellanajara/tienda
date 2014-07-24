@@ -1,0 +1,27 @@
+{# Lineas de la cesta #}
+<table class="cesta">
+    <thead>
+        <tr>
+            <th colspan="2">{{macro.idioma('articulo')}}</th>
+            <th>{{macro.idioma('cantidad')}}</th>
+            <th>{{macro.idioma('precio')}}</th>
+            <th>{{macro.idioma('importe')}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for linea in values.carrito.lineas %}
+        {% set imagen = linea.IDArticulo.PathNameImagenN(3) %}
+        <tr id="linea{{linea.Id}}">
+            <td>{% if imagen %}<a href="{{linea.IDArticulo.Href.url}}"><img src="{{appPath}}/{{theme}}/{{imagen}}"/></a>{%endif%}</td>
+            <td>{{linea.Descripcion}}</td>
+            <td>
+                <input class="unidades_lineasCarrito" type="text" id="unidades{{linea.Id}}" value="{{linea.Unidades|number_format}}"/> {{linea.UnidadMedida}}<br/>
+                <span class="btn_lineasCarrito" onclick="actualizar({{linea.Id}});">{{macro.idioma('actualizar')}}</span>
+                <span class="btn_lineasCarrito" onclick="eliminar({{linea.Id}});">{{macro.idioma('eliminar')}}</span>
+            </td>
+            <td>{{linea.Precio|number_format}}</td>
+            <td id="importe{{linea.Id}}">{{linea.Importe|number_format}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

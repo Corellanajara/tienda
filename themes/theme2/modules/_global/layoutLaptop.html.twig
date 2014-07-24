@@ -1,0 +1,61 @@
+{% import '_global/macros.html.twig' as macro %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head>
+    {% include '_global/meta.twig' %}
+    {% include '_global/googleAnalytics.js.twig' %}
+    {% include values.archivoCss %}             
+</head>
+<body id="index" itemscope itemtype="http://schema.org/WebPage">
+    <div class="page">
+        {% block header %}{% include '_global/header.html.twig' %}{% endblock %}        
+        {% block head %}{% include '_global/head.html.twig' %}{% endblock %}
+        <div id="main_center_column">
+            <div id="center_column">
+                {% include '_global/wgBreadcrumb.html.twig' %}
+                {% include '_global/wgCajaCarrito.html.twig' %}
+
+                <div id="fb-root"></div>
+                <script>
+                    (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id))
+                    return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+                    fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+                {% block content %}{% endblock %}
+                {% include '_global/asideLeft.html.twig' %}
+            </div>
+            <br class="clear"/>
+        </div>        
+        
+        {% block footer%}{% include '_global/footer.html.twig' %}{% endblock %}
+    </div>
+    
+    {% include '_global/avisoCookies.html.twig' %}
+
+    <!-- Para que esté disponible el path de la app en todos los java scripts -->
+    <script type="text/javascript">
+        var appPath = "{{appPath}}";
+        var theme = "{{theme}}";
+        var language = "{{language}}";
+    </script>
+
+    {% include values.archivoJs %}
+    {% include '_global/wgZopim.js.twig' %}  
+    
+    <div id="mensajes" title="Mensaje"></div>
+    
+    {% if values._debugMode %}
+        <div style="clear: both;">
+            <pre>{{values._debugValues}}</pre>
+        </div>
+    {% endif %}      
+</body>
+</html>

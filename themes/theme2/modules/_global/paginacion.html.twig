@@ -1,0 +1,54 @@
+
+{% if paginacion.totalPaginas > 0 %}
+    <article class="paginacion">   
+        <form name="paginacion" id="formPaginacion" method="POST" action="">
+            <div id="input_oculto">
+                <input name="controller" value="{{values.controller}}" />
+                <input name="action" id="action" value="index" />
+                <input name="linkBy" id="linkBy" value="{{linkBy}}" />
+                <input name="pagina" id="pagina" value="{{paginacion.pagina}}" />
+            </div>
+
+            {% if paginacion.totalPaginas > 1 %}
+                {% if paginacion.pagina > 1 %}
+                    {% set anterior = paginacion.pagina-1 %}
+                {% else %}
+                    {% set anterior = 1 %}
+                {% endif %}
+                {% if paginacion.pagina < paginacion.totalPaginas %}
+                    {% set siguiente = paginacion.pagina+1 %}
+                {% else %}
+                    {% set siguiente = paginacion.totalPaginas %}
+                {% endif %}
+                {% set desde = paginacion.pagina-2 %}
+                {% set hasta = paginacion.pagina+2 %}
+                {% if desde<1%}{%set desde = 1%}{%endif%}
+                {% if hasta>paginacion.totalPaginas%}{%set hasta = paginacion.totalPaginas%}{%endif%}
+
+                <a href="#" onclick="$('#pagina').val('1');$('#formPaginacion').submit();" title="{{macro.idioma('inicio')}}" class="inicio"></a>                    
+                <a href="#" onclick="$('#pagina').val('{{anterior}}');$('#formPaginacion').submit();" title="{{macro.idioma('anterior')}}" class="anterior"></a>
+                {% if desde>1%}<span class="separacion"></span>{%endif%}
+                {% for i in desde..hasta%}
+                    <a href="#" onclick="$('#pagina').val('{{i}}');$('#formPaginacion').submit();" class="numeracion {% if i == paginacion.pagina%}activo{%endif%}">{{i}}</a>          
+                {% endfor %}
+                {% if hasta<paginacion.totalPaginas%}<span class="separacion"></span>{%endif%}
+                <a href="#" onclick="$('#pagina').val('{{siguiente}}');$('#formPaginacion').submit();" title="{{macro.idioma('siguiente')}}" class="siguiente"></a>              
+                <a href="#" onclick="$('#pagina').val('{{paginacion.totalPaginas}}');$('#formPaginacion').submit();" title="{{macro.idioma('final')}}" class="final"></a>              
+            {% endif %}
+                
+            Ordenar por:
+            <select name="orden" onchange="$('#formPaginacion').submit();">
+                {% for value in values.ordenes %}
+                    <option value="{{value.Id}}" {%if value.Id==values.orden%}selected{%endif%}>{{value.Value}}</option>
+                {% endfor %}
+            </select>
+            
+            Mostrar:
+            <select name="itemsPorPagina" onchange="$('#formPaginacion').submit();">
+                {% for value in values.articulosPorPagina %}
+                    <option value="{{value.Id}}" {%if value.Id==values.itemsPorPagina%}selected{%endif%}>{{value.Value}}</option>
+                {% endfor %}
+            </select>            
+        </form>
+    </article>
+{% endif %} 

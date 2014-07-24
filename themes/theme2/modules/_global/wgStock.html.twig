@@ -1,0 +1,25 @@
+{# MOSTRAR STOCK: recibe el objeto articulo #}
+
+{% if values.mostrarStock %}
+    
+    {% set existencias = articulo.getExistencias %}
+    {% set stock = existencias[0] %}
+
+    {% if stock.Disponibles>0 %}
+        En stock {{stock.Disponibles}}
+    {% else %}
+        {% if values.avisadorStock %}
+            <div id="divAvisadorStock">
+                <a id="avisadorStock">{{macro.idioma('avisadorStock')}}</a>
+                <div id="dialogoAvisador" class="oculto">
+                    <p>{{macro.idioma('indiqueEmailAvisadorStock')}}</p>
+                    <input id="idArticuloAvisador" value="{{articulo.IDArticulo}}" type="hidden"/>
+                    <input id="emailAvisadorStock" value="{{user.email}}"/>
+                    <input class="boton btn_azul left" type="button" id="botonAvisadorStock" value="{{macro.idioma('enviar')}}"/>
+                </div>
+            </div>
+        {% else %}
+            Sin stock
+        {% endif %}
+    {% endif %}
+{% endif %}

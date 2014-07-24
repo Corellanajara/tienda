@@ -1,0 +1,25 @@
+{# FORMULARIO DE COMENTARIO DE ARTICULO #}
+<div>
+    <form name="formComentario" id="formComentario" method="post" action="">
+        <div id="input_oculto">
+            <input name="controller" value="{{values.controller}}"/>
+            <input name="action" value="Comentario"/>
+            <input name="datos[Entidad]" value="Articulos"/>
+            <input name="datos[IdEntidad]" value="{{idArticulo}}"/>
+        </div>
+        <fieldset>
+	<div class="field">
+            <label for="nombre">{{macro.idioma('nombre')}}*</label>
+            <input type="text" name="datos[Nombre]" id="nombre" class="largo" value="" maxlength="50" />
+	</div>
+	<div class="field">
+            <label for="email">{{macro.idioma('email')}}*</label>
+            <input type="text" name="datos[Email]" id="email" class="largo" value="" maxlength="60" />
+	</div>
+	<div class="field">
+            <label for="comentario">{{macro.idioma('comentario')}}*</label>            
+            <textarea name="datos[Comentario]" id="comentario" rows="4" cols="50"></textarea>
+	</div>            
+        <span id="enviarComentario" class="btn_azul">Enviar</span>
+    </form>
+</div>

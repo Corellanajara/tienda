@@ -1,0 +1,40 @@
+{# CONTENIDO #}
+<div id="main_center_column">
+    <div id="center_column">
+        <div class="breadcrumb">
+            <p>Bienvenido a Conasi, la tienda de la cocina natural!</p>
+            <ul class="accountop"><li><a href="http://www.conasi.eu/my-account.php" id="try-1">Entrar</a></li><li><span>Mi cuenta</span></li></ul>
+        </div>
+        <ul class="shopping_cart_top">
+            <li>
+                <a href="http://www.conasi.eu/order.php" title="Hacer pedido" rel="nofollow">
+                    <span class="ajax_cart_no_product ">Sin art&iacute;culos</span>
+                    <span class="ajax_cart_quantity"></span>
+                    <span class="ajax_cart_product hidden">
+                        Art&iacute;culo |
+                        <span class="ajax_cart_total"><strong></strong></span>
+                    </span>
+                    <span class="ajax_cart_product  hidden">
+                        Art&iacute;culos |
+                        <span class="ajax_cart_total"><strong></strong></span>
+                    </span>
+                </a></li>
+        </ul>
+        <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+            return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        
+        {% include '_global/portada.html.twig' %}
+        {% include '_global/asideLeft.html.twig' %}
+    </div>
+    <br class="clear"/>
+</div>

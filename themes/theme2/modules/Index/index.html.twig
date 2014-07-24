@@ -1,0 +1,14 @@
+{% extends layout %}
+
+{% block content %}
+    <div class="portada">
+        {% if values.carruselPortada %}
+            {% set lote = values.widgets.getLotesWeb(1) %}
+            {% include '_global/carousel.html.twig' with {'objetos':lote[0].articulos,'nImagen': 3}%}
+        {% endif %}
+            
+        {% include '_global/listadoArticulos.html.twig' with {'icono': 'icono_novedad', 'titulo': macro.idioma('novedades'), 'articulos': values.widgets.getArticulosZona(values.controller,1)} %}           
+        {% include '_global/listadoArticulos.html.twig' with {'icono': 'icono_oferta', 'titulo': macro.idioma('ofertas'), 'articulos': values.widgets.getArticulosZona(values.controller,2)} %}
+        {% include '_global/listadoArticulos.html.twig' with {'icono': '', 'titulo': macro.idioma('destacados'), 'articulos': values.widgets.getArticulosZona(values.controller,3)} %}
+    </div>
+{% endblock %}

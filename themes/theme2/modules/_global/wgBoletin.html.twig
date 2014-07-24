@@ -1,0 +1,34 @@
+{# SUSCRIPCION AL BOLETIN #}
+<script type="text/javascript">
+function is_checked() {
+    if (document.getElementById('action').value === '0') {
+        if (document.getElementById('politica').checked === false) {
+            alert('{{macro.idioma("debeAceptarPolitica")}}');
+            return false;
+        } else
+            return true;
+    }
+    return true;
+}
+</script>
+<div class="block newsletter">
+    <h4>{{macro.idioma('boletin')}}</h4>
+    <p>{{macro.idioma('esloganBoletin')}}</p>
+    <form  method="post" onsubmit="return is_checked();">
+        <input name="controller" value="boletin" type="hidden"/>
+        <p><input type="text" name="email" size="18" value="Email" 
+                  onfocus="javascript:if (this.value === 'Email') this.value = '';" 
+                  onblur="javascript:if (this.value === '') this.value = 'Email';" class="input_buttonnewsletter"/>
+        </p>
+        <p>
+            <select name="action" id="action">
+                <option value="0">Suscribirse</option>
+                <option value="1">Borrarse</option>
+            </select>
+            <input type="submit" value="Enviar" class="buttonnewsletter" name="submitNewsletter"/>
+        </p>
+        <p>
+            <input type="checkbox" name="politica" id="politica"/> {{macro.idioma('aceptoLa')}} <a href="{{app.path}}/politica-privacidad">{{macro.idioma('politicaPrivacidad')}}</a>
+        </p>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+{# LISTADO DE ARTICULOS SIN PAGINAR #}
+<div class="destacados_home">
+    <h2>{{titulo}}</h2>
+    <ul>
+    {% for articulo in articulos %}
+        <li class="{% if loop.index is divisible by(4) %}endrow{% else %}regular{% endif %}">
+            <p class="image_product_list">
+                <a href="{{appPath}}{{articulo.UrlFriendly}}" class="product_img_link" title="{{articulo.Descripcion}}">
+                    <img src="{{app.path}}/{{theme}}/{{articulo.PathNameImagenN(1)}}" alt=""/>
+                </a>
+                <span class="icons">
+                    <span class="{{icono}}"> </span>
+                </span>
+            </p>
+            <h3>
+                <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a>
+            </h3>
+            <p class="product_desc">{{macro.recortaTexto(articulo.Resumen,30)}}</p>
+            <p class="pprice">
+                <span>{{macro.moneda(articulo.PrecioWeb)}}</span>
+            </p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>

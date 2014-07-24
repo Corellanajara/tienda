@@ -1,0 +1,27 @@
+{# MUESTRA LAS CATEGORIAS Y FAMILIAS #}
+
+{% set categorias = values.widgets.getCategorias %}
+
+{% if categorias|length %}
+<div id="categories_block_left" class="block">    
+<h4 >{{macro.idioma('categorias')}}</h4>
+    <div class="block_content">
+        <ul class="tree dhtml">
+        {% for categoria in categorias %}
+            <li>
+                <a href="{{categoria.categoria.Href.url}}" title="{{categoria.categoria.Familia}}">{{categoria.categoria.Familia}}</a>                       
+                {% if categoria.familias | length > 0 %}
+                    <ul>
+                    {% for familia in categoria.familias %}   
+                        <li class="{%if familia == categoria.familias|last%} last {%endif%}">
+                            <a href="{{familia.Href.url}}" title="{{familia.Familia}}">{{familia.Familia}}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>   
+                {% endif %}  
+            </li>           
+        {% endfor %}                          
+        </ul>
+    </div>
+</div>
+{% endif %}
