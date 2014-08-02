@@ -38,6 +38,8 @@ class __TwigTemplate_40faa9845fe6d422fc2fb41fe560337960f9f40b23a780cf99d37ab315d
 
 
 <!-- JQUERY UI -->
+<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js\">
+    <script type=\"text/javascript\" src=\"js/jquery.flexslider-min.js\"></script>
 <script src=\"http://code.jquery.com/ui/1.10.3/jquery-ui.js\"></script>
 <!-- jQuery UI -->  
 <script>
@@ -122,65 +124,65 @@ class __TwigTemplate_40faa9845fe6d422fc2fb41fe560337960f9f40b23a780cf99d37ab315d
 
 
 <script type=\"text/javascript\" src=\"";
-        // line 91
+        // line 93
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/pirobox_extended.js\"></script>
 <script type=\"text/javascript\" src=\"";
-        // line 92
+        // line 94
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/pirobox_function.js\"></script>  ";
-        // line 93
+        // line 95
         echo "
 <script type=\"text/javascript\" src=\"";
-        // line 94
+        // line 96
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/albatronic.js\"></script>
 
 <script type=\"text/javascript\" src=\"";
-        // line 96
+        // line 98
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/jcarousellite.js\"></script>
 
 ";
-        // line 99
+        // line 101
         echo "<script type=\"text/javascript\" src=\"";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/jquery.cookie.js\"></script>
 <script type=\"text/javascript\" src=\"";
-        // line 100
+        // line 102
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/jquery.hoverIntent.minified.js\"></script>
 <script type=\"text/javascript\" src=\"";
-        // line 101
+        // line 103
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/jquery.dcjqaccordion.2.7.min.js\"></script> 
 <script type=\"text/javascript\" src=\"";
-        // line 102
+        // line 104
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/acordeon-menu-function.js\"></script>
 ";
-        // line 104
+        // line 106
         echo "
 
 
 <script type=\"text/javascript\" src=\"";
-        // line 107
+        // line 109
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
@@ -204,7 +206,7 @@ class __TwigTemplate_40faa9845fe6d422fc2fb41fe560337960f9f40b23a780cf99d37ab315d
     });
 });
 </script> ";
-        // line 127
+        // line 129
         echo "
 <script src=\"//use.edgefonts.net/open-sans.js\"></script>";
     }
@@ -221,6 +223,6 @@ class __TwigTemplate_40faa9845fe6d422fc2fb41fe560337960f9f40b23a780cf99d37ab315d
 
     public function getDebugInfo()
     {
-        return array (  208 => 127,  184 => 107,  179 => 104,  173 => 102,  167 => 101,  161 => 100,  154 => 99,  147 => 96,  140 => 94,  137 => 93,  132 => 92,  126 => 91,  34 => 4,  22 => 2,  19 => 1,  87 => 12,  84 => 11,  76 => 26,  73 => 25,  67 => 22,  63 => 21,  58 => 18,  55 => 17,  52 => 16,  50 => 15,  47 => 14,  43 => 12,  41 => 11,  32 => 6,  27 => 5,  25 => 4,  20 => 1,  39 => 11,  31 => 5,  28 => 3,);
+        return array (  210 => 129,  186 => 109,  181 => 106,  175 => 104,  169 => 103,  163 => 102,  156 => 101,  149 => 98,  142 => 96,  139 => 95,  134 => 94,  128 => 93,  34 => 4,  28 => 3,  22 => 2,  19 => 1,);
     }
 }

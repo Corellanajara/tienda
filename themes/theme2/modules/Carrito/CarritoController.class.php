@@ -106,6 +106,19 @@ class CarritoController extends ControllerProject {
                 }
                 break;
 
+            case 'pagantis':
+                if ($this->request[3] == 'ok') {
+                    // Confirmar pedido pagado
+                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
+                    ErpCarrito::vaciaCarrito();
+                    $this->values['mensaje'] = "pedidoTramitado";
+                } else {
+                    // Anular pedido
+                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
+                    $this->values['mensaje'] = "operacionRechazada";
+                }                
+                break;
+            
             default:
                 // Sin pasarela
                 // Confirmar pedido pendiente de pago

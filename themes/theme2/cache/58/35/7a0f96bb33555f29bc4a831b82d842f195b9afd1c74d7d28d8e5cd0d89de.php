@@ -22,52 +22,36 @@ class __TwigTemplate_58357a0f96bb33555f29bc4a831b82d842f195b9afd1c74d7d28d8e5cd0
         // line 4
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "inicio"), "method"), "html", null, true);
         echo "</a></li>
-        ";
+        <li><a href=\"";
         // line 5
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "menuCabecera"));
-        foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
-            // line 6
-            echo "            <li><a href=\"";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
-            echo "/";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["item"]) ? $context["item"] : null), "url"), "url"), "html", null, true);
-            echo "\" ";
-            if ($this->getAttribute($this->getAttribute((isset($context["item"]) ? $context["item"] : null), "url"), "targetBlank")) {
-                echo " target=\"_blank\"";
-            }
-            echo ">";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["item"]) ? $context["item"] : null), "titulo"), "html", null, true);
-            echo "</a></li>
-        ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['item'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+        echo "/quienes-somos\">";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "quienesSomos"), "method"), "html", null, true);
+        echo "</a></li>        
+        <li><a href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+        echo "/pedidos\">";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "pedidos"), "method"), "html", null, true);
+        echo "</a></li>        
+        <li><a href=\"";
+        // line 7
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+        echo "/garantia\">";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "serviciosYGarantia"), "method"), "html", null, true);
+        echo "</a></li>        
+        <li><a href=\"";
         // line 8
-        echo "        <li class=\"sf-search noBack\" style=\"float:right\">
-            <form id=\"searchbox\" action=\"/search.php\" method=\"get\">
-                <input type=\"hidden\" value=\"position\" name=\"orderby\"/>
-                <input type=\"hidden\" value=\"desc\" name=\"orderway\"/>
-                <input type=\"text\" id=\"search_query\" name=\"search_query\" value=\"";
-        // line 12
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "palabraBusqueda"), "method"), "html", null, true);
-        echo "\" 
-                       onfocus=\"javascript:if (this.value === '";
-        // line 13
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "palabraBusqueda"), "method"), "html", null, true);
-        echo "') this.value = '';\" 
-                       onblur=\"javascript:if (this.value === '') this.value = '";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+        echo "/aviso-legal\">";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "avisoLegal"), "method"), "html", null, true);
+        echo "</a></li>        
+        ";
         // line 14
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "palabraBusqueda"), "method"), "html", null, true);
-        echo "';\"/>
-                <input name=\"buscartop\" id=\"buscartop\" type=\"submit\" value=\"";
+        echo "        ";
+        $this->env->loadTemplate("_global/wgBuscador.html.twig")->display($context);
         // line 15
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "buscar"), "method"), "html", null, true);
-        echo "\"/>
-            </form>
-        </li>
-    </ul>
+        echo "    </ul>
 </div>";
     }
 
@@ -83,6 +67,6 @@ class __TwigTemplate_58357a0f96bb33555f29bc4a831b82d842f195b9afd1c74d7d28d8e5cd0
 
     public function getDebugInfo()
     {
-        return array (  66 => 15,  62 => 14,  58 => 13,  54 => 12,  48 => 8,  31 => 6,  27 => 5,  23 => 4,  19 => 2,);
+        return array (  54 => 15,  51 => 14,  45 => 8,  39 => 7,  33 => 6,  27 => 5,  23 => 4,  19 => 2,);
     }
 }

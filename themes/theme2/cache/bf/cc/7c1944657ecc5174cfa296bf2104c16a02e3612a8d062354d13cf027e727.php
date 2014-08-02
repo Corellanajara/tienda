@@ -18,7 +18,12 @@ class __TwigTemplate_bfcc7c1944657ecc5174cfa296bf2104c16a02e3612a8d062354d13cf02
         // line 1
         echo "<div id=\"footer\">
     <div class=\"path\" id=\"block_various_links_footer\">
-        <p class=\"footercopy\">Conasi &copy; 2014 - Especialistas en productos de Cocina Natural </p>
+        <p class=\"footercopy\">";
+        // line 3
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "datosContacto"), "empresa"), "html", null, true);
+        echo " &copy; 2014 - ";
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "esloganFooter"), "method"), "html", null, true);
+        echo " </p>
         <script type=\"text/javascript\">var google_tag_params = {ecomm_pagetype: \"home\"};</script>
         <script type=\"text/javascript\">//<![CDATA[
             var google_conversion_id = 959731485;
@@ -45,7 +50,6 @@ class __TwigTemplate_bfcc7c1944657ecc5174cfa296bf2104c16a02e3612a8d062354d13cf02
             // line 20
             echo "                <li><a href=\"";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
-            echo "/";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["item"]) ? $context["item"] : null), "url"), "url"), "html", null, true);
             echo "\" title=\"";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["item"]) ? $context["item"] : null), "titulo"), "html", null, true);
@@ -87,7 +91,13 @@ class __TwigTemplate_bfcc7c1944657ecc5174cfa296bf2104c16a02e3612a8d062354d13cf02
                 <li class=\"email\"><a href=\"";
         // line 48
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
-        echo "/contato\" title=\"Formulario de Contacto\"><span class=\"remp\">info arroba conasi.eu / 619 524 895 / 953 10 25 60</span></a></li>
+        echo "/contato\" title=\"Formulario de Contacto\"><span class=\"remp\">";
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "datosContacto"), "emailInfo"), "html", null, true);
+        echo " / ";
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "datosContacto"), "telefono1"), "html", null, true);
+        echo " / ";
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "datosContacto"), "telefono2"), "html", null, true);
+        echo "</span></a></li>
                 <li class=\"facebook\"><a href=\"http://www.facebook.com/conasi/\" title=\"Conasi en Facebook\"><span class=\"remp\">Facebook</span></a></li>
                 <li class=\"twitter\"><a href=\"https://twitter.com/#!/ConasiCocina\" title=\"Conasi en Twitter\"><span class=\"remp\">Twitter</span></a></li>
             </ul>
@@ -109,6 +119,6 @@ class __TwigTemplate_bfcc7c1944657ecc5174cfa296bf2104c16a02e3612a8d062354d13cf02
 
     public function getDebugInfo()
     {
-        return array (  89 => 48,  61 => 22,  46 => 20,  42 => 19,  37 => 17,  19 => 1,);
+        return array (  93 => 48,  65 => 22,  51 => 20,  47 => 19,  42 => 17,  23 => 3,  19 => 1,);
     }
 }

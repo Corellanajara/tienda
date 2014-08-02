@@ -20,97 +20,96 @@ class __TwigTemplate_7a8b60303464fcb99e6d76e24e8bb5849f2fc8d7bf544d5fb257b1c30d8
 ";
         // line 2
         if (($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas") > 0)) {
-            // line 3
-            echo "    <article class=\"paginacion\">   
+            echo "   
         <form name=\"paginacion\" id=\"formPaginacion\" method=\"POST\" action=\"\">
             <div id=\"input_oculto\">
                 <input name=\"controller\" value=\"";
-            // line 6
+            // line 5
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "controller"), "html", null, true);
             echo "\" />
                 <input name=\"action\" id=\"action\" value=\"index\" />
                 <input name=\"linkBy\" id=\"linkBy\" value=\"";
-            // line 8
+            // line 7
             echo twig_escape_filter($this->env, (isset($context["linkBy"]) ? $context["linkBy"] : null), "html", null, true);
             echo "\" />
                 <input name=\"pagina\" id=\"pagina\" value=\"";
-            // line 9
+            // line 8
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "pagina"), "html", null, true);
             echo "\" />
             </div>
 
             ";
-            // line 12
+            // line 11
             if (($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas") > 1)) {
-                // line 13
+                // line 12
                 echo "                ";
                 if (($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "pagina") > 1)) {
-                    // line 14
+                    // line 13
                     echo "                    ";
                     $context["anterior"] = ($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "pagina") - 1);
-                    // line 15
+                    // line 14
                     echo "                ";
                 } else {
-                    // line 16
+                    // line 15
                     echo "                    ";
                     $context["anterior"] = 1;
-                    // line 17
+                    // line 16
                     echo "                ";
                 }
-                // line 18
+                // line 17
                 echo "                ";
                 if (($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "pagina") < $this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas"))) {
-                    // line 19
+                    // line 18
                     echo "                    ";
                     $context["siguiente"] = ($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "pagina") + 1);
-                    // line 20
+                    // line 19
                     echo "                ";
                 } else {
-                    // line 21
+                    // line 20
                     echo "                    ";
                     $context["siguiente"] = $this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas");
-                    // line 22
+                    // line 21
                     echo "                ";
                 }
-                // line 23
+                // line 22
                 echo "                ";
                 $context["desde"] = ($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "pagina") - 2);
-                // line 24
+                // line 23
                 echo "                ";
                 $context["hasta"] = ($this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "pagina") + 2);
-                // line 25
+                // line 24
                 echo "                ";
                 if (((isset($context["desde"]) ? $context["desde"] : null) < 1)) {
                     $context["desde"] = 1;
                 }
-                // line 26
+                // line 25
                 echo "                ";
                 if (((isset($context["hasta"]) ? $context["hasta"] : null) > $this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas"))) {
                     $context["hasta"] = $this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas");
                 }
-                // line 27
+                // line 26
                 echo "
                 <a href=\"#\" onclick=\"\$('#pagina').val('1');\$('#formPaginacion').submit();\" title=\"";
-                // line 28
+                // line 27
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "inicio"), "method"), "html", null, true);
                 echo "\" class=\"inicio\"></a>                    
                 <a href=\"#\" onclick=\"\$('#pagina').val('";
-                // line 29
+                // line 28
                 echo twig_escape_filter($this->env, (isset($context["anterior"]) ? $context["anterior"] : null), "html", null, true);
                 echo "');\$('#formPaginacion').submit();\" title=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "anterior"), "method"), "html", null, true);
                 echo "\" class=\"anterior\"></a>
                 ";
-                // line 30
+                // line 29
                 if (((isset($context["desde"]) ? $context["desde"] : null) > 1)) {
                     echo "<span class=\"separacion\"></span>";
                 }
-                // line 31
+                // line 30
                 echo "                ";
                 $context['_parent'] = (array) $context;
                 $context['_seq'] = twig_ensure_traversable(range((isset($context["desde"]) ? $context["desde"] : null), (isset($context["hasta"]) ? $context["hasta"] : null)));
                 foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                    // line 32
+                    // line 31
                     echo "                    <a href=\"#\" onclick=\"\$('#pagina').val('";
                     echo twig_escape_filter($this->env, (isset($context["i"]) ? $context["i"] : null), "html", null, true);
                     echo "');\$('#formPaginacion').submit();\" class=\"numeracion ";
@@ -125,35 +124,35 @@ class __TwigTemplate_7a8b60303464fcb99e6d76e24e8bb5849f2fc8d7bf544d5fb257b1c30d8
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 34
+                // line 33
                 echo "                ";
                 if (((isset($context["hasta"]) ? $context["hasta"] : null) < $this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas"))) {
                     echo "<span class=\"separacion\"></span>";
                 }
-                // line 35
+                // line 34
                 echo "                <a href=\"#\" onclick=\"\$('#pagina').val('";
                 echo twig_escape_filter($this->env, (isset($context["siguiente"]) ? $context["siguiente"] : null), "html", null, true);
                 echo "');\$('#formPaginacion').submit();\" title=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "siguiente"), "method"), "html", null, true);
                 echo "\" class=\"siguiente\"></a>              
                 <a href=\"#\" onclick=\"\$('#pagina').val('";
-                // line 36
+                // line 35
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["paginacion"]) ? $context["paginacion"] : null), "totalPaginas"), "html", null, true);
                 echo "');\$('#formPaginacion').submit();\" title=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "final"), "method"), "html", null, true);
                 echo "\" class=\"final\"></a>              
             ";
             }
-            // line 38
+            // line 37
             echo "                
-            Ordenar por:
-            <select name=\"orden\" onchange=\"\$('#formPaginacion').submit();\">
+            <p class=\"select\">
+                <select name=\"orden\" onchange=\"\$('#formPaginacion').submit();\">
                 ";
-            // line 41
+            // line 40
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "ordenes"));
             foreach ($context['_seq'] as $context["_key"] => $context["value"]) {
-                // line 42
+                // line 41
                 echo "                    <option value=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["value"]) ? $context["value"] : null), "Id"), "html", null, true);
                 echo "\" ";
@@ -168,17 +167,17 @@ class __TwigTemplate_7a8b60303464fcb99e6d76e24e8bb5849f2fc8d7bf544d5fb257b1c30d8
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['value'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 44
-            echo "            </select>
+            // line 43
+            echo "                </select>
             
             Mostrar:
             <select name=\"itemsPorPagina\" onchange=\"\$('#formPaginacion').submit();\">
                 ";
-            // line 48
+            // line 47
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "articulosPorPagina"));
             foreach ($context['_seq'] as $context["_key"] => $context["value"]) {
-                // line 49
+                // line 48
                 echo "                    <option value=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["value"]) ? $context["value"] : null), "Id"), "html", null, true);
                 echo "\" ";
@@ -193,13 +192,13 @@ class __TwigTemplate_7a8b60303464fcb99e6d76e24e8bb5849f2fc8d7bf544d5fb257b1c30d8
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['value'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 51
-            echo "            </select>            
+            // line 50
+            echo "            </select>
+            </p>
         </form>
-    </article>
 ";
         }
-        // line 54
+        // line 53
         echo " 
 ";
     }
@@ -216,6 +215,6 @@ class __TwigTemplate_7a8b60303464fcb99e6d76e24e8bb5849f2fc8d7bf544d5fb257b1c30d8
 
     public function getDebugInfo()
     {
-        return array (  203 => 54,  197 => 51,  182 => 49,  178 => 48,  172 => 44,  157 => 42,  153 => 41,  148 => 38,  141 => 36,  134 => 35,  129 => 34,  114 => 32,  109 => 31,  105 => 30,  95 => 28,  92 => 27,  79 => 24,  76 => 23,  70 => 21,  67 => 20,  58 => 17,  55 => 16,  52 => 15,  44 => 12,  38 => 9,  29 => 6,  120 => 33,  117 => 32,  99 => 29,  93 => 23,  87 => 26,  81 => 19,  73 => 22,  64 => 19,  61 => 18,  46 => 13,  39 => 9,  34 => 8,  31 => 6,  27 => 5,  24 => 3,  22 => 2,  19 => 1,  84 => 20,  82 => 25,  75 => 17,  71 => 27,  69 => 26,  65 => 24,  51 => 22,  49 => 14,  36 => 8,  33 => 16,  30 => 15,  25 => 13,  23 => 12,);
+        return array (  202 => 53,  196 => 50,  181 => 48,  177 => 47,  171 => 43,  156 => 41,  152 => 40,  147 => 37,  140 => 35,  133 => 34,  128 => 33,  113 => 31,  108 => 30,  104 => 29,  98 => 28,  94 => 27,  91 => 26,  86 => 25,  81 => 24,  78 => 23,  75 => 22,  72 => 21,  69 => 20,  66 => 19,  63 => 18,  60 => 17,  57 => 16,  54 => 15,  51 => 14,  48 => 13,  45 => 12,  43 => 11,  37 => 8,  33 => 7,  28 => 5,  22 => 2,  19 => 1,);
     }
 }

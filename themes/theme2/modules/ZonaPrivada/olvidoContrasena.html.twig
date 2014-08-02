@@ -1,7 +1,7 @@
 {% extends layout %}
 
 {% block content %}
-<section class="contenedorGrandeCentral">
+<div class="portada">
     <article class="colIzqda">
     <h1>{{macro.idioma('olvidoContraseña')}}</h1>
     {% if values.errores | length == 0 %}    
@@ -20,6 +20,6 @@
         </article>    
     {% endif %}
     </article>
-</section>
+</div>
 {% endblock %}
 

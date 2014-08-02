@@ -36,9 +36,31 @@ class __TwigTemplate_011d1b7f2d786e6182b97181de86e5646fe71f2093a941b4f4c37cdfd45
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
         echo "/";
         echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
+        echo "/js/jquery.flexslider.min.js\"></script>
+
+<script type=\"text/javascript\" src=\"";
+        // line 8
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+        echo "/";
+        echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
+        echo "/js/albatronic.js\"></script>
+<script type=\"text/javascript\" src=\"";
+        // line 9
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
+        echo "/";
+        echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
         echo "/js/albatronic.js\"></script>
 
-<script src=\"//use.edgefonts.net/open-sans.js\"></script>";
+<script src=\"//use.edgefonts.net/open-sans.js\"></script>
+
+<script>
+\$(window).load(function() {
+  \$('.flexslider').flexslider({
+    animation: \"slide\",
+    //controlsContainer: \".flex-container\"
+  });
+});
+</script>";
     }
 
     public function getTemplateName()
@@ -53,6 +75,6 @@ class __TwigTemplate_011d1b7f2d786e6182b97181de86e5646fe71f2093a941b4f4c37cdfd45
 
     public function getDebugInfo()
     {
-        return array (  36 => 6,  31 => 3,  25 => 2,  19 => 1,);
+        return array (  49 => 9,  43 => 8,  36 => 6,  31 => 3,  25 => 2,  19 => 1,);
     }
 }

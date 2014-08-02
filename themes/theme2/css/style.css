@@ -1,7 +1,7 @@
 
 
 body {
-    background-image: url("http://www.conasi.eu/themes/matrice/img/wb.jpg.pagespeed.ic.5-FfwoOBKf.webp");
+    //background-image: url("http://www.conasi.eu/themes/matrice/img/wb.jpg.pagespeed.ic.5-FfwoOBKf.webp");
     color: #575758;
     font-family: Arial,Helvetica,sans-serif;
     font-size: x-small;
@@ -202,15 +202,15 @@ h4 {
     font-size: 1em;
 }
 .page {
-    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    //background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
     background-position: center -2970px;
     background-repeat: no-repeat;
     margin: auto;
     width: 100%;
 }
 #header {
-    border-bottom: 3px solid #627723;
-    box-shadow: 0 0 0 2px #9ec21a;
+    border-bottom: 3px solid #2f0097;//#627723;
+    box-shadow: 0 0 0 2px #2f5997;//#9ec21a;
     height: 130px;
     margin: auto;
     width: 100%;
@@ -984,7 +984,8 @@ img.icon {
     width: 940px;
 }
 #header #logo #conasi {
-    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    background-image: url("http://www.albatronic.com/images/albatronic-cloud-solutions.png");    
+    //background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
     background-position: -154px -5px;
     background-repeat: no-repeat;
     display: block;
@@ -993,7 +994,7 @@ img.icon {
     width: 198px;
 }
 #header #logo p {
-    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    //background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
     background-position: -351px -6px;
     cursor: pointer;
     float: right;
@@ -1001,8 +1002,10 @@ img.icon {
     width: 382px;
 }
 #footer {
-    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
+    //background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi.png.pagespeed.ic.pReBqCf4EW.png");
     background-position: center -2420px;
+    background-color: grey;
+    color: #bbbbbb;
     clear: both;
     padding-bottom: 20px;
     padding-top: 80px;
@@ -1185,10 +1188,10 @@ div.sheets {
     background-color: #fff;
 }
 .sf-contener .sf-menu .sf-search #buscartop {
-    background-color: #9ec21a;
+    background-color: #2f5997;//#9ec21a;
     border: 1px dashed #fff;
     border-radius: 4px;
-    box-shadow: 0 0 0 2px #9ec21a;
+    box-shadow: 0 0 0 2px #2f5997;//#9ec21a;
     color: #fff;
     cursor: pointer;
     font-size: 12px;
@@ -3260,7 +3263,7 @@ span.view_scroll_spacer {
     width: 360px;
 }
 .slides li .boton a {
-    background-color: #9ec21c;
+    background-color: #2f5997;//#9ec21c;
     border-radius: 4px;
     color: #fff;
     display: block;
@@ -3894,7 +3897,7 @@ body#contact {
     width: 100%;
 }
 #header #logo #conasi {
-    background-image: url("http://www.conasi.eu/themes/matrice/img/xspriteconasi_ipad.png.pagespeed.ic.IQx-vT3nLU.png");
+    background-image: url("{{app.path}}}/{{theme}}/images/logo.png");
     background-position: 0 0 !important;
     background-repeat: no-repeat;
     display: block;
@@ -4054,4 +4057,26 @@ body {
     margin: 10px 0 5px;
     padding: 10px 0;
     text-align: center;
+}
+
+#input_oculto {
+    display: none;
+}
+
+.flex-container{
+   width: 100%;
+   max-width: 960px;
+}
+.flex-caption {
+width: 50%;
+padding: 2%;
+margin: 0;
+position: absolute;
+left: 0;
+bottom: 0;
+background: rgba(0,0,0,.3);
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+font-size: 14px;
+line-height: 18px;
 }

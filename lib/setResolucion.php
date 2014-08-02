@@ -9,4 +9,4 @@
  */
 session_start();
 $_SESSION['resolucionVisitante'] = $_POST['resolucion'];
-?>
+

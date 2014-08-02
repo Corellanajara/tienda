@@ -3,6 +3,18 @@
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> <!-- jQuery UI -->  
 
+<script type="text/javascript" src="{{app.path}}/{{theme}}/js/jquery.flexslider.min.js"></script>
+
+<script type="text/javascript" src="{{app.path}}/{{theme}}/js/albatronic.js"></script>
 <script type="text/javascript" src="{{app.path}}/{{theme}}/js/albatronic.js"></script>
 
 <script src="//use.edgefonts.net/open-sans.js"></script>
+
+<script>
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide",
+    //controlsContainer: ".flex-container"
+  });
+});
+</script>

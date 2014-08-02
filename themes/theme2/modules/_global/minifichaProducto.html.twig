@@ -1,0 +1,19 @@
+{# MINIFICHA PRODUCTO #}
+<p class="image_product_list">
+    <a href="{{appPath}}{{articulo.UrlFriendly}}" class="product_img_link" title="{{articulo.Descripcion}}">
+        <img src="{{app.path}}/{{theme}}/{{articulo.PathNameImagenN(1)}}" alt="{{articulo.Descripcion}}" width="129" height="129"/>
+    </a>
+    <span class="icons"></span>
+</p>
+<h3>
+    <a href="{{appPath}}{{articulo.UrlFriendly}}" title="Germinador el&eacute;ctrico Easygreen">{{articulo.Descripcion}}</a>
+</h3>
+<p class="product_desc">{{macro.recortaTexto(articulo.Resumen,40)}}</p>
+<p class="pprice precio_categoria">
+    <span>{{macro.moneda(articulo.PrecioWeb)}}</span>
+</p>
+<p> <a class="ajax_add_to_cart_button" rel="ajax_id_product_262" href="http://www.conasi.eu/carro-de-la-compra?add&amp;id_product=262&amp;token=5d9d2269ba4a51e10dc42eb9065431e5" title="A&ntilde;adir a la cesta">A&ntilde;adir a la cesta</a></p>
+<p class="check_list_compare">
+    <input type="checkbox" onclick="checkForComparison(3)" class="comparator" id="comparator_item_262" value="262"/>
+    <label for="comparator_item_262">Comparador</label>
+</p>

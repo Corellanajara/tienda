@@ -26,7 +26,7 @@ class __TwigTemplate_3aac91b95b5c425ff2df38cd3cad1b0f7f9e6365867587999dc0e4bf2c8
     public function block_content($context, array $blocks = array())
     {
         // line 14
-        echo "<section class=\"contenedorGrandeCentral\">
+        echo "<div class=\"portada\">
     <article class=\"colIzqda\">
         <h1>";
         // line 16
@@ -107,7 +107,7 @@ class __TwigTemplate_3aac91b95b5c425ff2df38cd3cad1b0f7f9e6365867587999dc0e4bf2c8
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "accesoNuevoTexto"), "method"), "html", null, true);
         echo "</a></p>
     </article>     
-</section>
+</div>
 ";
     }
 

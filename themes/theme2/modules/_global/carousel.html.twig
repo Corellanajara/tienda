@@ -1,49 +1,23 @@
 {# CAROUSEL #}
 
-<div class="lof-module-slideshow basic">
-    <div class="lof-slideshow-bd-10434722391406214208 lof-slideshow-bd">
-        <div class="lofslideshow-container lofslideshow-container-10434722391406214208">
-            <div id="lof-begin-slide-10434722391406214208" class="lofflexslider">
-                <ul class="slides">
-                {% for objeto in objetos %}
-                <li>
-                    <a href="{{objeto.Href.url}}" title="{{objeto.__toString}}" target="_self">
-                    <img src="{{app.path}}/{{theme}}/{{objeto.getPathNameImagenN(nImagen)}}" alt="{{objeto.__toString}}" width="340" height="340"/>
-                    </a>
-                    <h2><a href="{{objeto.Href.url}}" title="{{objeto.__toString()}}" target="_self">{{objeto.__toString()}}</a></h2>
-                    <p class="desc">{{objeto.__toString}}</p>
-                    <p class="boton"><a href="{{objeto.Href.url}}" title="{{objeto.__toString()}}" target="_self">{{macro.idioma('masInfo')}}</a></p>
-                </li>
-                {% endfor %}                    
-                </ul>
-            </div>
-            <div class="lof-panel-nav-10434722391406214208 lof-panel-nav">
-                <ol class="lof-control-nav lof-control-nav-10434722391406214208">
-                    {% for objeto in objetos %}
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    {% endfor %}
-                </ol>
-            </div>
-        </div>
-    </div>
+ <div class="flex-container">
+<div class="flexslider">
+
+    <ul class="slides">
+    {% for objeto in objetos %}
+    <li>
+        <a href="{{objeto.Href.url}}" title="{{objeto.__toString}}" target="_self">
+        <img src="{{app.path}}/{{theme}}/{{objeto.getPathNameImagenN(nImagen)}}" alt="{{objeto.__toString}}" width="340" height="340"/>
+        </a>
+        <p class="flex-caption1">hola
+            <h2><a href="{{objeto.Href.url}}" title="{{objeto.__toString()}}" target="_self">{{objeto.__toString()}}</a></h2>
+            <p class="desc">{{objeto.__toString}}</p>
+            <p class="boton"><a href="{{objeto.Href.url}}" title="{{objeto.__toString()}}" target="_self">{{macro.idioma('masInfo')}}</a></p>
+        </p>
+    </li>
+    {% endfor %}                    
+    </ul>
+
 </div>
-<script type="text/javascript">//<![CDATA[
-    $(window).load(function() {
-        $('#lof-begin-slide-10434722391406214208').lofflexslider({animation: "slide", loftheme: "basic", slideshow: 1, slideshowSpeed: 3500, animationDuration: 700, showButtonControlNav: 1, totalItemSlide: 4, startScroll: 3, lenghtscroll: 242, captionMain: 'lof-cap-bottom', pauseOnHover: 1, startNavSlide: 0, slideToStart: 0, itemPrePage: 4, controlNavScaffold: false, moduleId: '10434722391406214208', manualControls: ".lof-control-nav li a", controlsContainer: ".lofslideshow-container"});
-        $(".lof-slideshow-bd-10434722391406214208").hover(function() {
-            $('.lof-buttons-10434722391406214208').addClass("buttons-hover-10434722391406214208")
-        }, function() {
-            $('.lof-buttons-10434722391406214208').removeClass("buttons-hover-10434722391406214208")
-        });
-    });
-//]]></script>
-<script language="javascript" type="text/javascript">//<![CDATA[
-    $(document).ready(function() {
-        $(".lof-tool-item-10434722391406214208").tooltip({effect: 'slide', offset: [0, 2], onBeforeShow: function(event, position) {
-                this.getTip().appendTo(document.body);
-                return true;
-            }}).dynamic({bottom: {direction: 'up', bounce: true}});
-    });
-//]]></script>   
+ </div>
+ 

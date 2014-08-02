@@ -30,9 +30,12 @@ class __TwigTemplate_526d9af245c981cfcee83fcf45c8028c595bea031ab693370e17abb68a3
     public function block_content($context, array $blocks = array())
     {
         // line 16
-        echo "    <div class=\"central\">
-        <h2><span>";
-        // line 17
+        echo "<div class=\"portada\">
+    <div class=\"list_categorie_product\">    
+        <div class=\"list_product\">
+            <h1 class=\"category_title\">
+            ";
+        // line 20
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["familia"]) ? $context["familia"] : null), "Familia"), "html", null, true);
         echo " (";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "hay"), "method"), "html", null, true);
@@ -40,50 +43,24 @@ class __TwigTemplate_526d9af245c981cfcee83fcf45c8028c595bea031ab693370e17abb68a3
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "articulos"), "paginacion"), "totalItems"), "html", null, true);
         echo " ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "articulos"), "method"), "html", null, true);
-        echo ")</span></h2>
-        
-        <article id=\"infoPrincipal\">
-            <div id=\"imagenes\" style=\"float:left;margin-right: 20px;\">
-                ";
-        // line 21
-        if ((isset($context["logo"]) ? $context["logo"] : null)) {
-            // line 22
-            echo "                    <img src=\"";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
-            echo "/";
-            echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
-            echo "/";
-            echo twig_escape_filter($this->env, (isset($context["logo"]) ? $context["logo"] : null), "html", null, true);
-            echo "\" alt=\"";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["familia"]) ? $context["familia"] : null), "Titulo"), "html", null, true);
-            echo "\" title=\"";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["familia"]) ? $context["familia"] : null), "Titulo"), "html", null, true);
-            echo "\" />             
-                ";
-        }
-        // line 24
-        echo "            </div>
-            <div id=\"descripcion\" style=\"float:left;width:300px;\">
-                ";
-        // line 26
-        echo $this->getAttribute((isset($context["familia"]) ? $context["familia"] : null), "Descripcion1");
-        // line 27
-        echo "            </div> 
+        echo ")
+            </h1>
+            <div class=\"cat_desc\"><p>";
+        // line 22
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["familia"]) ? $context["familia"] : null), "Observations"), "html", null, true);
+        echo "</p></div>
+        </div>
 
-            ";
-        // line 29
-        $this->env->loadTemplate("_global/listadoArticulos.html.twig")->display(array_merge($context, array("articulos" => $this->getAttribute((isset($context["values"]) ? $context["values"] : null), "destacados"))));
-        echo "            
-        </article>
-
-        <section id=\"noticias\">
-            ";
-        // line 33
+        ";
+        // line 39
+        echo "
+        ";
+        // line 40
         $this->env->loadTemplate("_global/listadoArticulosPaginados.html.twig")->display(array_merge($context, array("articulos" => $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "articulos"), "articulos"), "paginacion" => $this->getAttribute($this->getAttribute((isset($context["values"]) ? $context["values"] : null), "articulos"), "paginacion"), "linkBy" => $this->getAttribute((isset($context["familia"]) ? $context["familia"] : null), "PrimaryKeyValue"))));
-        // line 34
-        echo "        </section>        
+        echo "      
 
     </div>
+</div>
 ";
     }
 
@@ -99,6 +76,6 @@ class __TwigTemplate_526d9af245c981cfcee83fcf45c8028c595bea031ab693370e17abb68a3
 
     public function getDebugInfo()
     {
-        return array (  84 => 34,  82 => 33,  75 => 29,  71 => 27,  69 => 26,  65 => 24,  51 => 22,  49 => 21,  36 => 17,  33 => 16,  30 => 15,  25 => 13,  23 => 12,);
+        return array (  59 => 40,  56 => 39,  50 => 22,  39 => 20,  33 => 16,  30 => 15,  25 => 13,  23 => 12,);
     }
 }

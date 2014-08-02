@@ -1,12 +1,11 @@
 {% extends layout %}
 
 {% block content %}
-    <div class="central">
-        <h2><span>Buscando "{{values.textoBusqueda}}" ({{macros.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macros.idioma('articulos')}})</span></h2>
+    <div class="portada">
+        <h2><span>{{macro.idioma('buscando')}} "{{values.textoBusqueda}}" ({{macros.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macros.idioma('articulos')}})</span></h2>
 
         <section id="noticias">
             {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':values.textoBusqueda} %}
         </section>        
-
     </div>
 {% endblock %}

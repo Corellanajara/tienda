@@ -39,7 +39,7 @@ config:
       user: 
       password: 
       timeout: 30
-      folder: tienda/themes/theme2
+      folder: tienda/themes/theme1
         
   # CONTROL DE ACCESO POR IP
   ip_control: true
@@ -52,7 +52,7 @@ config:
     url: http://tienda.local
     path: 
     framework: bin/albatronic/
-    theme: themes/theme2
+    theme: themes/theme1
 
   # SEMILLA PARA CONSTRUIR CLAVES MD5
   semillaMD5: pablo

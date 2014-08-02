@@ -22,101 +22,69 @@ class __TwigTemplate_e64e9984f1b714ef691164574087ed0815f6178ead1ec3d632a2c362591
         $this->env->loadTemplate("_global/paginacion.html.twig")->display(array_merge($context, array("paginacion" => (isset($context["paginacion"]) ? $context["paginacion"] : null), "linkBy" => (isset($context["linkBy"]) ? $context["linkBy"] : null))));
         // line 4
         echo "
+<ul id=\"product_list\" class=\"categorie_product clear\">
 ";
-        // line 5
+        // line 6
+        $context["row"] = 0;
+        // line 7
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["articulos"]) ? $context["articulos"] : null));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
         foreach ($context['_seq'] as $context["_key"] => $context["articulo"]) {
-            // line 6
-            echo "<article>
+            // line 8
+            echo "    <li class=\"";
+            if ((($this->getAttribute((isset($context["loop"]) ? $context["loop"] : null), "index") - ((isset($context["row"]) ? $context["row"] : null) * 3)) % 2 == 1)) {
+                echo "regular";
+            } else {
+                echo "centro";
+            }
+            echo " clearfix\">
+        ";
+            // line 9
+            $this->env->loadTemplate("_global/minifichaProducto.html.twig")->display(array_merge($context, array("articulo" => (isset($context["articulo"]) ? $context["articulo"] : null))));
+            // line 10
+            echo "    </li>
     ";
-            // line 7
-            if ($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "PathNameImagenN")) {
-                // line 8
-                echo "    <figure>
-        <a href=\"";
-                // line 9
-                echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "UrlFriendly"), "html", null, true);
-                echo "\" title=\"";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Descripcion"), "html", null, true);
-                echo "\">
-            <img src=\"";
-                // line 10
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["app"]) ? $context["app"] : null), "path"), "html", null, true);
-                echo "/";
-                echo twig_escape_filter($this->env, (isset($context["theme"]) ? $context["theme"] : null), "html", null, true);
-                echo "/";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "PathNameImagenN", array(0 => 1), "method"), "html", null, true);
-                echo "\" title=\"";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Descripcion"), "html", null, true);
-                echo "\" alt=\"";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Descripcion"), "html", null, true);
-                echo "\" />
-        </a>
-    </figure>
-    ";
-            }
-            // line 14
-            echo "    <div class=\"info\">
-        <h3><a href=\"";
-            // line 15
-            echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "UrlFriendly"), "html", null, true);
-            echo "\" title=\"";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Descripcion"), "html", null, true);
-            echo "\">";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Descripcion"), "html", null, true);
-            echo "</a></h3>
+            // line 11
+            if ((0 == $this->getAttribute((isset($context["loop"]) ? $context["loop"] : null), "index") % 3)) {
+                // line 12
+                echo "        <li class=\"clear clear_line\"></li>
         ";
-            // line 16
-            if (($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Resumen") != $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Descripcion"))) {
-                // line 17
-                echo "            <div class=\"resumen\">";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "Resumen"), "html", null, true);
-                echo "</div>
-        ";
+                // line 13
+                $context["row"] = ((isset($context["row"]) ? $context["row"] : null) + 1);
+                // line 14
+                echo "    ";
             }
-            // line 19
-            echo "        ";
-            $context["precioActual"] = $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "PrecioWeb");
-            // line 20
-            echo "        ";
-            if ((($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "PvpAnterior") > 0) && ($this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "PrecioAnterior") != (isset($context["precioActual"]) ? $context["precioActual"] : null)))) {
-                // line 21
-                echo "            <div class=\"precios precioAnterior\">";
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "PvpAnterior")), "method"), "html", null, true);
-                echo "</div>                
-        ";
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['length'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
             }
-            // line 23
-            echo "        <div class=\"precioActual\">";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "moneda", array(0 => (isset($context["precioActual"]) ? $context["precioActual"] : null)), "method"), "html", null, true);
-            echo "</div>
-        <article class=\"botonera\">
-            <a href=\"";
-            // line 25
-            echo twig_escape_filter($this->env, (isset($context["appPath"]) ? $context["appPath"] : null), "html", null, true);
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : null), "UrlFriendly"), "html", null, true);
-            echo "\" title=\"";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "masInfo"), "method"), "html", null, true);
-            echo "\" class=\"saberMas\">";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["macro"]) ? $context["macro"] : null), "idioma", array(0 => "saberMas"), "method"), "html", null, true);
-            echo "
-                <span class=\"sprite\"></span>
-            </a>
-        </article>
-    </div>
-</article>
-";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['articulo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 32
-        echo "
+        // line 16
+        echo "    <li class=\"clear clear_line\"></li>
+</ul>
+
 ";
-        // line 33
+        // line 19
         $this->env->loadTemplate("_global/paginacion.html.twig")->display(array_merge($context, array("paginacion" => (isset($context["paginacion"]) ? $context["paginacion"] : null), "linkBy" => (isset($context["linkBy"]) ? $context["linkBy"] : null))));
     }
 
@@ -132,6 +100,6 @@ class __TwigTemplate_e64e9984f1b714ef691164574087ed0815f6178ead1ec3d632a2c362591
 
     public function getDebugInfo()
     {
-        return array (  120 => 33,  117 => 32,  99 => 25,  93 => 23,  87 => 21,  81 => 19,  73 => 16,  64 => 15,  61 => 14,  46 => 10,  39 => 9,  34 => 7,  31 => 6,  27 => 5,  24 => 4,  22 => 3,  19 => 2,  84 => 20,  82 => 33,  75 => 17,  71 => 27,  69 => 26,  65 => 24,  51 => 22,  49 => 21,  36 => 8,  33 => 16,  30 => 15,  25 => 13,  23 => 12,);
+        return array (  88 => 19,  83 => 16,  68 => 14,  66 => 13,  63 => 12,  61 => 11,  58 => 10,  56 => 9,  47 => 8,  30 => 7,  28 => 6,  24 => 4,  22 => 3,  19 => 2,);
     }
 }

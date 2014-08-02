@@ -5,6 +5,7 @@
 {% set pedido = values.pedido %}
     
 {% block content %}
+    <div class="portada">
     <li>Pedido {{pedido.IDPedido}}</li>
     <li>Fecha {{pedido.Fecha}}</li>
     <li>Cliente {{pedido.IDCliente}}</li>
@@ -24,7 +25,7 @@
     <li>{{macro.idioma("totalAPagar")}} {{macro.moneda(pedido.total + pedido.GastosEnvio)}}</li>
     
     <form name="formResumenPedido" id="formResumenPedido" method="POST" action="{%if (values.pasarela.url_tpv != '') %}{{values.pasarela.url_tpv}}{% endif %}">
-        <div class="oculto">
+        <div id="input-oculto">
             {%if (values.pasarela.url_tpv != '') %}
                 {% for key,value in values.pasarela %}
                     {% if key != 'url_tpv' %}
@@ -41,7 +42,7 @@
         <a class="btn-condiciones" href="{{app.path}}/">{{macro.idioma("seguirComprando")}}</a>       
         <p id="mensajeConectando" class="oculto">{{macro.idioma('conectandoPasarela')}}</p>
     </form>
-
+    </div>
 <script>
 $(function(){
     $('#confirmarPedido').click(function(){

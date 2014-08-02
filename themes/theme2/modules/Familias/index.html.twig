@@ -13,9 +13,16 @@
 {% set logo = familia.PathNameImagenN(1) %}
 
 {% block content %}
-    <div class="central">
-        <h2><span>{{familia.Familia}} ({{macro.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macro.idioma('articulos')}})</span></h2>
-        
+<div class="portada">
+    <div class="list_categorie_product">    
+        <div class="list_product">
+            <h1 class="category_title">
+            {{familia.Familia}} ({{macro.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macro.idioma('articulos')}})
+            </h1>
+            <div class="cat_desc"><p>{{familia.Observations}}</p></div>
+        </div>
+
+        {#
         <article id="infoPrincipal">
             <div id="imagenes" style="float:left;margin-right: 20px;">
                 {% if logo %}
@@ -28,10 +35,10 @@
 
             {% include '_global/listadoArticulos.html.twig' with {'articulos':values.destacados} %}            
         </article>
+        #}
 
-        <section id="noticias">
-            {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':familia.PrimaryKeyValue} %}
-        </section>        
+        {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':familia.PrimaryKeyValue} %}      
 
     </div>
+</div>
 {% endblock %}

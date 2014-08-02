@@ -3,18 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/resumenPedido.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/CarritoController.class.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/bin/albatronic/ControllerProject.class.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/_global/listadoArticulos.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/pedidoOk.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Index/IndexController.class.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/index.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/pedidoKo.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/_global/wgCajaCarrito.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/_global/footer.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/lib/notificacionPaypal.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/lib/notificacionRedsys.php</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/css/flexslider.css</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Index/index.js.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Favoritos/listado.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Carrito/index.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Producto/index.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/_global/carousel.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/_global/layoutLaptop.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/_global/minifichaProducto.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/_global/js.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Carrito/resumenPedido.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Producto/productoInfo.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Producto/solapas.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/Favoritos/index.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme2/modules/ZonaPrivada/index.html.twig</file>
         </group>
     </open-files>
 </project-private>
