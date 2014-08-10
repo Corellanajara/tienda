@@ -1,2 +1,18 @@
 User-agent: *
-Disallow: /
+# Desarrollo
+#Disallow: /
+
+# Produccion
+Disallow: /bin/
+Disallow: /config/
+Disallow: /cron/
+Disallow: /entities/
+Disallow: /lang/
+Disallow: /lib/
+Disallow: /log/
+Disallow: /tmp/
+Sitemap: http://www.DOMINIO.com/sitemap/index.xml
+Sitemap: http://www.DOMINIO.com/sitemap/secciones.xml
+Sitemap: http://www.DOMINIO.com/sitemap/contenidos.xml
+Sitemap: http://www.DOMINIO.com/sitemap/noticias.xml
+Sitemap: http://www.DOMINIO.com/sitemap/eventos.xml
