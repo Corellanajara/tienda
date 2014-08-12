@@ -71,10 +71,14 @@ class TiposTpv extends Tipos {
      * @param decimal $total
      * @return array
      */
-    static private function getParamsPaypal($idPedido, $total) {
+    static private function getParamsPaypal($idPedido) {
 
+        $pedido = new PedidosWebCab($idPedido);
+        $total = $pedido->getTotal() + $pedido->getGastosEnvio();
+        //$nItems = $pedido->getNItems();
+        unset($pedido);
+                 
         $modo = ($_SESSION['varEnv']['Pro']['shop']['paypal']['modo'] == '1') ? 'real' : 'test';
-        $urlWeb = $_SESSION['varEnv']['Pro']['shop']['url'];
 
         $parametros = array(
             'url_tpv' => self::$urlTpv[1][$modo],
@@ -82,11 +86,12 @@ class TiposTpv extends Tipos {
             'upload' => '1',
             'business' => $_SESSION['varEnv']['Pro']['shop']['paypal']['business'],
             'currency_code' => $_SESSION['varEnv']['Pro']['shop']['paypal']['currency_code'],
-            'return' => $urlWeb . '/carrito/notificacion/paypal/ok',
-            'cancel_return' => $urlWeb . '/carrito/notificacion/paypal/ko',
-            'notify_url' => $urlWeb . '/lib/notificacionPaypal.php',
+            'return' => $_SESSION['varEnv']['Pro']['shop']['url'] . '/carrito/notificacion/paypal/ok',
+            'cancel_return' => $_SESSION['varEnv']['Pro']['shop']['url'] . '/carrito/notificacion/paypal/ko',
+            'notify_url' => $_SESSION['varEnv']['Pro']['shop']['url'] . '/lib/notificacionPaypal.php',
             'amount_1' => number_format($total, 2, '.', ''), // solo 2 decimales y sin separador de miles
             'item_name_1' => 'N. de Pedido:  ' . $idPedido,
+            //'quantity_1' => number_format($nItems,0), // Se debe expresar como un entero y debe ser > 0
             'custom' => $idPedido,
         );
 
@@ -100,7 +105,7 @@ class TiposTpv extends Tipos {
      * @param decimal $total
      * @return array
      */
-    static private function getParamsRedsys($idPedido, $total) {
+    static private function getParamsRedsys($idPedido) {
         
         $pedido = new PedidosWebCab($idPedido);
         $total = $pedido->getTotal() + $pedido->getGastosEnvio();
@@ -115,8 +120,10 @@ class TiposTpv extends Tipos {
         if ($total[0] == '0') {
             // si es menor de 1 hay q quitar el cero inicial (ej: 0.25 => 025 => 25)
             $total = substr($total, 1);
-        }          
-
+        } 
+        
+        $modo = ($_SESSION['varEnv']['Pro']['shop']['redsys']['modo'] == '1') ? 'real' : 'test';
+        
         $parametros = array(
             'url_tpv' => self::$urlTpv[2][$modo],
             'Ds_Merchant_Amount' => $total,
@@ -161,7 +168,9 @@ class TiposTpv extends Tipos {
         if ($total[0] == '0') {
             // si es menor de 1 hay q quitar el cero inicial (ej: 0.25 => 025 => 25)
             $total = substr($total, 1);
-        }        
+        }  
+        
+        $modo = ($_SESSION['varEnv']['Pro']['shop']['pagantis']['modo'] == '1') ? 'real' : 'test';
         
         $parametros = array(
             'url_tpv' => self::$urlTpv[3][$modo],

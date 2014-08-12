@@ -267,6 +267,20 @@ class PedidosWebCab extends PedidosWebCabEntity {
     }
 
     /**
+     * Devuelve el número de productos que hay en
+     * las líneas del pedido
+     * 
+     * @return int
+     */
+    public function getNItems() {
+
+        $lineas = new PedidosWebLineas();
+        $row = $lineas->cargaCondicion("sum(Unidades) nItems", "IDPedido='{$this->IDPedido}'");
+
+        return ($row[0]['nItems'] !== '') ? $row[0]['nItems'] : 0;
+    }
+
+    /**
      * Envía por mail el pedido $idPedido al cliente y CCo al email
      * de notificación de pedidos indicado en la varEnv['Pro']['shop']['eMailPedidos']
      * 
@@ -276,7 +290,7 @@ class PedidosWebCab extends PedidosWebCabEntity {
      * @return integer El número de envío realizados. Cero en caso de error.
      */
     static function enviaCorreos($idPedido) {
-        
+
         $varEnv = CpanVariables::getVariables("Env", "Pro");
         $varWeb = CpanVariables::getVariables("Web", "Pro");
 
@@ -318,17 +332,13 @@ class PedidosWebCab extends PedidosWebCabEntity {
         $plantilla = new CpanPlantillas();
         $texto = $plantilla->getPlantilla("", "emailPedido", $sustituir);
         unset($plantilla);
-        
+
         // Enviar correo al cliente y con CCo al email de pedidos
         $mailer = new Mail($varWeb['mail']);
         $ok = $mailer->send(
-                $cliente->getEmail(), 
-                $varWeb['mail']['from'], 
-                $varWeb['mail']['from_name'],
-                "",
-                $varEnv['shop']['eMailPedidos'], "Resguardo de Pedido", $texto, array()
+                $cliente->getEmail(), $varWeb['mail']['from'], $varWeb['mail']['from_name'], "", $varEnv['shop']['eMailPedidos'], "Resguardo de Pedido", $texto, array()
         );
-        
+
         return $ok;
     }
 

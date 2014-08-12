@@ -56,8 +56,7 @@ class CarritoController extends ControllerProject {
             // ver si tengo que enviar a la pasarela
             $formaPago = $pedido->getIDFP();
             if ($formaPago->getAccion()->getIDTipo() == '2' && $formaPago->getTipoTPV()->getIDTipo() > 0) {
-                $parametrosPasarela = TiposTpv::getParametros($formaPago->getTipoTPV()->getIDTipo(), $idPedido);
-                $this->values['pasarela'] = $parametrosPasarela;
+                $this->values['pasarela'] = TiposTpv::getParametros($formaPago->getTipoTPV()->getIDTipo(), $idPedido);
             }
 
             $this->values['pedido'] = $pedido;
