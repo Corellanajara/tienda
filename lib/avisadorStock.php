@@ -73,7 +73,4 @@ switch ($v['accion']) {
         break;
 }
 
-
 echo $resultado;
-
-

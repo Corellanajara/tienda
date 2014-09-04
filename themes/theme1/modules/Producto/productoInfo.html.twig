@@ -24,7 +24,7 @@
 
     <div class="cajaPrecios">
         <div><b>{{macro.idioma('referencia')}}:</b> {{values.producto.Codigo}}</div>
-        <div>{%autoescape false%}{{values.producto.Resumen}}{%endautoescape%}</div>        
+        <div>{% autoescape false %}{{values.producto.Resumen}}{% endautoescape %}</div>        
         {% if values.producto.PrecioWeb > 0 %}
             <div>
                 {% if values.producto.PvpAnterior > 0 %}

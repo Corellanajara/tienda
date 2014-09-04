@@ -256,6 +256,60 @@ class ZonaPrivadaController extends ControllerProject {
     }
 
     /**
+     * Logeo del distribuidor
+     * 
+     * @return type
+     */
+    public function LoginDistribuidorAction() {
+
+        $this->values['login'] = $this->request['login'];
+
+        $usuarios = new Clientes();
+        $usuario = $usuarios->find("Login", $this->request['login']['Email']);
+        unset($usuarios);
+
+        if ($usuario->getPrimaryKeyValue()) {
+            // El usuario existe
+            $password = md5($this->request['login']['Password'] . $this->getSemilla());
+            //echo $password," ",$usuario->getPassword()," ",$this->request['login']['Password']," ",$this->getSemilla();
+            if ($usuario->getPassword() == $password) {
+                $_SESSION['usuarioWeb'] = array(
+                    'Id' => $usuario->getPrimaryKeyValue(),
+                    'nombre' => $usuario->getRazonSocial(),
+                    'email' => $usuario->getEMail(),                    
+                    'IdPerfil' => $usuario->getIDPerfilWeb()->getPrimaryKeyValue(),
+                );
+                $this->values['login']['error'] = 0;
+                
+                SeguimientoVisitas::cambiaVisitasUsuario();
+                
+                // Actualizar el número de logins
+                $usuario->queryUpdate(array("NumberVisits" => $usuario->getNumberVisits() + 1, "DateTimeLastVisit" => time()), "{$usuario->getPrimaryKeyName()}='{$usuario->getPrimaryKeyValue()}'");
+            } else {
+                // Password incorrecta
+                $this->values['login']['error'] = 2;
+            }
+        } else {
+            // Usuario no encontrado
+            $this->values['login']['error'] = 1;
+        }
+
+        unset($usuario);
+
+        if ($this->values['login']['error']) {
+            return array(
+                'template' => $this->controller . "/index.html.twig",
+                'values' => $this->values,
+            );
+        } else {
+            if ($this->request['return'] === '') {
+                $this->request['return'] = "Favoritos";
+            }
+            return $this->redirect($this->request['return']);
+        }
+    }
+    
+    /**
      * Cierra la sesion del usuario y vuelve al home
      * @return type
      */
