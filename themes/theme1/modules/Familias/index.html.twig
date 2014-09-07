@@ -23,7 +23,7 @@
                 {% endif %}
             </div>
             <div id="descripcion" style="float:left;width:300px;">
-                {%autoescape false%}{{familia.Descripcion1}}{%endautoescape%}
+                {% autoescape false %}{{familia.Descripcion1}}{% endautoescape %}
             </div> 
 
             {% include '_global/listadoArticulos.html.twig' with {'articulos':values.destacados} %}            

@@ -24,6 +24,9 @@
                 {% if user.Id > 0 %}
                     <span>{{user.nombre}}</span><br/>
                     <a href="{{app.path}}/salir">{{macro.idioma('cerrarSesion')}}</a>
+                {% elseif agente.Id > 0 %}
+                    <span>{{macro.idioma('agente')}}: {{agente.nombre}}</span><br/>
+                    <a href="{{app.path}}/salir">{{macro.idioma('cerrarSesion')}}</a>                    
                 {% elseif values.controller != 'ZonaPrivada' %}
                     <span class="sprite"></span>
                     <a href="{{app.path}}/zona-privada" title="{{macro.idioma('accesoIdentificado')}}">{{macro.idioma('accesoIdentificado')}}</a>                  

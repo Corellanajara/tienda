@@ -98,6 +98,18 @@ class CarritoEntity extends EntityComunes {
     protected $Estado;
 
     /**
+     * @var entities\Promociones
+     * @assert NotBlank(groups="ErpPedidosWebLineas")
+     */
+    protected $IDPromocion = '0';    
+
+    /**
+     * @var tinyint
+     * @assert NotBlank(groups="ErpPedidosWebLineas")
+     */
+    protected $IvaIncluido = '0';
+    
+    /**
      * Nombre de la conexion a la BD
      * @var string
      */
@@ -262,7 +274,23 @@ class CarritoEntity extends EntityComunes {
         return $this->Estado;
     }
 
-}
+    public function setIDPromocion($IDPromocion) {
+        $this->IDPromocion = $IDPromocion;
+    }
 
-// END class ErpCarrito
-?>
+    public function getIDPromocion() {
+        if (!($this->IDPromocion instanceof Promociones))
+            $this->IDPromocion = new Promociones($this->IDPromocion);
+        return $this->IDPromocion;
+    }
+
+    public function setIvaIncluido($IvaIncluido) {
+        $this->IvaIncluido = $IvaIncluido;
+    }
+
+    public function getIvaIncluido() {
+        if (!($this->IvaIncluido instanceof ValoresSN))
+            $this->IvaIncluido = new ValoresSN($this->IvaIncluido);
+        return $this->IvaIncluido;
+    }    
+}

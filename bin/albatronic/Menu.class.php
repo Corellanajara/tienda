@@ -41,8 +41,9 @@ class Menu {
 
         $em = new EntityManager("");
         $select = "SELECT s.Id,s.EtiquetaWeb{$nMenu},s.SubetiquetaWeb{$nMenu},s.Titulo,s.Subtitulo,s.UrlFriendly,s.UrlTarget,s.UrlIsHttps,s.UrlParameters,s.UrlTargetBlank,u.Controller FROM GconSecciones s "
-                . "LEFT JOIN CpanUrlAmigables u on s.Id=u.IdEntity and u.Entity='GconSecciones' and u.Idioma='{$_SESSION['idiomas']['actual']}'";
+                . " JOIN CpanUrlAmigables u on s.Id=u.IdEntity and u.Entity='GconSecciones' and u.Idioma='{$_SESSION['idiomas']['actual']}'";
         $rows = $em->getResult("s", $select, $where, $orden, $limite);
+        //echo $select,$where;
 
         foreach ($rows as $row) {
 

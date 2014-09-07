@@ -18,7 +18,7 @@ class ControllerProject extends ControllerWeb {
 
         $this->values['firma'] = $this->getFirma();     
         $this->values['redes'] = RedesSociales::getRedes();
-        $this->values['menuCabecera'] = Menu::getMenuN(2, 5);
+        $this->values['menuCabecera'] = Menu::getMenuN(2, 0);
         $this->values['menuPie'] = Menu::getMenuN(3, 5);
         $this->values['datosContacto'] = $this->varWeb['Pro']['globales'];   
 

@@ -255,7 +255,7 @@ class Articulos extends ArticulosEntity {
 
         return $array;
     }
-    
+
     /**
      * Devuelve el PVP SIN impuestos correspondiente a la unidad de medida indicada.
      * Por defecto la Unidad de Venta.
@@ -311,7 +311,6 @@ class Articulos extends ArticulosEntity {
     public function getPrecioVentaConImpuestos($um = 'UMV', $decimales = 2) {
 
         $um = strtoupper($um);
-
         $pvp = $this->Pvp * $this->{"getC$um"}() * (1 + $this->getIDIva()->getIva() / 100);
 
         return round($pvp, $decimales);
@@ -326,26 +325,176 @@ class Articulos extends ArticulosEntity {
      * @return decimal El PVP.
      */
     public function getPrecioWeb($um = 'UMV', $decimales = 2) {
-        
+
         $pvp = ($_SESSION['varEnv']['Pro']['shop']['ivaIncluido'] === '1') ?
-            $this->getPrecioVentaConImpuestos($um, $decimales) :
-            $this->getPrecioVenta($um, $decimales);
+                $this->getPrecioVentaConImpuestos($um, $decimales) :
+                $this->getPrecioVenta($um, $decimales);
 
         return $pvp;
     }
 
     /**
-     * Devuelve el Pmc sin impuestos correspondiente a la unidad de medida indicada.
+     * Devuelve el PVP para la web con o sin iva incluido
+     * según la variable de entorno de proyecto shop.ivaIncluido
+     * 
+     * @param string La Unidad de Medida.Por defecto la de venta
+     * @param integer El número de decimales
+     * @return decimal El PVP.
+     */
+    public function getPrecioCostoWeb($um = 'UMC', $decimales = 2) {
+
+        $pvp = ($_SESSION['varEnv']['Pro']['shop']['ivaIncluido'] === '1') ?
+                $this->getPrecioCostoConImpuestos($um, $decimales) :
+                $this->getPrecioCosto($um, $decimales);
+
+        return $pvp;
+    }
+
+    /**
+     * Devuelve el PMC sin impuestos correspondiente a la unidad de medida indicada.
      * Por defecto la Unidad de Compra.
      *
      * @param string La Unidad de Medida. Por defecto la de compra
+     * @param integer El número de decimales 
      * @return float El Precio Medio de Compra sin impuestos.
      */
-    public function getPrecioCosto($um = 'UMC') {
+    public function getPrecioCosto($um = 'UMC', $decimales = 2) {
 
         $um = strtoupper($um);
 
-        return $this->Pmc * $this->{"getC$um"}();
+        return round($this->Pmc * $this->{"getC$um"}(), $decimales);
+    }
+
+    /**
+     * Devuelve el PMC CON impuestos correspondiente a la unidad de medida indicada.
+     * Por defecto la Unidad de Compra.
+     *
+     * Devuelve el importe redondeado a $decimales cifras decimales (por defecto 2)
+     *
+     * @param string La Unidad de Medida.Por defecto la de compra
+     * @param integer El número de decimales
+     * @return decimal El Precio Medio de Compra con impuestos.
+     */
+    public function getPrecioCostoConImpuestos($um = 'UMC', $decimales = 2) {
+
+        $um = strtoupper($um);
+        $pmc = $this->Pmc * $this->{"getC$um"}() * (1 + $this->getIDIva()->getIva() / 100);
+
+        return round($pmc, $decimales);
+    }
+
+    /**
+     * Devuelve un array con cinco elementos:
+     *
+     *  [Promocion] -> El objeto promocion (si hay)
+     *  [Promo][Precio] -> El precio de la promocion
+     *  [Promo][Descuento] -> El descuento de la promocion
+     *  [Tarifa][Precio] -> El precio de la tarifa
+     *  [Tarifa][Descuento] -> El descuento de la tarifa
+     *
+     * Para ello consulta promociones vigentes para el artículo, cliente en curso
+     * y si no hay, aplica la tarifa asociada al cliente.
+     *
+     * @param integer $unidades La unidades de producto a cotizar
+     * @return array Array con el objeto promocion, el precio y el descuento de la tarifa y de la promocion
+     */
+    public function cotizarWeb($unidades=1, $decimales = 2) {
+
+        $precios = array();
+
+        // ---------------------------------------------------------------------
+        // Coger el precio de tarifa
+        // ---------------------------------------------------------------------
+        if ($_SESSION['usuarioWeb']['tarifa']['tipo'] === '1') {
+            //Margen sobre el PVD
+            $precios['Tarifa']['Precio'] = $this->getPrecioCostoWeb() * ( 1 + $_SESSION['usuarioWeb']['tarifa']['valor'] / 100 );
+            $precios['Tarifa']['Descuento'] = 0;
+        } elseif ($_SESSION['usuarioWeb']['tarifa']['tipo'] === '0') {
+            //Descuento sobre el PVP
+            $precios['Tarifa']['Precio'] = $this->getPrecioWeb();
+            $precios['Tarifa']['Descuento'] = $_SESSION['usuarioWeb']['tarifa']['valor'];
+        } else {
+            // No hay usario logeado. Se toma el precio estándar
+            $precios['Tarifa']['Precio'] = $this->getPrecioWeb();
+            $precios['Tarifa']['Descuento'] = 0;            
+        }
+        $precios['Tarifa']['Neto'] = round($precios['Tarifa']['Precio'] * (1 - $precios['Tarifa']['Descuento'] / 100), $decimales);
+
+        // -------------------------------------------------------------------------
+        //  Buscar promociones. En caso de haber promo para artículo y para familia,
+        //  prevalecen los promos a nivel de artículo sobre
+        //  las promos a nivel de familia 
+        // -------------------------------------------------------------------------
+        $promocion = new Promociones();
+        $filtro = "( 
+                (IDArticulo='{$this->getIDArticulo()}') OR 
+                (IDFamilia='{$this->getIDCategoria()->getIDFamilia()}')
+            ) AND (CantidadMinima<='{$unidades}')
+              AND (FinPromocion>='" . date('Y-m-d') . "') 
+              AND (IDFP='" . $_SESSION['usuarioWeb']['IDFP'] . "')";
+            //echo $filtro,"<br/>";
+        $promociones = $promocion->cargaCondicion("*", $filtro, "IDArticulo DESC");
+
+        if (!count($promociones)) {
+            $filtro = "( 
+                (IDArticulo='{$this->getIDArticulo()}') OR 
+                (IDFamilia='{$this->getIDCategoria()->getIDFamilia()}')
+            ) AND (CantidadMinima<='{$unidades}')
+              AND (FinPromocion>='" . date('Y-m-d') . "')  
+              AND (IDFP='0')";
+            //echo $filtro,"<br/>";
+            $promociones = $promocion->cargaCondicion("*", $filtro, "IDArticulo DESC");
+        }
+
+        $hayPromo = false;
+        if (count($promociones)) {
+            while ((!$hayPromo) and ( list(, $promocion) = each($promociones))) {
+
+                // El articulo está en promocion, ver si aplica al cliente o grupo de clientes
+                $promoCliente = new PromocionesClientes();
+                $filtro = "IDPromocion='{$promocion['IDPromocion']}' and ((IDCliente='" . $_SESSION['usuarioWeb']['Id'] . "') or (IDGrupo='" . $_SESSION['usuarioWeb']['IDGrupo'] . "') or IDGrupo<0)";
+                //echo $filtro,"<br/>";
+                $promoClientes = $promoCliente->cargaCondicion("Id,IdPromocion", $filtro);
+                if ($promoClientes[0]['Id']) {
+                    // La promo aplica
+                    $hayPromo = true;
+                    $promocion = new Promociones($promoClientes[0]['IdPromocion']);
+                }
+            }
+            unset($promoCliente);
+        }
+
+        if ($hayPromo) {
+            // Hay promo, coger precios de promo
+            $precios['Promocion'] = $promocion;
+            switch ($promocion->getTipoPromocion()->getIDTipo()) {
+                case '0': //Promocion de descuento en PVP
+                    $precios['Promo']['Precio'] = $this->getPrecioWeb();
+                    $precios['Promo']['Descuento'] = $promocion->getValor();
+                    break;
+                case '1': //Promocion en Margen sobre PVD
+                    $precios['Promo']['Precio'] = $this->getPrecioCostoWeb() * ( 1 + $promocion->getValor() / 100 );
+                    $precios['Promo']['Descuento'] = 0;
+                    break;
+                case '2': //Promocion en precio neto
+                    $precios['Promo']['Precio'] = $promocion->getValor();
+                    $precios['Promo']['Descuento'] = 0;
+                    break;
+            }
+            $precios['Promo']['Neto'] = round($precios['Promo']['Precio'] * (1 - $precios['Promo']['Descuento'] / 100), $decimales);
+
+            if ($precios['Promo']['Neto'] <= $precios['Tarifa']['Neto']) {
+                $precios['Cotizacion'] = $precios['Promo'];
+            } else {
+                $precios['Cotizacion'] = $precios['Tarifa'];
+            }
+        } else {
+            $precios['Cotizacion'] = $precios['Tarifa'];
+        }
+        
+        //print_r($precios);
+        unset($promocion);
+        return $precios;
     }
 
     /**
@@ -365,6 +514,7 @@ class Articulos extends ArticulosEntity {
      * @return array Array con el objeto promocion, el precio y el descuento de la tarifa y de la promocion
      */
     public function cotizar($objetoVenta, $unidades) {
+
         $precios = array();
 
         // ---------------------------------------------------------------------

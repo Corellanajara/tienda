@@ -285,6 +285,7 @@ $twig->loadTemplate($result['template'])
             'app' => $app,
             'chequeadaResolucionVisitante' => isset($_SESSION['resolucionVisitante']),
             'user' => $_SESSION['usuarioWeb'],
+            'agente' => $_SESSION['agente'],
         ));
 //------------------------------------------------------------
 

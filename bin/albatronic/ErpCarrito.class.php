@@ -57,7 +57,7 @@ class ErpCarrito {
         $carrito = new Carrito();
         $rows = $carrito->cargaCondicion("IDArticulo", $filtro, "Id ASC");
         unset($carrito);
-        
+
         foreach ($rows as $row) {
             $array[$row['IDArticulo']] = $row['IDArticulo'];
         }
@@ -82,13 +82,23 @@ class ErpCarrito {
         $rows = $carrito->cargaCondicion("Id", $filtro);
         if (isset($rows[0]['Id'])) {
             $carrito = new Carrito($rows[0]['Id']);
+            $articulo = new Articulos($idArticulo);
+            $precios = $articulo->cotizarWeb($unidades);
+            $idPromocion = (is_object($precios['Promocion'])) ? $precios['Promocion']->getIDPromocion() : 0;   
+            
             $carrito->setUnidades($carrito->getUnidades() + $unidades);
+            $carrito->setPrecio($precios['Cotizacion']['Precio']);
+            $carrito->setDescuento($precios['Cotizacion']['Descuento']);            
             $carrito->setImporte($carrito->getUnidades() * $carrito->getPrecio() * (1 - $carrito->getDescuento() / 100));
+            $carrito->setIDPromocion($idPromocion);            
             $id = ($carrito->save()) ? $rows[0]['Id'] : 0;
             self::$errores = $carrito->getErrores();
             self::$alertas = $carrito->getAlertas();
         } else {
             $articulo = new Articulos($idArticulo);
+            $precios = $articulo->cotizarWeb($unidades);
+            $idPromocion = (is_object($precios['Promocion'])) ? $precios['Promocion']->getIDPromocion() : 0;
+
             $carrito->setsesion($_SESSION['IdSesion']);
             $carrito->setIpOrigen($_SERVER['REMOTE_ADDR']);
             $carrito->setUserAgent($_SERVER['HTTP_USER_AGENT']);
@@ -96,12 +106,14 @@ class ErpCarrito {
             $carrito->setDescripcion($articulo->getDescripcion());
             $carrito->setUnidades($unidades);
             $carrito->setUnidadMedida($articulo->getUnidadMedida("UMV"));
-            $carrito->setPrecio($articulo->getPrecioVentaConImpuestos());
-            $carrito->setDescuento(0);
+            $carrito->setPrecio($precios['Cotizacion']['Precio']);
+            $carrito->setDescuento($precios['Cotizacion']['Descuento']);
             $carrito->setImporte($carrito->getUnidades() * $carrito->getPrecio() * (1 - $carrito->getDescuento() / 100));
             $carrito->setIva($articulo->getIDIva()->getIva());
             $carrito->setRecargo($articulo->getIDIva()->getRecargo());
             $carrito->setEstado(0);
+            $carrito->setIDPromocion($idPromocion);
+            $carrito->setIvaIncluido($_SESSION['varEnv']['Pro']['shop']['ivaIncluido']);
             $id = $carrito->create();
             self::$errores = $carrito->getErrores();
             self::$alertas = $carrito->getAlertas();
@@ -203,6 +215,9 @@ class ErpCarrito {
             if ($_SESSION['idAfiliado'] > 0) {
                 $pedido->setIDAfiliado($_SESSION['idAfiliado']);
             }
+            if ($_SESSION['agente']['Id'] > 0) {
+                $pedido->setIDAgente($_SESSION['agente']['Id']);
+            }            
             $pedido->save();
         } else {
             // No existía, lo creo
@@ -218,6 +233,9 @@ class ErpCarrito {
             if ($_SESSION['idAfiliado'] > 0) {
                 $pedido->setIDAfiliado($_SESSION['idAfiliado']);
             }
+            if ($_SESSION['agente']['Id'] > 0) {
+                $pedido->setIDAgente($_SESSION['agente']['Id']);
+            }
             $idPedido = $pedido->create();
         }
 
@@ -230,6 +248,10 @@ class ErpCarrito {
             $rows = $carrito->cargaCondicion("*", $filtro, "Id ASC");
             unset($carrito);
             foreach ($rows as $row) {
+                if ($row['IvaIncluido'] == '1') {
+                    $row['Precio'] = $row['Precio'] / (1 + $row['Iva'] / 100);
+                    $row['Importe'] = $row['Importe'] / (1 + $row['Iva'] / 100);
+                }
                 $linea = new PedidosWebLineas();
                 $linea->setIDPedido($idPedido);
                 $linea->setIDArticulo($row['IDArticulo']);
@@ -241,7 +263,11 @@ class ErpCarrito {
                 $linea->setImporte($row['Importe']);
                 $linea->setIva($row['Iva']);
                 $linea->setRecargo($row['Recargo']);
+                if ($_SESSION['agente']['Id'] > 0) {
+                    $linea->setIDAgente($_SESSION['agente']['Id']);
+                }
                 $linea->setIDEstado(0);
+                $linea->setIDPromocion($row['IDPromocion']);
                 $linea->create();
             }
             // Totalizar el pedido

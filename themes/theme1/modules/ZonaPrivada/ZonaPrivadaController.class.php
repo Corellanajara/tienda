@@ -113,6 +113,12 @@ class ZonaPrivadaController extends ControllerProject {
                             'nombre' => $cliente->getRazonSocial(),
                             'email' => $cliente->getEMail(),
                             'IdPerfil' => $cliente->getIDPerfilWeb()->getId(),
+                            'IDFP' => $cliente->getIDFP()->getIDFP(),
+                            'IDGrupo' => $cliente->getIDGrupo()->getIDGrupo(),
+                            'tarifa' => array(
+                                'tipo' => $cliente->getIDTarifa()->getTipo()->getIDTipo(),
+                                'valor' => $cliente->getIDTarifa()->getValor(),
+                            ),
                         );
                         $this->enviaCorreoWebMaster($cliente);
                         return $this->redirect("Index");
@@ -222,13 +228,20 @@ class ZonaPrivadaController extends ControllerProject {
                 $_SESSION['usuarioWeb'] = array(
                     'Id' => $usuario->getPrimaryKeyValue(),
                     'nombre' => $usuario->getRazonSocial(),
-                    'email' => $usuario->getEMail(),                    
+                    'email' => $usuario->getEMail(),
                     'IdPerfil' => $usuario->getIDPerfilWeb()->getPrimaryKeyValue(),
+                    'IDFP' => $usuario->getIDFP()->getIDFP(),
+                    'IDGrupo' => $usuario->getIDGrupo()->getIDGrupo(),
+                    'tarifa' => array(
+                        'tipo' => $usuario->getIDTarifa()->getTipo()->getIDTipo(),
+                        'valor' => $usuario->getIDTarifa()->getValor(),
+                    ),
                 );
+
                 $this->values['login']['error'] = 0;
-                
+
                 SeguimientoVisitas::cambiaVisitasUsuario();
-                
+
                 // Actualizar el número de logins
                 $usuario->queryUpdate(array("NumberVisits" => $usuario->getNumberVisits() + 1, "DateTimeLastVisit" => time()), "{$usuario->getPrimaryKeyName()}='{$usuario->getPrimaryKeyValue()}'");
             } else {
@@ -249,7 +262,7 @@ class ZonaPrivadaController extends ControllerProject {
             );
         } else {
             if ($this->request['return'] === '') {
-                $this->request['return'] = "Favoritos";
+                $this->request['return'] = "Promociones";
             }
             return $this->redirect($this->request['return']);
         }
@@ -264,8 +277,8 @@ class ZonaPrivadaController extends ControllerProject {
 
         $this->values['login'] = $this->request['login'];
 
-        $usuarios = new Clientes();
-        $usuario = $usuarios->find("Login", $this->request['login']['Email']);
+        $usuarios = new PcaeUsuarios();
+        $usuario = $usuarios->find("EMail", $this->request['login']['Email']);
         unset($usuarios);
 
         if ($usuario->getPrimaryKeyValue()) {
@@ -273,18 +286,15 @@ class ZonaPrivadaController extends ControllerProject {
             $password = md5($this->request['login']['Password'] . $this->getSemilla());
             //echo $password," ",$usuario->getPassword()," ",$this->request['login']['Password']," ",$this->getSemilla();
             if ($usuario->getPassword() == $password) {
-                $_SESSION['usuarioWeb'] = array(
+                $_SESSION['agente'] = array(
                     'Id' => $usuario->getPrimaryKeyValue(),
-                    'nombre' => $usuario->getRazonSocial(),
-                    'email' => $usuario->getEMail(),                    
-                    'IdPerfil' => $usuario->getIDPerfilWeb()->getPrimaryKeyValue(),
+                    'nombre' => $usuario->getNombreApellidos(),
+                    'email' => $usuario->getEMail(),
+                        //'IdPerfil' => $usuario->getIDPerfil()->getPrimaryKeyValue(),
                 );
                 $this->values['login']['error'] = 0;
-                
-                SeguimientoVisitas::cambiaVisitasUsuario();
-                
                 // Actualizar el número de logins
-                $usuario->queryUpdate(array("NumberVisits" => $usuario->getNumberVisits() + 1, "DateTimeLastVisit" => time()), "{$usuario->getPrimaryKeyName()}='{$usuario->getPrimaryKeyValue()}'");
+                //$usuario->queryUpdate(array("NumberVisits" => $usuario->getNumberVisits() + 1, "DateTimeLastVisit" => time()), "{$usuario->getPrimaryKeyName()}='{$usuario->getPrimaryKeyValue()}'");
             } else {
                 // Password incorrecta
                 $this->values['login']['error'] = 2;
@@ -303,18 +313,19 @@ class ZonaPrivadaController extends ControllerProject {
             );
         } else {
             if ($this->request['return'] === '') {
-                $this->request['return'] = "Favoritos";
+                $this->request['return'] = "Index";
             }
             return $this->redirect($this->request['return']);
         }
     }
-    
+
     /**
-     * Cierra la sesion del usuario y vuelve al home
+     * Cierra la sesion del usuario y del agente y vuelve al home
      * @return type
      */
     public function LogoutAction() {
         $_SESSION['usuarioWeb'] = array();
+        $_SESSION['agente'] = array();
         return $this->redirect("Index");
     }
 

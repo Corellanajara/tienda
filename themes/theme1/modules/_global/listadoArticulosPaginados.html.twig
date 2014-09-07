@@ -20,7 +20,7 @@
         {% if articulo.PvpAnterior > 0 and articulo.PrecioAnterior != precioActual %}
             <div class="precios precioAnterior">{{macro.moneda(articulo.PvpAnterior)}}</div>                
         {% endif %}
-        <div class="precioActual">{{macro.moneda(precioActual)}}</div>
+        <div class="precioActual">{{macro.precio(articulo.cotizarWeb)}}</div>
         <article class="botonera">
             <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{macro.idioma('masInfo')}}" class="saberMas">{{macro.idioma('saberMas')}}
                 <span class="sprite"></span>

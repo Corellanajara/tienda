@@ -15,7 +15,7 @@
             {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.carrito.articulosRelacionados}%} 
             {% include '_global/wgSeguimientoVisita.html.twig' %} 
         {% else %}
-            <p>{{macro.idioma('irAFavoritos')}} <a href="{{app.path}}/favoritos">{{macro.idioma('favoritos')}}</a></p>
+            <p>{{macro.idioma('cestaVacia')}}, {{macro.idioma('quizaLeInterese')}} <a href="{{app.path}}/favoritos">{{macro.idioma('favoritos')}}</a> o <a href="{{app.path}}/promociones">{{macro.idioma('promociones')}}</a></p>
         {% endif %}
     </section>
 {% endblock %}

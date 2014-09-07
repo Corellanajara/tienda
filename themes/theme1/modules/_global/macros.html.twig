@@ -151,6 +151,16 @@
     {{importe | number_format(nDecimales|default(2), separadorDecimales|default('.'), separadorMiles|default(','))}} {{simbolo|default('€')}}
 {% endmacro%}
 
+{% macro precio(cotizacion, nDecimales, separadorMiles, separadorDecimales, simbolo)%}  
+    {{cotizacion.Cotizacion.Neto | number_format(nDecimales|default(2), separadorDecimales|default('.'), separadorMiles|default(','))}} {{simbolo|default('€')}}
+    {% if cotizacion.Cotizacion.Descuento > 0 %}
+        {% if cotizacion.Promocion.Titulo != '' %}
+            {{cotizacion.Promocion.Titulo}}
+        {% endif %}
+        (Dcto: {{cotizacion.Cotizacion.Descuento | number_format(2)}} %)
+    {% endif %}
+{% endmacro%}
+
 {% macro idioma(clave)%}
 {%spaceless%}    
 {% if LABELS[clave] %}{{LABELS[clave]}}{% else %}[{{clave}}]{% endif %}

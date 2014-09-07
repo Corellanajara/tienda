@@ -372,6 +372,7 @@ class Clientes extends ClientesEntity {
         return $rows;
     }
 
+
     /**
      * Devuelve las promociones vigentes para el cliente
      * y la fecha indicada.
@@ -381,33 +382,47 @@ class Clientes extends ClientesEntity {
      * @param date $fecha La fecha
      * @return array Array con objetos promociones
      */
-    public function getPromosVigentes($fecha) {
+    public function getPromosVigentes($fecha = '') {
 
+        if ($fecha == '') {
+            $fecha = date('Y-m-d');
+        }
+        
         $promos = array();
 
         $promociones = new Promociones();
         $promoClientes = new PromocionesClientes();
         $familias = new Familias();
 
-        if (is_resource($this->_dbLink)) {
+        $em = new EntityManager($promociones->getConectionName());
+        if ($em->getDbLink()) {
             $query = "SELECT DISTINCT t1.IDPromocion
                 FROM {$promociones->getDataBaseName()}.{$promociones->getTableName()} as t1,
                      {$promoClientes->getDataBaseName()}.{$promoClientes->getTableName()} as t2,
                      {$familias->getDataBaseName()}.{$familias->getTableName()} as t3
                 WHERE t1.FinPromocion>='{$fecha}'
-                AND t1.IDPromocion=t2.IDPromocion
-                AND ( (t2.IDCliente='{$this->IDCliente}') OR (t2.IDGrupo='{$this->getIDGrupo()->getIDGrupo()}') )
-                AND ( t1.IDFamilia = t3.IDFamilia OR (1))
-                ORDER BY t1.FinPromocion ASC, t1.IDArticulo DESC,t3.Familia";
-            $this->_em->query($query);
-            $rows = $$this->_em->fetchResult();
-            $this->_em->desConecta();
+                AND t1.IDPromocion=t2.IDPromocion";
+            if ($this->IDCliente>0) {
+                $query .= " AND ( (t2.IDCliente='{$this->IDCliente}') OR (t2.IDGrupo='{$this->getIDGrupo()->getIDGrupo()}') OR (t2.IDGrupo<=0) )";
+            } else {
+                $query .= " AND (t2.IDGrupo<=0)";
+            }
+            $query .= " AND ( t1.IDFamilia = t3.IDFamilia OR (1)) ORDER BY t1.FinPromocion ASC, t1.IDArticulo DESC,t3.Familia";
+            //echo $query;
+            $em->query($query);
+            $rows = $em->fetchResult();
+            $em->desConecta();
 
             foreach ($rows as $row) {
-                $promos[] = new Promociones($row['IDPromocion']);
+                $promocion = new Promociones($row['IDPromocion']);
+                $promos[] = array(
+                    'promocion' => $promocion,
+                    'articulos' => $promocion->getArticulos(),
+                );
             }
         }
 
+        unset($em);
         unset($promociones);
         unset($promoClientes);
         unset($familias);

@@ -13,11 +13,11 @@
         {% if articulo.articulo.Resumen != articulo.articulo.Descripcion %}
             <div class="resumen">{{articulo.articulo.Resumen}}</div>
         {% endif %}
-        {% set precioActual = articulo.articulo.PrecioVentaConImpuestos %}
+        {% set precioActual = articulo.articulo.PrecioWeb %}
         {% if articulo.articulo.PvpAnterior > 0 and articulo.articulo.PrecioAnterior != precioActual %}
             <div class="precios precioAnterior">{{macro.moneda(articulo.articulo.PvpAnterior)}}</div>                
         {% endif %}
-        <div class="precioActual">{{macro.moneda(precioActual)}}</div>
+        <div class="precioActual">{{macro.precio(articulo.articulo.cotizarWeb)}}</div>
         <div class="comprar">
             <input type="button" class="boton btn_azul left" value="Comprar" onclick="addCart('{{articulo.articulo.IDArticulo}}',1);"/>
             <form name="formFavoritos{{articulo.articulo.IDArticulo}}" id="formFavoritos{{articulo.articulo.IDArticulo}}" method="POST">
@@ -28,7 +28,7 @@
                 </div>        
                 <input type="submit" class="boton btn_azul left" value="{{macro.idioma('removeFavorito')}}"/>           
             </form>
-            <input type="checkbox" class="marcarFavorito" id="check{{articulo.articulo.IDArticulo}}" onchange="check('{{articulo.articulo.IDArticulo}}');" {%if articulo.Checked=='1' %}checked{%endif%}/>
+            <input type="checkbox" class="marcarFavorito" id="check{{articulo.articulo.IDArticulo}}" onchange="check('{{articulo.articulo.IDArticulo}}');" {% if articulo.Checked=='1' %}checked{% endif %}/>
         </div>        
         <article class="botonera">
             <a href="{{appPath}}{{articulo.articulo.UrlFriendly}}" title="{{macro.idioma('masInfo')}}" class="saberMas">{{macro.idioma('saberMas')}}
