@@ -7,21 +7,25 @@
             <file>file:/Applications/MAMP/htdocs/tienda/bin/albatronic/Menu.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/ZonaPrivada/ZonaPrivadaController.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/bin/albatronic/ErpCarrito.class.php</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/bin/albatronic/ControllerProject.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/macros.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/wgIntranet.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/entities/methods/PedidosWebCab.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/entities/methods/Clientes.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/entities/methods/Articulos.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/head.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/lib/carrito.php</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Intranet/pedidoNuevo.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/resumenPedido.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/lineas.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Intranet/facturas.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Carrito/index.html.twig</file>
-            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Index/IndexController.class.php</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/asideRight.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/wgStock.html.twig</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Intranet/IntranetController.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Producto/productoInfo.html.twig</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Producto/ProductoController.class.php</file>
             <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/Promociones/PromocionesController.class.php</file>
+            <file>file:/Applications/MAMP/htdocs/tienda/themes/theme1/modules/_global/wgMarcasPortada.html.twig</file>
         </group>
     </open-files>
 </project-private>

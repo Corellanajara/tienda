@@ -138,16 +138,16 @@ if (!isset($_SESSION['idiomas']['actual'])) {
 // Si el navegador es antiguo muestro template especial
 $url = new CpanUrlAmigables();
 if ($rq->isOldBrowser()) {
-    $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "UrlFriendly='/oldbrowser'");
+    $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Template,Parameters,Entity,IdEntity", "UrlFriendly='/oldbrowser'");
 } else {
     // Localizar la url amigable
-    $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "Idioma='{$_SESSION['idiomas']['actual']}' and UrlFriendly='{$rq->getUrlFriendly($app['path'])}'");
+    $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Template,Parameters,Entity,IdEntity", "Idioma='{$_SESSION['idiomas']['actual']}' and UrlFriendly='{$rq->getUrlFriendly($app['path'])}'");
     // Localizar la url amigable
     //$rows[0] = $url->matchUrl($rq->getUrlFriendly($app['path']));
 
     if (count($url->getErrores()) == 0) {
         if (!$rows) {
-            $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Parameters,Entity,IdEntity", "UrlFriendly='/error404'");
+            $rows = $url->cargaCondicion("Id,Idioma,UrlFriendly,Controller,Action,Template,Parameters,Entity,IdEntity", "UrlFriendly='/error404'");
         }
     } else {
         print_r($url->getErrores());
@@ -175,10 +175,6 @@ switch ($rq->getMethod()) {
         //$action = $request[1];
         $controller = ucfirst($row['Controller']);
         $action = $row['Action'];
-        $request['IdUrlAmigable'] = $row['Id'];
-        $request['Parameters'] = $row['Parameters'];
-        $request['Entity'] = $row['Entity'];
-        $request['IdEntity'] = $row['IdEntity'];
         break;
 
     case 'POST':
@@ -186,14 +182,16 @@ switch ($rq->getMethod()) {
         $request['METHOD'] = "POST";
         $controller = ucfirst($request['controller']);
         $action = $request['action'];
-        $request['IdUrlAmigable'] = $row['Id'];
-        $request['Parameters'] = $row['Parameters'];
-        $request['Entity'] = $row['Entity'];
-        $request['IdEntity'] = $row['IdEntity'];
         break;
 }
 
-$controller = ControllerWeb::validaController($controller);
+$request['Template'] = $row['Template'];
+$request['IdUrlAmigable'] = $row['Id'];
+$request['Parameters'] = $row['Parameters'];
+$request['Entity'] = $row['Entity'];
+$request['IdEntity'] = $row['IdEntity'];
+
+$controller = ControllerWeb::validaController($controller,$row['Template']);
 
 // Si no se ha localizado el controlador, lo pongo a Error404
 if ($controller == '') {
@@ -238,8 +236,9 @@ if ($_SESSION['isMobile']) {
 }
 
 $result['values']['urlAmigable'] = $_SESSION['urlFriendly'];
-//$result['values']['controller'] = $controller;
+$result['values']['controller'] = $controller;
 $result['values']['action'] = $metodo;
+$result['values']['template'] = $result['template'];
 $result['values']['archivoCss'] = ControllerWeb::getArchivoCss($result['template']);
 $result['values']['archivoJs'] = ControllerWeb::getArchivoJs($result['template']);
 
