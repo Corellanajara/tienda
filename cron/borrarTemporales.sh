@@ -13,4 +13,4 @@ rm -Rf /home/USUARIO/public_html/tmp/*.csv
 rm -Rf /home/USUARIO/public_html/tmp/*.xml
 rm -Rf /home/USUARIO/public_html/tmp/*.yml
 
-echo " " >> /home/USUARIO/public_html/Hermes/log/log.txt
+echo " " >> /home/USUARIO/public_html/log/log.txt
