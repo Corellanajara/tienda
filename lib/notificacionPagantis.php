@@ -139,7 +139,6 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
   "signature": "abcdefghijk1234567890"
   }
  */
-
 // GUARDAR EN EL LOG
 $respuesta = json_decode(file_get_contents('php://input'), true);
 $fp = fopen("../log/pasarelaPagantis.log", "a");
@@ -150,67 +149,27 @@ switch ($respuesta['event']) {
     case 'charge.created':
         // Operación aceptada. Comprobamos la signature
         $firmaPasarela = $respuesta['signature'];
-        $firmaCalculada = TiposTpv::getSignaturePagantis($respuesta['order_id'], $respuesta['amount_in_eur']);
-        if ($firmaPasarela !== $firmaCalculada) {
-            
+        $firmaCalculada = TiposTpv::getSignaturePagantis($respuesta['data']['order_id'], $respuesta['data']['amount_in_eur']);
+        if (($_SESSION['idPedido'] !== $respuesta['data']['order_id']) || ($firmaPasarela !== $firmaCalculada)) {
+            // Anular el pedido, no coindicen las firmas o el número de pedido
+            PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
         } else {
-            
+            // Confirma el pedido y guardar el código de autorización
+            $pedido = new PedidosWebCab();
+            $pedido->queryUpdate(
+                    array(
+                'IDEstado' => 2,
+                'Key1Pasarela' => $respuesta['data']['authorization_code'],
+                    ), "IDPedido='{$_SESSION['idPedido']}'");
         }
         break;
 
     case 'charge.failed':
-        // Operacion denegada
+        // Operacion denegada, anular el pedido
+        PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
         break;
 
     default:
-    // Resultado inesperado
-}
-
-$emailPedidos = Config::dame("EMAIL_PEDIDOS");
-$numPedido = $_REQUEST["Ds_Order"];
-$signatureBanco = $_REQUEST["Ds_Signature"];
-
-//Cálculo de la firma en la Notificación On-line-------
-$amount = $_REQUEST["Ds_Amount"];
-$order = $numPedido;
-$code = $_REQUEST["Ds_MerchantCode"];
-$currency = $_REQUEST["Ds_Currency"];
-$codRespuesta = $_REQUEST["Ds_Response"];
-$clave = 'qwertyasdf0123456789'; //Prueba 
-//$clave='843561136Q56584U';//Real
-$message = $amount . $order . $code . $currency . $codRespuesta . $clave;
-$signatureComercio = strtoupper(sha1($message));
-
-mail("info@albatronic.com", "WEBLIB +: compraNotif ".$numPedido, "clave1: ".$signatureBanco."; clave2: ".$signatureComercio."-->".$amount."; ".$order."; ".$code."; ".$currency."; ".$codRespuesta."; ".$clave, "FROM:".$emailPedidos);
-//------------------------------------------------------
-
-$pm = print_r($_REQUEST, true);
-mail("info@albatronic.com", "ALTAIR: compraNotif " . $numPedido, "pm: " . $pm, "FROM:" . $emailPedidos);
-
-/* $f=fopen("salida.txt", "w");
-  fputs($f, "idPedido: $idpedido, codRespuesta: $codRespuesta");
-  fclose($f); */
-
-//echo "Pedido: $idpedido <br>"; print_r($_REQUEST); exit;
-
-if ($numPedido == "" || $codRespuesta == "")
-    die("Error: no ha llegado el identificador del pedido");
-
-
-if ($signatureBanco != $signatureComercio) {
-    mail("info@albatronic.com", "ALTAIR: Acceso no permitido. Pedido Nº: " . $numPedido, "Un usuario ha intentado confirmar un pedido de forma no autorizada a través de la página de notificación del TPV virtual", "FROM:" . $emailPedidos);
-    die("Error: Datos erróneos");
-    exit;
-}
-
-if (($codRespuesta >= "0000" && $codRespuesta <= "0099") || $codRespuesta == "0900") { // Transacción autorizada
-    // confirmar y enviar e-mails
-    //if ($numPedido=="")
-    //	Error::message(4, "&back=0");
-    // confirmar el pedido (confirmarPedido.php)
-    Pedido::confirmarPedido($numPedido, false);
-} else { // Transacción denegada
-    // Poner anulado
-    Pedido::cambiarEstado($numPedido, "A");
-    Pedido::logPedido($numPedido, "Anulación de pedido desde pasarela SERMEPA (" . $_SERVER["PHP_SELF"] . ")", "web");
+        // Resultado inesperado, anular el pedido
+        PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
 }

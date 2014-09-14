@@ -198,13 +198,13 @@ if ($codRespuesta === "Completed" && $paypaVerificado) { // Transacción autoriz
     $pm .= "\r\n\r\n************\r\n\r\nEl total ha sido manipulado\r\n";
     $pm .= number_format($total, 2, '.', '') . " -> " . $totalPedido . "\r\n\r\n************\r\n\r\n";
 
-    $mailer->send("info@albatronic.com","info@albatronic.com","ALBATRONIC","","", "WEBLIB Paypal: compraNotif error en total pedido", "pm: " . $pm);
+    $mailer->send("info@albatronic.com","info@albatronic.com","ALBATRONIC","","", "Paypal: compraNotif error en total pedido", "pm: " . $pm);
 }
 
 // Transacción denegada
 // Poner anulado
 PedidosWebCab::cambiarEstado($numPedido, 1);
-$fp = fopen("paypal.log", "a");
+$fp = fopen("../log/paypal.log", "a");
 fwrite($fp,"anulado");
 fclose($fp);
 //Pedido::logPedido($numPedido, "Anulación de pedido desde pasarela Paypal (" . $_SERVER["PHP_SELF"] . ")", "web");

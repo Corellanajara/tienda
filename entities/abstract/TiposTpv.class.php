@@ -14,6 +14,11 @@ class TiposTpv extends Tipos {
         array('Id' => '2', 'Value' => 'Redsys/Sermepa',),
         array('Id' => '3', 'Value' => 'Pagantis',),
     );
+    
+    static $pasarelas = array(
+        'paypal','redsys','pagantis','ceca',
+    );
+    
     static $urlTpv = array(
         //Paypal
         '1' => array(
@@ -32,6 +37,16 @@ class TiposTpv extends Tipos {
             'real' => 'https://psp.pagantis.com/2/charges',
         ),
     );
+    
+    /**
+     * Devulve array con los nombres de las
+     * pasarelas implementadas
+     * 
+     * @return array
+     */
+    static function getPasarelas() {
+        return self::$pasarelas;
+    }
 
     /**
      * Devuelve array con los parámetros a enviar a la pasarela de pago
@@ -86,8 +101,8 @@ class TiposTpv extends Tipos {
             'return' => $_SESSION['varEnv']['Pro']['shop']['url'] . '/carrito/notificacion/paypal/ok',
             'cancel_return' => $_SESSION['varEnv']['Pro']['shop']['url'] . '/carrito/notificacion/paypal/ko',
             'notify_url' => $_SESSION['varEnv']['Pro']['shop']['url'] . '/lib/notificacionPaypal.php',
-            'amount_1' => number_format($total, 2, '.', ''), // solo 2 decimales y sin separador de miles
-            'item_name_1' => 'N. de Pedido:  ' . $idPedido,
+            //'amount_1' => number_format($total, 2, '.', ''), // solo 2 decimales y sin separador de miles
+            //'item_name_1' => 'N. de Pedido:  ' . $idPedido,
             'custom' => $idPedido,
             // Dirección de entrega
             'first_name' => $pedido->getIDCliente()->getRazonSocial(),
@@ -99,16 +114,16 @@ class TiposTpv extends Tipos {
             'shipping_1' => $pedido->getGastosEnvio(),
             'address_override' => 1,
             'cpp_cart_border_color' => '333333',
-            //'cpp_header_image' => "https://URL AL LOGO DE LA TIENDA",           
+                //'cpp_header_image' => "https://URL AL LOGO DE LA TIENDA",           
         );
 
-        // Incluyo las líneas de pedido
-        $l = 1;
+        // Incluyo las líneas de pedido con el IVA incluido
+        $l = 0;
         foreach ($pedido->getLineas() as $linea) {
             $l = $l + 1;
             $parametros["item_name_{$l}"] = $linea->getDescripcion();
-            $parametros["quantity_{$l}"] = number_format($linea->getUnidades(),0);
-            $parametros["amount_{$l}"] = $linea->getImporte();
+            $parametros["quantity_{$l}"] = number_format($linea->getUnidades(), 0);
+            $parametros["amount_{$l}"] = round($linea->getImporte() * (1 + $linea->getIva() / 100), 2);
         }
 
         unset($pedido);

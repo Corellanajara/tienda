@@ -78,66 +78,24 @@ class CarritoController extends ControllerProject {
 
         $this->values['idPedido'] = $_SESSION['idPedido'];
 
-        switch ($this->request[2]) {
-            case 'paypal':
-                if ($this->request[3] == 'ok') {
-                    // Confirmar pedido pagado
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
-                    ErpCarrito::vaciaCarrito();
-                    $this->values['mensaje'] = "pedidoTramitado";
-                } else {
-                    // Anular pedido
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "operacionRechazada";
-                }
-                break;
-
-            case 'redsys':
-                if ($this->request[3] == 'ok') {
-                    // Confirmar pedido pagado
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
-                    ErpCarrito::vaciaCarrito();
-                    $this->values['mensaje'] = "pedidoTramitado";
-                } else {
-                    // Anular pedido
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "operacionRechazada";
-                }
-                break;
-
-            case 'pagantis':
-                if ($this->request[3] == 'ok') {
-                    // Confirmar pedido pagado
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
-                    ErpCarrito::vaciaCarrito();
-                    $this->values['mensaje'] = "pedidoTramitado";
-                } else {
-                    // Anular pedido
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "operacionRechazada";
-                }                
-                break;
-
-            case 'ceca':
-                if ($this->request[3] == 'ok') {
-                    // Confirmar pedido pagado
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
-                    ErpCarrito::vaciaCarrito();
-                    $this->values['mensaje'] = "pedidoTramitado";
-                } else {
-                    // Anular pedido
-                    PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
-                    $this->values['mensaje'] = "operacionRechazada";
-                }                
-                break;
-            
-            default:
-                // Sin pasarela
-                // Confirmar pedido pendiente de pago
-                PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 3);
+        if (in_array($this->request[2], TiposTpv::getPasarelas())) {
+            if ($this->request[3] == 'ok') {
+                // Confirmar pedido pagado
+                PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
                 ErpCarrito::vaciaCarrito();
                 $this->values['mensaje'] = "pedidoTramitado";
-                $this->request[3] = 'ok';
+            } else {
+                // Anular pedido
+                PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
+                $this->values['mensaje'] = "operacionRechazada";
+            }
+        } else {
+            // Sin pasarela
+            // Confirmar pedido pendiente de pago
+            PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 3);
+            ErpCarrito::vaciaCarrito();
+            $this->values['mensaje'] = "pedidoTramitado";
+            $this->request[3] = 'ok';
         }
 
         if ($this->request[3] === 'ok') {

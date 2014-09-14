@@ -198,6 +198,8 @@ class ErpCarrito {
 
         // Borra las posibles líneas de pedido que estén sin confirmar
         $idPedido = PedidosWebCab::BorraLineasPedidoSesion();
+        $cliente = new Clientes($_SESSION['usuarioWeb']['Id']);
+        $direccionesDeEntrega = $cliente->getDireccionesEntrega();
 
         if ($idPedido > 0) {
             // Ya existía, lo actualizo
@@ -205,6 +207,7 @@ class ErpCarrito {
             $pedido->setsesion($_SESSION['IdSesion']);
             $pedido->setFecha(date('Y-m-d'));
             $pedido->setIDCliente($_SESSION['usuarioWeb']['Id']);
+            $pedido->setIDDirec($direccionesDeEntrega[0]->getIDDirec());
             $pedido->setIDCupon(0);
             $pedido->setDescuento(0);
             $pedido->setIDZonaEnvio($_SESSION['carrito']['zonaEnvio']);
@@ -225,6 +228,7 @@ class ErpCarrito {
             $pedido->setsesion($_SESSION['IdSesion']);
             $pedido->setFecha(date('Y-m-d'));
             $pedido->setIDCliente($_SESSION['usuarioWeb']['Id']);
+            $pedido->setIDDirec($direccionesDeEntrega[0]->getIDDirec());            
             $pedido->setIDZonaEnvio($_SESSION['carrito']['zonaEnvio']);
             $pedido->setIDFP($_SESSION['carrito']['formaPago']);
             $pedido->setIDAgencia($_SESSION['carrito']['formaEnvio']);
