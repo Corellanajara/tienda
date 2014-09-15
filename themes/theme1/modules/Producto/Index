@@ -1,0 +1,9 @@
+{# Producto #}
+{% extends layout %}
+
+{% set widgets = values.widgets %}
+
+{% block content %}
+	<p>Template autogenerado para el controlador Producto</p>
+	<p>Edítalo en themes/theme1/modules/Producto/Index</p>
+{% endblock %}

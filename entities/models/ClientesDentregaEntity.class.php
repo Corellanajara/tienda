@@ -118,6 +118,12 @@ class ClientesDentregaEntity extends EntityComunes {
     protected $IDZona;
 
     /**
+     * @orm:Column(type="")
+     * @assert:NotBlank(groups="clientes")
+     */
+    protected $Vigente = '1';
+
+    /**
      * Nombre de la conexion a la DB
      * @var string
      */
@@ -296,7 +302,14 @@ class ClientesDentregaEntity extends EntityComunes {
         return $this->IDZona;
     }
 
-}
+    public function setVigente($Vigente) {
+        $this->Vigente = $Vigente;
+    }
 
-// END class clientes_dentrega
-?>
+    public function getVigente() {
+        if (!($this->Vigente instanceof ValoresSN))
+            $this->Vigente = new ValoresSN($this->Vigente);
+        return $this->Vigente;
+    }
+
+}

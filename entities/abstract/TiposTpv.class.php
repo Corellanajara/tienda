@@ -204,7 +204,7 @@ class TiposTpv extends Tipos {
         }
 
         $modo = ($_SESSION['varEnv']['Pro']['shop']['pagantis']['modo'] == '1') ? 'real' : 'test';
-
+echo $idPedido,$total;
         $parametros = array(
             'url_tpv' => self::$urlTpv[3][$modo],
             'amount' => $total,

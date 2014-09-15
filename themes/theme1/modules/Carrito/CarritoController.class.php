@@ -77,7 +77,7 @@ class CarritoController extends ControllerProject {
     public function NotificacionAction() {
 
         $this->values['idPedido'] = $_SESSION['idPedido'];
-
+echo "pedido";print_r($_SESSION['idPedido']);
         if (in_array($this->request[2], TiposTpv::getPasarelas())) {
             if ($this->request[3] == 'ok') {
                 // Confirmar pedido pagado

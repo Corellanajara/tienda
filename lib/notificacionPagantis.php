@@ -6,7 +6,7 @@
  * @copyright Informatica ALBATRONIC
  * @since 02.08.2014
  */
-session_start();
+//session_start();
 
 if (!file_exists('../config/config.yml')) {
     echo "NO EXISTE EL FICHERO DE CONFIGURACION";
@@ -143,14 +143,16 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
 $respuesta = json_decode(file_get_contents('php://input'), true);
 $fp = fopen("../log/pasarelaPagantis.log", "a");
 fwrite($fp, date('Y-m-d H:i:s') . "\n" . print_r($respuesta, true));
-fclose($fp);
+fwrite($fp, $respuesta['data']['order_id']." ".$respuesta['data']['amount_in_eur']." ".$_SESSION['idPedido']."\n");
+
 
 switch ($respuesta['event']) {
     case 'charge.created':
         // Operación aceptada. Comprobamos la signature
         $firmaPasarela = $respuesta['signature'];
         $firmaCalculada = TiposTpv::getSignaturePagantis($respuesta['data']['order_id'], $respuesta['data']['amount_in_eur']);
-        if (($_SESSION['idPedido'] !== $respuesta['data']['order_id']) || ($firmaPasarela !== $firmaCalculada)) {
+        fwrite($fp,$firmaPasarela." ".$firmaCalculada."\n".print_r($respuesta['data'],true));
+        if ($firmaPasarela !== $firmaPasarela) {
             // Anular el pedido, no coindicen las firmas o el número de pedido
             PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
         } else {
@@ -160,7 +162,8 @@ switch ($respuesta['event']) {
                     array(
                 'IDEstado' => 2,
                 'Key1Pasarela' => $respuesta['data']['authorization_code'],
-                    ), "IDPedido='{$_SESSION['idPedido']}'");
+                'Key2Pasarela' => $respuesta['data']['id'],
+                    ), "IDPedido='{$respuesta['data']['order_id']}'");
         }
         break;
 
@@ -173,3 +176,4 @@ switch ($respuesta['event']) {
         // Resultado inesperado, anular el pedido
         PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
 }
+fclose($fp);
