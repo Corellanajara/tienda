@@ -143,7 +143,7 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
 $respuesta = json_decode(file_get_contents('php://input'), true);
 $fp = fopen("../log/pasarelaPagantis.log", "a");
 fwrite($fp, date('Y-m-d H:i:s') . "\n" . print_r($respuesta, true));
-fwrite($fp, $respuesta['data']['order_id']." ".$respuesta['data']['amount_in_eur']." ".$_SESSION['idPedido']."\n");
+fwrite($fp, $respuesta['data']['order_id']." ".$respuesta['data']['amount_in_eur']." ".$respuesta['data']['order_id']."\n");
 
 
 switch ($respuesta['event']) {
@@ -154,7 +154,7 @@ switch ($respuesta['event']) {
         fwrite($fp,$firmaPasarela." ".$firmaCalculada."\n".print_r($respuesta['data'],true));
         if ($firmaPasarela !== $firmaPasarela) {
             // Anular el pedido, no coindicen las firmas o el número de pedido
-            PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
+            PedidosWebCab::cambiaEstado($respuesta['data']['order_id'], 1);
         } else {
             // Confirma el pedido y guardar el código de autorización
             $pedido = new PedidosWebCab();
@@ -169,11 +169,11 @@ switch ($respuesta['event']) {
 
     case 'charge.failed':
         // Operacion denegada, anular el pedido
-        PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
+        PedidosWebCab::cambiaEstado($respuesta['data']['order_id'], 1);
         break;
 
     default:
         // Resultado inesperado, anular el pedido
-        PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
+        PedidosWebCab::cambiaEstado($respuesta['data']['order_id'], 1);
 }
 fclose($fp);
