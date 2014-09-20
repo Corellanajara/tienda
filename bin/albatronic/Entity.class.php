@@ -145,7 +145,7 @@ class Entity {
             // Compongo los valores iterando el objeto
             $values = '';
             foreach ($this as $key => $value) {
-                if ((substr($key, 0, 1) != '_') and ($key != $this->getPrimaryKeyName())) {
+                if ((substr($key, 0, 1) != '_') and ( $key != $this->getPrimaryKeyName())) {
                     if (is_null($value))
                         $values .= "`" . $key . "` = NULL,";
                     else
@@ -178,8 +178,9 @@ class Entity {
 
         if (is_resource($this->_dbLink)) {
             // Auditoria
+            $idUsuario = ($_SESSION['usuarioWeb']['Id'] !== '') ? $_SESSION['usuarioWeb']['Id'] : 0;
             $this->setCreatedAt(date('Y-m-d H:i:s'));
-            $this->setCreatedBy($_SESSION['usuarioWeb']['Id']);
+            $this->setCreatedBy($idUsuario);
 
             // Compongo las columnas y los valores iterando el objeto
             $columns = '';
@@ -187,7 +188,7 @@ class Entity {
             foreach ($this as $key => $value) {
                 if (substr($key, 0, 1) != '_') {
                     $columns .= "`" . $key . "`,";
-                    if (($key == $this->getPrimaryKeyName()) or (is_null($value)))
+                    if (($key == $this->getPrimaryKeyName()) or ( is_null($value)))
                         $values .= "NULL,";
                     else
                         $values .= "'" . mysql_real_escape_string($value, $this->_dbLink) . "',";
@@ -438,7 +439,7 @@ class Entity {
 
         if ($this->getPrimaryKeyValue() != '') {
             // Estoy validando antes de actualizar
-            if (($this->IsSuper) and ($_SESSION['usuarioWeb']['IdPerfil'] != '1'))
+            if (($this->IsSuper) and ( $_SESSION['usuarioWeb']['IdPerfil'] != '1'))
                 $this->_errores[] = "No se puede modificar, es un valor reservado";
         }
 
@@ -482,12 +483,12 @@ class Entity {
 
         // No se puede borrar si el objeto es un valor predeterminado y el usuario
         // no es el super
-        if (($this->IsDefault) AND ($_SESSION['usuarioWeb']['IdPerfil'] != 1))
+        if (($this->IsDefault) AND ( $_SESSION['usuarioWeb']['IdPerfil'] != 1))
             $this->_errores[] = "No se puede eliminar. Es un valor predeterminado";
 
         // No se puede borrar si el objeto es un valor SUPER y el usuario
         // no es el super
-        if (($this->IsSuper) AND ($_SESSION['usuarioWeb']['IdPerfil'] != 1))
+        if (($this->IsSuper) AND ( $_SESSION['usuarioWeb']['IdPerfil'] != 1))
             $this->_errores[] = "No se puede eliminar. Es un valor reservado";
 
         // Validacion de integridad referencial respecto a entidades hijas
@@ -622,12 +623,12 @@ class Entity {
      * @param string $condicion Condicion del where (sin el where)
      * @return int El número de filas afectadas
      */
-    public function querySelect($columnas, $condicion='1', $orden='') {
+    public function querySelect($columnas, $condicion = '1', $orden = '') {
 
         $rows = array();
 
-        $orden = ($orden == '') ? '': "ORDER BY {$orden}";
-        
+        $orden = ($orden == '') ? '' : "ORDER BY {$orden}";
+
         $this->conecta();
         if (is_resource($this->_dbLink)) {
 
@@ -667,9 +668,9 @@ class Entity {
                 $idPerfil = $_SESSION['usuarioWeb']['IdPerfil'];
                 $filtro .= " AND ( (Privacy='2') OR ( (Privacy='1') AND LOCATE('{$idPerfil}',AccessProfileListWeb) ) )";
             }
-            
+
             $query = "SELECT {$this->_primaryKeyName} FROM `{$this->_dataBaseName}`.`{$this->_tableName}` WHERE ({$filtro})";
-            $this->_em->query($query);//echo $query;
+            $this->_em->query($query); //echo $query;
             $this->setStatus($this->_em->numRows());
             $rows = $this->_em->fetchResult();
             $this->_em->desConecta();
@@ -1066,7 +1067,7 @@ class Entity {
 
         return $array;
     }
-    
+
     /**
      * Devuelve un array cuyo índice es el nombre de la propiedad
      * y el valor es el valor de dicha propiedad
