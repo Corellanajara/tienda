@@ -139,10 +139,13 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
   "signature": "abcdefghijk1234567890"
   }
  */
-// GUARDAR EN EL LOG
+
 $respuesta = json_decode(file_get_contents('php://input'), true);
-$fp = fopen("../log/pasarelaPagantis.log", "a");
-fwrite($fp, date('Y-m-d H:i:s') . "\n" . print_r($respuesta, true));
+
+$log = new PedidosWebLog();
+$log->setIDPedido($respuesta['data']['order_id']);
+$log->setPasarela("PAGANTIS");
+$log->setResultadoPasarela(print_r($respuesta, true));
 
 switch ($respuesta['event']) {
     case 'charge.created':
@@ -156,11 +159,13 @@ switch ($respuesta['event']) {
         if ($total[0] == '0') {
             // si es menor de 1 hay q quitar el cero inicial (ej: 0.25 => 025 => 25)
             $total = substr($total, 1);
-        }        
-        
+        }
+
         if ($total != $respuesta['data']['amount_in_eur']) {
             // Anular el pedido, no coindice el importe
             PedidosWebCab::cambiaEstado($respuesta['data']['order_id'], 1);
+            $log->setAccion("Pasarela OK pero se anula por diferencia de importe");
+            $log->setIDEstado(1);
         } else {
             // Confirma el pedido y guardar el código de autorización
             $pedido = new PedidosWebCab();
@@ -170,16 +175,24 @@ switch ($respuesta['event']) {
                 'Key1Pasarela' => $respuesta['data']['authorization_code'],
                 'Key2Pasarela' => $respuesta['data']['id'],
                     ), "IDPedido='{$respuesta['data']['order_id']}'");
+            $log->setIDEstado(2);
+            $log->setAccion("Pasarela OK");
         }
         break;
 
     case 'charge.failed':
         // Operacion denegada, anular el pedido
         PedidosWebCab::cambiaEstado($respuesta['data']['order_id'], 1);
+        $log->setIDEstado(1);
+        $log->setAccion("Rechazado por pasarela");
         break;
 
     default:
         // Resultado inesperado, anular el pedido
         PedidosWebCab::cambiaEstado($respuesta['data']['order_id'], 1);
+        $log->setIDEstado(1);
+        $log->setAccion("Resultado inesperado de la pasarela");
 }
-fclose($fp);
+
+// GUARDAR EN EL LOG
+$log->create();
