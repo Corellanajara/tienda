@@ -3,6 +3,7 @@
 /themes/default/cache/
 /themes/theme1/cache/
 /themes/theme2/cache/
-/log/
 /nbproject/
 /config/config.yml
+error_log
+/lib/error_log

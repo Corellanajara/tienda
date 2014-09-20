@@ -86,14 +86,13 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
   [payment_gross] =>
  */
 
-$host = ($_SESSION['varEnv']['Pro']['shop']['paypal']['modo'] == '1') ?
+$varEnv = CpanVariables::getVariables("Env", "Pro");
+$varWeb = CpanVariables::getVariables("Web", "Pro");
+$host = ($varEnv['shop']['paypal']['modo'] == '1') ?
         // Producción
         'www.paypal.com' :
         // Test
         'www.sandbox.paypal.com';
-
-$varEnv = CpanVariables::getVariables("Env", "Pro");
-$varWeb = CpanVariables::getVariables("Web", "Pro");
 $emailPedidos = $varEnv['shop']['eMailPedidos'];
 $mailer = new Mail($varWeb['mail']);
 

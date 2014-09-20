@@ -123,7 +123,7 @@ $_SESSION['EntornoDesarrollo'] = $rq->isDevelopment();
 // EN ENTORNO DE PRODUCCION, OBTENER EL ORIGEN DE LA PETICION PARA
 // LA GESTION DE VISITAS
 // ----------------------------------------------------------------
-if ((!$_SESSION['EntornoDesarrollo']) and (!$_SESSION['origen'])) {
+if ((!$_SESSION['EntornoDesarrollo']) and ( !$_SESSION['origen'])) {
     //$_SESSION['origen'] = WebService::getOrigenVisitante($config['wsControlVisitas'] . $rq->getRemoteAddr());
 }
 // ----------------------------------------------------------------
@@ -157,9 +157,10 @@ if ($rq->isOldBrowser()) {
 
 unset($url);
 $row = $rows[0];
-
-$_SESSION['idiomas']['actual'] = $row['Idioma'];
-$_SESSION['urlFriendly'] = $row['UrlFriendly'];
+if ($row['Id'] != '') {
+    $_SESSION['idiomas']['actual'] = $row['Idioma'];
+    $_SESSION['urlFriendly'] = $row['UrlFriendly'];
+}
 
 //-----------------------------------------------------------------
 // INSTANCIAR UN OBJETO DE LA CLASE REQUEST PARA TENER DISPONIBLES
@@ -191,7 +192,7 @@ $request['Parameters'] = $row['Parameters'];
 $request['Entity'] = $row['Entity'];
 $request['IdEntity'] = $row['IdEntity'];
 
-$controller = ControllerWeb::validaController($controller,$row['Template']);
+$controller = ControllerWeb::validaController($controller, $row['Template']);
 
 // Si no se ha localizado el controlador, lo pongo a Error404
 if ($controller == '') {
@@ -251,7 +252,7 @@ if ($config['debug_mode']) {
 }
 
 // Si el método no devuelve template o no exite, muestro un template de error.
-if (!file_exists($app['theme'] . '/modules/' . $result['template']) or ($result['template'] == '')) {
+if (!file_exists($app['theme'] . '/modules/' . $result['template']) or ( $result['template'] == '')) {
     $result['values']['error'] = 'No existe el template: "' . $result['template'] . '" devuelto por el método "' . $clase . ':' . $action . 'Action"';
     $result['template'] = ($_SESSION['isMobile']) ?
             '_global/error.mobile.html.twig' :

@@ -61,7 +61,7 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
     [Ds_AuthorisationCode] => 461980
 */
 
-$fp = fopen("../log/pasarela.log", "a");
+$fp = fopen("../log/pasarelaRedsys.log", "a");
 fwrite($fp,print_r($_GET,true));
 fclose($fp);
 exit;
@@ -85,7 +85,7 @@ $signatureComercio = strtoupper(sha1($message));
 //------------------------------------------------------
 
 $pm = print_r($_REQUEST, true);
-mail("amunoz@trevenque.es", "ALTAIR: compraNotif ".$numPedido, "pm: ".$pm, "FROM:".$emailPedidos);
+mail("info@albatronic.com", "ALTAIR: compraNotif ".$numPedido, "pm: ".$pm, "FROM:".$emailPedidos);
 
 /*$f=fopen("salida.txt", "w");
 fputs($f, "idPedido: $idpedido, codRespuesta: $codRespuesta");
@@ -98,7 +98,7 @@ if ($numPedido == "" || $codRespuesta == "")
 
 	
 if($signatureBanco != $signatureComercio){
-	mail("amunoz@trevenque.es", "ALTAIR: Acceso no permitido. Pedido Nº: ".$numPedido,"Un usuario ha intentado confirmar un pedido de forma no autorizada a través de la página de notificación del TPV virtual", "FROM:".$emailPedidos);	
+	mail("info@albatronic.com", "Acceso no permitido. Pedido Nº: ".$numPedido,"Un usuario ha intentado confirmar un pedido de forma no autorizada a través de la página de notificación del TPV virtual", "FROM:".$emailPedidos);	
 	die("Error: Datos erróneos");
 	exit ;
 }
