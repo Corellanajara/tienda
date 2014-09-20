@@ -143,17 +143,24 @@ spl_autoload_register(array('Autoloader', 'loadClass'));
 $respuesta = json_decode(file_get_contents('php://input'), true);
 $fp = fopen("../log/pasarelaPagantis.log", "a");
 fwrite($fp, date('Y-m-d H:i:s') . "\n" . print_r($respuesta, true));
-fwrite($fp, $respuesta['data']['order_id']." ".$respuesta['data']['amount_in_eur']." ".$respuesta['data']['order_id']."\n");
-
 
 switch ($respuesta['event']) {
     case 'charge.created':
-        // Operación aceptada. Comprobamos la signature
-        $firmaPasarela = $respuesta['signature'];
-        $firmaCalculada = TiposTpv::getSignaturePagantis($respuesta['data']['order_id'], $respuesta['data']['amount_in_eur']);
-        fwrite($fp,$firmaPasarela." ".$firmaCalculada."\n".print_r($respuesta['data'],true));
-        if ($firmaPasarela !== $firmaPasarela) {
-            // Anular el pedido, no coindicen las firmas o el número de pedido
+        // Operación aceptada.
+        // Por seguridad comprobamos el n. de pedido y el importe
+        $pedido = new PedidosWebCab($respuesta['data']['order_id']);
+        $total = $pedido->getTotal() + $pedido->getGastosEnvio();
+        unset($pedido);
+
+        // El total se expresa con dos decimales sin la coma
+        $total = number_format($total, 2, '', '');
+        if ($total[0] == '0') {
+            // si es menor de 1 hay q quitar el cero inicial (ej: 0.25 => 025 => 25)
+            $total = substr($total, 1);
+        }        
+        
+        if ($total != $respuesta['data']['amount_in_eur']) {
+            // Anular el pedido, no coindice el importe
             PedidosWebCab::cambiaEstado($respuesta['data']['order_id'], 1);
         } else {
             // Confirma el pedido y guardar el código de autorización
