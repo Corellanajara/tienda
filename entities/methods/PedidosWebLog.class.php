@@ -19,6 +19,7 @@ class PedidosWebLog extends PedidosWebLogEntity {
         
         $this->Fecha = date('Y-m-d H:i:s');
         $this->IpAddress = $_SERVER['REMOTE_ADDR'];
+        $this->CreatedBy = 0;
         
         return parent::create();
     }
