@@ -1,0 +1,9 @@
+{# Familias #}
+{% extends layout %}
+
+{% set widgets = values.widgets %}
+
+{% block content %}
+	<p>Template autogenerado para el controlador Familias</p>
+	<p>Edítalo en themes/theme1/modules/Familias/Index</p>
+{% endblock %}

@@ -24,7 +24,7 @@
 #
 
 config:
-  debug_mode: true
+  debug_mode: false
 
   # PARA MOSTRAR O NO EL BOTON DE LA AUDITORIA DE LOS FORMULARIOS
   audit_mode: true
@@ -49,8 +49,8 @@ config:
   # NORMALMENTE, EN PRODUCCION 'path' estará vacio
   app:
     name: 'Albatronic Cloud Solutions'
-    url: http://tienda.local
-    path: 
+    url: http://www.albatronic.com/webs/tienda
+    path: /webs/tienda
     framework: bin/albatronic/
     theme: themes/theme1
 
@@ -85,6 +85,6 @@ config:
     albatro_demo:
       dbEngine: mysql
       host: localhost
-      user: root
-      password: root
+      user: albatro
+      password: p17s26a26
       database: albatro_demo

@@ -6,7 +6,7 @@
  * @copyright Informatica ALBATRONIC
  * @since 02.08.2014
  */
-session_start();
+//session_start();
 
 if (!file_exists('../config/config.yml')) {
     echo "NO EXISTE EL FICHERO DE CONFIGURACION";
