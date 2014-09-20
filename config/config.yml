@@ -49,8 +49,8 @@ config:
   # NORMALMENTE, EN PRODUCCION 'path' estará vacio
   app:
     name: 'Albatronic Cloud Solutions'
-    url: http://www.albatronic.com/webs/tienda
-    path: /webs/tienda
+    url: albatronic.tienda
+    path: 
     framework: bin/albatronic/
     theme: themes/theme1
 
@@ -85,6 +85,6 @@ config:
     albatro_demo:
       dbEngine: mysql
       host: localhost
-      user: albatro
-      password: p17s26a26
+      user: root
+      password: root
       database: albatro_demo
