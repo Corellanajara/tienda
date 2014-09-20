@@ -146,8 +146,7 @@ fwrite($fp, date('Y-m-d H:i:s') . "\n" . print_r($respuesta, true));
 
 switch ($respuesta['event']) {
     case 'charge.created':
-        // Operación aceptada.
-        // Por seguridad comprobamos el n. de pedido y el importe
+        // Operación aceptada. Por seguridad comprobamos el n. de pedido y el importe
         $pedido = new PedidosWebCab($respuesta['data']['order_id']);
         $total = $pedido->getTotal() + $pedido->getGastosEnvio();
         unset($pedido);

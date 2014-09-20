@@ -77,16 +77,16 @@ class CarritoController extends ControllerProject {
     public function NotificacionAction() {
 
         $this->values['idPedido'] = $_SESSION['idPedido'];
-echo "pedido";print_r($_SESSION['idPedido']);
+
         if (in_array($this->request[2], TiposTpv::getPasarelas())) {
             if ($this->request[3] == 'ok') {
-                // Confirmar pedido pagado
-                PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
+                // El pedido ha sido confirmado
+                //PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 2);
                 ErpCarrito::vaciaCarrito();
                 $this->values['mensaje'] = "pedidoTramitado";
             } else {
-                // Anular pedido
-                PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
+                // El pedido ha sido anulado
+                //PedidosWebCab::cambiaEstado($_SESSION['idPedido'], 1);
                 $this->values['mensaje'] = "operacionRechazada";
             }
         } else {
