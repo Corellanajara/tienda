@@ -84,13 +84,13 @@ class ErpCarrito {
             $carrito = new Carrito($rows[0]['Id']);
             $articulo = new Articulos($idArticulo);
             $precios = $articulo->cotizarWeb($unidades);
-            $idPromocion = (is_object($precios['Promocion'])) ? $precios['Promocion']->getIDPromocion() : 0;   
-            
+            $idPromocion = (is_object($precios['Promocion'])) ? $precios['Promocion']->getIDPromocion() : 0;
+
             $carrito->setUnidades($carrito->getUnidades() + $unidades);
             $carrito->setPrecio($precios['Cotizacion']['Precio']);
-            $carrito->setDescuento($precios['Cotizacion']['Descuento']);            
+            $carrito->setDescuento($precios['Cotizacion']['Descuento']);
             $carrito->setImporte($carrito->getUnidades() * $carrito->getPrecio() * (1 - $carrito->getDescuento() / 100));
-            $carrito->setIDPromocion($idPromocion);            
+            $carrito->setIDPromocion($idPromocion);
             $id = ($carrito->save()) ? $rows[0]['Id'] : 0;
             self::$errores = $carrito->getErrores();
             self::$alertas = $carrito->getAlertas();
@@ -220,7 +220,7 @@ class ErpCarrito {
             }
             if ($_SESSION['agente']['Id'] > 0) {
                 $pedido->setIDAgente($_SESSION['agente']['Id']);
-            }            
+            }
             $pedido->save();
         } else {
             // No existía, lo creo
@@ -228,7 +228,7 @@ class ErpCarrito {
             $pedido->setsesion($_SESSION['IdSesion']);
             $pedido->setFecha(date('Y-m-d'));
             $pedido->setIDCliente($_SESSION['usuarioWeb']['Id']);
-            $pedido->setIDDirec($direccionesDeEntrega[0]->getIDDirec());            
+            $pedido->setIDDirec($direccionesDeEntrega[0]->getIDDirec());
             $pedido->setIDZonaEnvio($_SESSION['carrito']['zonaEnvio']);
             $pedido->setIDFP($_SESSION['carrito']['formaPago']);
             $pedido->setIDAgencia($_SESSION['carrito']['formaEnvio']);
