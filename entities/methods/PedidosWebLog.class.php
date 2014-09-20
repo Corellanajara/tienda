@@ -11,6 +11,8 @@
  */
 class PedidosWebLog extends PedidosWebLogEntity {
 
+    protected $CreatedBy = 0;
+    
     public function __toString() {
         return ($this->Id) ? $this->Id : '';
     }
