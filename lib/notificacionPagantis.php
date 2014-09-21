@@ -196,4 +196,3 @@ switch ($respuesta['event']) {
 
 // GUARDAR EN EL LOG
 $log->create();
-mail("info@albatronic.com","pagantis",print_r($log,true));
