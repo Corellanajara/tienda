@@ -10,8 +10,6 @@
  * @orm:Entity(ErpPedidosWebLog)
  */
 class PedidosWebLog extends PedidosWebLogEntity {
-
-    protected $CreatedBy = 0;
     
     public function __toString() {
         return ($this->Id) ? $this->Id : '';
@@ -21,6 +19,7 @@ class PedidosWebLog extends PedidosWebLogEntity {
         
         $this->Fecha = date('Y-m-d H:i:s');
         $this->IpAddress = $_SERVER['REMOTE_ADDR'];
+        $this->CreatedBy = 0;
         
         return parent::create();
     }
