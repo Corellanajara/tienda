@@ -139,8 +139,9 @@ class Entity {
 
         if (is_resource($this->_dbLink)) {
             // Auditoria
+            $idUsuario = isset($_SESSION['usuarioWeb']['Id']) ? $_SESSION['usuarioWeb']['Id'] : 0;            
             $this->setModifiedAt(date('Y-m-d H:i:s'));
-            $this->setModifiedBy($_SESSION['usuarioWeb']['Id']);
+            $this->setModifiedBy($idUsuario);
 
             // Compongo los valores iterando el objeto
             $values = '';
@@ -178,7 +179,7 @@ class Entity {
 
         if (is_resource($this->_dbLink)) {
             // Auditoria
-            $idUsuario = ($_SESSION['usuarioWeb']['Id'] !== '') ? $_SESSION['usuarioWeb']['Id'] : 0;
+            $idUsuario = isset($_SESSION['usuarioWeb']['Id']) ? $_SESSION['usuarioWeb']['Id'] : 0;
             $this->setCreatedAt(date('Y-m-d H:i:s'));
             $this->setCreatedBy($idUsuario);
 
