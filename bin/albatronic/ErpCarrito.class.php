@@ -98,6 +98,7 @@ class ErpCarrito {
             $articulo = new Articulos($idArticulo);
             $precios = $articulo->cotizarWeb($unidades);
             $idPromocion = (is_object($precios['Promocion'])) ? $precios['Promocion']->getIDPromocion() : 0;
+            $ivaIncluido = ($_SESSION['varEnv']['Pro']['shop']['ivaIncluido']) ? 1 : 0;
 
             $carrito->setsesion($_SESSION['IdSesion']);
             $carrito->setIpOrigen($_SERVER['REMOTE_ADDR']);
@@ -113,7 +114,7 @@ class ErpCarrito {
             $carrito->setRecargo($articulo->getIDIva()->getRecargo());
             $carrito->setEstado(0);
             $carrito->setIDPromocion($idPromocion);
-            $carrito->setIvaIncluido($_SESSION['varEnv']['Pro']['shop']['ivaIncluido']);
+            $carrito->setIvaIncluido($ivaIncluido);
             $id = $carrito->create();
             self::$errores = $carrito->getErrores();
             self::$alertas = $carrito->getAlertas();
