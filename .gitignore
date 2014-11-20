@@ -1,5 +1,4 @@
-/log/*.log
-/tmp/
+/log/
 /themes/default/cache/
 /themes/theme1/cache/
 /themes/theme2/cache/
