@@ -56,7 +56,7 @@ class Cupones extends CuponesEntity {
      * @param type $cupon
      */
     static function usaCupon() {
-        print_r($_SESSION['cupon']);
+
         if ($_SESSION['cupon']['Id'] > 0) {
             $cupon = new Cupones($_SESSION['cupon']['Id']);
             $cupon->setNumeroUsos($cupon->getNumeroUsos() + 1);
@@ -65,7 +65,6 @@ class Cupones extends CuponesEntity {
 
             $_SESSION['cupon'] = array();
         }
-        print_r($_SESSION['cupon']);        
     }
 
     public function getMensajeCupon() {
