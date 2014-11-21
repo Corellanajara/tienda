@@ -33,7 +33,7 @@ class EntityManager {
     private $affectedRows = null;
     private $logErrorQueryFile;
     private $logQueryFile;
-    
+
     /**
      * Guardar el eventual error producido en la conexión
      * @var array
@@ -65,9 +65,9 @@ class EntityManager {
      */
     public function __construct($conection, $fileConfig = '') {
 
-        $this->logErrorQueryFile = str_replace("bin/albatronic","",__DIR__) . "log/error_query.log";
-        $this->logQueryFile = str_replace("bin/albatronic","",__DIR__) . "log/query.log";
-        
+        $this->logErrorQueryFile = str_replace("bin/albatronic", "", __DIR__) . "log/error_query.log";
+        $this->logQueryFile = str_replace("bin/albatronic", "", __DIR__) . "log/query.log";
+
         //if (is_null(self::$dbLinkInstance)) {
         if (is_array($conection)) {
             self::$dbEngine = $conection['dbEngine'];
@@ -81,12 +81,12 @@ class EntityManager {
         } else {
             if (count(self::$conection) == 0) {
                 if ($fileConfig == '') {
-                    $fileConfig = str_replace("bin/albatronic","",__DIR__) . $this->file;
+                    $fileConfig = str_replace("bin/albatronic", "", __DIR__) . $this->file;
                 }
                 if (file_exists($fileConfig)) {
                     $yaml = sfYaml::load($fileConfig);
                     // Si no se ha indicado el nombre de la conexión, se tomara la primera
-                    if ($conection == '') 
+                    if ($conection == '')
                         list($conection, $nada) = each($yaml['config']['conections']);
                     self::$conection = $yaml['config']['conections'][$conection];
                 } else {
@@ -176,7 +176,7 @@ class EntityManager {
             fwrite($fp, date("Y-m-d H:i:s") . "\t" . $query . "\n");
             fclose($fp);
         }
-        
+
         switch (self::$dbEngine) {
             case 'mysql':
                 //mysql_select_db($this->getdataBase());
@@ -303,7 +303,7 @@ class EntityManager {
         switch (self::$dbEngine) {
             case 'mysql':
                 @mysql_data_seek($this->result, $rowNumber);
-                while (($row = mysql_fetch_array($this->result, MYSQL_ASSOC)) and ($nfilas < $limit)) {
+                while (($row = mysql_fetch_array($this->result, MYSQL_ASSOC)) and ( $nfilas < $limit)) {
                     $nfilas++;
                     $rows[] = $row;
                 }
@@ -410,7 +410,7 @@ class EntityManager {
         switch (self::$dbEngine) {
             case 'mysql':
                 //return mysql_insert_id(self::$dbLinkInstance);
-                $result = mysql_query("SELECT LAST_INSERT_ID()",self::$dbLinkInstance);
+                $result = mysql_query("SELECT LAST_INSERT_ID()", self::$dbLinkInstance);
                 $row = mysql_fetch_row($result);
                 return $row[0];
                 break;
@@ -485,11 +485,11 @@ class EntityManager {
      */
     public function setError($method, $error = '') {
 
-        $mensaje = "EntityManager [{$method}]: ";
+        $mensaje = $_SERVER['PHP_SELF'] . "\nEntityManager [{$method}]: ";
 
-        if ($error != '')
+        if ($error != '') {
             $mensaje .= $error;
-        else {
+        } else {
             switch (self::$dbEngine) {
                 case 'mysql':
                     switch (mysql_errno()) {

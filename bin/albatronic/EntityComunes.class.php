@@ -209,7 +209,7 @@ class EntityComunes extends Entity {
      * @orm Column(type="tinyint")
      * @var entities\ValoresSN
      */
-    protected $LockMetatagTitle = '';
+    protected $LockMetatagTitle = '1';
 
     /**
      * @orm Column(type="string")
