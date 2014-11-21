@@ -326,6 +326,7 @@ class ZonaPrivadaController extends ControllerProject {
     public function LogoutAction() {
         $_SESSION['usuarioWeb'] = array();
         $_SESSION['agente'] = array();
+        $_SESSION['cupon'] = array();
         return $this->redirect("Index");
     }
 

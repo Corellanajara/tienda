@@ -99,6 +99,7 @@ class CarritoController extends ControllerProject {
         }
 
         if ($this->request[3] === 'ok') {
+            Cupones::usaCupon();
             PedidosWebCab::enviaCorreos($_SESSION['idPedido']);
             $template = $this->controller . "/pedidoOk.html.twig";
             $this->values['pedido'] = new PedidosWebCab($_SESSION['idPedido']);
