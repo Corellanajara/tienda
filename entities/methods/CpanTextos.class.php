@@ -122,5 +122,3 @@ class CpanTextos extends CpanTextosEntity {
         return new $this($rows[0][$this->_primaryKeyName]);
     }
 }
-
-?>

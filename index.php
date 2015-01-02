@@ -131,6 +131,7 @@ if ((!$_SESSION['EntornoDesarrollo']) and ( !$_SESSION['origen'])) {
 // ----------------------------------------------------------------
 setlocale(LC_MONETARY, $rq->getLanguage());
 //if ((!isset($_SESSION['idiomas']['actual'])) or ($_SESSION['EntornoDesarrollo']))
+
 if (!isset($_SESSION['idiomas']['actual'])) {
     ControllerWeb::setIdioma();
 }
