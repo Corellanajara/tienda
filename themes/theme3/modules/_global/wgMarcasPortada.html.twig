@@ -1,0 +1,25 @@
+{# MUESTRA EN FORMATO ACORDEON LAS 10 PRIMERAS MARCAS DE PORTADA Y SUS CATEGORIAS #}
+
+{% set marcas = values.widgets.getMarcas(1,0,10) %}
+
+{% if marcas|length %}
+<h3 class="formulario">{{macro.idioma('marcas')}}</h3>
+<ul id="accordionMarcas" class="accordion menu">
+    {% for marca in marcas %}       
+        <li>
+            <a onclick="location.href='{{marca.Href.url}}';" style="cursor: pointer;" title="{{marca.Titulo}}">{{marca.Titulo}}</a>
+            
+            {% set categorias = marca.getCategorias %}
+            {% if categorias |length > 0 %}
+                <ul>
+                {% for categoria in categorias %}   
+                    <li>
+                        <a href="{{categoria.Href.url}}" title="{{categoria.Familia}}">{{categoria.Familia}}</a>
+                    </li>
+                {% endfor %}
+                </ul>             
+            {% endif %}
+        </li>           
+    {% endfor %}                         
+</ul>
+{% endif %}

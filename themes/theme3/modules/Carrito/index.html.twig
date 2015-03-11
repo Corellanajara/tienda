@@ -1,0 +1,21 @@
+{% extends layout %}
+
+{% block asideRight %}{% endblock %}
+
+{% block content %}
+    <section class="contenedorGrande">
+        <h1 class="tituloCesta">{{macro.idioma('cestaDeLaCompra')}}</h1>
+        {% if values.carrito.totales.Importe > 0 %}
+            {% include values.controller ~ '/lineas.html.twig' %} 
+            <div class="salto10"></div>
+            <div>
+            {% include values.controller ~ '/pie.html.twig' %} 
+            </div>
+            <div class="salto20"></div>
+            {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.carrito.articulosRelacionados}%} 
+            {% include '_global/wgSeguimientoVisita.html.twig' %} 
+        {% else %}
+            <p>{{macro.idioma('cestaVacia')}}, {{macro.idioma('quizaLeInterese')}} <a href="{{app.path}}/favoritos">{{macro.idioma('favoritos')}}</a> o <a href="{{app.path}}/promociones">{{macro.idioma('promociones')}}</a></p>
+        {% endif %}
+    </section>
+{% endblock %}

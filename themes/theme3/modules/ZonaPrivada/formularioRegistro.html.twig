@@ -1,0 +1,117 @@
+<form name="formRegistro" id="formRegistro" method="POST" enctype="multipart/form-data" action="">
+    <div id="input_oculto">
+        <input name="controller" value="ZonaPrivada" />
+        <input name="action" id="action" value="Registro" />
+        <input name="accion" id="accion" value="" />
+        <input name="cliente[IDCliente]" value="{{values.cliente.IDCliente}}" />
+    </div>
+    
+    <section class="width100x100">
+        <article>
+            <label>{{macro.idioma('email')}}</label>
+            <input type="text" id="email" name="cliente[EMail]" value="{{values.cliente.EMail}}" class="celda celda90" {%if values.cliente.IDCliente%}readonly{%endif%}/>
+        </article>
+
+        <article>
+            <label>{{macro.idioma('contraseña')}}</label>
+            <input type="password" id="password" name="cliente[Password]" value="" class="celda celda50" />
+        </article>
+
+        <article class="cont50">
+            <label>{{macro.idioma('repetirContraseña')}}</label>
+            <input type="password" id="repitePassword" name="repitePassword" class="celda celda50" />
+        </article>  
+    </section>        
+    <section class="width100x100 marginTop40">
+        <h3 class="titularGrande">{{macro.idioma('datosDeFacturacion')}}</h3>
+        <article class="cont90 marginRight30">
+            <label>{{macro.idioma('nombreYApellidos')}}</label>
+            <input type="text" name="cliente[RazonSocial]" value="{{values.cliente.RazonSocial}}" class="celda celda90" />
+        </article>
+        <article class="cont90 marginRight30">
+            <label>{{macro.idioma('dniCif')}}</label>
+            <input type="text" name="cliente[Cif]" value="{{values.cliente.Cif}}" class="celda celda90" />
+        </article>
+        <article class="cont5 marginRight30">
+            <label>{{macro.idioma('pais')}}</label>
+            <select name="cliente[IDPais]" class="select celda celda30">
+                {% for pais in values.cliente.IDPais.fetchAll('Pais') %}
+                    <option value="{{pais.Id}}" {%if values.cliente.IDPais.IDPais==pais.Id%} SELECTED{%endif%}>{{pais.Value}}</option>
+                {% endfor %}
+            </select>
+        </article> 
+        <article class="cont5 marginRight30">
+            <label>{{macro.idioma('provincia')}}</label>
+            <select name="cliente[IDProvincia]" id="cliente_IDProvincia" class="select celda celda30">
+                {% for provincia in values.cliente.IDProvincia.fetchAll('Provincia') %}
+                    <option value="{{provincia.Id}}" {%if values.cliente.IDProvincia.IDProvincia==provincia.Id%} SELECTED{%endif%}>{{provincia.Value}}</option>
+                {% endfor %}
+            </select>
+        </article> 
+        <article class="cont50 marginRight30">
+            <label>{{macro.idioma('poblacion')}}</label>
+            <input type="hidden" name="cliente[IDPoblacion]" id="cliente_IDPoblacion" value="{{values.cliente.IDPoblacion.IDMunicipio}}" class="celda celda50" />
+            <input type="text" id="cliente_IDPoblacion_autoComplete" class="celda celda50" value="{{values.cliente.IDPoblacion}}"
+                   onkeyup="autoComplete('cliente_IDPoblacion_autoComplete','cliente_IDPoblacion','cliente_IDPoblacion_autoComplete','municipios','Municipio',$('#cliente_IDProvincia').val());"/>
+        </article>
+        <article class="cont50 marginRight30">
+            <label>{{macro.idioma('direccion')}}</label>
+            <input type="text" name="cliente[Direccion]" value="{{values.cliente.Direccion}}" class="celda celda50" />
+        </article>
+
+        <article class="cont5 marginRight30">
+            <label>{{macro.idioma('codigoPostal')}}</label>
+            <input type="text" name="cliente[CodigoPostal]" value="{{values.cliente.CodigoPostal}}" class="celda celda5" />
+        </article> 
+        
+        <article class="cont5 marginRight30">
+            <label>{{macro.idioma('telefono')}}</label>
+            <input type="text" name="cliente[Telefono]" value="{{values.cliente.Telefono}}" class="celda celda30" />
+        </article>         
+        
+        <article class="cont5 marginRight30">
+            <label>{{macro.idioma('movil')}}</label>
+            <input type="text" name="cliente[Movil]" value="{{values.cliente.Movil}}" class="celda celda30" />
+        </article> 
+        
+        <article class="cont5 marginRight30">
+            <label>{{macro.idioma('formaDePago')}}</label>
+            <select name="cliente[IDFP]" id="cliente_IDFP" class="select celda celda30">
+                {% for fpago in values.cliente.IDFP.fetchAllWeb() %}
+                    <option value="{{fpago.Id}}" {%if values.cliente.IDFP.IDFP==fpago.Id%} SELECTED{%endif%}>{{fpago.Value}}</option>
+                {% endfor %}
+            </select>
+        </article>         
+    </section>  
+
+    {#
+    <section class="width100x100">
+        <article class="cont100">
+
+        {% if values.logo %}
+            <img src="{{app.path}}/{{values.logo}}"/>
+        {% endif %}
+            <label>{{macro.idioma('logotipoEmpresa')}}</label>
+            <input type="file" name="logoEmpresa" class="celda celda100" />
+        </article>             
+    </section> 
+    #}
+    
+    <div id="contenedorEnviar">
+        <div class="checkbox">
+            <input id="leidoPolitica" type="checkbox" {%if values.cliente.IDCliente%} checked{%endif%}/>
+            <label class="textoCheckbox" for="checkbox2">{{macro.idioma('leidoPolitica')}} <a href="{{app.path}}/politica-de-privacidad" rel="iframe-1000-360" class="pirobox" title="{{macro.idioma('politicaPrivacidad')}}">{{macro.idioma('politicaPrivacidad')}}.</a></label>                
+        </div>
+    </div>
+        
+    <article class="botonera marginTop20">
+        {#<a href="javascript:history.back()" class="botonRojo left">{{macro.idioma('volverAtras')}}</a>#}
+        {% if values.cliente.IDCliente == ''%}
+        <a href="javascript:;" id="botonCrearCuenta" data-type="submit" title="{{macro.idioma('crearCuenta')}}" class="botonNaranja right">{{macro.idioma('crearCuenta')}}</a>
+        {% else %}
+        <a href="javascript:;" id="botoGuardarCambios" data-type="submit" title="{{macro.idioma('guardarCambios')}}" class="botonNaranja right">{{macro.idioma('guardarCambios')}}</a>
+        {% endif %}
+    </article>
+</form>
+
+<div id="divDialogo" title="{{macro.idioma('mensajes')}}"></div>

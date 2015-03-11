@@ -1,0 +1,14 @@
+{% extends layout %}
+
+{% block content %}
+    <section class="central">
+        <h1 class="tituloProducto">{{values.producto.Descripcion}}</h1>   
+        {% include values.controller ~ '/productoInfo.html.twig' %}   
+    </section>
+
+    <section>
+        {# include '_global/noticias.html.twig' #}
+        {# include '_global/articulosRelacionados.html.twig' #}
+    </section>
+
+{% endblock %}

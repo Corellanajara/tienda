@@ -1,0 +1,25 @@
+{# aside Right #}
+<div class="col-sm-2"> 
+    {# include '_global/wgSliderArticulos.html.twig' #} 
+    {% include "_global/wgCajaCarrito.html.twig" %}
+    {% include '_global/wgIntranet.html.twig' %}    
+    {% include '_global/wgMarcasPortada.html.twig' %}            
+    {% include '_global/wgLoMasVisto.html.twig' %}          
+       
+    <a href="{{app.path}}/instalador" class="cajetinNoBorder" id="encuentreInstalador">
+        <span class="sprite"></span>
+        <span>
+            {{values.LABELS.encuentreInstalador}}
+        </span>
+    </a>
+
+    <a href="{{app.path}}/seguro-de-responsabilidad-civil" class="cajetinNoBorder" id="seguroCivil">
+        <span class="sprite"></span>
+        <span>
+            {{values.LABELS.seguroCivil}}
+        </span>
+    </a>    
+
+    {# include '_global/wgCalendario.html.twig' #}     
+    {% include '_global/wgBannersZona1.html.twig' %}          
+</div> 

@@ -1,0 +1,21 @@
+{# MENU DE LA INTRANET #}
+{% if agente.Id > 0 %}
+<h3 class="formulario">Intranet</h3>
+<ul id="accordionMarcas" class="accordion menu">
+    <li>
+        <a style="cursor: pointer;" title="Pedidos">Pedidos</a>
+        <ul>
+            <li><a onclick="location.href='{{app.path}}/pedido-nuevo';" style="cursor: pointer;" title="Pedido Nuevo">Pedido Nuevo</a></li>            
+            <li><a onclick="location.href='{{app.path}}/gestion-pedidos';" style="cursor: pointer;" title="Gestión de Pedidos">Gestión de pedidos</a></li>            
+        </ul>
+    </li>
+    <li>
+        <a style="cursor: pointer;" title="Informes">Informes</a>
+        <ul>
+            <li><a onclick="location.href='{{app.path}}/historico-ventas';" style="cursor: pointer;" title="Histórico de Ventas">Histórico de Ventas</a></li>            
+            <li><a onclick="location.href='{{app.path}}/facturas';" style="cursor: pointer;" title="Facturas">Facturas</a></li>            
+        </ul>
+    </li>
+
+</ul>   
+{% endif %}

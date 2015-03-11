@@ -1,0 +1,52 @@
+{% set galeria = values.galeria %}
+{% set imagen = values.producto.PathNameImagenN(2) %}
+<section class="productoInfo">
+
+    <div class="imagenes">                   
+        <div class="imagen300">
+            {% if imagen %}
+            <img src="{{app.path}}/{{theme}}/{{imagen}}" alt="{{values.producto.Descripcion}}" title="{{values.producto.Descripcion}}" />
+            {% endif %}
+            {% if galeria | length > 0 %}
+            <a href="{{app.path}}/{{theme}}/{{galeria.0.PathName}}" title=""  rel="gallery" class={% if galeria  %}"pirobox_gall{{key}}{% else %}pirobox{%endif%}">
+                <img src="{{app.path}}/images/icono-lupa-mas.png" alt="{{values.TEXTS.masImagenes}}" title="{{values.TEXTS.masImagenes}}" id="lupaMas" />
+            </a>
+            {% endif %}
+        </div>
+
+        {% for keyItem,item in galeria %}
+            {% if keyItem > 0 %}
+                <a href="{{app.path}}/{{theme}}/{{item.PathName}}" rel="gallery" class="pirobox_gall{{key}}" title=""></a>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+    <div class="cajaPrecios">
+        <div><b>{{macro.idioma('referencia')}}:</b> {{values.producto.Codigo}}</div>
+        <div>{% autoescape false %}{{values.producto.Resumen}}{% endautoescape %}</div>        
+        {% if values.producto.PrecioWeb > 0 %}
+            <div>
+                {% if values.producto.PvpAnterior > 0 %}
+                <span class="precioAnterior">{{ macro.moneda(values.producto.PvpAnterior) }}</span>
+                {% endif %}
+                <span class="precioFinal">PVP {{ macro.precio(values.producto.cotizarWeb) }}</span>
+            </div>
+            <div class="comprar">
+                <input type="text" class="comprarUnidades" name="unidades{{values.producto.IDArticulo}}" id="unidades{{values.producto.IDArticulo}}" value="1"/>
+                <input type="button" class="boton btn_azul left" value="Comprar" onclick="addCart('{{values.producto.IDArticulo}}',$('#unidades{{values.producto.IDArticulo}}').val());"/>
+            </div>
+            {% include '_global/addFavoritos.html.twig' with {'idArticulo': values.producto.IDArticulo} %}
+            {% include '_global/wgStock.html.twig' with {'articulo': values.producto} %}
+        {% endif %}
+    </div>
+    
+    {% include '_global/share.html.twig' %}
+    {% include values.controller ~ '/solapas.html.twig' %}
+    <div class="salto10"></div>
+    <div class="salto10"></div>    
+    {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.articulosRelacionados}%}
+
+</section>
+
+<div id="mensajes" title="Mensajes"></div>

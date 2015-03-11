@@ -1,0 +1,25 @@
+<div class="row">  
+    {#
+    <div class="col-sm-3">
+        <ul>
+            {% for opcion in values.menuCabeceraIzq  %}
+                <li><a href="{{opcion.url.url}}">{{opcion.etiquetaWeb}}<span>{{opcion.subetiquetaWeb}}</span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    #}
+
+    <div class="col-sm-12">
+        {% include '_global/slider.html.twig' with {'objetos' : values.sliders}%}
+    </div>            
+
+    {#
+    <div class="col-sm-3">
+        <ul>
+            {% for opcion in values.menuCabecera  %}
+                <li><a href="{{opcion.url.url}}">{{opcion.etiquetaWeb}}<span>{{opcion.subetiquetaWeb}}</span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    #}
+</div>

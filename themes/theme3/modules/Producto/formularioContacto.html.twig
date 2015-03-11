@@ -1,0 +1,41 @@
+{# Formulario de contacto de producto #}
+<form name="formProducto" id="formProducto" method="POST" action="">
+    <div id="input_oculto">
+        <input name="controller" value="{{values.controller}}" />
+        <input name="action" value="Contactar" />
+        <input name="idProducto" value="{{values.producto.PrimaryKeyValue}}" />
+    </div>
+
+    <input type="text" name="campos[Nombre][valor]" id="nombre" 
+           value="{% if values.formContacta.campos.Nombre.valor %}{{values.formContacta.campos.Nombre.valor}}{%else%}{{values.LABELS.nombre}}{%endif%}" 
+           class="{% if values.formContacta.campos.Nombre.error %}celdaError {% else %}celda{% endif %} celda194" 
+           onFocus="if (this.value=='{{values.LABELS.nombre}}') this.value='';"
+           onblur="if (this.value == '') this.value = '{{values.LABELS.nombre}}'"/>
+    <input type="text" name="campos[Email][valor]" id="email" 
+           value="{% if values.formContacta.campos.Email.valor %}{{values.formContacta.campos.Email.valor}}{%else%}{{values.LABELS.email}}{%endif%}" 
+           class="{% if values.formContacta.campos.Email.error %}celdaError {% else %}celda{% endif %} celda194" 
+           onFocus="if (this.value=='{{values.LABELS.email}}') this.value='';"
+           onblur="if (this.value == '') this.value = '{{values.LABELS.email}}'"/>               
+    <input type="text" name="campos[Telefono][valor]" 
+           value="{% if values.formContacta.campos.Telefono.valor %}{{values.formContacta.campos.Telefono.valor}}{%else%}{{values.LABELS.telefono}}{%endif%}" 
+           class="{% if values.formContacta.campos.Telefono.error %}celdaError {% else %}celda{% endif %} celda194" 
+           onFocus="if (this.value=='{{values.LABELS.telefono}}') this.value='';"
+           onblur="if (this.value == '') this.value = '{{values.LABELS.telefono}}'"/>               
+    <textarea name="campos[Mensaje][valor]" id="mensaje" 
+              class="{% if values.formContacta.campos.Mensaje.error %}celdaError {% else %}celda{% endif %} celda194" 
+              rows="10" cols="50" 
+              onFocus="if (this.value=='Mensaje') this.value='';">{{values.LABELS.ponganseEnContacto}}{{values.producto.Descripcion}} {{values.LABELS.por}} {{macro.moneda(values.producto.PrecioVentaConImpuestos)}}</textarea>          
+{#            
+    <input type="text" class="celda celda194" placeholder="{{values.LABELS.nombre}}" />
+    <input type="email" class="celda celda194" placeholder="{{values.LABELS.email}}" />
+    <input type="tel" class="celda celda194" placeholder="{{values.LABELS.telefono}}" />
+    <textarea class="celda celda194" rows="10" cols="50">{{values.LABELS.ponganseEnContacto}}{{values.producto.Descripcion}} {{values.LABELS.por}} {{macro.moneda(values.producto.PrecioVentaConImpuestos)}}</textarea>
+#}
+    <div id="contenedorEnviar">
+        <div class="{% if values.formContacta.campos.leidoPolitica.error %}checkboxError {% else %}checkbox{% endif %} width100">
+            <input name="campos[leidoPolitica][valor]" type="checkbox" id="checkbox2" {%if values.formContacta.campos.leidoPolitica.valor == 'on' %} CHECKED{% endif %} />
+            <label class="textoCheckbox" for="checkbox2">{{values.LABELS.leidoPolitica}} <a href="{{app.path}}/politica-de-privacidad" rel="iframe-1000-360" class="pirobox rojo" title="{{values.LABELS.politicaPrivacidad}}">{{values.LABELS.politicaPrivacidad}}.</a></label>
+        </div>
+         <a data-type="submit" title="{{values.LABELS.enviar}}" class="botonRojo" onclick="$('#formProducto').submit();">{{values.LABELS.enviar}}</a>
+    </div>    	
+</form>

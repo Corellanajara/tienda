@@ -1,0 +1,13 @@
+{# Listado de Promociones #}
+{% extends layout %}
+
+{% block content %}
+    <div class="central">
+        <h2><span>{{macro.idioma('promociones')}}</span></h2>
+
+        <section id="noticias">
+        {% include 'Promociones/listado.html.twig' %}
+        </section>        
+
+    </div>
+{% endblock %}

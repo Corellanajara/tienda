@@ -1,0 +1,38 @@
+{# LISTADO DE ARTICULOS FAVORITOS SIN PAGINAR #}
+{% for promocion in values.promociones %}
+    <h2><span>{{promocion.promocion.Titulo}}</span></h2>
+    <h3>{{macro.idioma('hastaEl')}} {{promocion.promocion.FinPromocion}} ({{promocion.articulos|length}}) {{macro.idioma('articulos')}}</h3>
+    {% for articulo in promocion.articulos %}
+        <article>
+            {% if articulo.PathNameImagenN %}
+            <figure>
+                <a href="{{appPath}}{{articulo.Href.url}}" title="{{articulo.Descripcion}}">
+                    <img src="{{app.path}}/{{theme}}/{{articulo.PathNameImagenN(1)}}" title="{{articulo.Descripcion}}" alt="{{articulo.Descripcion}}" />
+                </a>
+            </figure>
+            {% endif %}
+            <div class="info">
+                <h3><a href="{{appPath}}{{articulo.Href.url}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a></h3>
+                {% if articulo.Resumen != articulo.Descripcion %}
+                    <div class="resumen">{{articulo.Resumen}}</div>
+                {% endif %}
+                {% set precioActual = articulo.PrecioWeb %}
+                {% if articulo.PvpAnterior > 0 and articulo.PrecioAnterior != precioActual %}
+                    <div class="precios precioAnterior">{{macro.moneda(articulo.PvpAnterior)}}</div>                
+                {% endif %}
+                <div class="precioActual">{{macro.precio(articulo.cotizarWeb)}}</div>
+                <div class="comprar">
+                    <input type="button" class="boton btn_azul left" value="Comprar" onclick="addCart('{{articulo.IDArticulo}}',1);"/>
+                </div>        
+                <article class="botonera">
+                    <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{macro.idioma('masInfo')}}" class="saberMas">{{macro.idioma('saberMas')}}
+                        <span class="sprite"></span>
+                    </a>
+                </article>
+            </div>
+        </article>
+    {% endfor %}
+{% else %}
+    <p>{{macro.idioma('noHayPromociones')}}</p>
+{% endfor %}
+

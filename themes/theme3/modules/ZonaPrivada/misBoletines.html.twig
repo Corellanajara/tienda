@@ -1,0 +1,17 @@
+{# RELACIONES DE BOLETINES #}
+{% set tipos = values.cliente.getSuscripciones %}
+
+{% for keyTipo,boletines in tipos %}
+<ul>
+    {{keyTipo}}
+    {% for keyBoletin,boletin in boletines %}
+    <li>
+        <input type="checkbox" {%if boletin.suscrito%}checked{%endif%} 
+               onclick="
+                   $(this).val($(this).is(':checked')?'1':'0');
+                   actualizaRelacion('Clientes', '{{values.cliente.IDCliente}}', 'BolBoletines', '{{keyBoletin}}', $(this).val());"/> 
+        {{boletin.titulo}}
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}

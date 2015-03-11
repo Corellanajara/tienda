@@ -1,0 +1,80 @@
+{# RESULTADO PEDIDO OK #}
+
+{% extends layout %}
+    
+{% set pedido = values.pedido %}
+{% set cliente = pedido.IDCliente %}
+{% set direcEnvio = pedido.IDDirec %}
+    
+{% block asideRight %}{% endblock %}    
+
+{% block content %}
+    {% include "_global/gaConversion.html.twig" with {'pedido': pedido} %}
+<section class="contenedorGrande">   
+    <h2 class="tituloCesta">{{macro.idioma('confirmacionPedido')}}</h2>   
+    <div class="resguardoPedido">
+        <div class="resguardoPedido cabecera">
+            <ul class="itemsLeft">
+                <li><h3>{{macro.idioma('pedido')}}</h3></li>
+                <li>{{pedido.IDPedido}}</li>
+                <li>{{pedido.Fecha}}</li>
+                <li>{{pedido.IDEstado}}</li>
+                <li>{{pedido.IDZonaEnvio}}</li>
+                <li>{{pedido.IDFP}}</li>                
+                <li>{{pedido.IDAgencia}} - {{pedido.PlazoEntrega}}</li>
+            </ul>            
+            <ul class="itemsRight">
+                <li><h3>{{macro.idioma('cliente')}}</h3></li>
+                <li>{{cliente.RazonSocial}}</li>
+                <li>{{cliente.Cif}}</li>
+                <li>{{cliente.Direccion}}</li>
+                <li>{{cliente.CodigoPostal}} {{cliente.IDPoblacion}} {{cliente.IDProvincia}}</li>
+                <li>{{cliente.IDPais}}</li>
+                <li>{{cliente.Telefono}} {{cliente.Email}}</li>
+            </ul>
+            <ul class="itemsRight">
+                <li><h3>{{macro.idioma('direccionEnvio')}}</h3></li>   
+                <li>{{direcEnvio.Nombre}}</li>
+                <li>{{direcEnvio.Direccion}}</li>
+                <li>{{direcEnvio.CodigoPostal}} {{direcEnvio.IDPoblacion}} {{direcEnvio.IDProvincia}}</li>
+                <li>{{direcEnvio.IDPais}}</li>
+                <li>{{cliente.Telefono}} {{cliente.Movil}}</li>                
+            </ul>  
+            <ul class="itemsRight">
+                <li><h3>{{macro.idioma('importes')}}</h3></li>   
+                <li>{{macro.moneda(pedido.TotalBases)}}</li>
+                <li>{{macro.moneda(pedido.TotalIva)}}</li>
+                <li>{{macro.moneda(pedido.Total)}}</li>
+                <li>{{macro.moneda(pedido.GastosEnvio)}}</li>
+                <li class="resaltado">{{macro.moneda(pedido.Total+pedido.GastosEnvio)}}</li>               
+            </ul>            
+        </div>
+        <div class="resguardoPedido detalle">
+            <table>
+                <thead>
+                    <th>{{macro.idioma('articulo')}}</th>
+                    <th>{{macro.idioma('descripcion')}}</th>
+                    <th>{{macro.idioma('unidades')}}</th>
+                    <th>{{macro.idioma('precio')}}</th>
+                    <th>{{macro.idioma('importe')}}</th>
+                </thead>
+                <tbody>
+                    {% for linea in pedido.getLineas() %}
+                        <tr>
+                            <td>{{linea.IDArticulo.Codigo}}</td>
+                            <td>{{linea.Descripcion}}</td>
+                            <td>{{linea.Unidades}}</td>
+                            <td>{{macro.moneda(linea.Precio)}}</td>
+                            <td>{{macro.moneda(linea.Importe)}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <div class="resguardoPedido pie">
+            <a href="javascript:;" onclick="window.print();">{{macro.idioma('imprimir')}}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

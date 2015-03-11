@@ -1,0 +1,75 @@
+{% extends layout %}
+
+{#
+{% block header %}
+    {% include values.controller ~ '/header.html.twig' %}
+{% endblock %}
+{% block head %}
+    {% include values.controller ~ '/head.html.twig' %}
+{% endblock %}
+#}
+
+
+{% block content %}
+<section class="contenedorGrandeCentral">
+    <article class="colIzqda">
+        <h1>{{macro.idioma('accesoPrivado')}}</h1>
+        <p>{{macro.idioma('accesoPrivadoTexto')}}</p>
+                                 
+        <form name="formLoginCliente" id="formLoginCliente" method="POST" action="">
+            <div id="input_oculto">
+                <input name="controller" value="ZonaPrivada" />
+                <input name="action" value="login" />
+                <input name="return" value="{{values.return}}" />
+            </div>
+
+            <article>
+                <!-- <label>{{macro.idioma('eMail')}}</label> -->
+                <input autocomplete="off" type="text" name="login[Email]" id="login_Email" value="{{values.login.Email}}" {%if values.login.error == '1'%}class="celdaError"{%else%}class="celda"{% endif %} placeholder="Usuario" />
+            </article>
+
+            <article>
+                <!-- <label>{{macro.idioma('contrasena')}}</label> -->
+                <input autocomplete="off" type="password" name="login[Password]" {%if values.login.error == '2'%}class="celdaError"{%else%}class="celda"{%endif%} placeholder="Contraseña" />
+            </article>
+
+            <article id="contenedorEnviar">
+                <a href="{{app.path}}/olvido" class="olvido">{{macro.idioma('olvideMiContrasena')}}</a>
+                <input type="submit" value="{{macro.idioma('enviar')}}" data-type="submit" onclick="$('#formLoginCliente').submit();" title="{{macro.idioma('enviar')}}" class="boton btn_azul right" />
+            </article>
+        </form>
+            
+        <h1>{{macro.idioma('accesoPrivadoDistribuidor')}}</h1>
+        <p>{{macro.idioma('accesoPrivadoDistribuidorTexto')}}</p>
+                                 
+        <form name="formLoginDistribuidor" id="formLoginDistribuidor" method="POST" action="">
+            <div id="input_oculto">
+                <input name="controller" value="ZonaPrivada" />
+                <input name="action" value="loginDistribuidor" />
+                <input name="return" value="{{values.return}}" />
+            </div>
+
+            <article>
+                <!-- <label>{{macro.idioma('eMail')}}</label> -->
+                <input autocomplete="off" type="text" name="login[Email]" id="login_Email" value="{{values.login.Email}}" {%if values.login.error == '1'%}class="celdaError"{%else%}class="celda"{% endif %} placeholder="Usuario" />
+            </article>
+
+            <article>
+                <!-- <label>{{macro.idioma('contrasena')}}</label> -->
+                <input autocomplete="off" type="password" name="login[Password]" {% if values.login.error == '2'%}class="celdaError"{% else %}class="celda"{% endif %} placeholder="Contraseña" />
+            </article>
+
+            <article id="contenedorEnviar">
+                <input type="submit" value="{{macro.idioma('enviar')}}" data-type="submit" onclick="$('#formLoginDistribuidor').submit();" title="{{macro.idioma('enviar')}}" class="boton btn_azul right" />
+            </article>
+        </form>            
+    </article>  
+            
+    <article class="colDrcha">
+        <h1>{{macro.idioma('accesoNuevo')}}</h1>
+        <p><a href="{{app.path}}/registro">{{macro.idioma('accesoNuevoTexto')}}</a></p>
+    </article>
+    
+</section>
+{% endblock %}
+

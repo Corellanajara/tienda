@@ -1,0 +1,34 @@
+{# CAROUSEL #}
+
+<div id="carouselHome" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">    
+        {% for key,objeto in objetos %}
+            <li data-target="#carouselHome" data-slide-to="{{key}}" {% if loop.first %}class="active"{% endif %}></li>        
+            {% endfor %}
+    </ol>
+
+    <div class="carousel-inner">
+        {% for objeto in objetos %}
+            <div class="item {% if loop.first %}active{% endif %}">
+                <h2><img src="{{app.path}}/{{theme}}/{{objeto.getPathNameImagenN(nImagen)}}" alt="{{objeto.__toString}}"></h2>
+                <div class="carousel-caption">                
+                <a href="{{objeto.Href.url}}" title="{{objeto.__toString}}">
+                    <h3>Chania</h3>
+                    <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+                </a>
+                </div>                
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#carouselHome" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">{{macro.idioma('anterior')}}</span>
+    </a>
+    <a class="right carousel-control" href="#carouselHome" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">{{macro.idioma('siguiente')}}</span>
+    </a>   
+</div>
