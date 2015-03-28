@@ -1,47 +1,55 @@
 {# Solas de la ficha de producto #}
 
-{% if values.producto.Caracteristicas or values.detalleTecnico or values.conComentarios %}
-<div class="salto10"></div>    
-<div id="solapa">
-    <ul>
-        <li><a href="#caracteristicas">{{macro.idioma('caracteristicas')}}</a></li>
+{% if values.producto.Caracteristicas or values.detalleTecnico or values.conComentarios %}   
+
+    <ul id="tabProducto" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#caracteristicas" aria-controls="caracteristicas" role="tab" data-toggle="tab">{{macro.idioma('caracteristicas')}}</a>
+        </li>
         {% if values.detalleTecnico %}
-        <li><a href="#detallesTecnicos">{{macro.idioma('detallesTecnicos')}}</a></li>
+        <li role="presentation">
+            <a href="#detallesTecnicos" aria-controls="detallesTecnicos" role="tab" data-toggle="tab">{{macro.idioma('detallesTecnicos')}}</a>
+        </li>
         {% endif %}
         {% if values.conComentarios %}
-        <li><a href="#comentarios">{{macro.idioma('comentarios')}} {%if values.comentarios|length>0%}({{values.comentarios|length}}){%endif%}</a></li>
+        <li role="presentation">
+            <a href="#comentarios" aria-controls="comentarios" role="tab" data-toggle="tab">{{macro.idioma('comentarios')}} {%if values.comentarios|length>0%}({{values.comentarios|length}}){%endif%}</a>
+        </li>
         {% endif %}
     </ul>
-    <div id="caracteristicas" class="caracteristicas">
-        {%autoescape false%}{{values.producto.Caracteristicas}}{%endautoescape%}
+
+    <div class="tab-content">    
+        <div role="tabpanel" class="tab-pane" id="caracteristicas">
+            {%autoescape false%}{{values.producto.Caracteristicas}}{%endautoescape%}
+        </div>
+        {% if values.detalleTecnico %}
+        <div role="tabpanel" class="tab-pane" id="detallesTecnicos">
+            <ul>
+                {% for detalle in values.detalleTecnico %}
+                <li>
+                    {{detalle.titulo}}:
+                    <span>{{detalle.valor}}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if values.conComentarios %}    
+        <div role="tabpanel" class="tab-pane" id="comentarios">
+        <ul>
+            {% for comentario in values.comentarios %}
+            <li>
+                <span>{{comentario.TiempoUnix|date('d/m/Y')}}</span> </span>{{comentario.nombre}}</span>
+                {{comentario.Comentario}}
+            </li>
+            {% else %}
+            <span>{{macro.idioma('seElPrimeroEnComentar')}}</span>
+            {% endfor %}
+
+            {% include values.controller ~ '/formularioComentario.html.twig' with {'idArticulo':values.producto.IDArticulo}%}
+        </ul>
+        </div>
     </div>
-    {% if values.detalleTecnico %}
-    <div id="detallesTecnicos" class="detallesTecnicos">
-    <ul>
-        {% for detalle in values.detalleTecnico %}
-        <li>
-            {{detalle.titulo}}:
-            <span>{{detalle.valor}}</span>
-        </li>
-        {% endfor %}
-    </ul>
-    </div>
-    {% endif %}
-    {% if values.conComentarios %}    
-    <div id="comentarios" class="comentarios">
-    <ul>
-        {% for comentario in values.comentarios %}
-        <li>
-            <span>{{comentario.TiempoUnix|date('d/m/Y')}}</span> </span>{{comentario.nombre}}</span>
-            {{comentario.Comentario}}
-        </li>
-        {% else %}
-        <span>{{macro.idioma('seElPrimeroEnComentar')}}</span>
-        {% endfor %}
-        
-        {% include values.controller ~ '/formularioComentario.html.twig' with {'idArticulo':values.producto.IDArticulo}%}
-    </ul>
-    </div> 
     {% endif %}    
-</div>
+
 {% endif %}

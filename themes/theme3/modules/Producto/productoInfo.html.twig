@@ -1,8 +1,8 @@
 {% set galeria = values.galeria %}
 {% set imagen = values.producto.PathNameImagenN(2) %}
-<section class="productoInfo">
+<div class="row">
 
-    <div class="imagenes">                   
+    <div class="col-sm-6">                   
         <div class="imagen300">
             {% if imagen %}
             <img src="{{app.path}}/{{theme}}/{{imagen}}" alt="{{values.producto.Descripcion}}" title="{{values.producto.Descripcion}}" />
@@ -22,7 +22,7 @@
 
     </div>
 
-    <div class="cajaPrecios">
+    <div class="col-sm-6">
         <div><b>{{macro.idioma('referencia')}}:</b> {{values.producto.Codigo}}</div>
         <div>{% autoescape false %}{{values.producto.Resumen}}{% endautoescape %}</div>        
         {% if values.producto.PrecioWeb > 0 %}
@@ -43,10 +43,9 @@
     
     {% include '_global/share.html.twig' %}
     {% include values.controller ~ '/solapas.html.twig' %}
-    <div class="salto10"></div>
-    <div class="salto10"></div>    
+    <div class="clearfix"></div>   
     {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.articulosRelacionados}%}
 
-</section>
+</div>
 
 <div id="mensajes" title="Mensajes"></div>

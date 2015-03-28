@@ -5,6 +5,11 @@
     {{ parent() }}
     <script>
         $(function () {
+
+            $(function () {
+               $('#tabProducto li:eq(1) a').tab('show');
+            });
+
             $('#enviarComentario').click(function () {
 
                 var nombre = $.trim($('#nombre').val());

@@ -3,8 +3,8 @@
 {% set marcas = values.widgets.getMarcas(2) %}
 
 {% if marcas|length %}
-<h3 class="formulario">{{macro.idioma('todasLasMarcas')}}</h3>
-<div class="cajetin">
+<h4>{{macro.idioma('todasLasMarcas')}}</h4>
+<div class="list-group">
     <select name="marca" id="marca" onchange="document.location.href=$(this).val();">
     {% for marca in marcas %}
         <option value="{{marca.Href.url}}">{{marca.Titulo}}</option>

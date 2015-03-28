@@ -2,11 +2,9 @@
 
 {% set articulos = values.widgets.getArticulosMasVistos(5) %}
 
-<h3 class="formulario">{{macro.idioma('loMasVisto')}}</h3>
-<div class="cajetin">
-    <ul>
+<h4>{{macro.idioma('loMasVisto')}}</h4>
+<div class="list-group">
     {% for articulo in articulos %}
-        <li><a href="{{articulo.Href.url}}">{{ macro.recortaTexto(articulo.Descripcion,17)}}</a></li>
+        <a href="{{articulo.Href.url}}" class="list-group-item">{{ macro.recortaTexto(articulo.Descripcion,17)}}</a>
     {% endfor %}
-    </ul>
 </div>

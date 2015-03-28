@@ -13,8 +13,8 @@
 {% set logo = fabricante.PathNameImagenN(1) %}
 
 {% block content %}
-    <div class="central">
-        <h2><span>{{fabricante.Titulo}} ({{macro.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macro.idioma('articulos')}})</span></h2>
+    <div class="col-sm-6">
+        <h3><span>{{fabricante.Titulo}} ({{macro.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macro.idioma('articulos')}})</span></h3>
 
         <article id="infoPrincipal">
             <div id="imagenes" style="float:left;margin-right: 20px;">
@@ -29,8 +29,7 @@
             {% include '_global/listadoArticulos.html.twig' with {'articulos':values.destacados} %}              
         </article>
 
-        <section id="noticias">
-            {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':familia.PrimaryKeyValue} %}
-        </section>     
+        {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':familia.PrimaryKeyValue} %}
+   
     </div>
 {% endblock %}

@@ -3,16 +3,16 @@
 {% include '_global/paginacion.html.twig' with {'paginacion':paginacion,'linkBy':linkBy} %}
 
 {% for articulo in articulos %}
-<article>
+<div class="row vert-offset-top-7">
     {% if articulo.PathNameImagenN %}
-    <figure>
+    <div class="col-sm-6">
         <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">
             <img src="{{app.path}}/{{theme}}/{{articulo.PathNameImagenN(1)}}" title="{{articulo.Descripcion}}" alt="{{articulo.Descripcion}}" />
         </a>
-    </figure>
+    </div>
     {% endif %}
-    <div class="info">
-        <h3><a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a></h3>
+    <div class="col-sm-6">
+        <h4><a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a></h4>
         {% if articulo.Resumen != articulo.Descripcion %}
             <div class="resumen">{{articulo.Resumen}}</div>
         {% endif %}
@@ -27,7 +27,7 @@
             </a>
         </article>
     </div>
-</article>
+</div>
 {% endfor %}
 
 {% include '_global/paginacion.html.twig' with {'paginacion':paginacion,'linkBy':linkBy} %}

@@ -1,13 +1,11 @@
 
 {% if paginacion.totalPaginas > 0 %}
-    <article class="paginacion">   
+    <div class="row">   
         <form name="paginacion" id="formPaginacion" method="POST" action="">
-            <div id="input_oculto">
-                <input name="controller" value="{{values.controller}}" />
-                <input name="action" id="action" value="index" />
-                <input name="linkBy" id="linkBy" value="{{linkBy}}" />
-                <input name="pagina" id="pagina" value="{{paginacion.pagina}}" />
-            </div>
+            <input type="hidden" name="controller" value="{{values.controller}}" />
+            <input type="hidden" name="action" id="action" value="index" />
+            <input type="hidden" name="linkBy" id="linkBy" value="{{linkBy}}" />
+            <input type="hidden" name="pagina" id="pagina" value="{{paginacion.pagina}}" />
 
             {% if paginacion.totalPaginas > 1 %}
                 {% if paginacion.pagina > 1 %}
@@ -50,5 +48,5 @@
                 {% endfor %}
             </select>            
         </form>
-    </article>
+    </div>
 {% endif %} 

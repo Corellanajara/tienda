@@ -1,5 +1,6 @@
 {% import '_global/macros.html.twig' as macro %}
 
+{% spaceless %}
 <!DOCTYPE html>
 <html lang="es-ES">
 <head>
@@ -9,8 +10,8 @@
 </head>
   
 <body {% block bodyContacto %}{% endblock %}>
-    <div class="container-fluid">
-        {% include '_global/avisoCookies.html.twig' %}
+    <div class="container">
+
         {% block header %}
             {% include '_global/header.html.twig' %}
         {% endblock %}
@@ -40,6 +41,7 @@
             {% include '_global/footer.html.twig' %}
         {% endblock %}
     </div>
+    {% include '_global/avisoCookies.html.twig' %}
     
     <!-- Para que esté disponible el path de la app en todos los java scripts -->
     <script type="text/javascript">
@@ -49,12 +51,7 @@
     </script>
 
     {% include values.archivoJs %}
-    {% include '_global/wgZopim.js.twig' %}
-    
-    <!-- Obtener la resolución del dispositivo de navegación del cliente web -->
-    {% if not chequeadaResolucionVisitante %}
-    <script type="text/javascript">chequeaResolucionVisitante();</script>
-    {% endif %}   
+    {% include '_global/wgZopim.js.twig' %}  
     
     <div id="mensajes" title="Mensaje"></div>
     
@@ -64,5 +61,5 @@
         </div>
     {% endif %}      
 </body>
-
 </html>
+{% endspaceless %}

@@ -5,7 +5,7 @@
 {% set keyLogo1 = random([0,1]) %}
 {% set keyLogo2 = (keyLogo1 == 1) ? 0: 1 %}
 
-<div class="row">
+<div class="row vert-offset-top-5">
     <div class="col-sm-9">
         <a href="{{app.path}}/" title="{{titles[keyLogo1]}}">
             <img src="{{app.path}}/{{theme}}/images/{{logos[keyLogo1]}}" title="" alt="">

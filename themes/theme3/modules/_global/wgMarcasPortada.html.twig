@@ -3,11 +3,11 @@
 {% set marcas = values.widgets.getMarcas(1,0,10) %}
 
 {% if marcas|length %}
-<h3 class="formulario">{{macro.idioma('marcas')}}</h3>
-<ul id="accordionMarcas" class="accordion menu">
+<h4 class="formulario">{{macro.idioma('marcas')}}</h4>
+<div class="list-group">
     {% for marca in marcas %}       
-        <li>
-            <a onclick="location.href='{{marca.Href.url}}';" style="cursor: pointer;" title="{{marca.Titulo}}">{{marca.Titulo}}</a>
+
+            <a class="list-group-item" onclick="location.href='{{marca.Href.url}}';" style="cursor: pointer;" title="{{marca.Titulo}}">{{marca.Titulo}}</a>
             
             {% set categorias = marca.getCategorias %}
             {% if categorias |length > 0 %}
@@ -19,7 +19,7 @@
                 {% endfor %}
                 </ul>             
             {% endif %}
-        </li>           
+           
     {% endfor %}                         
-</ul>
+</div>
 {% endif %}

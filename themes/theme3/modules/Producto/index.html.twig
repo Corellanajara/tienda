@@ -1,14 +1,9 @@
 {% extends layout %}
 
+{% block asideRight %}{% endblock %}
 {% block content %}
-    <section class="central">
-        <h1 class="tituloProducto">{{values.producto.Descripcion}}</h1>   
+    <div class="col-sm-9">
+        <h3 class="tituloProducto">{{values.producto.Descripcion}}</h3>   
         {% include values.controller ~ '/productoInfo.html.twig' %}   
-    </section>
-
-    <section>
-        {# include '_global/noticias.html.twig' #}
-        {# include '_global/articulosRelacionados.html.twig' #}
-    </section>
-
+    </div>
 {% endblock %}

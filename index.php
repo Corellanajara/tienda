@@ -45,9 +45,9 @@ if (file_exists("bin/yaml/lib/sfYaml.php")) {
 // CARGO LOS PARAMETROS DE CONFIGURACION.
 // ---------------------------------------------------------------
 if (!isset($_SESSION['configWeb'])) {
-    if (!file_exists('config/config.yml'))
+    if (!file_exists('config/config.yml')) {
         die("NO EXISTE EL FICHERO DE CONFIGURACION");
-    else {
+    } else {
         $yaml = sfYaml::load('config/config.yml');
         $_SESSION['configWeb'] = $yaml['config'];
     }
@@ -99,15 +99,6 @@ if (file_exists($config['twig']['motor'])) {
     $twig->getExtension('core')->setNumberFormat(2, ',', '.');
 } else
     die("NO SE PUEDE ENCONTRAR EL MOTOR TWIG");
-
-// ------------------------------------------------
-// COMPROBAR DISPOSITIVO DE NAVEGACION
-// ------------------------------------------------
-if (!isset($_SESSION['isMobile'])) {
-    $browser = new Browser();
-    $_SESSION['isMobile'] = $browser->isMobile();
-    unset($browser);
-}
 
 // ----------------------------------------------------------------
 // CARGAR LO QUE VIENE EN EL REQUEST
@@ -228,15 +219,6 @@ if (!method_exists($con, $metodo)) {
 }
 $result = $con->{$metodo}();
 
-// Si el navegador es mobile y existe la template mobile, lo muestro.
-// En caso contrario muestro el template normal.
-if ($_SESSION['isMobile']) {
-    $aux = str_replace('.html.twig', '.mobile.html.twig', $result['template']);
-    if (file_exists("modules/{$aux}")) {
-        $result['template'] = $aux;
-    }
-}
-
 $result['values']['urlAmigable'] = $_SESSION['urlFriendly'];
 $result['values']['controller'] = $controller;
 $result['values']['action'] = $metodo;
@@ -255,21 +237,12 @@ if ($config['debug_mode']) {
 // Si el método no devuelve template o no exite, muestro un template de error.
 if (!file_exists($app['theme'] . '/modules/' . $result['template']) or ( $result['template'] == '')) {
     $result['values']['error'] = 'No existe el template: "' . $result['template'] . '" devuelto por el método "' . $clase . ':' . $action . 'Action"';
-    $result['template'] = ($_SESSION['isMobile']) ?
-            '_global/error.mobile.html.twig' :
-            '_global/error.html.twig';
+    $result['template'] = '_global/error.html.twig';
 }
 
-// Establecer el layout segun el dispositivo de navegación
-// Si fuese mobile pero no hay layout mobile, se toma el layout laptop
+// Establecer el layout
 if (!isset($_SESSION['layout'])) {
-    $_SESSION['layout'] = "_global/layoutLaptop.html.twig";
-    if ($_SESSION['isMobile']) {
-        $aux = "_global/layoutMobile.html.twig";
-        if (file_exists($app['theme'] . "/modules/" . $aux)) {
-            $_SESSION['layout'] = $aux;
-        }
-    }
+    $_SESSION['layout'] = "_global/layout.html.twig";
 }
 
 // Renderizo el template y los valores devueltos por el método
