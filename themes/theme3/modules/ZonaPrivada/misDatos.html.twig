@@ -4,8 +4,8 @@
 {% block asideRight %}{% endblock %} 
 
 {% block content %}
-<section class="contenedorGrande">  
-    <h2 class="superTitular rojo">{{macro.idioma('miCuenta')}}</h2>
+<div class="row">  
+    <h3 class="superTitular rojo">{{macro.idioma('miCuenta')}}</h3>
     {% include 'ZonaPrivada/mensajes.html.twig' %} {# ESTOS SON LOS MENSAJES DE RESPUESTA DEL FORMULARIO #}                                 
     <input name="solapaActiva" id="solapaActiva" value="{{ values.solapaActiva }}" type="text" />
     <div id="solapas"> 
@@ -37,5 +37,5 @@
         </div>         
     </div>
  
-</section>
+</div>
 {% endblock %}
