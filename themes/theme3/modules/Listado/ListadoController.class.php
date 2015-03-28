@@ -47,8 +47,9 @@ class ListadoController extends ControllerProject {
 
         Paginacion::paginar("Articulos", $filtro, $orden, $pagina, $itemsPorPagina);
 
-        foreach (Paginacion::getRows() as $row)
+        foreach (Paginacion::getRows() as $row) {
             $articulos[] = new Articulos($row['IDArticulo']);
+        }
 
         $arrayPaginacion = array(
             'articulos' => $articulos,

@@ -1,3 +1,6 @@
+.aside-left { font-size: 10px;}
+.widget { padding: 5px; background-color: #199;}
+
 /* Vertical Offset Bottom */
 .vert-offset-top-12{
     margin-top: 12px;
@@ -79,5 +82,42 @@
     margin-bottom: 0px;
 }
 
-
+/* Aviso cookies
+ ********************************************************/
+#cookie-compliant{
+    background-color: #999;
+    border-radius: 2px;
+    bottom: 35px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    left: 54px;
+    padding: 24px 20px 20px;
+    position: fixed;
+    text-align: left;
+    width: 448px;
+    z-index: 10001;
+}
+#cookie-compliant p {
+    display: inline;
+    font-size: 12px;
+}
+#cookie-compliant p a {
+	color: #FF9900;
+}
+#close-cookies-message{
+    background-color: #ff9900;
+    border-radius: 5px;
+    color: #555555;
+    font-weight: bold;
+    margin: 0 0 0 15px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 6px;
+    text-align: center;
+    top: 6px;
+}
+#close-cookies-message:hover{
+    background-color: #FF9900;
+    text-decoration:none;
+}
 

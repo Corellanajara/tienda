@@ -1,19 +1,15 @@
 {# BUSCADOR #}
 
-<h4 class="formulario">{{macro.idioma('busqueda')}}</h4>
-<div class="cajetin">
-    <form name="buscador" id="buscador" method="POST" action="">
-        <input type="hidden" name="controller" value="Listado"/>
-        <input type="hidden" name="action" value="Index"/>
-        <input name="textoBusqueda" id="textoBusqueda" value="Texto a buscar" type="text" class="buscador"
-               onblur="if ($(this).val() === '')
-                           $(this).val('Texto a buscar');"
-               onfocus="$(this).val('');"/>
-        <a href="#" onclick="if ($('#textoBusqueda').val() !== '{{macro.idioma('textoABuscar')}}')
-                    $('#buscador').submit();
-                else
-                    return false;" title="{{macro.idioma('buscar')}}" class="buscador">
-            <span class="buscador sprite"></span>
-        </a>
-    </form>
-</div>
+<form name="buscador" id="buscador" method="POST" action="">
+    <input type="hidden" name="controller" value="Listado"/>
+    <input type="hidden" name="action" value="Index"/>      
+    <div class="input-group">
+        <input name="textoBusqueda" id="textoBusqueda" type="text" class="form-control">
+        <span class="input-group-btn">
+            <button onclick="if ($('#textoBusqueda').val() !== '')
+                            $('#buscador').submit();
+                        else
+                            return false;" class="btn btn-default" type="button">{{macro.idioma('buscar')}}</button>
+        </span>
+    </div>
+</form>

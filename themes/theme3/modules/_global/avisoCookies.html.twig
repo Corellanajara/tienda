@@ -1,8 +1,16 @@
 {# Aviso de cookies #}
 {%if values.session_id == ""%}
-    <div id="cookie-compliant" class="row">
-        <div class="col-sm-12">
-            <p>{{macro.idioma('avisoCookies')}} <a href="{{app.path}}/aviso-cookies" rel="iframe-800-550" class="pirobox" title="{{macro.idioma('masInfo')}}" id="contenidosLegales">{{macro.idioma('masInfo')}}</a></p>
-        </div>
+<script>
+    $(document).ready(function () {
+        $("#close-cookies-message").click(function () {
+            $("#cookie-compliant").css("display", "none");
+        });
+    });
+</script>
+<div id="cookie-compliant" class="row">
+    <div class="col-sm-12">
+        <a id="close-cookies-message" href="#" title="Cerrar">X</a>
+        <p>{{macro.idioma('avisoCookies')}} <a href="{{app.path}}/aviso-cookies" rel="iframe-800-550" class="pirobox" title="{{macro.idioma('masInfo')}}" id="contenidosLegales">{{macro.idioma('masInfo')}}</a></p>
     </div>
+</div>
 {%endif%}

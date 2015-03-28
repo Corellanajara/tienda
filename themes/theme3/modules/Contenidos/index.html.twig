@@ -2,10 +2,12 @@
 
 {% block navegacion %}{% include '_global/navegacionGeneral.html.twig' %}{% endblock %}
 
+{% block asideRight %}{% endblock %}
+
 {% block content %}
 
-<div class="central">
-    {% include 'Contenidos/noticia.html.twig' %}
+    <div class="col-md-9">
+    {% include 'Contenidos/contenido.html.twig' %}
         
     {% if values.contenidoDesarrollado.contenido.ShowDocuments.IDTipo == '1' %}
         {% include 'Contenidos/ficherosAdjuntos.html.twig' %}  
@@ -18,12 +20,7 @@
     {% if values.contenidoDesarrollado.contenido.ShowGalery.IDTipo == '1' %}
         {% include 'Contenidos/galeria.html.twig' %}   
     {% endif %}        
-
-
-    <article class="botonera">
-        <a href="javascript:history.back()" title="{{macro.idioma('volverAtras')}}" class="sprite">{{macro.idioma('volverAtras')}}</a>
-    </article>
-</div>  
+    </div>  
 {% endblock %}
 
 {% block bannerPie %}

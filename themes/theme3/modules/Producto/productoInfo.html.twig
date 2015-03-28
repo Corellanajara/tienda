@@ -42,10 +42,10 @@
     </div>
     
     {% include '_global/share.html.twig' %}
-    {% include values.controller ~ '/solapas.html.twig' %}
-    <div class="clearfix"></div>   
-    {% include '_global/wgArticulosRelacionados.html.twig' with {'articulos':values.articulosRelacionados}%}
 
 </div>
 
+<div class="row vert-offset-top-10 vert-offset-bottom-10">
+    {% include values.controller ~ '/solapas.html.twig' %}
+</div>
 <div id="mensajes" title="Mensajes"></div>

@@ -1,7 +1,7 @@
 {# Solas de la ficha de producto #}
 
 {% if values.producto.Caracteristicas or values.detalleTecnico or values.conComentarios %}   
-
+<div class="col-md-12">
     <ul id="tabProducto" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="#caracteristicas" aria-controls="caracteristicas" role="tab" data-toggle="tab">{{macro.idioma('caracteristicas')}}</a>
@@ -19,11 +19,11 @@
     </ul>
 
     <div class="tab-content">    
-        <div role="tabpanel" class="tab-pane" id="caracteristicas">
+        <div role="tabpanel" class="tab-pane vert-offset-top-10" id="caracteristicas">
             {%autoescape false%}{{values.producto.Caracteristicas}}{%endautoescape%}
         </div>
         {% if values.detalleTecnico %}
-        <div role="tabpanel" class="tab-pane" id="detallesTecnicos">
+        <div role="tabpanel" class="tab-pane vert-offset-top-10" id="detallesTecnicos">
             <ul>
                 {% for detalle in values.detalleTecnico %}
                 <li>
@@ -35,7 +35,7 @@
         </div>
         {% endif %}
         {% if values.conComentarios %}    
-        <div role="tabpanel" class="tab-pane" id="comentarios">
+        <div role="tabpanel" class="tab-pane vert-offset-top-10" id="comentarios">
         <ul>
             {% for comentario in values.comentarios %}
             <li>
@@ -49,7 +49,8 @@
             {% include values.controller ~ '/formularioComentario.html.twig' with {'idArticulo':values.producto.IDArticulo}%}
         </ul>
         </div>
+        {% endif %}        
     </div>
-    {% endif %}    
-
+</div>
+    
 {% endif %}
