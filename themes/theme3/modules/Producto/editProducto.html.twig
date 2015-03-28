@@ -1,0 +1,160 @@
+{% extends layout %}
+
+{% block menuCabecera %}{% endblock %} 
+
+
+{% block contenido %}
+<section id="nuevoProducto">
+
+    {%if (values.articulo.IDArticulo != 0)%}
+    <h1 class="superTitular alignleft">
+        {{values.TEXTS.modificarProducto}}
+    </h1>                
+    {%else%}
+    <h1 class="superTitular alignleft">    
+        {{values.TEXTS.nuevoProducto}}
+        <p id="info">&nbsp;</p>
+        <p id="info">{{values.TEXTS.pasosCrearProducto1}}</p>
+        <p id="info">{{values.TEXTS.pasosCrearProducto2}}</p>
+    </h1>
+    {%endif%}
+
+    
+    {% if values.errores | length > 0 %}
+        <ul class="error">
+            {% for error in values.errores %}
+                <li>{{error}}</li>
+            {% endfor%}
+        </ul>
+    {% endif %}
+        
+    <form name="formProducto" id="formProducto" method="POST" enctype="multipart/form-data" action="">
+        <div id="input_oculto">
+            <input name="controller" value="{{values.controller}}" />
+            <input name="action" id="action" value="edit" />
+            <input name="accion" id="accion" value="" />
+            <input name="articulo[IDArticulo]" id="articulo_IDArticulo" value="{{values.articulo.IDArticulo}}" />
+            <input name="idImagenBorrar" id="idImagenBorrar" value="" />
+        </div>    
+            
+        {# GALERIA DE IMÁGENES #}
+        {%if (values.articulo.IDArticulo != 0)%}        
+        <section id="detallesTecnicos1">
+            <h3 class="titularSinBorde">{{values.TEXTS.galeriaDeImagenes}}</h3>
+            <figcaption>
+                <img src="{{app.path}}/{{values.articulo.getPathNameImagenN(1)}}" alt="" title="" />
+                <figure>
+                    <p class="info">{{values.TEXTS.textoDescriptivo}}</p>
+                    <article class="cont760">
+                        <input type="file" id="imagenPrincipal" class="celda celda760" name="imagenPrincipal" />
+                    </article>                 
+                </figure>
+            </figcaption>
+
+            <h4 class="titularSinBorde">{{values.TEXTS.imagenesAsociadas}}</h3>
+            {% for imagen in values.articulo.getDocuments('galery',"IsThumbnail='0'")%}
+                <article class="galeria">
+                    <img src="{{app.path}}/{{imagen.PathName}}" width="150" alt="" title="" />
+                    <input type="submit" value="Borrar" onclick="$('#accion').val('BorrarImagenGaleria');$('#idImagenBorrar').val('{{imagen.PrimaryKeyValue}}');$('#formProducto').submit();" class="botonRojo" />
+                </article> 
+            {% endfor %}
+
+            <article class="cont906">
+                <p class="info">{{values.TEXTS.aniadirImagenesGaleria}}</p>                
+                <input type="file" id="imagenGaleria" class="celda celda886" name="imagenGaleria" />
+            </article>        
+        </section>
+        {%endif%}
+
+        <!-- <section id="descripcionNuevoProducto"> -->
+            <article class="cont906 marginRight30">
+                <label>{{values.TEXTS.descripcionBreve}}</label>
+                <input type="text" name="articulo[Descripcion]" id="articulo_Descripcion" value="{{values.articulo.Descripcion}}" class="celda celda886" />
+            </article>  
+            
+            <article class="cont906">
+                <label>{{values.TEXTS.descripcionDesarrollada}}</label>
+                <textarea name="articulo[Resumen]" class="celda celda886">{{values.articulo.Resumen}}</textarea>
+            </article>
+        <!-- </section> -->
+            
+        <div class="linea"></div>
+
+        {# CATEGORIAS #}
+        <article class="cont90 marginRight30">
+            <label>{{values.TEXTS.tipoDeArticulo}}</label>
+            <select name="articulo[IDCategoria]" id="articulo_IDCategoria" class="select celda10">
+                {% for item in values.categorias %}
+                <option value="{{item.Id}}" {%if item.Id == values.articulo.IDCategoria.PrimaryKeyValue%} SELECTED{%endif%}>{{item.Value}}</option>
+                {% endfor %}
+            </select>  
+        </article> 
+
+        {# FAMILIAS #}
+        <article class="cont90 marginRight30">
+            <label>{{values.TEXTS.subtipo}}</label>
+            <div id="familias">
+            <select name="articulo[IDFamilia]" id="articulo_IDFamilia" class="select celda10">
+                {% for item in values.familias %}
+                <option value="{{item.Id}}" {%if item.Id == values.articulo.IDFamilia.PrimaryKeyValue%} SELECTED{%endif%}>{{item.Value}}</option>
+                {% endfor %}
+            </select>                  
+            </div>
+        </article>
+
+        {# MARCAS #}
+        <article class="cont90 marginRight30" id="marca">
+            <label>{{values.TEXTS.marca}}</label>
+            <select name="articulo[IDFabricante]" id="articulo_IDFabricante" class="select celda10">
+                {% for item in values.marcas %}
+                <option value="{{item.Id}}"{%if item.Id == values.articulo.IDFabricante.PrimaryKeyValue%} SELECTED{%endif%}>{{item.Value}}</option>
+                {% endfor %}
+            </select>            
+        </article>
+
+        {# PRECIOS #}
+        <article class="cont10 marginRight30">
+            <label>{{values.TEXTS.precio}}</label>
+            <input type="text" name="articulo[Pvp]" value="{{values.articulo.Pvp}}" class="celda celda10" />
+        </article> 
+        <article class="cont10">
+            <label>{{values.TEXTS.precioAnterior}}</label>
+            <input type="text" name="articulo[PvpAnterior]" value="{{values.articulo.PvpAnterior}}" class="celda celda10" />
+        </article>  
+
+    
+    {# DETALLES TÉCNICOS #}
+    <section id="detallesTecnicos">
+        <h3 class="titularSinBorde">{{values.TEXTS.detallesTecnicosOpcional}}</h3>
+        <div id="detalles">
+            {% set propiedades = values.articulo.getPropiedades(0) %}
+            {% if propiedades | length > 0 %}
+                {% for propiedad in propiedades %}                
+                <article class="cont90 marginRight30">
+                    <label>{{propiedad.Titulo}}</label>
+                    <select name="propiedades[{{propiedad.Id}}]" id="propiedades_{{propiedad.Id}}" class="select celda90">
+                        <option value="0">:: Indique un Valor</option>                        
+                        {% for valor in propiedad.Valores %}
+                            <option value="{{valor.Id}}" {%if valor.Id == propiedad.IDValor%}selected{%endif%}>{{valor.Valor}}</option>
+                        {% endfor %}
+                    </select>
+                </article>
+                {% endfor %}                
+            {% endif %}          
+        </div>   
+    </section>
+        
+    </form>
+    
+    <article class="botonera" id="botonera">
+        <a href="{{app.path}}/zona-privada/mis-productos" title="{{values.LABELS.irAMisArticulos}}" class="botonRojo left">{{values.LABELS.irAMisArticulos}}</a> {# boton volver atras #}
+        {% if values.articulo.IDArticulo == '' %}
+            <a href="javascript:;" title="{{values.TEXTS.siguiente}}" class="botonNaranja right marginLeft20" id="botonCrear">{{values.TEXTS.siguiente}}</a>
+        {% else %}
+            <a href="javascript:;" title="{{values.TEXTS.borrar}}" class="botonNaranja right marginLeft20" id="botonBorrar">{{values.TEXTS.borrar}}</a>
+            <a href="javascript:;" title="{{values.TEXTS.guardar}}" class="botonNaranja right marginLeft20" id="botonGuardar">{{values.TEXTS.guardar}}</a>
+        {% endif %}
+    </article>
+</section>
+
+{% endblock %}

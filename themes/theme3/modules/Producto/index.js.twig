@@ -1,0 +1,84 @@
+
+{% extends "_global/js.twig" %}
+
+{% block js %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('#enviarComentario').click(function () {
+
+                var nombre = $.trim($('#nombre').val());
+                var email = $.trim($('#email').val());
+                var comentario = $.trim($('#comentario').val());
+
+                if (nombre === '' || !isEmail(email) || comentario === '') {
+                    alert('{{macro.idioma('debeIndicarTodosLosDatos')}}' + nombre + email + comentario);
+                    return;
+                } else {
+                    $(this).hide("slow");
+                    $('#formComentario').submit();
+                }
+            });
+
+            $('#avisadorStock').click(function () {
+                $('#dialogoAvisador').removeClass('oculto');
+                $('#emailAvisadorStock').focus();
+            });
+
+            $('#botonAvisadorStock').click(function () {
+                if (!isEmail($('#emailAvisadorStock').val())) {
+                    return false;
+                } else {
+
+                    var datos = {
+                        'email': $('#emailAvisadorStock').val(),
+                        'idArticulo': $('#idArticuloAvisador').val()
+                    };
+                    $.ajax({
+                        url: appPath + '/lib/avisadorStock.php',
+                        datatype: 'html',
+                        type: 'post',
+                        data: {'accion': 'registrar', 'datos': datos},
+                        success: function (resultado) {
+                            $('#divAvisadorStock').html("<p>{{macro.idioma('avisoRegistrado')}}</p>");
+                            $('#divAvisadorStock').slideUp(8000).delay(7900);
+                        }
+                    });
+                }
+            });
+        });
+
+        function addCart(IDArticulo, unidades) {
+
+            if (IDArticulo === '' || unidades <= 0)
+                return;
+
+            var datos = {
+                'IDArticulo': IDArticulo,
+                'Unidades': unidades
+            };
+
+            $.ajax({
+                url: appPath + '/lib/carrito.php',
+                dataType: 'html',
+                type: 'post',
+                data: {'parametros': {'accion': 'add', 'datos': datos}},
+                success: function (resultado) {
+                    var datos = $.parseJSON(resultado);
+                    if (datos.status === 'error') {
+                        $('#mensajes').html(datos.errores);
+                        $('#mensajes').dialog('open');
+                    } else {
+                        html = "<ul>";
+                        html = html + "<li><span>{{macro.idioma('productos')}}</span><span>" + datos.totales.Unidades + "</span></li>";
+                        html = html + "<li><span>{{macro.idioma('importe')}}</span><span>" + datos.totales.Importe + "</span></li>";
+                        html = html + "</ul>";
+
+                        $('#cajaCarrito').html(html);
+                        $('#verCarrito').html("<a href='{{appPath}}/carrito'>{{macro.idioma('verCarrito')}}</a>");
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

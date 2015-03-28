@@ -2,6 +2,7 @@
 /themes/default/cache/
 /themes/theme1/cache/
 /themes/theme2/cache/
+/themes/theme3/cache/
 /nbproject/
 /config/config.yml
 /config/config_prod.yml

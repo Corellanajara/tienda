@@ -1,0 +1,33 @@
+{# LISTADO DE ARTICULOS PAGINADOS #}
+
+{% include '_global/paginacion.html.twig' with {'paginacion':paginacion,'linkBy':linkBy} %}
+
+{% for articulo in articulos %}
+<div class="row vert-offset-top-7">
+    {% if articulo.PathNameImagenN %}
+    <div class="col-sm-6">
+        <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">
+            <img src="{{app.path}}/{{theme}}/{{articulo.PathNameImagenN(1)}}" title="{{articulo.Descripcion}}" alt="{{articulo.Descripcion}}" />
+        </a>
+    </div>
+    {% endif %}
+    <div class="col-sm-6">
+        <h4><a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a></h4>
+        {% if articulo.Resumen != articulo.Descripcion %}
+            <div class="resumen">{{articulo.Resumen}}</div>
+        {% endif %}
+        {% set precioActual = articulo.PrecioWeb %}
+        {% if articulo.PvpAnterior > 0 and articulo.PrecioAnterior != precioActual %}
+            <div class="precios precioAnterior">{{macro.moneda(articulo.PvpAnterior)}}</div>                
+        {% endif %}
+        <div class="precioActual">{{macro.precio(articulo.cotizarWeb)}}</div>
+        <article class="botonera">
+            <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{macro.idioma('masInfo')}}" class="saberMas">{{macro.idioma('saberMas')}}
+                <span class="sprite"></span>
+            </a>
+        </article>
+    </div>
+</div>
+{% endfor %}
+
+{% include '_global/paginacion.html.twig' with {'paginacion':paginacion,'linkBy':linkBy} %}

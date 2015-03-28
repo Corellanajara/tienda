@@ -686,4 +686,18 @@ class ControllerWeb {
         return ($ok) ? $controller : "";
     }
 
+    /**
+     * Renderiza template
+     * 
+     * @param string $template El path completo al template
+     * @param array $values Array de valores
+     * @return string Texto html
+     */
+    static function renderTwigTemplate($template, $values) {
+        
+        $loader = new Twig_Loader_Array(array('index' => file_get_contents($template),));
+        $twig = new Twig_Environment($loader);
+
+        return $twig->render('index', $values);
+    }    
 }

@@ -1,0 +1,13 @@
+{# FACTURAS EMITIDAS #}
+
+{% extends layout %}
+
+{% block content %}
+    <div class="central">   
+        <section id="noticias">
+            <h2>{{macro.idioma('facturas')}}</h2> 
+            {% include '_global/listadoArticulos.html.twig' with {'articulos':articulos} %}
+       
+        </section>
+    </div>
+{% endblock %}

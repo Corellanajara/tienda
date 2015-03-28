@@ -1,0 +1,35 @@
+{% extends layout %}
+
+{#
+{% block header %}
+    {% include values.controller ~ '/header.html.twig' %}
+{% endblock %}
+{% block head %}
+    {% include values.controller ~ '/head.html.twig' %}
+{% endblock %}
+#}
+
+{% set fabricante = values.fabricante %}
+{% set logo = fabricante.PathNameImagenN(1) %}
+
+{% block content %}
+    <div class="col-sm-6">
+        <h3><span>{{fabricante.Titulo}} ({{macro.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macro.idioma('articulos')}})</span></h3>
+
+        <article id="infoPrincipal">
+            <div id="imagenes" style="float:left;margin-right: 20px;">
+                {% if logo %}
+                    <img src="{{app.path}}/{{theme}}/{{logo}}" alt="{{fabricante.Titulo}}" title="{{fabricante.Titulo}}" />             
+                {% endif %}
+            </div>
+            <div id="descripcion" style="float:left;width:300px;">
+                {% autoescape false %}{{fabricante.Descripcion1}}{% endautoescape %}
+            </div> 
+            
+            {% include '_global/listadoArticulos.html.twig' with {'articulos':values.destacados} %}              
+        </article>
+
+        {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':familia.PrimaryKeyValue} %}
+   
+    </div>
+{% endblock %}

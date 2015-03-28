@@ -1,0 +1,13 @@
+{# Listado de favoritos #}
+{% extends layout %}
+
+{% block content %}
+    <div class="central">
+        <h2><span>{{macro.idioma('favoritos')}}</span></h2>
+
+        <section id="noticias">
+        {% include 'Favoritos/listado.html.twig' %}
+        </section>        
+
+    </div>
+{% endblock %}

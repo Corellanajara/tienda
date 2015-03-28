@@ -1,0 +1,27 @@
+{# MUESTRA EN FORMATO ACORDEON LAS 10 PRIMERAS MARCAS DE PORTADA Y SUS CATEGORIAS #}
+
+{% set marcas = values.widgets.getMarcas(1,0,10) %}
+
+{% if marcas|length %}
+    <div class="vert-offset-top-5 widget">
+        <h4 class="formulario">{{macro.idioma('marcasDestacadas')}}</h4>
+        <div class="list-group">
+            {% for marca in marcas %}       
+
+                <a class="list-group-item" onclick="location.href = '{{marca.Href.url}}';" style="cursor: pointer;" title="{{marca.Titulo}}">{{marca.Titulo}}</a>
+
+                {% set categorias = marca.getCategorias %}
+                {% if categorias |length > 0 %}
+                    <ul>
+                        {% for categoria in categorias %}   
+                            <li>
+                                <a href="{{categoria.Href.url}}" title="{{categoria.Familia}}">{{categoria.Familia}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>             
+                {% endif %}
+
+            {% endfor %}                         
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,33 @@
+{# Mis pedidos: Muestra los pedidos cuyo estado es  de Confirmado en adelante #}
+
+{% set pedidos = values.cliente.getPedidosWeb('2') %}
+{% if pedidos|length>0 %}
+<div>
+<table class="cesta">
+    <thead>
+        <tr>
+            <th>{{macro.idioma('numero')}}</th>
+            <th>{{macro.idioma('fecha')}}</th>
+            <th>{{macro.idioma('fechaExpedicion')}}</th>
+            <th>{{macro.idioma('importe')}}</th>
+            <th>{{macro.idioma('estado')}}</th>            
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for pedido in pedidos %}        
+        <tr>
+            <td>{{pedido.IDPedido}}</td>
+            <td>{{pedido.Fecha}}</td>
+            <td>{{pedido.FechaExpedicion}}</td>
+            <td>{{pedido.Total}}</td>
+            <td>{{pedido.IDEstado}}</td>            
+            <td><a href="">{{macro.idioma('verPedido')}}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<p>{{macro.idioma('noTienePedidos')}}</p>
+{% endif %}

@@ -1,0 +1,8 @@
+{% if values.errores | length > 0 %}
+<div class="mensaje">
+    {#<div class="mensajeForm">{{macro.idioma('sesionIniciadaExito')}}</div> #}
+    {% for error in values.errores %}
+        <div>{{macro.idioma('error')}}</div>
+    {% endfor %}      
+</div>
+{% endif %}

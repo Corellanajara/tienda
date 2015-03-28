@@ -1,0 +1,15 @@
+{# BUSCADOR #}
+
+<form name="buscador" id="buscador" method="POST" action="">
+    <input type="hidden" name="controller" value="Listado"/>
+    <input type="hidden" name="action" value="Index"/>      
+    <div class="input-group">
+        <input name="textoBusqueda" id="textoBusqueda" type="text" class="form-control">
+        <span class="input-group-btn">
+            <button onclick="if ($('#textoBusqueda').val() !== '')
+                            $('#buscador').submit();
+                        else
+                            return false;" class="btn btn-default" type="button">{{macro.idioma('buscar')}}</button>
+        </span>
+    </div>
+</form>

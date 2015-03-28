@@ -1,0 +1,9 @@
+{% extends layout %}
+
+{% block asideRight %}{% endblock %}
+{% block content %}
+    <div class="col-sm-9">
+        <h3 class="tituloProducto">{{values.producto.Descripcion}}</h3>   
+        {% include values.controller ~ '/productoInfo.html.twig' %}   
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends layout %}
+
+{% block asideRight %} {% endblock %}
+
+{% block content %}
+
+    <div class="col-md-9">
+        <h3><span>Buscando "{{values.textoBusqueda}}" ({{macros.idioma('hay')}} {{values.articulos.paginacion.totalItems}} {{macros.idioma('articulos')}})</span></h3>
+
+        <section id="noticias">
+            {% include '_global/listadoArticulosPaginados.html.twig' with {'articulos':values.articulos.articulos,'paginacion':values.articulos.paginacion,'linkBy':values.textoBusqueda} %}
+        </section> 
+    </div>
+
+{% endblock %}

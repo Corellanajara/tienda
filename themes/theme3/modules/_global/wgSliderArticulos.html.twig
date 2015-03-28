@@ -1,0 +1,37 @@
+{% set articulos = values.widgets.getArticulosZona(values.controller,2) %}
+
+{% if articulos | length > 0 %}
+<div class="widget_persianart_cycleposts widget">
+    <div class="h-wrapper">
+        <h3>{{macro.idioma('oferta')}}<span class="line"></span></h3>
+    </div>
+    <div id="testimonial-cycle-widget">
+        <div class="testimonial-widget-nav">
+            <div class="next"></div>
+            <div class="prev"></div>
+        </div>
+
+        <div id="testimonial-widget-1">
+            <ul>
+		{% for articulo in articulos %}
+                    {% set imagen = articulo.PathNameImagenN(3) %}              
+                    <li class="testimonial testi-widget {% if not imagen %}testi-noimage{%endif%}">
+                        {% if imagen %}
+                            <div class="testi-pic">
+                                <a href="{{articulo.Href.url}}"><img src="{{app.path}}/{{theme}}/{{imagen}}" alt="{{articulo.Descripcion}}" /></a>
+                            </div>
+                        {% endif %}                    
+
+                        <div>
+                            {{articulo.Resumen}}
+                            <span class="testi-name">
+                                <span class="testi-user">{{macro.moneda(articulo.PrecioVentaConImpuestos)}}</span>
+                            </span>
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+    </div>
+</div>
+{% endif %}

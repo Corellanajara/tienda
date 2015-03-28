@@ -1,0 +1,19 @@
+{# CAJA CARRITO DE LA COMPRA #}
+
+<h3 id="verCarrito" class="formulario">
+{%if values.carrito.totales.Unidades%}
+    <a href="{{appPath}}/carrito">{{macro.idioma('verCarrito')}}</a>
+{%else%}
+    {{macro.idioma('carrito')}}
+{%endif%}
+</h3>
+<div id="cajaCarrito" class="cajetin">
+{%if values.carrito.totales.Unidades%}
+    <ul>
+        <li><span>{{macro.idioma('productos')}}</span><span id="carritoUnidades">{{values.carrito.totales.Unidades}}</span></li>
+        <li><span>{{macro.idioma('importe')}}</span><span id="carritoImporte">{{macro.moneda(values.carrito.totales.Importe)}}</span></li>
+    </ul>
+{%else%}
+    <span>{{macro.idioma('carroVacio')}}</span>
+{%endif%}    
+</div>

@@ -1,0 +1,44 @@
+{# WIDGETS PARA BANNERS DE LA ZONA 2 DE BANNERS #}
+
+{% set banners = values.widgets.getBanners('Pie',0,-1,6) %}
+{% set nBanner=banners|length %}
+
+<section class="bannerPie">
+    <div id="newsticker-demo" class="contenedorCentral">    
+        {% if nBanner<=6 %}
+            <ul>
+                {% for banner in banners %}
+                <li>
+                    <div class="thumbnailBanner">
+                    {% if banner.url.url %}
+                        <a href="{{banner.url.url}}" title="{{banner.titulo}}" rel="pop-up">
+                    {% endif %}
+                        <img src="{{app.path}}/{{theme}}/{{banner.imagenes[1]}}" title="{{banner.nombre}}" alt="{{banner.nombre|date('')}}" />
+                    {% if banner.url.url %}
+                        </a>
+                    {% endif %} 
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>        
+        {% else %}         
+            <div class="newsticker-jcarousellite-pie">
+                <ul>
+                    {% for banner in banners %}
+                    <li>
+                        <div class="thumbnail">
+                            {% if banner.url.url %}
+                                <a href="{{banner.url.url}}" title="{{banner.titulo}}" rel="pop-up">
+                            {% endif %}
+                                <img src="{{app.path}}/{{theme}}/{{banner.imagenes[1]}}" title="{{banner.titulo}}" alt="{{banner.titulo}}" />
+                            {% if banner.url.url %}
+                                </a>
+                            {% endif %}                            
+                        </div>
+                    </li>  
+                    {% endfor %}                                                                                                                                             
+                </ul>
+            </div>
+        {% endif %}
+    </div>        
+</section>

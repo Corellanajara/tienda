@@ -1,0 +1,42 @@
+{% extends layout %}
+
+{% block contenido %}
+    <section id="producto">
+        <article class="empresa">
+            <img src="{{app.path}}/{{values.anunciante.PathNameImagenN(1)}}" alt="{{values.anunciante.RazonSocial}}" title="{{values.anunciante.RazonSocial}}" />
+            <div class="empresaDescipcion">
+                <h1 class="titularSinBorde">{{values.anunciante.RazonSocial}}</h1>
+                <p>{{values.anunciante.Observations}}</p>
+                {% if values.anunciante.Web %}
+                    <a href="http://{{values.anunciante.Web}}" target="_blank" title="{{values.anunciante.RazonSocial}}" class="rojo bloque">{{values.anunciante.Web}}</a>
+                {% endif %}
+            </div>
+         
+            <ul class="empresaDatosContacto">
+                <li id="direccionEmpresa">{{values.anunciante.Direccion}}</li>
+                <li id="direccionEmpresa">{{values.anunciante.CodigoPostal}} - {{values.anunciante.IDProvincia.Provincia}}</li>
+                <li id="tlfEmpresa">{{values.anunciante.Telefono}}</li>
+                {% if values.anunciante.EMail %}
+                <li id="emailEmpresa"><a href="mailto:{{values.anunciante.EMail}}" title="">{{values.anunciante.EMail}}</a></li>
+                {% endif %}
+            </ul>
+        </article>
+    </section>
+
+    <section class="productos productosDestacados">
+        <h2 class="titular">{{values.LABELS.articulosDestacados}}</h2>
+        <span class="lineaBlanca"></span>
+        {% include values.controller ~ '/productosAnunciante.html.twig' %}
+    </section>
+{#
+    <section class="productos marginBottom40">
+        {% include '_global/filtroOrdenar.html.twig' %}
+        {% include '_global/producto.html.twig' %}
+    </section>
+
+    <section>
+        {% include '_global/noticias.html.twig' %}
+        {% include '_global/articulosRelacionados.html.twig' %}
+    </section>
+#}
+{% endblock %}

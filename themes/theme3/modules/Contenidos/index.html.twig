@@ -1,0 +1,28 @@
+{% extends layout %}
+
+{% block navegacion %}{% include '_global/navegacionGeneral.html.twig' %}{% endblock %}
+
+{% block asideRight %}{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-9">
+    {% include 'Contenidos/contenido.html.twig' %}
+        
+    {% if values.contenidoDesarrollado.contenido.ShowDocuments.IDTipo == '1' %}
+        {% include 'Contenidos/ficherosAdjuntos.html.twig' %}  
+    {% endif %}
+
+    {% if values.contenidoDesarrollado.contenido.ShowRelatedLinks.IDTipo == '1' %}
+        {% include 'Contenidos/enlacesRelacionados.html.twig' %}    
+    {% endif %}    
+
+    {% if values.contenidoDesarrollado.contenido.ShowGalery.IDTipo == '1' %}
+        {% include 'Contenidos/galeria.html.twig' %}   
+    {% endif %}        
+    </div>  
+{% endblock %}
+
+{% block bannerPie %}
+    {# include '_global/bannerPie.html.twig' #}   
+{% endblock %}

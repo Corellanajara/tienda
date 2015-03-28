@@ -1,0 +1,25 @@
+{% extends layout %}
+
+{% block content %}
+<section class="contenedorGrandeCentral">
+    <article class="colIzqda">
+    <h1>{{macro.idioma('olvidoContraseña')}}</h1>
+    {% if values.errores | length == 0 %}    
+        <p>{{macro.idioma('textoOlvido')}}</p>
+
+        <article class="colDrcha">    	                                
+                {% include 'ZonaPrivada/formularioOlvido.html.twig' %}
+        </article>
+    {% else %}
+        <article class="colIz">
+
+        </article>
+
+        <article class="colDrcha">    	                                
+            {% include 'ZonaPrivada/mensajes.html.twig' %}
+        </article>    
+    {% endif %}
+    </article>
+</section>
+{% endblock %}
+

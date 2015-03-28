@@ -1,0 +1,33 @@
+{# DIRECCIONES DE ENTREGA #}
+{% set direcciones = values.cliente.getDireccionesEntrega() %}
+aaa
+{% if direcciones|length>0 %}
+<div>
+<table class="cesta">
+    <thead>
+        <tr>
+            <th>{{macro.idioma('nombre')}}</th>
+            <th>{{macro.idioma('direccion')}}</th>
+            <th>{{macro.idioma('poblacion')}}</th>
+            <th>{{macro.idioma('provincia')}}</th>
+            <th>{{macro.idioma('codigoPostal')}}</th>            
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for key,direccion in direcciones %}        
+        <tr>
+            <td>{{direccion.Nombre}}</td>
+            <td>{{direccion.Direccion}}</td>
+            <td>{{direccion.IDPoblacion}}</td>
+            <td>{{direccion.IDProvincia}}</td>
+            <td>{{direccion.CodigoPostal}}</td>            
+            <td><a href="">{{macro.idioma('editar')}}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<p>{{macro.idioma('sinDirecciones')}}</p>
+{% endif %}

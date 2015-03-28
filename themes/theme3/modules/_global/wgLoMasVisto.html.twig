@@ -1,0 +1,12 @@
+{# CAJA CON LOS 5 PRODUCTOS MAS VISITADOS #}
+
+{% set articulos = values.widgets.getArticulosMasVistos(5) %}
+
+<div class="vert-offset-top-5 widget">
+<h4>{{macro.idioma('loMasVisto')}}</h4>
+<div class="list-group">
+    {% for articulo in articulos %}
+        <a href="{{articulo.Href.url}}" class="list-group-item">{{ macro.recortaTexto(articulo.Descripcion,100)}}</a>
+    {% endfor %}
+</div>
+</div>

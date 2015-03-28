@@ -1,0 +1,45 @@
+
+<div class="row vert-offset-top-10">
+    <div class="col-sm-8">
+              
+        <ul class="nav nav-pills">
+            {% for seccion in values.menuPie  %}
+                <li><a href="{{seccion.url.url}}" title="{{seccion.etiquetaWeb}}">{{seccion.etiquetaWeb}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <address>
+            <div class="direccion">
+                <span class="spriteDireccion"></span>
+                {{values.datosContacto.direccion}}
+            </div>
+
+            <div class="telefono">
+                <span class="spriteTelefono"></span>
+                {{values.datosContacto.telefono1}}
+            </div>
+
+            <div class="email">
+                <span class="spriteEmail"></span>
+                <a href="mailto:{{macro.idioma('emailInfo')}}" title="{{macro.idioma('emailInfo')}}">{{values.datosContacto.emailInfo}}</a>
+            </div>                                      
+        </address>
+    </div>
+    <div class="col-sm-4">
+        <span>{{macro.idioma('siguenos')}}</span>
+        <a href="" id="facebook" title="{{macro.idioma('facebook')}}">{{macro.idioma('facebook')}}</a>
+        <a href="" id="twitter" title="{{macro.idioma('twitter')}}">{{macro.idioma('twitter')}}</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-9">
+        <a href="{{app.path}}/aviso-legal"title="{{macro.idioma('avisoLegal')}}">{{macro.idioma('avisoLegal')}}</a> |
+        <a href="{{app.path}}/politica-de-privacidad" title="{{macro.idioma('politicaPrivacidad')}}">{{macro.idioma('politicaPrivacidad')}}</a> |
+        <a href="{{app.path}}/condiciones-de-venta" title="{{macro.idioma('condicionesDeVenta')}}">{{macro.idioma('condicionesDeVenta')}}</a>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="http://www.albatronic.com" title="">Diseño web: Albatronic</a>
+    </div>
+</div>
