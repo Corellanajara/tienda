@@ -1,28 +1,29 @@
 {# LISTADO DE ARTICULOS SIN PAGINAR #}
 {% for articulo in articulos %}
-<article>
-    {% if articulo.PathNameImagenN %}
-    <figure>
-        <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">
-            <img src="{{app.path}}/{{theme}}/{{articulo.PathNameImagenN(1)}}" title="{{articulo.Descripcion}}" alt="{{articulo.Descripcion}}" />
-        </a>
-    </figure>
-    {% endif %}
-    <div class="info">
-        <h3><a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a></h3>
-        {% if articulo.Resumen != articulo.Descripcion %}
-            <div class="resumen">{{articulo.Resumen}}</div>
-        {% endif %}
-        {% set precioActual = articulo.PrecioWeb %}
-        {% if articulo.PvpAnterior > 0 and articulo.PrecioAnterior != precioActual %}
-            <div class="precios precioAnterior">{{macro.moneda(articulo.PvpAnterior)}}</div>                
-        {% endif %}
-        <div class="precioActual">{{macro.precio(articulo.cotizarWeb)}}</div>
-        <article class="botonera">
-            <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{macro.idioma('masInfo')}}" class="saberMas">{{macro.idioma('saberMas')}}
-                <span class="sprite"></span>
+    <div class="row vert-offset-top-10">
+
+        <div class="col-md-4">
+            {% set imagen = (articulo.PathNameImagenN) ? articulo.PathNameImagenN(1) : "docs/imagen150x150.jpg" %}
+            <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">
+                <img src="{{app.path}}/{{theme}}/{{imagen}}" title="{{articulo.Descripcion}}" alt="{{articulo.Descripcion}}" />
             </a>
-        </article>
+        </div>
+
+        <div class="col-md-8">
+            <h4><a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{articulo.Descripcion}}">{{articulo.Descripcion}}</a></h4>
+                {% if articulo.Resumen != articulo.Descripcion %}
+                <div class="resumen">{{articulo.Resumen}}</div>
+            {% endif %}
+            {% set precioActual = articulo.PrecioWeb %}
+            {% if articulo.PvpAnterior > 0 and articulo.PrecioAnterior != precioActual %}
+                <div class="precios precioAnterior">{{macro.moneda(articulo.PvpAnterior)}}</div>                
+            {% endif %}
+            <div class="precioActual">{{macro.precio(articulo.cotizarWeb)}}</div>
+            <article class="botonera">
+                <a href="{{appPath}}{{articulo.UrlFriendly}}" title="{{macro.idioma('masInfo')}}" class="saberMas">{{macro.idioma('saberMas')}}
+                    <span class="sprite"></span>
+                </a>
+            </article>
+        </div>
     </div>
-</article>
 {% endfor %}

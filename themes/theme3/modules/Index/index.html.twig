@@ -15,15 +15,13 @@
             {% set lote = values.widgets.getLotesWeb(1) %}
             {% include '_global/carousel.html.twig' with {'objetos':lote[0].articulos,'nImagen': 3}%}
         {% endif %}
-            
-        <section id="noticias">
-            {% set articulos = values.widgets.getArticulosZona(values.controller,1) %}
-            <h2><span>{{macro.idioma('productos')}} </span>{{macro.idioma('destacados')}}</h2> 
-            {% include '_global/listadoArticulos.html.twig' with {'articulos':articulos} %}
-       
-            {% set articulos = values.widgets.getArticulosZona(values.controller,2) %}            
-            <h2><span>{{macro.idioma('productos')}} </span>{{macro.idioma('novedad')}}</h2>            
-            {% include '_global/listadoArticulos.html.twig' with {'articulos':articulos} %}
-        </section>
+
+        {% set articulos = values.widgets.getArticulosZona(values.controller,1) %}
+        <h3><span>{{macro.idioma('productos')}} </span>{{macro.idioma('destacados')}}</h3> 
+        {% include '_global/listadoArticulos.html.twig' with {'articulos':articulos} %}
+
+        {% set articulos = values.widgets.getArticulosZona(values.controller,2) %}            
+        <h3><span>{{macro.idioma('productos')}} </span>{{macro.idioma('novedad')}}</h3>            
+        {% include '_global/listadoArticulos.html.twig' with {'articulos':articulos} %}
     </div>
 {% endblock %}

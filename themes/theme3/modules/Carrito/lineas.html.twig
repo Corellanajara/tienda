@@ -1,5 +1,6 @@
 {# Lineas de la cesta #}
-<table class="cesta">
+
+<table class="table">
     <thead>
         <tr>
             <th colspan="2">{{macro.idioma('articulo')}}</th>
@@ -20,9 +21,9 @@
                 <span class="btn_lineasCarrito" onclick="actualizar({{linea.Id}});">{{macro.idioma('actualizar')}}</span>
                 <span class="btn_lineasCarrito" onclick="eliminar({{linea.Id}});">{{macro.idioma('eliminar')}}</span>
             </td>
-            <td>{{linea.Precio|number_format}}</td>
-            <td>{{linea.Descuento|number_format}}</td>
-            <td id="importe{{linea.Id}}">{{linea.Importe|number_format}}</td>
+            <td class="text-right">{{linea.Precio|number_format}}</td>
+            <td class="text-right">{{linea.Descuento|number_format}}</td>
+            <td class="text-right" id="importe{{linea.Id}}">{{linea.Importe|number_format}}</td>
         </tr>
         {% endfor %}
     </tbody>

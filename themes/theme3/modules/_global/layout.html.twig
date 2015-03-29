@@ -38,7 +38,6 @@
             {% include '_global/footer.html.twig' %}
         {% endblock %}
     </div>
-    {% include '_global/avisoCookies.html.twig' %}
     
     <!-- Para que esté disponible el path de la app en todos los java scripts -->
     <script type="text/javascript">
@@ -49,7 +48,7 @@
 
     {% include values.archivoJs %}
     {% include '_global/wgZopim.js.twig' %}  
-    
+    {% include '_global/avisoCookies.html.twig' %}    
     <div id="mensajes" title="Mensaje"></div>
     
     {% if values._debugMode %}
