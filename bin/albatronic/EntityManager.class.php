@@ -65,8 +65,8 @@ class EntityManager {
      */
     public function __construct($conection, $fileConfig = '') {
 
-        $this->logErrorQueryFile = str_replace("bin/albatronic", "", __DIR__) . "log/error_query.log";
-        $this->logQueryFile = str_replace("bin/albatronic", "", __DIR__) . "log/query.log";
+        $this->logErrorQueryFile = str_replace("bin" . DIRECTORY_SEPARATOR . "albatronic", "", __DIR__) . "log/error_query.log";
+        $this->logQueryFile = str_replace("bin" . DIRECTORY_SEPARATOR . "albatronic", "", __DIR__) . "log/query.log";
 
         //if (is_null(self::$dbLinkInstance)) {
         if (is_array($conection)) {
@@ -81,7 +81,7 @@ class EntityManager {
         } else {
             if (count(self::$conection) == 0) {
                 if ($fileConfig == '') {
-                    $fileConfig = str_replace("bin/albatronic", "", __DIR__) . $this->file;
+                    $fileConfig = str_replace("bin" . DIRECTORY_SEPARATOR . "albatronic", "", __DIR__) . $this->file;
                 }
                 if (file_exists($fileConfig)) {
                     $yaml = sfYaml::load($fileConfig);
@@ -98,8 +98,9 @@ class EntityManager {
             self::$user = self::$conection['user'];
             self::$password = self::$conection['password'];
             self::$dataBase = self::$conection['database'];
-            if (is_null(self::$dbLinkInstance))
+            if (is_null(self::$dbLinkInstance)) {
                 $this->conecta();
+            }
         }
     }
 
@@ -173,8 +174,10 @@ class EntityManager {
 
         if ($_SESSION['varEnv']['Pro']['log'] === '1') {
             $fp = fopen($this->logQueryFile, "a");
-            fwrite($fp, date("Y-m-d H:i:s") . "\t" . $query . "\n");
-            fclose($fp);
+            if ($fp) {
+                fwrite($fp, date("Y-m-d H:i:s") . "\t" . $query . "\n");
+                fclose($fp);
+            }
         }
 
         switch (self::$dbEngine) {

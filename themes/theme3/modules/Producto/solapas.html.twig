@@ -36,18 +36,7 @@
         {% endif %}
         {% if values.conComentarios %}    
         <div role="tabpanel" class="tab-pane vert-offset-top-10" id="comentarios">
-        <ul>
-            {% for comentario in values.comentarios %}
-            <li>
-                <span>{{comentario.TiempoUnix|date('d/m/Y')}}</span> </span>{{comentario.nombre}}</span>
-                {{comentario.Comentario}}
-            </li>
-            {% else %}
-            <span>{{macro.idioma('seElPrimeroEnComentar')}}</span>
-            {% endfor %}
-
-            {% include values.controller ~ '/formularioComentario.html.twig' with {'idArticulo':values.producto.IDArticulo}%}
-        </ul>
+            {% include values.controller ~ '/formularioComentario.html.twig' with {'idArticulo':values.producto.IDArticulo, 'comentarios': values.comentarios}%}
         </div>
         {% endif %}        
     </div>

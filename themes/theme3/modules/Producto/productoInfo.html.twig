@@ -1,5 +1,5 @@
 {% set galeria = values.galeria %}
-{% set imagen = values.producto.PathNameImagenN(2) %}
+{% set imagen = (values.producto.PathNameImagenN(2)) ? values.producto.PathNameImagenN(2) : "docs/imagen300x300.jpg" %}
 <div class="row">
 
     <div class="col-sm-6">                   
